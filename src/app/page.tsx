@@ -101,19 +101,19 @@ export default function Home() {
                   src={article.cover}
                   alt={article.title}
                   title={article.title}
-                  className="rounded-lg w-[20rem] h-[20rem]"
+                  className="rounded-lg w-[22rem] h-[20rem]"
                   width={0}
                   height={0}
                 />
 
-                <div className="flex flex-col gap-2 pt-3 pb-5 relative">
-                  <h3 className="font-semibold text-base text-primary px-5">
+                <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                  <h3 className="font-semibold text-base text-primary">
                     {article.title.length > 33 ? (article.title.substring(0, 33) + '...') : (article.title)}
                   </h3>
-                  <p className="font-normal text-sm text-gray px-5">
+                  <p className="font-normal text-sm text-gray">
                     {article.snippets.substring(0, 150) + '...'}
                   </p>
-                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mx-5 mt-2'>Read More</Link>
+                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-2'>Read More</Link>
                 </div>
               </div>
             ))}
