@@ -3,7 +3,7 @@ import { Footer, Navbar } from '@/components'
 import Link from 'next/link'
 import Image from 'next/image'
 import { articleSectionOnLanding, valueSectionOnLanding, values } from '@/data/staticData'
-import { articlesOnLanding } from '@/data/articleData'
+import { articles, articlesOnLanding } from '@/data/articleData'
 import "./scrollable.css";
 
 export default function Home() {
@@ -94,7 +94,7 @@ export default function Home() {
         </div>
         
         <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar" style={{ scrollbarWidth: "none" }}>
-          <div className="flex flex-row gap-4 no-scrollbar" style={{ minWidth: `${articlesOnLanding.length * 20}rem`, }}>
+          <div className="flex flex-row gap-4 no-scrollbar" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
             {articlesOnLanding.map((article, index) => (
               <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
                 <Image 
@@ -105,6 +105,16 @@ export default function Home() {
                   width={0}
                   height={0}
                 />
+
+                <div className="flex flex-col gap-2 pt-3 pb-5 relative">
+                  <h3 className="font-semibold text-base text-primary px-5">
+                    {article.title.length > 33 ? (article.title.substring(0, 33) + '...') : (article.title)}
+                  </h3>
+                  <p className="font-normal text-sm text-gray px-5">
+                    {article.snippets.substring(0, 150) + '...'}
+                  </p>
+                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mx-5 mt-2'>Read More</Link>
+                </div>
               </div>
             ))}
           </div>
