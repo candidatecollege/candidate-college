@@ -2,7 +2,7 @@
 import { Footer, Navbar } from '@/components'
 import Link from 'next/link'
 import Image from 'next/image'
-import { articleSectionOnLanding, valueSectionOnLanding, values } from '@/data/staticData'
+import { articleSectionOnLanding, eventSectionOnLanding, valueSectionOnLanding, values } from '@/data/staticData'
 import { articles, articlesOnLanding } from '@/data/articleData'
 import "./scrollable.css";
 
@@ -21,7 +21,7 @@ export default function Home() {
         Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
         </p>
 
-        <Link href='/about' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Get To Know About CC</Link>
+        <Link href='/about' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mt-6 md:mt-0'>Get To Know About CC</Link>
 
         <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Events</Link>
 
@@ -74,7 +74,7 @@ export default function Home() {
           }
         </div>
 
-        <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center">
+        <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center mt-6 md:mt-0">
           <Link href='/events' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Candidate College Events</Link>
 
           <Link href='/articles' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read Articles</Link>
@@ -93,8 +93,8 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar" style={{ scrollbarWidth: "none" }}>
-          <div className="flex flex-row gap-4 no-scrollbar" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
+        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+          <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
             {articlesOnLanding.map((article, index) => (
               <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
                 <Image 
@@ -113,7 +113,7 @@ export default function Home() {
                   <p className="font-normal text-sm text-gray">
                     {article.snippets.substring(0, 150) + '...'}
                   </p>
-                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-2'>Read More</Link>
+                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Read More</Link>
                 </div>
               </div>
             ))}
@@ -121,10 +121,81 @@ export default function Home() {
         </div>
 
       
-        <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center">
+        <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center mt-6 md:mt-0">
           <Link href='/articles' title='Read More Articles' about='Read More Articles' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read More Articles</Link>
 
           <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Our Events</Link>
+        </div>
+      </section>
+
+      {/* Events */}
+      <section className="w-full h-full bg-white px-5 py-10 md:py-10 flex flex-col gap-9 -mt-1 md:px-10 overflow-hidden">
+        <div className="flex flex-col gap-2 w-full md:px-10">
+          <h3 className="text-primary text-xs md:text-base font-medium uppercase">{eventSectionOnLanding.subtitle}</h3>
+          <div className="flex flex-col gap-2 md:flex-row md:gap-20 md:items-center">
+            <h2 className='text-secondary text-2xl md:text-[40px] font-medium w-[20rem] md:w-[30rem] md:leading-[40px]'>{eventSectionOnLanding.title}</h2>
+            <p className="text-gray text-sm lg:text-base md:w-[40%]">
+            {eventSectionOnLanding.description}
+            </p>
+          </div>
+        </div>
+        
+        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+          <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
+            {articlesOnLanding.map((article, index) => (
+              <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
+                <Image 
+                  src={article.cover}
+                  alt={article.title}
+                  title={article.title}
+                  className="rounded-lg w-[22rem] h-[20rem]"
+                  width={0}
+                  height={0}
+                />
+
+                <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="flex flex-row gap-4">
+                      <div className="flex flex-col items-center justify-center">
+                        <p className="font-semibold text-primary">5</p>
+                        <p className="text-xs font-normal text-gray">
+                          Days
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col items-center justify-center">
+                        <p className="font-semibold text-primary">0</p>
+                        <p className="text-xs font-normal text-gray">
+                          Hours
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col items-center justify-center">
+                        <p className="font-semibold text-primary">2</p>
+                        <p className="text-xs font-normal text-gray">
+                          Mins
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col items-center justify-center">
+                        <p className="font-semibold text-primary">1</p>
+                        <p className="text-xs font-normal text-gray">
+                          Secs
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Register Now</Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center mt-6 md:mt-0">
+          <Link href='/articles' title='Read More Articles' about='Read More Articles' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See More Our Events</Link>
+
+          <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read Articles</Link>
         </div>
       </section>
 

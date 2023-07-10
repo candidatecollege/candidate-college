@@ -13,11 +13,11 @@ import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 
 const Footer = () => {
   const socials = [
-    { id: 1, name: 'Twitter', link: '/', component: <TwitterIcon color='inherit' fontSize='inherit' /> },
-    { id: 2, name: 'Instagram', link: '/', component: <InstagramIcon color='inherit' fontSize='inherit' /> },
-    { id: 3, name: 'Youtube', link: '/', component: <YouTubeIcon color='inherit' fontSize='inherit' /> },
-    { id: 4, name: 'Spotify', link: '/', component: <PodcastsIcon color='inherit' fontSize='inherit' /> },
-    { id: 4, name: 'Tiktok', link: '/', component: <AudiotrackIcon color='inherit' fontSize='inherit' /> },
+    { id: 1, name: 'Twitter', link: 'https://twitter.com/CCollege_Ind', component: <TwitterIcon color='inherit' fontSize='inherit' /> },
+    { id: 2, name: 'Instagram', link: 'https://www.instagram.com/candidate.college/', component: <InstagramIcon color='inherit' fontSize='inherit' /> },
+    { id: 3, name: 'Youtube', link: 'https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ', component: <YouTubeIcon color='inherit' fontSize='inherit' /> },
+    { id: 4, name: 'Spotify', link: 'https://open.spotify.com/show/0xhjenJefepCIKH5UeVyiE?si=08402adcbd92430b', component: <PodcastsIcon color='inherit' fontSize='inherit' /> },
+    { id: 4, name: 'Tiktok', link: 'https://www.tiktok.com/@candidatecollege', component: <AudiotrackIcon color='inherit' fontSize='inherit' /> },
   ]
 
   return (
@@ -41,7 +41,7 @@ const Footer = () => {
         <div className="flex flex-row">
           <section className="flex flex-row gap-10">
           <div className="flex flex-col gap-2">
-            <p className='font-medium text-whihte text-base'>Navigation</p>
+            <p className='font-medium text-white text-base'>Navigation</p>
 
             <ul className='flex flex-col gap-2'>
               {
@@ -53,7 +53,7 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <p className='font-medium text-whihte text-base'>Latest Events</p>
+            <p className='font-medium text-white text-base'>Latest Events</p>
 
             <ul className='flex flex-col gap-2'>
               {
@@ -67,7 +67,7 @@ const Footer = () => {
 
           <section className="hidden lg:ml-10 lg:flex flex-row gap-10">
             <div className="flex flex-col gap-2">
-              <p className='font-medium text-whihte text-base'>Articles</p>
+              <p className='font-medium text-white text-base'>Articles</p>
 
               <ul className='flex flex-col gap-2'>
                 {
@@ -82,7 +82,7 @@ const Footer = () => {
 
         <section className="hidden lg:ml-10 lg:flex flex-row gap-10">
           <div className="flex flex-col gap-2">
-            <p className='font-medium text-whihte text-base'>Our Socials</p>
+            <p className='font-medium text-white text-base'>Our Socials</p>
 
             <ul className='flex flex-row gap-2'>
               {
@@ -97,7 +97,7 @@ const Footer = () => {
 
       <section className="flex lg:hidden flex-row gap-10">
             <div className="flex flex-col gap-2">
-              <p className='font-medium text-whihte text-base'>Articles</p>
+              <p className='font-medium text-white text-base'>Articles</p>
 
               <ul className='flex flex-col gap-2'>
                 {
@@ -111,7 +111,7 @@ const Footer = () => {
 
       <section className="flex lg:hidden flex-row gap-10">
         <div className="flex flex-col gap-2">
-          <p className='font-medium text-whihte text-base'>Our Socials</p>
+          <p className='font-medium text-white text-base'>Our Socials</p>
 
           <ul className='flex flex-row gap-2'>
             {
@@ -130,7 +130,7 @@ const Footer = () => {
           <ul className='flex flex-col gap-3'>
             {
               footers.map((footer, index) => (
-                <Link className='font-medium text-whihte text-base duration-700 transition-all' href={footer.link} title={footer.name} about={footer.name} key={index}>{footer.name}</Link>
+                <Link className='font-medium text-white text-base duration-700 transition-all' href={footer.link} title={footer.name} about={footer.name} key={index}>{footer.name}</Link>
               ))
             }
           </ul>
