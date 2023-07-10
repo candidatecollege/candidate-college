@@ -24,7 +24,7 @@ const CTA = () => {
 
     return (
         <div className='flex flex-col gap-4 fixed bottom-8 left-5'>
-            <Link href={'/merchandise'} about={'Merchandise Market'} title={'Merchandise Market'} className={`bg-secondary w-fit flex items-center justify-center px-4 py-4 self-end rounded-full text-primary duration-800 transition-all cursor-pointer`} >
+            <Link href={'/merchandise'} about={'Merchandise Market'} title={'Merchandise Market'} className={`bg-secondary w-fit flex items-center justify-center px-4 py-4 self-end rounded-full text-primary hover:text-white duration-800 transition-all cursor-pointer`} >
                 <p className={`font-medium text-base flex items-center justify-center`}><span className='text-primary text-2xl leading-[0.5rem]'><ShoppingBagRoundedIcon fontSize='inherit' color='inherit' />
                     </span></p>
             </Link>
@@ -32,7 +32,7 @@ const CTA = () => {
             <div className={`flex-col gap-4 ${isShowSocials ? 'flex' : 'hidden'}`}>
             {
                 socials.map((social, index) => (
-                    <Link href={social.link} key={index} about={social.name} title={social.name} className={`bg-secondary w-fit flex items-center justify-center px-4 py-4 self-end rounded-full text-primary duration-800 transition-all cursor-pointer`} >
+                    <Link href={social.link} key={index} about={social.name} title={social.name} className={`bg-secondary w-fit flex items-center justify-center px-4 py-4 self-end rounded-full text-primary hover:text-white duration-800 transition-all cursor-pointer`} >
                         <p className={`font-medium text-base flex items-center justify-center`}><span className='text-primary text-2xl leading-[0.5rem]'>{social.component}
                             </span></p>
                     </Link>
