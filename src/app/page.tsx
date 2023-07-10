@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="bg-primary h-full">
       {/* Navbar */}
-      <Navbar />
+      <Navbar active='Home' />
       {/* Hero */}
       <section className="flex flex-col pt-36 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-screen">
         <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:text-center md:leading-[100%] leading-[150%]">

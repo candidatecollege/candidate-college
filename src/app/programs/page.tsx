@@ -1,8 +1,16 @@
+'use client'
+import { Footer, Navbar } from '@/components'
 import React from 'react'
 
 const Programs = () => {
   return (
-    <div>Programs</div>
+    <main className="bg-primary h-full">
+      {/* Navbar */}
+      <Navbar active='Programs' />
+
+      {/* Footer */}
+      <Footer />
+    </main>
   )
 }
 
