@@ -15,3 +15,21 @@ export const articleSectionOnLanding = {
     title: 'With Insightful and Actual Topic',
     description: 'Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.'
 }
+
+export const eventSectionOnLanding = {
+    subtitle: 'Our Events',
+    title: 'With Insightful and Actual Topic',
+    description: 'Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.'
+}
+
+export const contactUsSectionOnLanding = {
+    subtitle: 'Contact Us',
+    title: 'Interested To Cooperate With Us?',
+    description: 'Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.'
+}
+
+export const sendUsMessageSectionOnLanding = {
+    subtitle: 'Send Message',
+    title: 'Interested To Cooperate With Us?',
+    description: 'Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.'
+}

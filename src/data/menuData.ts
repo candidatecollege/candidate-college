@@ -1,7 +1,6 @@
 export const menus = [
     { id: 1, name: 'Home', link: '/', },
     { id: 2, name: 'About Us', link: '/about', },
-    { id: 3, name: 'Contact Us', link: '', },
     { id: 4, name: 'Articles', link: '/articles', },
     { id: 5, name: 'Programs', link: '/programs', },
 ]
