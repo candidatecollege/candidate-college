@@ -21,7 +21,11 @@ export const metadata: Metadata = {
     initialScale: 1,
   },
   referrer: 'origin',
-  robots: 'index, follow', 
+  robots: 'index, follow',
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0c2330" },
+    { media: "(prefers-color-scheme: light)", color: "#1B4E6B" }
+  ]
 }
 
 export default function RootLayout({
