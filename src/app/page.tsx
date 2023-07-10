@@ -93,8 +93,8 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar" style={{ scrollbarWidth: "none" }}>
-          <div className="flex flex-row gap-4 no-scrollbar" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
+        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+          <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
             {articlesOnLanding.map((article, index) => (
               <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
                 <Image 
@@ -140,8 +140,8 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar" style={{ scrollbarWidth: "none" }}>
-          <div className="flex flex-row gap-4 no-scrollbar" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
+        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+          <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
             {articlesOnLanding.map((article, index) => (
               <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
                 <Image 

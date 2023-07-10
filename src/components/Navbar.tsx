@@ -44,21 +44,22 @@ const Navbar: React.FC<any> = ({ active }) => {
   const closePopUp = () => {
     setIsSelected('Home')
     setIsOpen(false)
+    setIsSendUsMessage(false)
     setIsContactOpen(false)
   }
 
   const SendMessageSection = () => {
     return (
-      <section className="flex flex-col gap-2">
-        <input type='email' placeholder='Your Email' className='border border-gray rounded-2xl px-4 py-2' />
-        <textarea placeholder='Your Message' className='border border-gray rounded-2xl px-4 py-2' rows={8}></textarea>
+      <section className="flex flex-col gap-2 md:px-10">
+        <input type='email' placeholder='Your Email' className='border border-gray rounded-2xl px-4 py-2 text-primary placeholder:text-gray' />
+        <textarea placeholder='Your Message' className='border border-gray rounded-2xl px-4 py-2 text-primary placeholder:text-gray' rows={8}></textarea>
       </section>
     )
   }
 
   const ContactUsSection = () => {
     return (
-      <section className="flex flex-row gap-10 items-center justify-center">
+      <section className="flex flex-row gap-10 items-center justify-center md:px-10">
         <div className="flex flex-col gap-2">
           <p className='font-medium text-white text-base'>Our Socials</p>
 
@@ -76,12 +77,12 @@ const Navbar: React.FC<any> = ({ active }) => {
 
   const PopUpContact = () => {
     return (
-      <div className="w-full h-screen absolute top-0 bg-[rgba(0,0,0,0.5)]">
-        <div className="flex flex-col-gap-2 bg-white rounded-xl h-fit opacity-100 mx-5 mt-[10vh] relative">
-          <span className='text-2xl absolute top-4 right-5 text-primary' onClick={(e) => closePopUp()}>
+      <div className="w-full h-[150vh] absolute md:flex md:items-start md:justify-center top-0 bg-[rgba(0,0,0,0.5)]">
+        <div className="flex flex-col-gap-2 bg-white rounded-xl h-fit opacity-100 mx-5 mt-[10vh] md:mt-[5vh] relative md:w-3/4">
+          <span className='text-2xl absolute top-4 right-5 text-primary cursor-pointer' onClick={(e) => closePopUp()}>
             <CloseIcon fontSize='inherit' color='inherit' />
           </span>
-          <section className="w-full h-full px-5 py-10 md:py-10 flex flex-col gap-9 -mt-1 md:px-10 overflow-hidden">
+          <section className="w-full h-full px-5 pt-10 pb-6 md:py-10 flex flex-col gap-9 -mt-1 md:px-10 overflow-hidden">
             <div className="flex flex-col gap-2 w-full md:px-10">
               <h3 className="text-primary text-xs md:text-base font-medium uppercase">{isSendUsMessage ? sendUsMessageSectionOnLanding.subtitle : contactUsSectionOnLanding.subtitle}</h3>
               <div className="flex flex-col gap-2 md:flex-row md:gap-20 md:items-center">
@@ -119,7 +120,7 @@ const Navbar: React.FC<any> = ({ active }) => {
   }
 
   return (
-    <header className='w-full z-50 bg-primary fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border lg:px-10'>
+    <header className={`w-full z-50 bg-primary fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${isContactOpen ? 'lg:px-0' : 'lg:px-10'}`}>
       <nav className={`lg:mx-auto lg:flex-1 flex flex-row items-center justify-between px-7 py-1 border-b border-b-border lg:border-none h-[10vh] md:h-fit`}>
         <Image 
           src={`/logo/logo-full-cc.png`}
@@ -144,6 +145,9 @@ const Navbar: React.FC<any> = ({ active }) => {
                 </Link>
               ))
             }
+            <div className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${'Contact Us' == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent text-white'} cursor-pointer`} onClick={(e) => showPopUp()}>
+                <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{'Contact Us'}</span></p>
+            </div>
           </section>
         ) : (
           <section className="flex flex-row w-full absolute lg:hidden">
@@ -160,11 +164,11 @@ const Navbar: React.FC<any> = ({ active }) => {
                 </Link>
               ))
             }
-            <div  className={`bg-secondary ${isSelected == 'Contact Us' ? 'w-full px-5 py-3' : 'w-fit flex items-center justify-center px-4 py-3 self-end'} rounded-full text-primary duration-800 transition-all`} onClick={(e) => showPopUp()}>
+              <div  className={`bg-secondary ${isSelected == 'Contact Us' ? 'w-full px-5 py-3' : 'w-fit flex items-center justify-center px-4 py-3 self-end'} rounded-full text-primary duration-800 transition-all`} onClick={(e) => showPopUp()}>
                   <p className={`font-medium text-base flex items-center ${isSelected == 'Contact Us' ? 'gap-3' : 'gap-0'} justify-center`}><span>{isSelected == 'Contact Us' ? 'Contact Us' : null}</span> <span className='text-primary text-2xl'>
                     <LocalPhoneRoundedIcon color='inherit' fontSize='inherit' />
                     </span></p>
-                </div>
+              </div>
             </article>
           </section>
         )
