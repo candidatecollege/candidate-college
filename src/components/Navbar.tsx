@@ -19,7 +19,7 @@ import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 
 const Navbar: React.FC<any> = ({ active }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [isSelected, setIsSelected] = useState<string>('Home')
+  const [isSelected, setIsSelected] = useState<string>(active)
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false)
   const [isSendUsMessage, setIsSendUsMessage] = useState<boolean>(false)
 
@@ -53,7 +53,7 @@ const Navbar: React.FC<any> = ({ active }) => {
   }
 
   const closePopUp = () => {
-    setIsSelected('Home')
+    setIsSelected(active)
     setIsOpen(false)
     setIsSendUsMessage(false)
     setIsContactOpen(false)
