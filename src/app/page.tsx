@@ -1,5 +1,5 @@
 'use client'
-import { Footer, Navbar } from '@/components'
+import { CTA, Footer, Navbar } from '@/components'
 import Link from 'next/link'
 import Image from 'next/image'
 import { articleSectionOnLanding, eventSectionOnLanding, valueSectionOnLanding, values } from '@/data/staticData'
@@ -198,6 +198,9 @@ export default function Home() {
           <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read Articles</Link>
         </div>
       </section>
+
+      {/* CTA */}
+      <CTA />
 
       {/* Footer */}
       <Footer />
