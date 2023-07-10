@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
@@ -23,12 +23,23 @@ const Navbar: React.FC<any> = ({ active }) => {
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false)
   const [isSendUsMessage, setIsSendUsMessage] = useState<boolean>(false)
 
+  const [email, setEmail] = useState<string>('')
+  const [message, setMessage] = useState<string>('')
+
+  const handleSendMessage: any = (e: any) => {
+    e.preventDefault()
+    console.log(email)
+    console.log(message)
+    setEmail("")
+    setMessage("")
+  }
+
   const socials = [
-    { id: 1, name: 'Twitter', link: '/', component: <TwitterIcon color='inherit' fontSize='inherit' /> },
-    { id: 2, name: 'Instagram', link: '/', component: <InstagramIcon color='inherit' fontSize='inherit' /> },
-    { id: 3, name: 'Youtube', link: '/', component: <YouTubeIcon color='inherit' fontSize='inherit' /> },
-    { id: 4, name: 'Spotify', link: '/', component: <PodcastsIcon color='inherit' fontSize='inherit' /> },
-    { id: 4, name: 'Tiktok', link: '/', component: <AudiotrackIcon color='inherit' fontSize='inherit' /> },
+    { id: 1, name: 'Twitter', link: 'https://twitter.com/CCollege_Ind', component: <TwitterIcon color='inherit' fontSize='inherit' /> },
+    { id: 2, name: 'Instagram', link: 'https://www.instagram.com/candidate.college/', component: <InstagramIcon color='inherit' fontSize='inherit' /> },
+    { id: 3, name: 'Youtube', link: 'https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ', component: <YouTubeIcon color='inherit' fontSize='inherit' /> },
+    { id: 4, name: 'Spotify', link: 'https://open.spotify.com/show/0xhjenJefepCIKH5UeVyiE?si=08402adcbd92430b', component: <PodcastsIcon color='inherit' fontSize='inherit' /> },
+    { id: 4, name: 'Tiktok', link: 'https://www.tiktok.com/@candidatecollege', component: <AudiotrackIcon color='inherit' fontSize='inherit' /> },
   ]
 
   const toggleIsOpen = () => {
@@ -51,8 +62,8 @@ const Navbar: React.FC<any> = ({ active }) => {
   const SendMessageSection = () => {
     return (
       <section className="flex flex-col gap-2 md:px-10">
-        <input type='email' placeholder='Your Email' className='border border-gray rounded-2xl px-4 py-2 text-primary placeholder:text-gray' />
-        <textarea placeholder='Your Message' className='border border-gray rounded-2xl px-4 py-2 text-primary placeholder:text-gray' rows={8}></textarea>
+        <input id='email' name='email' autoComplete='off' type='email' placeholder='Your Email' className='border border-gray rounded-2xl px-4 py-2 text-sm md:text-base text-primary placeholder:text-gray' value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <textarea id='message' name='message' autoComplete='off' placeholder='Your Message' className='border border-gray rounded-2xl px-4 py-2 text-sm md:text-base text-primary placeholder:text-gray' rows={8} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
       </section>
     )
   }
@@ -66,7 +77,7 @@ const Navbar: React.FC<any> = ({ active }) => {
           <ul className='flex flex-row gap-2'>
             {
               socials.map((social, index) => (
-                <Link className='text-4xl text-secondary font-normal hover:text-white duration-700 transition-all' href={social.link} title={social.name} about={social.name} key={index}>{social.component}</Link>
+                <Link className='text-4xl text-secondary font-normal hover:text-primary duration-700 transition-all' href={social.link} title={social.name} about={social.name} key={index}>{social.component}</Link>
               ))
             }
           </ul>
@@ -78,7 +89,7 @@ const Navbar: React.FC<any> = ({ active }) => {
   const PopUpContact = () => {
     return (
       <div className="w-full h-[150vh] absolute md:flex md:items-start md:justify-center top-0 bg-[rgba(0,0,0,0.5)]">
-        <div className="flex flex-col-gap-2 bg-white rounded-xl h-fit opacity-100 mx-5 mt-[10vh] md:mt-[5vh] relative md:w-3/4">
+        <div className="flex flex-col-gap-2 bg-white rounded-xl h-fit opacity-100 mx-5 mt-[10vh] relative md:w-[60%]">
           <span className='text-2xl absolute top-4 right-5 text-primary cursor-pointer' onClick={(e) => closePopUp()}>
             <CloseIcon fontSize='inherit' color='inherit' />
           </span>
@@ -94,7 +105,7 @@ const Navbar: React.FC<any> = ({ active }) => {
             </div>
 
             {
-              !isSendUsMessage ? <ContactUsSection /> : <SendMessageSection />
+              !isSendUsMessage ? <ContactUsSection /> : null
             }
 
             {
@@ -105,11 +116,13 @@ const Navbar: React.FC<any> = ({ active }) => {
                   <div onClick={(e) => setIsSendUsMessage(true)} className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Send Us Message</div>
                 </div>
               ) : (
-                <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center md:mt-0">
-                  <Link href='' title='Send Us Message' about='Send Us Message' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Send Message</Link>
-
-                  <div onClick={(e) => setIsSendUsMessage(false)} className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Contact Us</div>
-                </div>
+                <form onSubmit={(e) => handleSendMessage(e)} className="flex flex-col gap-4" autoComplete={'false'}>
+                  <SendMessageSection />
+                  <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center md:mt-0">
+                    <button type='submit' title='Send Us Message' about='Send Us Message' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Send Message</button>
+                    <div onClick={(e) => setIsSendUsMessage(false)} className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Contact Us</div>
+                  </div>
+                </form>
               )
             }
             
