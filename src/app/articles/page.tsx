@@ -44,7 +44,7 @@ const Articles = () => {
           Achieve Quality Equally For All Indonesian Student.
           </h1>
 
-          <p className="text-gray text-sm lg:text-base md:w-[60%]">
+          <p className="text-gray text-sm lg:text-base md:w-[85%]">
           Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
           </p>
         </div>
