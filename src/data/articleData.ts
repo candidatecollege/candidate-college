@@ -51,6 +51,7 @@ export const articlesOnPage = [
         snippets: 'Meteor is an easy-to-use, plugin-driven framework to extract data from different sources and sink to any data catalog.',
         publishedAt: '4 May 2022',
         author: 'Farhan',
+        duration: 5
     },
     {
         id: 2,
@@ -60,6 +61,7 @@ export const articlesOnPage = [
         snippets: 'Meteor is an easy-to-use, plugin-driven framework to extract data from different sources and sink to any data catalog.',
         publishedAt: '4 May 2022',
         author: 'Farhan',
+        duration: 5
     },
     {
         id: 3,
@@ -69,6 +71,7 @@ export const articlesOnPage = [
         snippets: 'Meteor is an easy-to-use, plugin-driven framework to extract data from different sources and sink to any data catalog.',
         publishedAt: '4 May 2022',
         author: 'Farhan',
+        duration: 5
     },
     {
         id: 4,
@@ -78,6 +81,7 @@ export const articlesOnPage = [
         snippets: 'Meteor is an easy-to-use, plugin-driven framework to extract data from different sources and sink to any data catalog.',
         publishedAt: '4 May 2022',
         author: 'Farhan',
+        duration: 5
     },
     {
         id: 5,
@@ -87,5 +91,6 @@ export const articlesOnPage = [
         snippets: 'Meteor is an easy-to-use, plugin-driven framework to extract data from different sources and sink to any data catalog.',
         publishedAt: '4 May 2022',
         author: 'Farhan',
+        duration: 5
     },
 ]

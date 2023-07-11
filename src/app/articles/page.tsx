@@ -7,6 +7,7 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import { articlesOnLanding, articlesOnPage } from '@/data/articleData';
 import Image from 'next/image';
 import { articleSectionOnLanding } from '@/data/staticData';
+import Head from 'next/head';
 
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
@@ -14,6 +15,11 @@ const Articles = () => {
 
   return (
     <main className="bg-primary h-full w-full">
+      {/* Head */}
+      <Head>
+        <title>Articles - Read Most Insightful and Mesmerizing Article Produced By Candidate College</title>
+      </Head>
+
       {/* Navbar */}
       <Navbar active='Articles' />
 
@@ -64,6 +70,10 @@ const Articles = () => {
                 <p className="font-normal text-base text-gray">
                   {articlesOnPage[currentIndexSlider].snippets}
                 </p>
+
+                <p className="font-normal text-xs text-gray mt-2">
+                  {articlesOnPage[currentIndexSlider].publishedAt} | {articlesOnPage[currentIndexSlider].duration} min read
+                </p>
               </div>
             </div>
 
@@ -87,6 +97,10 @@ const Articles = () => {
                       </h3>
                       <p className="font-normal text-base text-gray">
                         {article.snippets}
+                      </p>
+
+                      <p className="font-normal text-xs text-gray mt-5">
+                        {article.publishedAt} | {article.duration} min read
                       </p>
                     </div>
                   </div>
