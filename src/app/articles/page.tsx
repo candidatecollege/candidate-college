@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { articleSectionOnLanding } from '@/data/staticData';
 import Head from 'next/head';
 import { isNamedExports } from 'typescript';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
@@ -46,11 +47,11 @@ const Articles = () => {
 
         {/* Latest */}
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
-          <div className="overflow-x-auto scrollbar-hide">
+          <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
               {
                 categories.map((category, index) => (
-                  <div onClick={(e) => setActiveCategory(category.name)} className={`${category.name == activeCategory ? 'bg-primary text-white' : 'bg-secondary text-primary'} font-medium text-sm md:text-base rounded-full px-2 md:px-5 py-3 text-center cursor-pointer mt-6 hover:bg-primary hover:text-white md:mt-0 w-[15rem] md:w-full duration-700 transition-all`}>{category.name}</div>
+                  <div onClick={(e) => setActiveCategory(category.name)} className={`${category.name == activeCategory ? 'bg-primary text-white' : 'bg-secondary text-primary'} font-medium text-sm md:text-base rounded-full px-2 md:px-5 py-3 text-center cursor-pointer mt-6 hover:bg-primary hover:text-white md:mt-0 w-full duration-700 transition-all`}>{category.name}</div>
                 ))
               }
             </div>
