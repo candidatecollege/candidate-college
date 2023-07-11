@@ -4,6 +4,15 @@ export const articles = [
     { id: 3, title: 'Kenapa Aku Kehilangan Motivasi Dalam Mengerjakan Sesuatu Yaa?', link: '/' },
 ]
 
+export const categories = [
+    { id: 1, name: 'All' },
+    { id: 2, name: 'Education' },
+    { id: 3, name: 'Technology' },
+    { id: 4, name: 'Students' },
+    { id: 5, name: 'Gen Z' },
+    { id: 6, name: 'Self Improve' },
+]
+
 export const articlesOnLanding = [
     {
         id: 1,

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import { articlesOnLanding, articlesOnPage } from '@/data/articleData';
+import { articlesOnLanding, articlesOnPage, categories } from '@/data/articleData';
 import Image from 'next/image';
 import { articleSectionOnLanding } from '@/data/staticData';
 import Head from 'next/head';
@@ -12,6 +12,7 @@ import Head from 'next/head';
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
   const [currentIndexSlider, setCurrentIndexSlider] = useState<number>(0)
+  const [activeCategory, setActiveCategory] = useState<string>('All')
 
   return (
     <main className="bg-primary h-full w-full">
@@ -39,13 +40,23 @@ const Articles = () => {
       </section>
 
       {/* Articles */}
-      <section className="flex flex-col w-full px-5 pt-10 pb-20 bg-white">
+      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
 
         {/* Latest */}
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
+              {
+                categories.map((category, index) => (
+                  <div onClick={(e) => setActiveCategory(category.name)} className={`${category.name == activeCategory ? 'bg-primary text-white' : 'bg-secondary text-primary'} font-medium text-sm md:text-base rounded-full px-2 md:px-5 py-3 text-center cursor-pointer mt-6 hover:bg-primary hover:text-white md:mt-0 w-[15rem] md:w-full duration-700 transition-all`}>{category.name}</div>
+                ))
+              }
+            </div>
+          </div>
+
           <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
             <h2 className="font-semibold text-2xl md:text-4xl text-primary">Latest</h2>
-            <div className="flex flex-row items-center justify-center text-sm gap-1 text-primary">
+            <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
               See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
             </div>
           </div>
@@ -63,8 +74,8 @@ const Articles = () => {
                 priority
               />
 
-              <div className="md:flex md:flex-1 flex-col gap-3 hidden">
-                <h3 className="font-semibold text-4xl text-primary">
+              <div className="md:flex md:flex-1 flex-col gap-3">
+                <h3 className="font-semibold text-3xl md:text-4xl text-primary">
                   {articlesOnPage[currentIndexSlider].title}
                 </h3>
                 <p className="font-normal text-base text-gray">
@@ -119,7 +130,7 @@ const Articles = () => {
 
           <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16">
             <h2 className="font-semibold text-2xl md:text-4xl text-primary">Read Insightful Articles</h2>
-            <div className="flex flex-row items-center justify-center text-sm gap-1 text-primary">
+            <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
               See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
             </div>
           </div>
