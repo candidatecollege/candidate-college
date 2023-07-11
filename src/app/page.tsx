@@ -11,6 +11,7 @@ export default function Home() {
     <main className="bg-primary h-full">
       {/* Navbar */}
       <Navbar active='Home' />
+      
       {/* Hero */}
       <section className="flex flex-col pt-36 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-screen">
         <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:text-center md:leading-[100%] leading-[150%]">
@@ -24,24 +25,6 @@ export default function Home() {
         <Link href='/about' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mt-6 md:mt-0'>Get To Know About CC</Link>
 
         <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Events</Link>
-
-        <Image 
-          width={150}
-          height={100}
-          alt='Decoration'
-          title='Decoration'
-          src='/maskot.png'
-          className='w-[650px] hidden h-fit object-contain absolute z-0 -right-14 bottom-5'
-        />
-
-        <Image 
-          width={150}
-          height={100}
-          alt='Decoration'
-          title='Decoration'
-          src='/decoration/cloud.png'
-          className='w-[450px] hidden h-fit object-contain absolute right-0 -bottom-16'
-        />
       </section>
 
       {/* Values */}
