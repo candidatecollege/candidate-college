@@ -133,8 +133,8 @@ const Navbar: React.FC<any> = ({ active }) => {
   }
 
   return (
-    <header className={`w-full z-50 bg-primary fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${isContactOpen ? 'lg:px-0' : 'lg:px-10'}`}>
-      <nav className={`lg:mx-auto lg:flex-1 flex flex-row items-center justify-between px-7 py-1 border-b border-b-border lg:border-none h-[10vh] md:h-fit`}>
+    <header className={`w-full z-50 bg-primary fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${isContactOpen ? 'lg:px-0' : 'lg:px-0'}`}>
+      <nav className={`lg:mx-auto md:hidden lg:flex-1 flex flex-row items-center justify-between px-7 py-1 border-b border-b-border lg:border-none h-[10vh] md:h-fit`}>
         <Image 
           src={`/logo/logo-full-cc.png`}
           width={100}
@@ -147,21 +147,37 @@ const Navbar: React.FC<any> = ({ active }) => {
         <span onClick={(e) => toggleIsOpen()} className='block lg:hidden text-2xl text-white transition-all duration-800 cursor-pointer'>{isOpen? (<CloseIcon color='inherit' fontSize='inherit' />) : (<MenuIcon color='inherit' fontSize='inherit' />)}</span>
       </nav>
 
+      <div className="w-full">
+        <nav className="md:flex hidden max-w-5xl flex-row items-center justify-between mx-auto">
+          <Image 
+              src={`/logo/logo-full-cc.png`}
+              width={100}
+              height={70}
+              alt={`Logo Candidate College`}
+              title={`Logo Candidate College`}
+              className={`block w-[150px] h-[100px] lg:h-[80px] object-contain`}
+              loading="lazy"
+            />
+
+          <section className="hidden md:flex flex-row w-fit">
+              {
+                menus.map((menu, index) => (
+                  <Link href={menu.link} about={menu.name} title={menu.name} key={index} className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${menu.name == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent text-white'}`} onClick={(e) => setIsSelected(menu.name)}>
+                    <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{menu.name}</span></p>
+                  </Link>
+                ))
+              }
+              <div className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${'Contact Us' == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent text-white'} cursor-pointer`} onClick={(e) => showPopUp()}>
+                  <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{'Contact Us'}</span></p>
+              </div>
+          </section>
+        </nav>
+      </div>
+
       {/* Mobile Menu */}
       {
         !isOpen ? (
-          <section className="hidden lg:flex flex-row w-full lg:flex-1 ">
-            {
-              menus.map((menu, index) => (
-                <Link href={menu.link} about={menu.name} title={menu.name} key={index} className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${menu.name == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent text-white'}`} onClick={(e) => setIsSelected(menu.name)}>
-                  <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{menu.name}</span></p>
-                </Link>
-              ))
-            }
-            <div className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${'Contact Us' == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent text-white'} cursor-pointer`} onClick={(e) => showPopUp()}>
-                <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{'Contact Us'}</span></p>
-            </div>
-          </section>
+          null
         ) : (
           <section className="flex flex-row w-full absolute lg:hidden">
             <article className='flex-1'></article>

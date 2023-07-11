@@ -21,7 +21,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className='w-full h-full px-7 lg:px-16 py-6 bg-primary flex flex-col gap-6'>
+    <footer className='w-full h-full px-7 md:px-0 md:mx-auto md:max-w-5xl py-6 bg-primary flex flex-col gap-6'>
       <section className={`w-full flex flex-col`}>
         <Image 
           src={`/logo/logo-full-cc.png`}
