@@ -28,18 +28,26 @@ const Articles = () => {
       <Navbar active='Articles' />
 
       {/* Hero */}
-      <section className="flex flex-col pt-36 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[75vh]">
-        <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:text-center md:leading-[100%] leading-[150%]">
-        Achieve Quality Equally For All Indonesian Student.
-        </h1>
+      <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
 
-        <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
-        Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
-        </p>
+        <Image 
+          src={'/decoration/article.png'}
+          width={0}
+          height={0}
+          className='w-[25rem]'
+          alt='Article Decoration'
+          title='Article Decoration'
+        />
 
-        <Link href='/about' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mt-6 md:mt-0'>Get To Know About CC</Link>
+        <div className="flex flex-col gap-4 mb-3">
+          <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:leading-[100%] leading-[150%]">
+          Achieve Quality Equally For All Indonesian Student.
+          </h1>
 
-        <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Events</Link>
+          <p className="text-gray text-sm lg:text-base md:w-[60%]">
+          Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
+          </p>
+        </div>
       </section>
 
       {/* Articles */}
