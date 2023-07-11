@@ -10,7 +10,7 @@ export const categories = [
     { id: 3, name: 'Technology' },
     { id: 4, name: 'Students' },
     { id: 5, name: 'Gen Z' },
-    { id: 6, name: 'Self Improve' },
+    { id: 6, name: 'Nowdays' },
 ]
 
 export const articlesOnLanding = [
