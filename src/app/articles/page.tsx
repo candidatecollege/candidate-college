@@ -1,21 +1,45 @@
 'use client'
 import { CTA, Footer, Navbar } from '@/components'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import { articlesOnLanding, articlesOnPage, categories } from '@/data/articleData';
+import { articlesOnLanding, articlesOnPage } from '@/data/articleData';
 import Image from 'next/image';
 import { articleSectionOnLanding } from '@/data/staticData';
 import Head from 'next/head';
 import { isNamedExports } from 'typescript';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import axios from 'axios';
 
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
   const [isSeeLatest, setIsSeeLatest] = useState<boolean>(false)
   const [currentIndexSlider, setCurrentIndexSlider] = useState<number>(0)
   const [activeCategory, setActiveCategory] = useState<string>('All')
+
+  const [articles, setArticles] = useState<any[]>([])
+  const [categories, setCategories] = useState<any[]>([])
+
+  const BASE_URL = 'http://127.0.0.1:8000/api/';
+
+  const fetchArticles = async () => {
+    const articles = await axios.get(BASE_URL + 'articles');
+    setArticles(articles.data.data);
+  }
+
+  const fetchCategories = async () => {
+    const categories = await axios.get(BASE_URL + 'article/categories');
+    setCategories(categories.data.data)
+  }
+
+  useEffect(() => {
+    fetchArticles()
+    fetchCategories()
+  }, [])
+
+  console.log(articles)
+  console.log(categories)
 
   return (
     <main className="bg-primary h-full w-full">
@@ -58,8 +82,8 @@ const Articles = () => {
           <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
               {
-                categories.map((category, index) => (
-                  <div onClick={(e) => setActiveCategory(category.name)} className={`${category.name == activeCategory ? 'bg-primary text-white' : 'bg-secondary text-primary'} font-medium text-sm md:text-base rounded-full px-2 md:px-5 py-3 text-center cursor-pointer mt-6 hover:bg-primary hover:text-white md:mt-0 w-full duration-700 transition-all`}>{category.name}</div>
+                categories?.map((category, index) => (
+                  <div key={index} onClick={(e) => setActiveCategory(category.name)} className={`${category.name == activeCategory ? 'bg-primary text-white' : 'bg-secondary text-primary'} font-medium text-sm md:text-base rounded-full px-2 md:px-5 py-3 text-center cursor-pointer mt-6 hover:bg-primary hover:text-white md:mt-0 w-full duration-700 transition-all`}>{category.name}</div>
                 ))
               }
             </div>
@@ -172,7 +196,7 @@ const Articles = () => {
               <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
                 {
                   articlesOnPage.map((article, index) => (
-                    <div onClick={(e) => setCurrentIndexSlider(index)} className={`flex  p-[5px] h-2 ${currentIndexSlider == index ? 'w-8 bg-secondary' : 'w-2 bg-primary'} rounded-full cursor-pointer`}></div>
+                    <div key={index} onClick={(e) => setCurrentIndexSlider(index)} className={`flex  p-[5px] h-2 ${currentIndexSlider == index ? 'w-8 bg-secondary' : 'w-2 bg-primary'} rounded-full cursor-pointer`}></div>
                   ))
                 }
               </div>
@@ -188,11 +212,11 @@ const Articles = () => {
             {/* Articles */}
             <section className="w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden">
               <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-                <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
-                  {articlesOnLanding.map((article, index) => (
+                <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articles?.length * 22}rem`, }}>
+                  {articles?.map((article, index) => (
                     <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
                       <Image 
-                        src={article.cover}
+                        src={`http://127.0.0.1:8000/storage/` + article.cover}
                         alt={article.title}
                         title={article.title}
                         className="rounded-lg w-[22rem] h-[20rem]"
@@ -207,7 +231,7 @@ const Articles = () => {
                         <p className="font-normal text-sm text-gray">
                           {article.snippets.substring(0, 150) + '...'}
                         </p>
-                        <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Read More</Link>
+                        <Link href={`/articles/${article.slug}`} title={article.title} about={article.title} className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Read More</Link>
                       </div>
                     </div>
                   ))}
