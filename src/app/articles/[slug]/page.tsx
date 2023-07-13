@@ -17,7 +17,7 @@ const Detail = () => {
   return (
     <main className="bg-white h-full w-full">
       {/* Navbar */}
-      <Navbar active='Artikel' isDetail={true} />
+      <Navbar active='Articles' isDetail={true} />
 
       {/* Hero */}
       <section className="flex flex-col pt-32 md:pt-40 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-white md:justify-center md:items-center relative h-full">
