@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     name: 'Web Developer Candidate College Batch 1',
     url: 'https://candidatecollegeind.com'
   }],
-  icons: 'https://i.postimg.cc/d02MsV74/logo-cc.png',
+  icons: 'https://i.postimg.cc/vZMVCm7g/LOGO-CC.png',
   keywords: [
     'College','Kampus', 'Fasilitas', 'Students', 'Student', 'Mahasiswa', 'Indonesia', 'Candidate College', 'Education System', 'Education in Indonesia', 'Candidate College', 'Event', 'UTBK', 'Tes TOEFL', 'Internship', 'Magang', 'Platform Edukasi',
   ],
