@@ -163,7 +163,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
           <section className="hidden md:flex flex-row w-fit">
               {
                 menus.map((menu, index) => (
-                  <Link href={menu.link} about={menu.name} title={menu.name} key={index} className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${menu.name == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent'} ${isDetail? 'text-primary' : menu.name == 'Articles' ? 'bg-secondary text-primary rounded-full' : 'text-white'}`} onClick={(e) => setIsSelected(menu.name)}>
+                  <Link href={menu.link} about={menu.name} title={menu.name} key={index} className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${menu.name == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent'} ${isDetail? 'text-primary' : menu.name == isSelected ? 'text-primary' : 'text-white'}`} onClick={(e) => setIsSelected(menu.name)}>
                     <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{menu.name}</span></p>
                   </Link>
                 ))
