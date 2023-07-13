@@ -6,7 +6,7 @@ const About = () => {
   return (
     <main className="bg-primary h-full">
       {/* Navbar */}
-      <Navbar active='About Us' />
+      <Navbar active='About Us' isDetail={false} />
 
       {/* Footer */}
       <Footer />

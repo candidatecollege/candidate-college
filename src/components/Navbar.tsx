@@ -17,9 +17,10 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import PodcastsIcon from '@mui/icons-material/Podcasts';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 
-const Navbar: React.FC<any> = ({ active }) => {
+const Navbar: React.FC<any> = ({ active, isDetail }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isSelected, setIsSelected] = useState<string>(active)
+
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false)
   const [isSendUsMessage, setIsSendUsMessage] = useState<boolean>(false)
 
@@ -133,7 +134,7 @@ const Navbar: React.FC<any> = ({ active }) => {
   }
 
   return (
-    <header className={`w-full z-50 bg-primary fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${isContactOpen ? 'lg:px-0' : 'lg:px-0'}`}>
+    <header className={`w-full z-50 ${isDetail ? 'bg-white shadow-lg' : 'bg-primary'} fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${isContactOpen ? 'lg:px-0' : 'lg:px-0'}`}>
       <nav className={`lg:mx-auto md:hidden lg:flex-1 flex flex-row items-center justify-between px-7 py-1 border-b border-b-border lg:border-none h-[10vh] md:h-fit`}>
         <Image 
           src={`/logo/logo-full-cc.png`}
@@ -144,7 +145,7 @@ const Navbar: React.FC<any> = ({ active }) => {
           className={`block w-[150px] h-[100px] lg:h-[80px] object-contain`}
           loading="lazy"
         />
-        <span onClick={(e) => toggleIsOpen()} className='block lg:hidden text-2xl text-white transition-all duration-800 cursor-pointer'>{isOpen? (<CloseIcon color='inherit' fontSize='inherit' />) : (<MenuIcon color='inherit' fontSize='inherit' />)}</span>
+        <span onClick={(e) => toggleIsOpen()} className={`block lg:hidden text-2xl ${isDetail ? 'text-primary' : 'text-white'} transition-all duration-800 cursor-pointer`}>{isOpen? (<CloseIcon color='inherit' fontSize='inherit' />) : (<MenuIcon color='inherit' fontSize='inherit' />)}</span>
       </nav>
 
       <div className="w-full">
@@ -162,12 +163,12 @@ const Navbar: React.FC<any> = ({ active }) => {
           <section className="hidden md:flex flex-row w-fit">
               {
                 menus.map((menu, index) => (
-                  <Link href={menu.link} about={menu.name} title={menu.name} key={index} className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${menu.name == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent text-white'}`} onClick={(e) => setIsSelected(menu.name)}>
+                  <Link href={menu.link} about={menu.name} title={menu.name} key={index} className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${menu.name == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent'} ${isDetail? 'text-primary' : menu.name == isSelected ? 'text-primary' : 'text-white'}`} onClick={(e) => setIsSelected(menu.name)}>
                     <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{menu.name}</span></p>
                   </Link>
                 ))
               }
-              <div className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${'Contact Us' == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent text-white'} cursor-pointer`} onClick={(e) => showPopUp()}>
+              <div className={`hover:bg-secondary hover:rounded-full px-5 py-2 duration-800 transition-all hover:text-primary ${'Contact Us' == isSelected ? 'bg-secondary text-primary rounded-full' : 'bg-transparent'} cursor-pointer ${isDetail? 'text-primary' : 'text-white'}`} onClick={(e) => showPopUp()}>
                   <p className={`font-medium text-[15px] flex items-center justify-center`}><span>{'Contact Us'}</span></p>
               </div>
           </section>

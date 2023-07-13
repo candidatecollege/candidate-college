@@ -49,7 +49,7 @@ const Articles = () => {
       </Head>
 
       {/* Navbar */}
-      <Navbar active='Articles' />
+      <Navbar active='Articles' isDetail={false} />
 
       {/* Hero */}
       <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">

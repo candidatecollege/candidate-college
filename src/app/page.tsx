@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="bg-primary h-full">
       {/* Navbar */}
-      <Navbar active='Home' />
+      <Navbar active='Home' isDetail={false} />
       
       {/* Hero */}
       <section className="flex flex-col pt-36 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-screen">
