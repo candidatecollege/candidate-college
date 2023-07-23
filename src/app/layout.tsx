@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Candidate College - Education Platform for Students in Indonesia',
   description: 'Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.',
   authors: [{
-    name: 'Web Developer Candidate College Batch 1',
+    name: 'Web Developer Candidate College',
     url: 'https://candidatecollegeind.com'
   }],
   icons: 'https://i.postimg.cc/vZMVCm7g/LOGO-CC.png',
