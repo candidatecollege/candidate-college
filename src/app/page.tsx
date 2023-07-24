@@ -112,7 +112,7 @@ export default function Home() {
       </section>
 
       {/* Events */}
-      <section className="w-full h-full bg-white px-5 py-10 md:py-10 flex flex-col gap-9 -mt-1 md:px-10 overflow-hidden">
+      {/* <section className="w-full h-full bg-white px-5 py-10 md:py-10 flex flex-col gap-9 -mt-1 md:px-10 overflow-hidden">
         <div className="flex flex-col gap-2 w-full md:px-10">
           <h3 className="text-primary text-xs md:text-base font-medium uppercase">{eventSectionOnLanding.subtitle}</h3>
           <div className="flex flex-col gap-2 md:flex-row md:gap-20 md:items-center">
@@ -180,7 +180,7 @@ export default function Home() {
 
           <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read Articles</Link>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <CTA />
