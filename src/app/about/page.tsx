@@ -40,7 +40,7 @@ const About = () => {
       <Navbar active="About Us" isDetail={false} />
 
       {/* Hero */}
-      <section className="flex flex-col pt-[80px] px-5 md:max-w-6xl md:mx-auto md:justify-center md:items-center relative md:h-screen">
+      <section className="flex flex-col pt-[168px] px-5 md:max-w-6xl md:mx-auto md:items-center relative md:h-screen">
         <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
           Developing With Us
         </p>
