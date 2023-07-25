@@ -1,9 +1,39 @@
 "use client";
 import { Footer, Navbar } from "@/components";
 import Link from "next/link";
-import React from "react";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import PodcastsIcon from "@mui/icons-material/Podcasts";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 const About = () => {
+  const socials = [
+    {
+      id: 1,
+      name: "Instagram",
+      link: "https://www.instagram.com/candidate.college/",
+      component: <InstagramIcon color="inherit" fontSize="inherit" />,
+    },
+    {
+      id: 2,
+      name: "Twitter",
+      link: "https://twitter.com/CCollege_Ind",
+      component: <TwitterIcon color="inherit" fontSize="inherit" />,
+    },
+    {
+      id: 3,
+      name: "Spotify",
+      link: "https://open.spotify.com/show/0xhjenJefepCIKH5UeVyiE?si=08402adcbd92430b",
+      component: <PodcastsIcon color="inherit" fontSize="inherit" />,
+    },
+    {
+      id: 4,
+      name: "Youtube",
+      link: "https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ",
+      component: <YouTubeIcon color="inherit" fontSize="inherit" />,
+    },
+  ];
+
   return (
     <main className="bg-primary h-full">
       {/* Navbar */}
@@ -33,6 +63,20 @@ const About = () => {
         >
           Get To Know About CC
         </Link>
+
+        <ul className="flex flex-row pt-[38px] gap-6">
+          {socials.map((social, index) => (
+            <Link
+              className="flex text-3xl bg-secondary text-primary w-12 h-12 justify-center items-center rounded-full font-normal"
+              href={social.link}
+              title={social.name}
+              about={social.name}
+              key={index}
+            >
+              {social.component}
+            </Link>
+          ))}
+        </ul>
       </section>
 
       {/* Footer */}
