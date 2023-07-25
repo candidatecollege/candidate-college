@@ -15,11 +15,11 @@ const About = () => {
           Developing With Us
         </p>
 
-        <h1 className="font-semibold text-white pt-4 text-3xl md:text-[70px] md:w-[70%] md:text-center md:leading-[100%] leading-[150%]">
+        <h1 className="font-semibold text-white pt-4 text-3xl md:text-[70px] md:w-[70%] md:text-center leading-[110%]">
           Top Education Platform in Indonesia
         </h1>
 
-        <p className="text-gray text-sm pt-6 md:text-center lg:text-base md:w-[50%]">
+        <p className="text-gray text-sm leading-7 pt-6 md:text-center lg:text-base md:w-[50%]">
           With us achieving dreams in building your education, together
           say&nbsp;
           <span className="underline">“Yes”</span> to extraordinary dreams
