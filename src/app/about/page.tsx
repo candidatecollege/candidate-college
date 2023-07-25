@@ -59,7 +59,7 @@ const About = () => {
           href="/about"
           title="Get To Know About CC"
           about="Get To Know About CC"
-          className="bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer mt-6 md:mt-[31px]"
+          className="bg-secondary text-primary font-medium text-base rounded-full px-8 py-3 text-center cursor-pointer mt-6 md:mt-[31px]"
         >
           Get To Know About CC
         </Link>
