@@ -45,7 +45,7 @@ const About = () => {
           Developing With Us
         </p>
 
-        <h1 className="font-semibold text-white pt-4 text-3xl md:text-[70px] md:w-[70%] md:text-center leading-[110%]">
+        <h1 className="font-semibold text-white pt-4 text-3xl md:text-[70px] xl:w-[70%] md:w-[90%] md:text-center leading-[110%]">
           Top Education Platform in Indonesia
         </h1>
 
