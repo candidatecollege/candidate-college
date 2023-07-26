@@ -40,7 +40,7 @@ const About = () => {
       <Navbar active="About Us" isDetail={false} />
 
       {/* Hero */}
-      <section className="flex flex-col pt-[168px] px-5 md:max-w-6xl md:mx-auto md:items-center relative md:h-screen">
+      <section className="flex flex-col md:pt-[168px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto md:items-center relative md:h-screen">
         <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
           Developing With Us
         </p>
@@ -49,7 +49,7 @@ const About = () => {
           Top Education Platform in Indonesia
         </h1>
 
-        <p className="text-gray text-sm leading-7 pt-6 md:text-center lg:text-base md:w-[50%]">
+        <p className="text-gray text-sm leading-7 md:pt-6 pt-4 md:text-center lg:text-base md:w-[50%]">
           With us achieving dreams in building your education, together
           say&nbsp;
           <span className="underline">“Yes”</span> to extraordinary dreams
@@ -59,12 +59,12 @@ const About = () => {
           href="/about"
           title="Get To Know About CC"
           about="Get To Know About CC"
-          className="bg-secondary text-primary font-medium text-base rounded-full px-8 py-3 text-center cursor-pointer mt-6 md:mt-[31px]"
+          className="bg-secondary text-primary font-medium text-base rounded-full px-8 py-3 text-center md:self-center self-start cursor-pointer mt-6 md:mt-[31px]"
         >
           Get To Know About CC
         </Link>
 
-        <ul className="flex flex-row pt-[38px] gap-6">
+        <ul className="flex flex-row mt-[38px] gap-6">
           {socials.map((social, index) => (
             <Link
               className="flex text-3xl bg-secondary text-primary w-12 h-12 justify-center items-center rounded-full font-normal"
