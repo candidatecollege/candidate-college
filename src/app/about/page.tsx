@@ -38,9 +38,8 @@ const About = () => {
     <main className="bg-primary h-full">
       {/* Navbar */}
       <Navbar active="About Us" isDetail={false} />
-
       {/* Hero */}
-      <section className="flex flex-col md:pt-[168px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto md:items-center relative md:h-screen">
+      <section className="flex flex-col w-full h-full lg:pt-[90px] md:pt-[165px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto justify-center md:items-center relative lg:h-screen">
         <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
           Developing With Us
         </p>
@@ -78,6 +77,9 @@ const About = () => {
           ))}
         </ul>
       </section>
+
+      {/* Work With Us */}
+      <section className="w-full h-full bg-white px-5 py-10 md:py-20 flex flex-col gap-9 md:items-center md:justify-center"></section>
 
       {/* Footer */}
       <Footer />
