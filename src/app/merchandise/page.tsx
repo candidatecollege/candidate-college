@@ -44,7 +44,7 @@ const Merchandise = () => {
   return (
     <main className={`bg-primary w-full relative h-full`}>
       {/* Navbar */}
-      <Navbar active='Articles' isDetail={false} />
+      <Navbar active='' isDetail={false} />
 
       {/* Hero */}
       <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:mx-auto py-16 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh] w-full">
