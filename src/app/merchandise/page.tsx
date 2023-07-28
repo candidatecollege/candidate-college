@@ -104,7 +104,7 @@ const Merchandise = () => {
               <Card product={item} key={index} isLoading={isLoading} onClick={(e: any) => e.preventDefault()} />
             )) : 
             merchandises.map((merchandise, index) => (
-              <Card product={merchandise} key={index} isLoading={false} onClick={(e) => selectProduct(merchandise)}  />
+              <Card product={merchandise} key={index} isLoading={false} onClick={(e: any) => selectProduct(merchandise)}  />
             ))
           }
 

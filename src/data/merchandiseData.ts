@@ -9,6 +9,7 @@ export const merchandisesData = [
             alt: 'Grade Image Product',
         },
         rate: 4.5,
+        isTopSold: true,
         isSoldOut: true
     },
     { 
@@ -21,6 +22,7 @@ export const merchandisesData = [
             alt: 'Grade Image Product',
         },
         rate: 4.5,
+        isTopSold: true,
         isSoldOut: true
     },
     { 
@@ -33,6 +35,7 @@ export const merchandisesData = [
             alt: 'Grade Image Product',
         },
         rate: 4.5,
+        isTopSold: true,
         isSoldOut: true
     },
     { 
@@ -45,6 +48,7 @@ export const merchandisesData = [
             alt: 'Grade Image Product',
         },
         rate: 4.5,
+        isTopSold: true,
         isSoldOut: false
     },
     { 
@@ -57,6 +61,7 @@ export const merchandisesData = [
             alt: 'Grade Image Product',
         },
         rate: 4.5,
+        isTopSold: true,
         isSoldOut: false
     },
     { 
@@ -69,6 +74,7 @@ export const merchandisesData = [
             alt: 'Grade Image Product',
         },
         rate: 4.5,
+        isTopSold: true,
         isSoldOut: false
     },
 ]
