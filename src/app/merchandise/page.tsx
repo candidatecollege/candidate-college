@@ -42,7 +42,7 @@ const Merchandise = () => {
   };
 
   return (
-    <main className={`bg-primary w-full relative h-full`}>
+    <main className={`bg-primary w-full relative h-full overflow-x-hidden`}>
       {/* Navbar */}
       <Navbar active='' isDetail={false} />
 
