@@ -61,7 +61,7 @@ const Merchandise = () => {
           src={'/decoration/merchandise.png'}
           width={0}
           height={0}
-          className='w-[180px] md:w-[422px] md:h-[389px] absolute bottom-[50] right-0 hidden md:block'
+          className='w-[180px] md:w-[372px] md:h-[339px] absolute bottom-[50] -right-14 hidden md:block'
           alt='Merchandise Decoration'
           title='Merchandise Decoration'
         />
@@ -70,7 +70,7 @@ const Merchandise = () => {
           src={'/decoration/merchandise.png'}
           width={0}
           height={0}
-          className='w-[180px] md:w-[422px] md:h-[389px] absolute bottom-[50] -left-3 hidden md:block'
+          className='w-[180px] md:w-[372px] md:h-[339px] absolute bottom-[50] -left-14 hidden md:block'
           alt='Merchandise Decoration'
           title='Merchandise Decoration'
         />
