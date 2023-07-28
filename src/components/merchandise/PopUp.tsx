@@ -8,7 +8,7 @@ import BagIcon from '../icons/BagIcon';
 const PopUp: React.FC<any> = ({ onClose, product }) => {
   return (
     <div className="w-full h-full absolute md:flex md:items-start md:justify-center top-0 bg-[rgba(0,0,0,0.5)] z-50">
-        <div className="flex-col gap-2 bg-white rounded-tl-2xl rounded-tr-2xl md:rounded-2xl opacity-100 mt-[25vh] w-full h-[443px] md:h-[420px] md:pb-10 flex px-6 fixed bottom-0 md:top-0 md:mx-5 md:fixed md:w-[40%]">
+        <div className="flex-col gap-2 bg-white rounded-tl-2xl rounded-tr-2xl md:rounded-2xl opacity-100 mt-[24vh] w-full h-[443px] md:h-fit md:pb-8 flex px-6 fixed bottom-0 md:top-0 md:mx-5 md:fixed md:w-[40%]">
             <span className='text-2xl absolute top-5 right-6 text-primary cursor-pointer' onClick={onClose}>
                 <CloseIcon fontSize='inherit' color='inherit' />
             </span>
