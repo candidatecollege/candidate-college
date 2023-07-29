@@ -80,7 +80,7 @@ const About = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="w-full h-full flex flex-row gap-x-6 bg-white px-10 pt-[90px] pb-[65px] md:py-20">
+      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white px-10 pt-[90px] pb-[65px] md:py-20">
         <div className="min-w-[364px] h-[308px] bg-primary rounded-3xl"></div>
         <div className="flex justify-between w-full h-[308px] px-10 xl:py-[50px] py-10 bg-[#F8F8F8] rounded-3xl">
           <div className="flex flex-col justify-evenly basis-1/4">
