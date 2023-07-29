@@ -82,37 +82,37 @@ const About = () => {
       {/* Work With Us */}
       <section className="w-full h-full flex flex-row gap-x-6 bg-white px-10 pt-[90px] pb-[65px] md:py-20">
         <div className="min-w-[364px] h-[308px] bg-primary rounded-3xl"></div>
-        <div className="flex justify-between w-full h-[308px] px-10 py-[50px] bg-[#F8F8F8] rounded-3xl">
-          <div className="flex flex-col basis-1/4">
-            <h2 className="text-primary text-[40px] font-semibold leading-normal">
+        <div className="flex justify-between w-full h-[308px] px-10 xl:py-[50px] py-10 bg-[#F8F8F8] rounded-3xl">
+          <div className="flex flex-col justify-evenly basis-1/4">
+            <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold leading-tight">
               Trusted Partner
             </h2>
-            <p className="text-[#90A3BF] text-base font-normal leading-7">
+            <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7">
               Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
             </p>
           </div>
-          <div className="flex basis-1/2 justify-center items-center gap-9">
+          <div className="flex xl:flex-row flex-col xl:basis-1/2 basis-1/4 xl:justify-center justify-evenly items-center xl:gap-9 gap-0">
             <div>
-              <p className="text-primary text-[40px] font-extrabold leading-normal text-center">
+              <p className="text-primary xl:text-[40px] text-[36px] font-extrabold leading-normal text-center">
                 200+
               </p>
-              <p className="text-[#90A3BF] text-base font-normal leading-7 text-center">
+              <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center">
                 Partners Collab
               </p>
             </div>
             <div>
-              <p className="text-primary text-[40px] font-extrabold leading-normal text-center">
+              <p className="text-primary xl:text-[40px] text-[36px] font-extrabold leading-normal text-center">
                 1,230
               </p>
-              <p className="text-[#90A3BF] text-base font-normal leading-7 text-center">
+              <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center">
                 Success Events
               </p>
             </div>
           </div>
-          <div className="flex basis-[max-content] justify-end items-center">
+          <div className="flex basis-auto justify-end items-center">
             <Link
               href="/"
-              className="bg-secondary text-primary font-medium text-base rounded-full px-8 py-3 text-center cursor-pointer inline-block self-center shadow-[0px_25px_30px_0px_rgba(0,65,232,0.10)]"
+              className="bg-secondary text-primary font-medium text-base rounded-full px-8 py-3 text-center cursor-pointer inline-block self-center shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
             >
               Let's work
             </Link>
