@@ -38,6 +38,7 @@ const About = () => {
     <main className="bg-primary h-full">
       {/* Navbar */}
       <Navbar active="About Us" isDetail={false} />
+
       {/* Hero */}
       <section className="flex flex-col w-full h-full lg:pt-[90px] md:pt-[165px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto justify-center md:items-center relative lg:h-screen">
         <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
@@ -79,7 +80,45 @@ const About = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="w-full h-full bg-white px-5 py-10 md:py-20 flex flex-col gap-9 md:items-center md:justify-center"></section>
+      <section className="w-full h-full flex flex-row gap-x-6 bg-white px-10 pt-[90px] pb-[65px] md:py-20">
+        <div className="min-w-[364px] h-[308px] bg-primary rounded-3xl"></div>
+        <div className="flex justify-between w-full h-[308px] px-10 py-[50px] bg-[#F8F8F8] rounded-3xl">
+          <div className="flex flex-col basis-1/4">
+            <h2 className="text-primary text-[40px] font-semibold leading-normal">
+              Trusted Partner
+            </h2>
+            <p className="text-[#90A3BF] text-base font-normal leading-7">
+              Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
+            </p>
+          </div>
+          <div className="flex basis-1/2 justify-center items-center gap-9">
+            <div>
+              <p className="text-primary text-[40px] font-extrabold leading-normal text-center">
+                200+
+              </p>
+              <p className="text-[#90A3BF] text-base font-normal leading-7 text-center">
+                Partners Collab
+              </p>
+            </div>
+            <div>
+              <p className="text-primary text-[40px] font-extrabold leading-normal text-center">
+                1,230
+              </p>
+              <p className="text-[#90A3BF] text-base font-normal leading-7 text-center">
+                Success Events
+              </p>
+            </div>
+          </div>
+          <div className="flex basis-[max-content] justify-end items-center">
+            <Link
+              href="/"
+              className="bg-secondary text-primary font-medium text-base rounded-full px-8 py-3 text-center cursor-pointer inline-block self-center shadow-[0px_25px_30px_0px_rgba(0,65,232,0.10)]"
+            >
+              Let's work
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <Footer />
