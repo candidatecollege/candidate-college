@@ -5,6 +5,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import PodcastsIcon from "@mui/icons-material/Podcasts";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import Image from "next/image";
 
 const About = () => {
   const socials = [
@@ -81,7 +82,32 @@ const About = () => {
 
       {/* Work With Us */}
       <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white px-10 pt-[90px] pb-[65px] md:py-20">
-        <div className="min-w-[364px] h-[308px] bg-primary rounded-3xl"></div>
+        <div className="flex items-center relative md:w-[520px] w-full h-[308px] p-6 bg-primary rounded-3xl overflow-hidden">
+          <div className="flex flex-col xl:w-[55%] w-[50%]">
+            <p className="text-[#90A3BF] xl:text-[15px] text-sm font-normal">
+              Let’s Development
+            </p>
+            <h2 className="text-white xl:text-[40px] text-[36px] font-bold">
+              Work With Us
+            </h2>
+            <p className="text-[#90A3BF] xl:text-[15px] text-sm font-normal leading-7">
+              Together we build your Product
+            </p>
+          </div>
+          <Image
+            src="/decoration/half-ellipse-gradient.svg"
+            alt=""
+            className="absolute top-[20%!important] object-contain"
+            fill={true}
+          />
+          <Image
+            src="/decoration/woman.png"
+            alt=""
+            className="absolute object-contain"
+            fill={true}
+            objectPosition="right"
+          />
+        </div>
         <div className="flex justify-between w-full h-[308px] px-10 xl:py-[50px] py-10 bg-[#F8F8F8] rounded-3xl">
           <div className="flex flex-col justify-evenly basis-1/4">
             <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold leading-tight">
