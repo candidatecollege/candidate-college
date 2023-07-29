@@ -112,7 +112,7 @@ const About = () => {
           <div className="flex basis-auto justify-end items-center">
             <Link
               href="/"
-              className="bg-secondary text-primary font-medium text-base rounded-full px-8 py-3 text-center cursor-pointer inline-block self-center shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
+              className="bg-secondary text-primary font-semibold text-base rounded-full px-8 py-3 text-center cursor-pointer inline-block self-center shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
             >
               Let's work
             </Link>
