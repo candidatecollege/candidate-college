@@ -81,8 +81,8 @@ const About = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white px-10 pt-[90px] pb-[65px] md:py-20">
-        <div className="flex items-center relative md:w-[520px] w-full h-[308px] p-6 bg-primary rounded-3xl overflow-hidden">
+      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-10 px-5 pt-[90px] pb-[65px] md:py-20">
+        <div className="flex items-center md:m-auto relative md:w-[520px] w-full h-[308px] p-6 bg-primary rounded-3xl overflow-hidden">
           <div className="flex flex-col xl:w-[55%] w-[50%]">
             <p className="text-[#90A3BF] xl:text-[15px] text-sm font-normal">
               Let’s Development
