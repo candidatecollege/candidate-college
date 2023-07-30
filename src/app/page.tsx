@@ -1,12 +1,38 @@
 'use client'
-import { CTA, Footer, Navbar } from '@/components'
+import { CTA, CardItem, Footer, Navbar } from '@/components'
 import Link from 'next/link'
 import Image from 'next/image'
 import { articleSectionOnLanding, eventSectionOnLanding, valueSectionOnLanding, values } from '@/data/staticData'
 import { articles, articlesOnLanding } from '@/data/articleData'
 import "./scrollable.css";
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export default function Home() {
+  const [articles, setArticles] = useState<any[]>([])
+  const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(false)
+  const loadingContent = [1, 2, 3, 4, 5, 6]
+
+  const fetchArticles = async () => {
+    setIsLoadingArticles(true)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles`)
+
+      setTimeout(() => {
+        setArticles(response.data.data);
+        setIsLoadingArticles(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingArticles(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchArticles()
+  }, [])
+
   return (
     <main className="bg-primary h-full">
       {/* Navbar */}
@@ -77,29 +103,17 @@ export default function Home() {
         </div>
         
         <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-          <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
-            {articlesOnLanding.map((article, index) => (
-              <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
-                <Image 
-                  src={article.cover}
-                  alt={article.title}
-                  title={article.title}
-                  className="rounded-lg w-[22rem] h-[20rem]"
-                  width={0}
-                  height={0}
-                />
-
-                <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
-                  <h3 className="font-semibold text-base text-primary">
-                    {article.title.length > 33 ? (article.title.substring(0, 33) + '...') : (article.title)}
-                  </h3>
-                  <p className="font-normal text-sm text-gray">
-                    {article.snippets.substring(0, 150) + '...'}
-                  </p>
-                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Read More</Link>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articles.length * 22}rem`, }}>
+            {
+              isLoadingArticles ? 
+              loadingContent?.map((article, index) => (
+                <CardItem key={index} data={article} type={'Article'} isLoading={true} />
+              ))
+              :
+              articles?.map((article, index) => (
+                <CardItem key={index} data={article} type={'Article'} isLoading={false} />
+              ))
+            }
           </div>
         </div>
 

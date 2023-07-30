@@ -1,16 +1,14 @@
 'use client'
-import { CTA, Footer, Navbar } from '@/components'
+import { CTA, CardItem, Footer, ListItem, Navbar } from '@/components'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import { articlesOnLanding, articlesOnPage } from '@/data/articleData';
+import { articlesOnPage } from '@/data/articleData';
 import Image from 'next/image';
-import { articleSectionOnLanding } from '@/data/staticData';
-import Head from 'next/head';
-import { isNamedExports } from 'typescript';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import axios from 'axios';
+import CardItemLandscape from '@/components/CardItemLandscape';
+import JumboItem from '@/components/JumboItem';
 
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
@@ -20,17 +18,40 @@ const Articles = () => {
 
   const [articles, setArticles] = useState<any[]>([])
   const [categories, setCategories] = useState<any[]>([])
-
-  const BASE_URL = 'http://127.0.0.1:8000/api/';
+  const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true)
+  const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(true)
+  const loadingContent = [1, 2, 3, 4, 5, 6]
 
   const fetchArticles = async () => {
-    const articles = await axios.get(BASE_URL + 'articles');
-    setArticles(articles.data.data);
+    setIsLoadingArticles(true)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles`)
+
+      setTimeout(() => {
+        setArticles(response.data.data);
+        setIsLoadingArticles(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingArticles(false)
+    }
   }
 
   const fetchCategories = async () => {
-    const categories = await axios.get(BASE_URL + 'article/categories');
-    setCategories(categories.data.data)
+    setIsLoadingCategories(true)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/article/categories`)
+
+      setTimeout(() => {
+        setCategories(response.data.data);
+        setIsLoadingCategories(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingArticles(false)
+    }
   }
 
   useEffect(() => {
@@ -38,16 +59,8 @@ const Articles = () => {
     fetchCategories()
   }, [])
 
-  console.log(articles)
-  console.log(categories)
-
   return (
     <main className="bg-primary h-full w-full">
-      {/* Head */}
-      <Head>
-        <title>Articles - Read Most Insightful and Mesmerizing Article Produced By Candidate College</title>
-      </Head>
-
       {/* Navbar */}
       <Navbar active='Articles' isDetail={false} />
 
@@ -76,14 +89,19 @@ const Articles = () => {
 
       {/* Articles */}
       <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
-
+      {/* rounded-xl bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse */}
         {/* Latest */}
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
               {
+                isLoadingCategories ? 
+                loadingContent?.map((category, index) => (
+                  <ListItem data={category} isLoading={true} onClick={(e: any) => setActiveCategory('')} active={''} />
+                ))
+                : 
                 categories?.map((category, index) => (
-                  <div key={index} onClick={(e) => setActiveCategory(category.name)} className={`${category.name == activeCategory ? 'bg-primary text-white' : 'bg-secondary text-primary'} font-medium text-sm md:text-base rounded-full px-2 md:px-5 py-3 text-center cursor-pointer mt-6 hover:bg-primary hover:text-white md:mt-0 w-full duration-700 transition-all`}>{category.name}</div>
+                  <ListItem data={category} isLoading={false} onClick={(e: any) => setActiveCategory(category.name)} active={activeCategory} />
                 ))
               }
             </div>
@@ -137,58 +155,12 @@ const Articles = () => {
             
             {/* Scollable */}
             <div className="flex flex-col gap-5 w-full mt-7">
-              <div className={`flex-col md:flex-row gap-2 md:items-center md:gap-5 flex`}>
-                <Image 
-                  width={100}
-                  height={50}
-                  src={articlesOnPage[currentIndexSlider].coverLandscape}
-                  alt={articlesOnPage[currentIndexSlider].title}
-                  title={articlesOnPage[currentIndexSlider].title}
-                  className='w-full md:w-[650px] md:flex-1 h-full rounded-xl'
-                  priority
-                />
-
-                <div className="md:flex md:flex-1 flex-col gap-3">
-                  <h3 className="font-semibold text-2xl md:text-4xl text-primary">
-                    {articlesOnPage[currentIndexSlider].title}
-                  </h3>
-                  <p className="font-normal text-sm md:text-base text-gray">
-                    {articlesOnPage[currentIndexSlider].snippets}
-                  </p>
-
-                  <p className="font-normal text-xs text-gray mt-2">
-                    {articlesOnPage[currentIndexSlider].publishedAt} | {articlesOnPage[currentIndexSlider].duration} min read
-                  </p>
-                </div>
-              </div>
+              <JumboItem data={articlesOnPage[currentIndexSlider]} isLoading={true} />
 
               <div className="md:flex flex-row gap-4 hidden">
                 {
                   articlesOnPage.slice(1, articlesOnPage.length - 1).map((article, index) => (
-                    <div key={index} className={`flex-col gap-2 md:items-center md:gap-2 flex`}>
-                      <Image 
-                        width={100}
-                        height={50}
-                        src={article.coverLandscape}
-                        alt={article.title}
-                        title={article.title}
-                        className='w-full md:flex-1 h-full rounded-xl object-cover'
-                        priority
-                      />
-
-                      <div className="md:flex md:flex-1 flex-col gap hidden">
-                        <h3 className="font-semibold text-2xl text-primary">
-                          {article.title}
-                        </h3>
-                        <p className="font-normal text-base text-gray">
-                          {article.snippets}
-                        </p>
-
-                        <p className="font-normal text-xs text-gray mt-5">
-                          {article.publishedAt} | {article.duration} min read
-                        </p>
-                      </div>
-                    </div>
+                    <CardItemLandscape key={index} data={article} type='Article' isLoading={true} />
                   ))
                 }
               </div>
@@ -213,28 +185,16 @@ const Articles = () => {
             <section className="w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden">
               <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
                 <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articles?.length * 22}rem`, }}>
-                  {articles?.map((article, index) => (
-                    <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
-                      <Image 
-                        src={`http://127.0.0.1:8000/storage/` + article.cover}
-                        alt={article.title}
-                        title={article.title}
-                        className="rounded-lg w-[22rem] h-[20rem]"
-                        width={0}
-                        height={0}
-                      />
-
-                      <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
-                        <h3 className="font-semibold text-base text-primary">
-                          {article.title.length > 33 ? (article.title.substring(0, 33) + '...') : (article.title)}
-                        </h3>
-                        <p className="font-normal text-sm text-gray">
-                          {article.snippets.substring(0, 150) + '...'}
-                        </p>
-                        <Link href={`/articles/${article.slug}`} title={article.title} about={article.title} className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Read More</Link>
-                      </div>
-                    </div>
-                  ))}
+                  {
+                    isLoadingArticles ? 
+                    loadingContent?.map((article, index) => (
+                      <CardItem key={index} data={article} type={'Article'} isLoading={true} />
+                    ))
+                    :
+                    articles?.map((article, index) => (
+                      <CardItem key={index} data={article} type={'Article'} isLoading={false} />
+                    ))
+                  }
                 </div>
               </div>
             </section>
