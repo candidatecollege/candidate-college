@@ -81,11 +81,11 @@ const About = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-10 px-5 pt-[90px] pb-[65px] md:py-20">
+      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-[70px] px-5 pt-[90px]">
         <div className="flex items-center md:m-auto relative md:w-[520px] w-full h-[308px] p-6 bg-primary rounded-3xl overflow-hidden">
           <div className="flex flex-col xl:w-[55%] w-[50%]">
             <p className="text-[#90A3BF] xl:text-[15px] text-sm font-normal">
-              Let’s Development
+              Let's Development
             </p>
             <h2 className="text-white xl:text-[40px] text-[36px] font-bold">
               Work With Us
@@ -142,6 +142,52 @@ const About = () => {
             >
               Let's work
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Events */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-[80px]">
+        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+          Events
+        </h3>
+        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+          Success Events
+        </h2>
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto w-2/4 pt-[15px]">
+          Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
+          Terabel pov astrobel sar direlig.Lörem ipsum astrobel sar direlig.
+          Kronde est
+        </p>
+
+        <div className="grid grid-cols-4 grid-rows-2 gap-6 pt-10">
+          <div className="flex items-end relative overflow-hidden bg-white w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl p-10">
+            <div className="flex items-center z-20">
+              <div className="flex-1">
+                <h4 className="text-white xl:text-[32px] text-[30px] font-semibold">
+                  Website Design
+                </h4>
+                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal leading-[25px]">
+                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
+                  kelig. Terabel pov astrobel sar
+                </p>
+              </div>
+              <div className="flex-1 text-end">
+                <Link
+                  href="/"
+                  className="bg-transparent border-[1px] border-white text-white font-medium text-base rounded-full px-8 py-3 inline-block shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
+                >
+                  Let's Join
+                </Link>
+              </div>
+            </div>
+            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-[35%] bottom-0 left-0 z-10"></div>
+          </div>
+          <div className="bg-primary w-full h-full col-span-2 col-start-3 rounded-3xl">
+            2
+          </div>
+          <div className="bg-primary w-full h-full col-span-2 col-start-3 row-start-2 rounded-3xl">
+            3
           </div>
         </div>
       </section>
