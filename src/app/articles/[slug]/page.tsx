@@ -48,7 +48,7 @@ const Detail = () => {
       {/* Hero */}
       {
         isLoading ?
-        <section className="p-16 w-full pt-32 md:pt-40 h-screen overflow-scroll scrollbar-hide gap-4">
+        <section className="p-16 md:max-w-6xl md:mx-auto pt-32 md:pt-40 h-screen overflow-scroll scrollbar-hide gap-4">
 
             <div className="flex flex-col gap-4 md:px-24">
                 <div className="flex flex-col gap-4 pb-6 border-b border-b-gray items-center justify-center">
@@ -56,8 +56,9 @@ const Detail = () => {
                     </div>
 
                     <div className="flex flex-col gap-1 w-full items-center justify-center">
-                        <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
-                        <div className="w-2/3 py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
+                        <div className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
+                        <div className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
+                        <div className="w-2/3 py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
                     </div>
                 </div>
 
