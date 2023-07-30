@@ -108,16 +108,16 @@ const About = () => {
             objectPosition="right"
           />
         </div>
-        <div className="flex justify-between w-full h-[308px] px-10 xl:py-[50px] py-10 bg-[#F8F8F8] rounded-3xl">
-          <div className="flex flex-col justify-evenly basis-1/4">
+        <div className="flex md:flex-row flex-col md:gap-0 gap-[30px] items-center justify-between w-full md:px-10 px-5 xl:py-[50px] py-10 bg-[#F8F8F8] rounded-3xl">
+          <div className="flex flex-col justify-evenly basis-1/4 md:text-left text-center">
             <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold leading-tight">
               Trusted Partner
             </h2>
-            <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7">
+            <p className="text-[#90A3BF] xl:text-base text-sm font-normal pt-[10px] leading-7">
               Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
             </p>
           </div>
-          <div className="flex xl:flex-row flex-col xl:basis-1/2 basis-1/4 xl:justify-center justify-evenly items-center xl:gap-9 gap-0">
+          <div className="flex xl:flex-row md:flex-col flex-row xl:basis-1/2 basis-1/4 xl:justify-center justify-evenly items-center xl:gap-9 md:gap-0 gap-4">
             <div>
               <p className="text-primary xl:text-[40px] text-[36px] font-extrabold leading-normal text-center">
                 200+
@@ -138,7 +138,7 @@ const About = () => {
           <div className="flex basis-auto justify-end items-center">
             <Link
               href="/"
-              className="bg-secondary text-primary font-semibold text-base rounded-full px-8 py-3 text-center cursor-pointer inline-block self-center shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
+              className="bg-secondary text-primary font-semibold text-base rounded-full md:px-8 px-[50px] py-3 text-center cursor-pointer inline-block self-center shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
             >
               Let's work
             </Link>
