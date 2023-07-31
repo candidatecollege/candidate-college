@@ -161,13 +161,13 @@ const About = () => {
         </p>
 
         <div className="grid grid-cols-4 grid-rows-2 gap-6 pt-10">
-          <div className="flex items-end relative overflow-hidden bg-white w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl p-10">
+          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl p-10">
             <div className="flex items-center z-20">
               <div className="flex-1">
                 <h4 className="text-white xl:text-[32px] text-[30px] font-semibold">
                   Website Design
                 </h4>
-                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal leading-[25px]">
+                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-[25px]">
                   Lörem ipsum astrobel sar direlig. Kronde est konfoni med
                   kelig. Terabel pov astrobel sar
                 </p>
@@ -181,13 +181,35 @@ const About = () => {
                 </Link>
               </div>
             </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-[35%] bottom-0 left-0 z-10"></div>
+            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-[40%] bottom-0 left-0 z-10"></div>
           </div>
-          <div className="bg-primary w-full h-full col-span-2 col-start-3 rounded-3xl">
-            2
+          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-2.png')] bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5">
+            <div className="flex items-center z-20">
+              <div className="basis-3/4">
+                <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
+                  Website Design
+                </h4>
+                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-7">
+                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
+                  kelig. Terabel pov astrobel sar
+                </p>
+              </div>
+            </div>
+            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
           </div>
-          <div className="bg-primary w-full h-full col-span-2 col-start-3 row-start-2 rounded-3xl">
-            3
+          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-3.png')] bg-no-repeat bg-cover col-span-2 col-start-3 row-start-2 rounded-3xl p-5">
+            <div className="flex items-center z-20">
+              <div className="basis-3/4">
+                <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
+                  Website Design
+                </h4>
+                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-7">
+                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
+                  kelig. Terabel pov astrobel sar
+                </p>
+              </div>
+            </div>
+            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
           </div>
         </div>
       </section>
