@@ -9,14 +9,10 @@ import { articlesOnPage } from '@/data/articleData';
 import { usePathname, useRouter } from 'next/navigation'
 import axios from 'axios';
 import { formatDate } from '@/utils/time';
+import { generateShareLinks } from '@/utils/socials';
+import Link from 'next/link';
 
 const Detail = () => {
-  const socials = [
-    { id: 1, name: 'Twitter', link: 'https://twitter.com/CCollege_Ind', component: <TwitterIcon color='inherit' fontSize='inherit' /> },
-    { id: 2, name: 'Instagram', link: 'https://www.instagram.com/candidate.college/', component: <InstagramIcon color='inherit' fontSize='inherit' /> },
-    { id: 3, name: 'Whatsapp', link: 'https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ', component: <WhatsApp color='inherit' fontSize='inherit' /> },
-  ]
-
   const slug = usePathname().slice(10)
   const [article, setArticle] = useState<any>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -35,6 +31,14 @@ const Detail = () => {
       setIsLoading(false)
     }
   }
+
+  const links = generateShareLinks(article && article.title, `https://candidatecollegeind.com/articles/${article && article.slug}`)
+
+  const socials = [
+    { id: 1, name: 'Twitter', link: links.twitter, component: <TwitterIcon color='inherit' fontSize='inherit' /> },
+    { id: 2, name: 'Instagram', link: links.instagram, component: <InstagramIcon color='inherit' fontSize='inherit' /> },
+    { id: 3, name: 'Whatsapp', link: links.whatsapp, component: <WhatsApp color='inherit' fontSize='inherit' /> },
+  ]
 
   useEffect(() => {
     fetchArticle()
@@ -113,9 +117,9 @@ const Detail = () => {
                   <div className="flex flex-row gap-3">
                     {
                       socials.map((social, index) => (
-                        <span key={index} className='text-xl rounded-full text-primary bg-secondary px-[0.65rem] pt-1 pb-2 hover:bg-primary hover:text-white duration-700 transition-all cursor-pointer'>
+                        <Link href={social.link} about={social.name} title={social.name} target='_blank' key={index} className='text-xl rounded-full text-primary bg-secondary px-[0.65rem] pt-1 pb-2 hover:bg-primary hover:text-white duration-700 transition-all cursor-pointer'>
                           {social.component}
-                        </span>
+                        </Link>
                       ))
                     }
                   </div>

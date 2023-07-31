@@ -9,6 +9,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import CardItemLandscape from '@/components/CardItemLandscape';
 import JumboItem from '@/components/JumboItem';
+import { categoryId } from '@/utils/category';
 
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
@@ -20,7 +21,34 @@ const Articles = () => {
   const [categories, setCategories] = useState<any[]>([])
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true)
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(true)
+  const [articlesByCategory, setArticlesByCategory] = useState<any[]>([])
+  const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] = useState<boolean>(true)
   const loadingContent = [1, 2, 3, 4, 5, 6]
+
+  const fetchArticleByCategory = async () => {
+    setIsLoadingArticleByCategory(true)
+
+    const id = categoryId(activeCategory, categories)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/article/categories/${id}`)
+
+      console.log(response)
+
+      setArticlesByCategory(response.data.data.articles);
+
+      setTimeout(() => {
+        setIsLoadingArticleByCategory(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingArticles(false)
+    }
+  }
+
+  const activeCategoryHandler = (category: string) => {
+    setActiveCategory(category)
+  }
 
   const fetchArticles = async () => {
     setIsLoadingArticles(true)
@@ -58,6 +86,10 @@ const Articles = () => {
     fetchArticles()
     fetchCategories()
   }, [])
+
+  useEffect(() => {
+    fetchArticleByCategory();
+  }, [activeCategory]);
 
   return (
     <main className="bg-primary h-full w-full">
@@ -101,7 +133,7 @@ const Articles = () => {
                 ))
                 : 
                 categories?.map((category, index) => (
-                  <ListItem data={category} isLoading={false} onClick={(e: any) => setActiveCategory(category.name)} active={activeCategory} />
+                  <ListItem data={category} isLoading={false} onClick={(e: any) => activeCategoryHandler(category.name)} active={activeCategory} />
                 ))
               }
             </div>
@@ -113,36 +145,20 @@ const Articles = () => {
             </div>
 
             {/* Articles */}
-            <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
+            {
+              activeCategory != 'All' ?  <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
               {
-                articlesOnPage.map((article, index) => (
-                  <div key={index} className={`flex-col gap-2 md:items-center md:gap-5 flex`}>
-                    <Image 
-                      width={100}
-                      height={50}
-                      src={article.coverLandscape}
-                      alt={article.title}
-                      title={article.title}
-                      className='w-full md:flex-1 h-full rounded-xl'
-                      priority
-                    />
-
-                    <div className="flex md:flex-1 flex-col gap">
-                        <h3 className="font-semibold text-xl md:text-2xl text-primary">
-                          {article.title}
-                        </h3>
-                        <p className="font-normal text-sm md:text-base text-gray">
-                          {article.snippets}
-                        </p>
-
-                        <p className="font-normal text-xs text-gray md:mt-5 mt-3">
-                          {article.publishedAt} | {article.duration} min read
-                        </p>
-                      </div>
-                  </div>
+                isLoadingArticleByCategory ? 
+                loadingContent?.map((article, index) => (
+                  <CardItemLandscape key={index} data={article} type={'Article'} isLoading={true} />
+                ))
+                :
+                articlesByCategory.map((article, index) => (
+                  <CardItemLandscape key={index} data={article} type={'Article'} isLoading={false} />
                 ))
               }
-            </div>
+            </div> : null
+            }
           </div>
 
           <div className={`${activeCategory != 'All' ? 'hidden' : 'flex flex-col'}`}>
