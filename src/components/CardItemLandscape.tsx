@@ -1,4 +1,6 @@
+import { formatDate } from '@/utils/time'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
@@ -31,7 +33,7 @@ const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
                 <Image 
                     width={100}
                     height={50}
-                    src={data.coverLandscape}
+                    src={`https://resource.candidatecollegeind.com/storage/${data.cover_landscape}`}
                     alt={data.title}
                     title={data.title}
                     className='w-full md:flex-1 h-full rounded-xl object-cover'
@@ -39,16 +41,16 @@ const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
                 />
 
                 <div className="md:flex md:flex-1 flex-col gap hidden">
-                    <h3 className="font-semibold text-2xl text-primary">
-                        {data.title}
-                    </h3>
+                    <Link href={`/${type == 'Article' ? 'articles' : 'events'}/${data.slug}`} about={data.title} title={data.title} className="font-semibold text-2xl text-primary">
+                        {data.title.length > 40 ? data.title.substring(0, 48) + ' ...' : data.title}
+                    </Link>
 
                     <p className="font-normal text-sm text-gray">
-                        {data.snippets}
+                        {data.snippets.substring(0, 170) + ' ...'}
                     </p>
 
                     <p className="font-normal text-xs text-gray mt-5">
-                        {data.publishedAt} &nbsp; | &nbsp; {data.duration} min read
+                        {formatDate(data.created_at)} &nbsp; | &nbsp; {data.duration} min read
                     </p>
                 </div>
             </div>
