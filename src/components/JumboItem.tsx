@@ -1,3 +1,4 @@
+import { formatDate } from '@/utils/time'
 import Image from 'next/image'
 import React from 'react'
 
@@ -36,10 +37,10 @@ const JumboItem: React.FC<any> = ({ data, isLoading }) => {
             <Image 
                 width={100}
                 height={50}
-                src={data.coverLandscape}
+                src={`https://resource.candidatecollegeind.com/storage/${data.cover_landscape}`}
                 alt={data.title}
                 title={data.title}
-                className='w-full md:w-[650px] md:flex-1 h-full rounded-xl'
+                className='w-full md:w-[650px] md:h-[340px] md:flex-1 object-cover h-full rounded-xl'
                 priority
             />
 
@@ -52,7 +53,7 @@ const JumboItem: React.FC<any> = ({ data, isLoading }) => {
                 </p>
 
                 <p className="font-normal text-xs text-gray mt-2">
-                    {data.publishedAt} | {data.duration} min read
+                    {formatDate(data.created_at)} | {data.duration} min read
                 </p>
             </div>
         </div>
