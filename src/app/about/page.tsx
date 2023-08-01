@@ -147,7 +147,7 @@ const About = () => {
       </section>
 
       {/* Events */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-[80px]">
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
           Events
         </h3>
@@ -211,6 +211,15 @@ const About = () => {
             </div>
             <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
           </div>
+        </div>
+
+        <div className="flex justify-center md:pt-10 pt-8">
+          <Link
+            href="/"
+            className="bg-secondary text-primary font-semibold text-base rounded-full px-8 py-3 text-center inline-block"
+          >
+            See Our Events
+          </Link>
         </div>
       </section>
 
