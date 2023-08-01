@@ -160,7 +160,7 @@ const About = () => {
           Kronde est
         </p>
 
-        <div className="grid grid-cols-4 grid-rows-2 gap-6 pt-10">
+        <div className="grid lg:grid-cols-4 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6 pt-10">
           <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl p-10">
             <div className="flex items-center z-20">
               <div className="flex-1">
@@ -183,7 +183,7 @@ const About = () => {
             </div>
             <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-[40%] bottom-0 left-0 z-10"></div>
           </div>
-          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-2.png')] bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5">
+          <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-2.png')] bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5">
             <div className="flex items-center z-20">
               <div className="basis-3/4">
                 <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
@@ -197,7 +197,7 @@ const About = () => {
             </div>
             <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
           </div>
-          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-3.png')] bg-no-repeat bg-cover col-span-2 col-start-3 row-start-2 rounded-3xl p-5">
+          <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-3.png')] bg-no-repeat bg-cover col-span-2 col-start-3 row-start-2 rounded-3xl p-5">
             <div className="flex items-center z-20">
               <div className="basis-3/4">
                 <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
