@@ -154,7 +154,7 @@ const About = () => {
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Success Events
         </h2>
-        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-full pt-[15px]">
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-[95%] pt-[15px]">
           Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
           Terabel pov astrobel sar direlig.Lörem ipsum astrobel sar direlig.
           Kronde est
@@ -221,6 +221,38 @@ const About = () => {
             See Our Events
           </Link>
         </div>
+      </section>
+
+      {/* Divisions */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[70px]">
+        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+          Divisions
+        </h3>
+        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+          Divisions Who Support CC
+        </h2>
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-[95%] pt-[15px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vulputate libero et velit interdum, ac aliquet odio mattis. Class
+          aptent taciti sociosqu ad litora torquent per conubia nostra, per
+          inceptos himenaeos.
+        </p>
+      </section>
+
+      {/* Testimonials */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[100px] pb-40">
+        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+          Testimonials
+        </h3>
+        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+          What Our Interns Say
+        </h2>
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-[95%] pt-[15px]">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vulputate libero et velit interdum, ac aliquet odio mattis. Class
+          aptent taciti sociosqu ad litora torquent per conubia nostra, per
+          inceptos himenaeos.
+        </p>
       </section>
 
       {/* Footer */}
