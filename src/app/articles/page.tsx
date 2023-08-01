@@ -146,7 +146,21 @@ const Articles = () => {
 
             {/* Articles */}
             {
-              activeCategory != 'All' ?  <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
+              articlesByCategory.length == 0 ? 
+              <div className='w-full h-fit py-10 flex items-center justify-center'>
+                <div className="flex flex-col gap-2">
+                  <Image 
+                    src="/decoration/empty.png"
+                    title="Empty Article Decoration"
+                    alt="Empty Article Decoration"
+                    width={0}
+                    height={0}
+                    className='w-[25rem] h-[25rem] object-contain mx-auto'
+                    priority
+                  />
+                  <p className="text-gray text-base text-center">No Article Available on This Category</p>
+                </div>
+              </div> : activeCategory != 'All' ?  <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
               {
                 isLoadingArticleByCategory ? 
                 loadingContent?.map((article, index) => (
@@ -171,19 +185,25 @@ const Articles = () => {
             
             {/* Scollable */}
             <div className="flex flex-col gap-5 w-full mt-7">
-              <JumboItem data={articlesOnPage[currentIndexSlider]} isLoading={true} />
+              {/* {
+                isLoadingArticleByCategory ? 
+                <JumboItem data={articlesByCategory[currentIndexSlider]} isLoading={true} /> : <JumboItem data={articlesByCategory[currentIndexSlider]} isLoading={false} />
+              } */}
 
               <div className="md:flex flex-row gap-4 hidden">
                 {
-                  articlesOnPage.slice(1, articlesOnPage.length - 1).map((article, index) => (
+                  isLoadingArticles ? 
+                  articles.slice(1, articles.length - 1).map((article, index) => (
                     <CardItemLandscape key={index} data={article} type='Article' isLoading={true} />
+                  )) : articles.slice(1, articles.length - 1).map((article, index) => (
+                    <CardItemLandscape key={index} data={article} type='Article' isLoading={false} />
                   ))
                 }
               </div>
 
               <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
                 {
-                  articlesOnPage.map((article, index) => (
+                  articles.map((article, index) => (
                     <div key={index} onClick={(e) => setCurrentIndexSlider(index)} className={`flex  p-[5px] h-2 ${currentIndexSlider == index ? 'w-8 bg-secondary' : 'w-2 bg-primary'} rounded-full cursor-pointer`}></div>
                   ))
                 }

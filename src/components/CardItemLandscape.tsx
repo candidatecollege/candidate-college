@@ -29,14 +29,14 @@ const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
                 </div>
             </div>
             :
-            <div className={`flex-col gap-2 md:items-center md:gap-2 flex`}>
+            <div className={`flex-col gap-2 md:items-center md:gap-2 flex md:w-[320px]`}>
                 <Image 
                     width={100}
                     height={50}
                     src={`https://resource.candidatecollegeind.com/storage/${data.cover_landscape}`}
                     alt={data.title}
                     title={data.title}
-                    className='w-full md:flex-1 h-full rounded-xl object-cover'
+                    className='w-full md:flex-1 h-full md:w-[320px] md:h-[320px] rounded-xl object-cover'
                     priority
                 />
 

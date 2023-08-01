@@ -11,11 +11,14 @@ import axios from 'axios';
 import { formatDate } from '@/utils/time';
 import { generateShareLinks } from '@/utils/socials';
 import Link from 'next/link';
+import { categoryId } from '@/utils/category';
+import CardItemLandscape from '@/components/CardItemLandscape';
 
 const Detail = () => {
   const slug = usePathname().slice(10)
   const [article, setArticle] = useState<any>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const loadingContents = [1, 2, 3, 4, 5, 6]
 
   const fetchArticle = async () => {
     setIsLoading(true)
@@ -32,6 +35,25 @@ const Detail = () => {
     }
   }
 
+  const [relatedArticles, setRelatedArticles] = useState<any[]>([])
+  const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] = useState<boolean>(true)
+
+  const fetchRelatedArticles = async () => {
+    setIsLoadingRelatedArticles(true)
+    const id = categoryId(article && article.category, ["All", "Students", "Education", "Gen Z", "Technology", "Nowdays"])
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/article/categories/${id}`)
+
+      setTimeout(() => {
+        setRelatedArticles(response.data.data.articles)
+        setIsLoadingRelatedArticles(false)
+      }, 1500)
+    } catch (error) {
+      console.log(error)
+      setIsLoadingRelatedArticles(false)
+    }
+  }
+
   const links = generateShareLinks(article && article.title, `https://candidatecollegeind.com/articles/${article && article.slug}`)
 
   const socials = [
@@ -42,7 +64,10 @@ const Detail = () => {
 
   useEffect(() => {
     fetchArticle()
+    fetchRelatedArticles()
   }, [])
+
+  console.log(relatedArticles)
 
   return (
     <main className="bg-white h-full w-full">
@@ -152,33 +177,14 @@ const Detail = () => {
             </div>
 
             {/* Articles */}
-            <div className="flex flex-col gap-8 md:gap-5 mt-5 md:grid md:grid-cols-3">
+            <div className="flex flex-col gap-8 md:gap-5 mt-5 md:flex-row md:items-start md:justify-start w-full">
                   {
-                    articlesOnPage.slice(0, 3).map((article, index) => (
-                      <div key={index} className={`flex-col gap-2 md:items-center md:gap-5 flex`}>
-                        <Image 
-                          width={100}
-                          height={50}
-                          src={article && article.coverLandscape}
-                          alt={article && article.title}
-                          title={article && article.title}
-                          className='w-full md:flex-1 h-full rounded-xl'
-                          priority
-                        />
-
-                        <div className="flex md:flex-1 flex-col gap">
-                            <h3 className="font-semibold text-xl md:text-2xl text-primary">
-                              {article && article.title}
-                            </h3>
-                            <p className="font-normal text-sm md:text-base text-gray">
-                              {article && article.snippets}
-                            </p>
-
-                            <p className="font-normal text-xs text-gray md:mt-5 mt-3">
-                              {article && article.publishedAt} | {article && article.duration} min read
-                            </p>
-                          </div>
-                      </div>
+                    isLoadingRelatedArticles ? 
+                    loadingContents.slice(0, 3).map((article, index) => (
+                      <CardItemLandscape data={article} key={index}  isLoading={true} />
+                    )) :
+                    relatedArticles.slice(0, 3).map((article, index) => (
+                      <CardItemLandscape data={article} key={index}  isLoading={false} />
                     ))
                   }
             </div>
