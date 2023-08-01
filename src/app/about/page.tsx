@@ -154,15 +154,15 @@ const About = () => {
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Success Events
         </h2>
-        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto w-2/4 pt-[15px]">
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-full pt-[15px]">
           Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
           Terabel pov astrobel sar direlig.Lörem ipsum astrobel sar direlig.
           Kronde est
         </p>
 
         <div className="grid lg:grid-cols-4 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6 pt-10">
-          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl p-10">
-            <div className="flex items-center z-20">
+          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl md:p-10 p-[25px]">
+            <div className="flex md:flex-row flex-col md:items-center items-start z-20">
               <div className="flex-1">
                 <h4 className="text-white xl:text-[32px] text-[30px] font-semibold">
                   Website Design
@@ -175,13 +175,13 @@ const About = () => {
               <div className="flex-1 text-end">
                 <Link
                   href="/"
-                  className="bg-transparent border-[1px] border-white text-white font-medium text-base rounded-full px-8 py-3 inline-block shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
+                  className="bg-transparent border-[1px] border-white text-white font-medium text-base rounded-full px-8 py-3 md:mt-0 mt-5 inline-block shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
                 >
                   Let's Join
                 </Link>
               </div>
             </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-[40%] bottom-0 left-0 z-10"></div>
+            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full md:h-[40%] h-[70%] bottom-0 left-0 z-10"></div>
           </div>
           <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-2.png')] bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5">
             <div className="flex items-center z-20">
