@@ -189,6 +189,7 @@ const Detail = () => {
                     ))
                   }
             </div>
+
           </section>
       }
 
