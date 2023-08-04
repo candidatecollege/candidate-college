@@ -21,6 +21,7 @@ const Articles = () => {
   const [categories, setCategories] = useState<any[]>([])
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true)
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(true)
+
   const [articlesByCategory, setArticlesByCategory] = useState<any[]>([])
   const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] = useState<boolean>(true)
   const loadingContent = [1, 2, 3, 4, 5, 6]
