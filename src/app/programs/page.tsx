@@ -1,5 +1,5 @@
 'use client'
-import { CTA, CardItem, Footer, ListItem, Navbar } from '@/components'
+import { CTA, CardItem, ComingSoon, Footer, ListItem, Navbar } from '@/components'
 import { articlesOnLanding, articlesOnPage } from '@/data/articleData'
 import { categories } from '@/data/eventData'
 import Image from 'next/image'
@@ -41,12 +41,12 @@ const Programs = () => {
   }, [])
 
   return (
-    <main className="bg-primary h-full">
+    <main className="bg-white h-full">
       {/* Navbar */}
       <Navbar active='Programs' isDetail={false} />
 
       {/* Hero */}
-      <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
+      {/* <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
 
         <Image 
           src={'/decoration/programs.png'}
@@ -66,12 +66,11 @@ const Programs = () => {
           Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* Events */}
-      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
+      {/* <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
 
-        {/* Latest */}
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
@@ -93,7 +92,6 @@ const Programs = () => {
                 <h2 className="font-semibold text-2xl md:text-4xl text-primary">{activeCategory}</h2>
             </div>
 
-            {/* Articles */}
             <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
               {
                 articlesOnPage.map((article, index) => (
@@ -134,7 +132,6 @@ const Programs = () => {
               </div>
             </div>
             
-            {/* Scollable */}
             <div className="flex flex-col gap-5 w-full mt-7">
               <JumboItem data={articlesOnPage[currentIndexSlider]} isLoading={true} />
 
@@ -164,7 +161,6 @@ const Programs = () => {
               </div>
             </div>
 
-            {/* Articles */}
             <section className="w-full h-full bg-white py-10 md:pt-10 md:pb-2 flex flex-col gap-9 overflow-hidden">
               <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
                 <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
@@ -182,7 +178,6 @@ const Programs = () => {
               </div>
             </div>
 
-            {/* Articles */}
             <section className="w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden">
               <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
                 <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
@@ -195,13 +190,17 @@ const Programs = () => {
           </div>
         </div>
 
-      </section>
+      </section> */}
+
+      <ComingSoon />
 
       {/* CTA */}
       <CTA />
 
       {/* Footer */}
+      <div className="w-full bg-primary">
       <Footer />
+      </div>
     </main>
   )
 }
