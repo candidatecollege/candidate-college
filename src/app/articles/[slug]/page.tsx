@@ -188,7 +188,6 @@ const Detail = () => {
                     ))
                   }
             </div>
-
           </section>
       }
 
