@@ -1,5 +1,5 @@
 'use client'
-import { ComingSoon, Footer, Navbar } from '@/components'
+import { CTA, ComingSoon, Footer, Navbar } from '@/components'
 import React from 'react'
 
 const About = () => {
@@ -9,6 +9,8 @@ const About = () => {
       <Navbar active='About Us' isDetail={false} />
 
       <ComingSoon />
+
+      <CTA />
 
       {/* Footer */}
       <div className="w-full bg-primary">
