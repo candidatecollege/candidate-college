@@ -168,7 +168,7 @@ const Detail = () => {
               title='Cover Landscape'
               width={100}
               height={0}
-              className='w-[30rem] h-[30rem] mt-2 rounded-xl object-cover'
+              className='w-full h-[30rem] mt-2 rounded-xl object-cover'
             />
 
             <div className="text-primary text-lg text-justify w-full prose prose-rich-text prose-headings:text-primary prose-strong:text-primary" dangerouslySetInnerHTML={{ __html: article && article && article.body }} />
