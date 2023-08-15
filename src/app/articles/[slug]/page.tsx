@@ -101,7 +101,7 @@ const Detail = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-row items-center gap-2">
+                    <div className="flex flex-row items-center gap-2 w-full md:justify-end md:self-end">
                       <p className="text-gray">Share : </p>
                       <div className="flex flex-row gap-2">
                         <div className="w-3 h-3 rounded-full p-5 bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">

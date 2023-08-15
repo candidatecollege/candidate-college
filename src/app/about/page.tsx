@@ -8,8 +8,6 @@ const About = () => {
       {/* Navbar */}
       <Navbar active='About Us' isDetail={false} />
 
-      <ComingSoon />
-
       <CTA />
 
       {/* Footer */}
