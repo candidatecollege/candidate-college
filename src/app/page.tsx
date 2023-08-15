@@ -5,8 +5,18 @@ import Image from 'next/image'
 import { articleSectionOnLanding, eventSectionOnLanding, valueSectionOnLanding, values } from '@/data/staticData'
 import { articles, articlesOnLanding } from '@/data/articleData'
 import "./scrollable.css";
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState, useRef } from 'react'
+import axios from 'axios';
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+// import required modules
+import { Pagination } from 'swiper/modules';
 
 export default function Home() {
   const [articles, setArticles] = useState<any[]>([])
@@ -48,9 +58,9 @@ export default function Home() {
         Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
         </p>
 
-        <Link href='/about' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mt-6 md:mt-0'>Get To Know About CC</Link>
+        <Link href='/coming' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mt-6 md:mt-0'>Get To Know About CC</Link>
 
-        <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Events</Link>
+        <Link href='/coming' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Events</Link>
       </section>
 
       {/* Values */}
@@ -84,9 +94,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center mt-6 md:mt-0">
-          <Link href='/events' title='Get To Know About CC' about='Get To Know About CC' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Candidate College Events</Link>
-
-          <Link href='/articles' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read Articles</Link>
+          <Link href='/coming' title='See Our Events/Programs' about='See Our Events/Programs' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Candidate College Events</Link>
         </div>
       </section>
 
@@ -120,8 +128,6 @@ export default function Home() {
       
         <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center mt-6 md:mt-0">
           <Link href='/articles' title='Read More Articles' about='Read More Articles' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read More Articles</Link>
-
-          <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See Our Events</Link>
         </div>
       </section>
 
