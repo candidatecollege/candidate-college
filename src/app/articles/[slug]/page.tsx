@@ -27,7 +27,7 @@ const Detail = () => {
 
       setTimeout(() => {
         setArticle(response.data.data);
-        setIsLoading(false); // After setting the data, set isLoading to false
+        setIsLoading(true); // After setting the data, set isLoading to false
       }, 1500);
     } catch (error) {
       console.error(error)
@@ -77,14 +77,15 @@ const Detail = () => {
       {/* Hero */}
       {
         isLoading ?
-        <section className="p-16 md:max-w-6xl md:mx-auto pt-32 md:pt-40 h-screen overflow-scroll scrollbar-hide gap-4">
+        <section className="p-16 md:max-w-6xl md:mx-auto pt-32 md:pt-40 h-screen overflow-scroll scrollbar-hide gap-4 px-5 md:px-16">
 
             <div className="flex flex-col gap-4 md:px-24">
                 <div className="flex flex-col gap-4 pb-6 border-b border-b-gray items-center justify-center">
-                    <div className=" md:w-[50%] py-10 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                    <div className=" md:w-[50%] md:py-10 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
                     </div>
 
-                    <div className="flex flex-col gap-1 w-full items-center justify-center">
+                    <div className="flex flex-col gap-1 w-full items-start justity-start md:items-center md:justify-center">
+                        <div className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
                         <div className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
                         <div className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
                         <div className="w-2/3 py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
@@ -92,17 +93,29 @@ const Detail = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row md:items-center md:justify-center md:w-full pt-2 gap-4">
-                    <div className='flex flex-row gap-2'>
-                    <div className="w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
-                    </div>  &nbsp; | &nbsp; <div className="w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
-                    </div> | <div className="w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                <div className="flex flex-col md:flex-row md:items-center pt-2 gap-4 w-full md:justify-between">
+                    <div className='flex flex-row gap-2 text-gray items-center w-full'>
+                      <div className="w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                      </div> | <div className="w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                      </div> | <div className="w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                      </div>
                     </div>
+
+                    <div className="flex flex-row items-center gap-2">
+                      <p className="text-gray">Share : </p>
+                      <div className="flex flex-row gap-2">
+                        <div className="w-3 h-3 rounded-full p-5 bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                        </div>
+                        <div className="w-3 h-3 rounded-full p-5 bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                        </div>
+                        <div className="w-3 h-3 rounded-full p-5 bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse">
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
 
-            <div className='w-[30rem] h-[30rem] my-6 rounded-xl bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse object-cover mx-auto'></div>
+            <div className='w-full h-[15rem] md:h-[30rem] my-6 rounded-xl bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse object-cover mx-auto'></div>
 
             <div className="flex flex-col gap-2 w-full">
               <div className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"></div>
@@ -152,23 +165,23 @@ const Detail = () => {
                 </div>
               </div>
             </div>
-
-            {/* <Image 
-              src={`https://resource.candidatecollegeind.com/storage/${article && article.cover_landscape}`}
-              alt='Cover Landscape'
-              title='Cover Landscape'
-              width={100}
-              height={0}
-              className='w-full h-[25vh] md:h-full mt-2 rounded-xl object-cover'
-            /> */}
-
+            
             <Image 
               src={`https://resource.candidatecollegeind.com/storage/${article && article.cover_landscape}`}
               alt='Cover Landscape'
               title='Cover Landscape'
               width={100}
               height={0}
-              className='w-full h-[30rem] mt-2 rounded-xl object-cover'
+              className='w-full h-full mt-2 rounded-xl object-cover hidden md:block'
+            />
+
+            <Image 
+              src={`https://resource.candidatecollegeind.com/storage/${article && article.cover}`}
+              alt='Cover Landscape'
+              title='Cover Landscape'
+              width={100}
+              height={0}
+              className='w-full h-full mt-2 rounded-xl object-cover block md:hidden'
             />
 
             <div className="text-primary text-lg text-justify w-full prose prose-rich-text prose-headings:text-primary prose-strong:text-primary" dangerouslySetInnerHTML={{ __html: article && article && article.body }} />
