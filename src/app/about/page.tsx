@@ -6,6 +6,14 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import PodcastsIcon from "@mui/icons-material/Podcasts";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
+
+import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 
 const About = () => {
   const socials = [
@@ -33,6 +41,16 @@ const About = () => {
       link: "https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ",
       component: <YouTubeIcon color="inherit" fontSize="inherit" />,
     },
+  ];
+
+  const divisions = [
+    { id: 1, url: "/decoration/division.jpg" },
+    { id: 2, url: "/decoration/division.jpg" },
+    { id: 3, url: "/decoration/division.jpg" },
+    { id: 4, url: "/decoration/division.jpg" },
+    { id: 5, url: "/decoration/division.jpg" },
+    { id: 6, url: "/decoration/division.jpg" },
+    { id: 7, url: "/decoration/division.jpg" },
   ];
 
   return (
@@ -237,6 +255,48 @@ const About = () => {
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
           inceptos himenaeos.
         </p>
+
+        <div className="mt-[55px] mx-auto mb-0">
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 9,
+              slideShadows: false,
+            }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            modules={[EffectCoverflow, Navigation, Autoplay]}
+            className="swiper_container"
+          >
+            {divisions.map((division, index) => (
+              <SwiperSlide className="!w-[550px] !h-[550px] relative">
+                <img
+                  src={division.url}
+                  key={index}
+                  alt="slide_image"
+                  className="w-[550px] h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                />
+              </SwiperSlide>
+            ))}
+            <div className="slider-controler">
+              <div className="swiper-button-prev slider-arrow"></div>
+              <div className="swiper-button-next slider-arrow"></div>
+            </div>
+          </Swiper>
+        </div>
       </section>
 
       {/* Testimonials */}
