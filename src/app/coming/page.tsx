@@ -16,13 +16,13 @@ const Coming = () => {
           title='Coming Soon Decoration'
         />
 
-        <div className="flex flex-col gap-2">
-          <h1 className="font-semibold text-primary text-center lg:text-[40px] p-1 text-[30px] xl:w-[70%] md:w-[90%] md:text-center leading-[50%]">
+        <div className="flex flex-col gap-2 items-center">
+          <h1 className="font-semibold text-primary text-center lg:text-[40px] p-1 text-[30px] md:text-center leading-[50%]">
             Coming Soon
           </h1>
 
           <p className="text-gray text-sm text-center leading-2 md:pt-4 pt-2 md:text-center w-full lg:text-base md:w-[70%]">
-            This still developing Candidaters! <br className="hidden md:block" />
+            This still developing Candidaters! <br className="hidden" />
             Stay tuned
           </p>
 

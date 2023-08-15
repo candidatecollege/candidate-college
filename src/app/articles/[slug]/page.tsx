@@ -27,7 +27,7 @@ const Detail = () => {
 
       setTimeout(() => {
         setArticle(response.data.data);
-        setIsLoading(true); // After setting the data, set isLoading to false
+        setIsLoading(false); // After setting the data, set isLoading to false
       }, 1500);
     } catch (error) {
       console.error(error)
@@ -184,7 +184,7 @@ const Detail = () => {
               className='w-full h-full mt-2 rounded-xl object-cover block md:hidden'
             />
 
-            <div className="text-primary text-lg text-justify w-full prose prose-rich-text prose-headings:text-primary prose-strong:text-primary" dangerouslySetInnerHTML={{ __html: article && article && article.body }} />
+            <div className="text-primary text-lg text-justify w-full prose prose-rich-text prose-headings:text-primary prose-strong:text-primary md:pt-10" dangerouslySetInnerHTML={{ __html: article && article && article.body }} />
 
             <div className="flex flex-row items-center justify-between pb-6 mt-10 border-b border-b-gray w-full">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">Related Articles</h2>

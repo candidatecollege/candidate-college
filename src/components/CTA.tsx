@@ -25,7 +25,7 @@ const CTA = () => {
     ]
 
     return (
-        <div className='flex flex-col gap-4 fixed bottom-8 left-5 floating-container'>
+        <div className='flex flex-col gap-4 fixed bottom-8 left-5 floating-container z-50'>
             
 
             <div className={`flex-col gap-4 ${isShowSocials ? 'flex show' : 'hidden'} element-container`}>

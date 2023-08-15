@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
+import './../styles/swiper-article.css'
 
 const CardItem: React.FC<any> = ({ data, type, isLoading }) => {
   return (
@@ -25,7 +26,7 @@ const CardItem: React.FC<any> = ({ data, type, isLoading }) => {
                 </div>
             </div>
             :
-            <div className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
+            <div className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]">
                 <Image 
                 src={`https://resource.candidatecollegeind.com/storage/${data.cover}`}
                     alt={type == 'Article' ? data.title : data.name}
