@@ -23,6 +23,7 @@ const Footer = () => {
   return (
     <footer className='w-full h-full px-7 md:px-0 md:mx-auto md:max-w-5xl py-6 bg-primary flex flex-col gap-6'>
       <section className={`w-full flex flex-col`}>
+      <Link href="/" title="Candidate College Home" about="Candidate College Home"  className='block cursor-pointer'>
         <Image 
           src={`/logo/logo-full-cc.png`}
           width={100}
@@ -32,6 +33,7 @@ const Footer = () => {
           className={`block w-[150px] h-[100px] object-contain`}
           loading="lazy"
         />
+        </Link>
 
         <p className="text-gray text-sm -mt-3">Education Platform that works to facilitate students in Indonesia.
         </p>
