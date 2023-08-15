@@ -136,6 +136,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
   return (
     <header className={`w-full z-50 ${isDetail ? 'bg-white shadow-lg' : 'bg-primary'} fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${isContactOpen ? 'lg:px-0' : 'lg:px-0'}`}>
       <nav className={`lg:mx-auto md:hidden lg:flex-1 flex flex-row items-center justify-between px-7 py-1 border-b border-b-border lg:border-none h-[10vh] md:h-fit`}>
+        <Link href="/" title="Candidate College Home" about="Candidate College Home"  className='block'>
         <Image 
           src={`/logo/logo-full-cc.png`}
           width={100}
@@ -145,6 +146,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
           className={`block w-[150px] h-[100px] lg:h-[80px] object-contain`}
           loading="lazy"
         />
+        </Link>
         <span onClick={(e) => toggleIsOpen()} className={`block lg:hidden text-2xl ${isDetail ? 'text-primary' : 'text-white'} transition-all duration-800 cursor-pointer`}>{isOpen? (<CloseIcon color='inherit' fontSize='inherit' />) : (<MenuIcon color='inherit' fontSize='inherit' />)}</span>
       </nav>
 
