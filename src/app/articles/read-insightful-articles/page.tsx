@@ -112,18 +112,28 @@ const ReadInsightfulArticles = () => {
                 </div>
 
                 <div className={`flex`}>
-                    <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
                     {
-                        isLoadingArticles ? 
-                        loadingContent?.map((article, index) => (
-                        <CardItemLandscape key={index} data={article} type={'Article'} isLoading={true} />
-                        ))
-                        :
-                        articles.map((article, index) => (
-                        <CardItemLandscape key={index} data={article} type={'Article'} isLoading={false} />
-                        ))
+                      articles.length == 0 ? 
+                      <div className='w-full h-fit py-10 flex items-center justify-center'>
+                        <div className="flex flex-col gap-2 w-full">
+                          <Image 
+                            src="/decoration/empty.png"
+                            title="Empty Article Decoration"
+                            alt="Empty Article Decoration"
+                            width={0}
+                            height={0}
+                            className='w-[25rem] h-[25rem] object-contain mx-auto'
+                            priority
+                          />
+                          <p className="text-gray text-base text-center">No Article Found</p>
+                        </div>
+                      </div> : 
+                      <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
+                      {articles.map((article, index) => (
+                        <CardItemLandscape key={index} data={article} type={'Article'} isLoading={isLoadingArticles} />
+                      ))}
+                      </div>
                     }
-                    </div>
                 </div>
             </div>
         </section>
