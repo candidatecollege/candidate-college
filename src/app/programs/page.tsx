@@ -46,7 +46,7 @@ const Programs = () => {
       <Navbar active='Programs' isDetail={false} />
 
       {/* Hero */}
-      {/* <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
+      <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
 
         <Image 
           src={'/decoration/programs.png'}
@@ -66,10 +66,10 @@ const Programs = () => {
           Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
           </p>
         </div>
-      </section> */}
+      </section>
 
       {/* Events */}
-      {/* <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
+      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
 
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           <div className="overflow-x-auto scrollbar-hide relative">
@@ -190,9 +190,7 @@ const Programs = () => {
           </div>
         </div>
 
-      </section> */}
-
-      <ComingSoon />
+      </section>
 
       {/* CTA */}
       <CTA />

@@ -11,6 +11,20 @@ import CardItemLandscape from '@/components/CardItemLandscape';
 import JumboItem from '@/components/JumboItem';
 import { categoryId } from '@/utils/category';
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
+
+import '../../styles/swiper-article-page.css';
+
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
   const [isSeeLatest, setIsSeeLatest] = useState<boolean>(false)
@@ -122,7 +136,6 @@ const Articles = () => {
 
       {/* Articles */}
       <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
-      {/* rounded-xl bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse */}
         {/* Latest */}
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           <div className="overflow-x-auto scrollbar-hide relative">
@@ -179,17 +192,17 @@ const Articles = () => {
           <div className={`${activeCategory != 'All' ? 'hidden' : 'flex flex-col'}`}>
             <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">Latest</h2>
-              <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
+              <Link href='/articles/latest' title="Latest Articles" about="Latest Articles" className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
                 See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
-              </div>
+              </Link>
             </div>
             
             {/* Scollable */}
             <div className="flex flex-col gap-5 w-full mt-7">
-              {/* {
+              {
                 isLoadingArticleByCategory ? 
                 <JumboItem data={articlesByCategory[currentIndexSlider]} isLoading={true} /> : <JumboItem data={articlesByCategory[currentIndexSlider]} isLoading={false} />
-              } */}
+              }
 
               <div className="md:flex flex-row gap-4 hidden">
                 {
@@ -204,7 +217,7 @@ const Articles = () => {
 
               <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
                 {
-                  articles.map((article, index) => (
+                  articles.slice(1, articles.length - 1).map((article, index) => (
                     <div key={index} onClick={(e) => setCurrentIndexSlider(index)} className={`flex  p-[5px] h-2 ${currentIndexSlider == index ? 'w-8 bg-secondary' : 'w-2 bg-primary'} rounded-full cursor-pointer`}></div>
                   ))
                 }
@@ -213,27 +226,82 @@ const Articles = () => {
 
             <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">Read Insightful Articles</h2>
-              <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
+              <Link href='/articles/read-insightful-articles' title="Read Insightful Articles" about="Read Insightful Articles" className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
                 See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
-              </div>
+              </Link>
             </div>
 
             {/* Articles */}
             <section className="w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden">
-              <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-                <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articles?.length * 22}rem`, }}>
-                  {
-                    isLoadingArticles ? 
-                    loadingContent?.map((article, index) => (
-                      <CardItem key={index} data={article} type={'Article'} isLoading={true} />
-                    ))
-                    :
-                    articles?.map((article, index) => (
-                      <CardItem key={index} data={article} type={'Article'} isLoading={false} />
-                    ))
-                  }
-                </div>
-              </div>
+            <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            navigation={true}
+            breakpoints={{
+              // Adjust the number of slides per view for different screen widths
+              // When the screen width is less than 640px (typical mobile width), show only 1 slide
+              0: {
+                slidesPerView: 1,
+              },
+              // For larger screens, revert to 3 slides per view
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            modules={[Navigation]}
+            className="mySwiper"
+        >
+            {
+              isLoadingArticles ? 
+              loadingContent?.map((article, index) => (
+                <SwiperSlide>
+                  <div className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
+                    <div className="rounded-lg w-[22rem] h-[22rem] bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+
+                    <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                        <div className="bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse w-2/3 rounded-lg py-3"></div>
+
+                        <div className="flex flex-col gap-1 w-full">
+                            <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                            <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                            <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                            <div className="w-2/3 py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                        </div>
+
+                        <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-transparent font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5 bg-gradient-to-r from-yellow-200 to-yellow-300 animate-pulse'>Read More</Link>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))
+              :
+              articles?.map((article, index) => (
+                <SwiperSlide>
+                  <Link href={`/articles/${article.slug}`} title='Read More' about='Read More' className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]">
+                      <Image 
+                      src={`https://resource.candidatecollegeind.com/storage/${article.cover}`}
+                          alt={article.title}
+                          title={article.title}
+                          className="rounded-lg w-[22rem] h-[22rem] object-cover"
+                          width={0}
+                          height={0}
+                      />
+
+                      <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                          <h3 className="font-semibold text-base text-primary">
+                              {
+                                  article.title.length > 33 ? (article.title.substring(0, 33) + '...') : (article.title)
+                              }
+                          </h3>
+                          <p className="font-normal text-sm text-gray">
+                              {article.snippets.substring(0, 150) + '...'}
+                          </p>
+                          <Link href={`/articles/${article.slug}`} title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Read More</Link>
+                      </div>
+                  </Link>
+                </SwiperSlide>
+              ))
+            }
+        </Swiper>
             </section>
           </div>
         </div>
