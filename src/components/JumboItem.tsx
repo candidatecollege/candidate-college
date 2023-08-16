@@ -37,23 +37,23 @@ const JumboItem: React.FC<any> = ({ data, isLoading }) => {
             <Image 
                 width={100}
                 height={50}
-                src={`https://resource.candidatecollegeind.com/storage/${data.cover_landscape}`}
-                alt={data.title}
-                title={data.title}
+                src={`https://resource.candidatecollegeind.com/storage/${data && data.cover_landscape}`}
+                alt={data && data.title}
+                title={data && data.title}
                 className='w-full md:w-[650px] md:h-[340px] md:flex-1 object-cover h-full rounded-xl'
                 priority
             />
 
             <div className="md:flex md:flex-1 flex-col gap-3">
                 <h3 className="font-semibold text-2xl md:text-4xl text-primary">
-                    {data.title}
+                    {data && data.title}
                 </h3>
                 <p className="font-normal text-sm md:text-base text-gray">
-                    {data.snippets}
+                    {data && data.snippets}
                 </p>
 
                 <p className="font-normal text-xs text-gray mt-2">
-                    {formatDate(data.created_at)} | {data.duration} min read
+                    {formatDate(data && data.created_at)} | {data && data.duration} min read
                 </p>
             </div>
         </div>
