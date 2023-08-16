@@ -5,8 +5,11 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import PodcastsIcon from "@mui/icons-material/Podcasts";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "../../styles/swiper-about.css";
 
 // Import Swiper styles
 import "swiper/css";
@@ -263,7 +266,7 @@ const About = () => {
             centeredSlides={true}
             slidesPerView={"auto"}
             autoplay={{
-              delay: 3000,
+              delay: 3500,
               disableOnInteraction: false,
             }}
             loop={true}
@@ -271,7 +274,7 @@ const About = () => {
               rotate: 0,
               stretch: 0,
               depth: 100,
-              modifier: 9,
+              modifier: 10,
               slideShadows: false,
             }}
             navigation={{
@@ -292,8 +295,12 @@ const About = () => {
               </SwiperSlide>
             ))}
             <div className="slider-controler">
-              <div className="swiper-button-prev slider-arrow"></div>
-              <div className="swiper-button-next slider-arrow"></div>
+              <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full left-0">
+                <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
+              </div>
+              <div className="swiper-button-next slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full right-0">
+                <ArrowForwardIosIcon className="!w-[2rem] text-primary" />
+              </div>
             </div>
           </Swiper>
         </div>
