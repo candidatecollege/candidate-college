@@ -76,10 +76,10 @@ const ReadInsightfulArticles = () => {
         {/* Navbar */}
         <Navbar active='Articles' isDetail={false} />
 
-        <section className="flex flex-col w-full px-5 pt-5 md:pt-32 pb-20 bg-white">
+        <section className="flex flex-col w-full px-5 pt-28 md:pt-32 pb-20 bg-white">
             <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
                 <div
-                className='w-full h-[25rem] mt-2 rounded-xl object-cover bg-primary flex justify-center items-center relative mb-10'
+                className='w-full h-[25rem] mt-2 rounded-xl object-cover bg-primary flex flex-col md:flex-row justify-center items-center relative mb-10 pb-10 md:pb-0'
                 >
                     <Image 
                         src={'/decoration/insightful.png'}
@@ -90,7 +90,7 @@ const ReadInsightfulArticles = () => {
                         title='Article Decoration'
                     />
 
-                    <div className="flex flex-col gap-4 mb-3 items-center justify-center mr-20">
+                    <div className="flex flex-col gap-4 mb-3 items-center justify-center md:-ml-4 px-5 md:px-0 -mt-6 md:mt-0">
                         <h1 className="font-semibold text-white text-3xl md:text-[70px] text-center md:leading-[100%] leading-[150%]">
                         Insightful Articles
                         </h1>
@@ -113,7 +113,7 @@ const ReadInsightfulArticles = () => {
 
                 <div className={`flex`}>
                     {
-                      articles.length == 0 ? 
+                      articles.length == 0 && !isLoadingArticles ? 
                       <div className='w-full h-fit py-10 flex items-center justify-center'>
                         <div className="flex flex-col gap-2 w-full">
                           <Image 

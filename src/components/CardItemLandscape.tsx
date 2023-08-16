@@ -12,7 +12,7 @@ const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
                 <div className='w-[328px] h-[172px] rounded-xl object-cover bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse'
                 ></div>
 
-                <div className="md:flex w-full gap-2 flex-col gap hidden">
+                <div className="flex w-full gap-2 flex-col gap">
                     <div className="bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse w-2/3 rounded-lg py-4"></div>
 
                     <div className="flex flex-col gap-1 w-full">
