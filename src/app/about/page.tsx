@@ -252,7 +252,7 @@ const About = () => {
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Divisions Who Support CC
         </h2>
-        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-[95%] pt-[15px]">
+        <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
@@ -314,12 +314,39 @@ const About = () => {
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           What Our Interns Say
         </h2>
-        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-[95%] pt-[15px]">
+        <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
           inceptos himenaeos.
         </p>
+
+        <div className="mt-[105px]">
+          {/* Shadow yang digunakan belum mengikuti yang di Figma */}
+          <div className="bg-white relative w-[580px] rounded-[42px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] pt-20 pb-5 px-[65px]">
+            <div className="flex justify-center">
+              <Image
+                src="/decoration/avatar-1.png"
+                alt="Avatar"
+                className="absolute top-[-40px] object-contain"
+                width={88}
+                height={88}
+              />
+            </div>
+            <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-[26px] text-center">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              vulputate libero et velit interdum, ac aliquet odio mattis. Class
+              aptent taciti sociosqu ad litora torquent per conubia nostra, per
+              inceptos himenaeos.
+            </p>
+            <h5 className="text-secondary pt-5 xl:text-[26px] text-sm font-semibold leading-[26px] text-center">
+              Rick Wright
+            </h5>
+            <h6 className="text-primary text-xs font-medium leading-[26px] text-center">
+              Executive Engineer
+            </h6>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
