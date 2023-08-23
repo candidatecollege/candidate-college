@@ -201,15 +201,15 @@ const Articles = () => {
             <div className="flex flex-col gap-5 w-full mt-7">
               {
                 isLoadingArticleByCategory ? 
-                <JumboItem data={articlesByCategory[currentIndexSlider]} isLoading={true} /> : <JumboItem data={articlesByCategory[currentIndexSlider]} isLoading={false} />
+                <JumboItem data={articles.slice(0, 1)[currentIndexSlider]} isLoading={true} /> : <JumboItem data={articles.slice(0, 1)[currentIndexSlider]} isLoading={false} />
               }
 
               <div className="md:flex flex-row gap-4 hidden">
                 {
                   isLoadingArticles ? 
-                  articles.slice(1, articles.length - 1).map((article, index) => (
+                  articles.slice(0, 3).map((article, index) => (
                     <CardItemLandscape key={index} data={article} type='Article' isLoading={true} />
-                  )) : articles.slice(1, articles.length - 1).map((article, index) => (
+                  )) : articles.slice(1, 4).map((article, index) => (
                     <CardItemLandscape key={index} data={article} type='Article' isLoading={false} />
                   ))
                 }
@@ -274,7 +274,7 @@ const Articles = () => {
                 </SwiperSlide>
               ))
               :
-              articles?.map((article, index) => (
+              articles?.slice().reverse().map((article, index) => (
                 <SwiperSlide>
                   <Link href={`/articles/${article.slug}`} title='Read More' about='Read More' className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]">
                       <Image 

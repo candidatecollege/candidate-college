@@ -120,7 +120,7 @@ const JumboItem = ({ data, isLoading })=>{
                         }),
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
                             className: "font-normal text-sm md:text-base text-gray",
-                            children: data && data.snippets
+                            children: data && data.snippets.substring(0, 200) + "..."
                         }),
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                             className: "font-normal text-xs text-gray mt-2",

@@ -49,7 +49,7 @@ const JumboItem: React.FC<any> = ({ data, isLoading }) => {
                     {data && data.title}
                 </h3>
                 <p className="font-normal text-sm md:text-base text-gray">
-                    {data && data.snippets}
+                    {data && data.snippets.substring(0, 200) + '...'}
                 </p>
 
                 <p className="font-normal text-xs text-gray mt-2">

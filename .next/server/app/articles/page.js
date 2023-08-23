@@ -626,19 +626,19 @@ const Articles = ()=>{
                                     className: "flex flex-col gap-5 w-full mt-7",
                                     children: [
                                         isLoadingArticleByCategory ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_JumboItem__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-                                            data: articlesByCategory[currentIndexSlider],
+                                            data: articles.slice(0, 1)[currentIndexSlider],
                                             isLoading: true
                                         }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_JumboItem__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-                                            data: articlesByCategory[currentIndexSlider],
+                                            data: articles.slice(0, 1)[currentIndexSlider],
                                             isLoading: false
                                         }),
                                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                             className: "md:flex flex-row gap-4 hidden",
-                                            children: isLoadingArticles ? articles.slice(1, articles.length - 1).map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+                                            children: isLoadingArticles ? articles.slice(0, 3).map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
                                                     data: article,
                                                     type: "Article",
                                                     isLoading: true
-                                                }, index)) : articles.slice(1, articles.length - 1).map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+                                                }, index)) : articles.slice(1, 4).map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
                                                     data: article,
                                                     type: "Article",
                                                     isLoading: false
@@ -740,7 +740,7 @@ const Articles = ()=>{
                                                         })
                                                     ]
                                                 })
-                                            })) : articles?.map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(swiper_react__WEBPACK_IMPORTED_MODULE_7__/* .SwiperSlide */ .o5, {
+                                            })) : articles?.slice().reverse().map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(swiper_react__WEBPACK_IMPORTED_MODULE_7__/* .SwiperSlide */ .o5, {
                                                 children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
                                                     href: `/articles/${article.slug}`,
                                                     title: "Read More",
