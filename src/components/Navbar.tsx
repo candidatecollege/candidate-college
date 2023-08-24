@@ -29,11 +29,29 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
   const [isSendUsMessage, setIsSendUsMessage] = useState<boolean>(false);
 
-  const [email, setEmail] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
+  const [formData, setFormData] = useState({
+    email: "",
+    message: "",
+  });
+
+  const handleInput = (e: any) => {
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [fieldName]: fieldValue,
+    }));
+  };
 
   const handleSendMessage = async (e: any) => {
     e.preventDefault();
+
+    const email = e.target.email.value;
+    const message = e.target.message.value;
+
+    console.log("Email:", email); // Log the email
+    console.log("Message:", message); // Log the message
 
     try {
       const response = await axios.post(
@@ -54,13 +72,15 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
           title: "Message Sent",
           text: "Your message has been successfully sent!",
           confirmButtonColor: "#FFDE59",
-          timer: 5000,
+          timer: 3000,
           timerProgressBar: true,
         });
 
         // Clear the email and message fields
-        setEmail("");
-        setMessage("");
+        setFormData({
+          email: "",
+          message: "",
+        });
       } else {
         console.error("Error sending message:", response.data.message);
 
@@ -140,6 +160,21 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
   };
 
   const SendMessageSection = () => {
+    const [formData, setFormData] = useState({
+      email: "",
+      message: "",
+    });
+
+    const handleInput = (e: any) => {
+      const fieldName = e.target.name;
+      const fieldValue = e.target.value;
+
+      setFormData((prevState) => ({
+        ...prevState,
+        [fieldName]: fieldValue,
+      }));
+    };
+
     return (
       <section className="flex flex-col gap-2 md:px-10">
         <input
@@ -149,8 +184,8 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
           type="email"
           placeholder="Your Email"
           className="border border-gray rounded-2xl px-4 py-2 text-sm md:text-base text-primary placeholder:text-gray"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleInput}
           required
         />
         <textarea
@@ -160,8 +195,8 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
           placeholder="Your Message"
           className="border border-gray rounded-2xl px-4 py-2 text-sm md:text-base text-primary placeholder:text-gray"
           rows={8}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          value={formData.message}
+          onChange={handleInput}
           required
         ></textarea>
       </section>
@@ -250,6 +285,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
                 autoComplete={"false"}
               >
                 <SendMessageSection />
+
                 <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center md:mt-0">
                   <button
                     type="submit"
