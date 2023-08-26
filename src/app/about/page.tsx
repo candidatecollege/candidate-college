@@ -321,31 +321,98 @@ const About = () => {
           inceptos himenaeos.
         </p>
 
-        <div className="mt-[105px]">
-          {/* Shadow yang digunakan belum mengikuti yang di Figma */}
-          <div className="bg-white relative w-[580px] rounded-[42px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] pt-20 pb-5 px-[65px]">
-            <div className="flex justify-center">
-              <Image
-                src="/decoration/avatar-1.png"
-                alt="Avatar"
-                className="absolute top-[-40px] object-contain"
-                width={88}
-                height={88}
-              />
+        <div className="mt-[105px] w-full">
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={55}
+            centeredSlides={true}
+            grabCursor={true}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            modules={[Navigation]}
+            className="swiper_container !overflow-y-visible"
+          >
+            {/* Shadow yang digunakan belum mengikuti yang di Figma */}
+            <SwiperSlide className="bg-white relative !w-[580px] rounded-[42px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] pt-20 pb-5 px-[65px]">
+              <div className="flex justify-center">
+                <Image
+                  src="/decoration/avatar-1.png"
+                  alt="Avatar"
+                  className="absolute top-[-40px] object-contain"
+                  width={88}
+                  height={88}
+                />
+              </div>
+              <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-[26px] text-center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra, per inceptos himenaeos.
+              </p>
+              <h5 className="text-secondary pt-5 xl:text-[26px] text-sm font-semibold leading-[26px] text-center">
+                Mike Torello
+              </h5>
+              <h6 className="text-primary text-xs font-medium leading-[26px] text-center">
+                Executive Engineer
+              </h6>
+            </SwiperSlide>
+            <SwiperSlide className="bg-white relative !w-[580px] rounded-[42px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] pt-20 pb-5 px-[65px]">
+              <div className="flex justify-center">
+                <Image
+                  src="/decoration/avatar-2.png"
+                  alt="Avatar"
+                  className="absolute top-[-40px] object-contain"
+                  width={88}
+                  height={88}
+                />
+              </div>
+              <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-[26px] text-center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra, per inceptos himenaeos.
+              </p>
+              <h5 className="text-secondary pt-5 xl:text-[26px] text-sm font-semibold leading-[26px] text-center">
+                Rick Wright
+              </h5>
+              <h6 className="text-primary text-xs font-medium leading-[26px] text-center">
+                Executive Engineer
+              </h6>
+            </SwiperSlide>
+            <SwiperSlide className="bg-white relative !w-[580px] rounded-[42px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] pt-20 pb-5 px-[65px]">
+              <div className="flex justify-center">
+                <Image
+                  src="/decoration/avatar-3.png"
+                  alt="Avatar"
+                  className="absolute top-[-40px] object-contain"
+                  width={88}
+                  height={88}
+                />
+              </div>
+              <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-[26px] text-center">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra, per inceptos himenaeos.
+              </p>
+              <h5 className="text-secondary pt-5 xl:text-[26px] text-sm font-semibold leading-[26px] text-center">
+                Devon Miles
+              </h5>
+              <h6 className="text-primary text-xs font-medium leading-[26px] text-center">
+                Executive Engineer
+              </h6>
+            </SwiperSlide>
+            <div className="slider-controler">
+              <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full left-0">
+                <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
+              </div>
+              <div className="swiper-button-next slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full right-0">
+                <ArrowForwardIosIcon className="!w-[2rem] text-primary" />
+              </div>
             </div>
-            <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-[26px] text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis. Class
-              aptent taciti sociosqu ad litora torquent per conubia nostra, per
-              inceptos himenaeos.
-            </p>
-            <h5 className="text-secondary pt-5 xl:text-[26px] text-sm font-semibold leading-[26px] text-center">
-              Rick Wright
-            </h5>
-            <h6 className="text-primary text-xs font-medium leading-[26px] text-center">
-              Executive Engineer
-            </h6>
-          </div>
+          </Swiper>
         </div>
       </section>
 
