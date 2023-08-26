@@ -55,22 +55,6 @@
         "chunks": [],
         "async": false
       }
-    },
-    "(app-client)/./src/app/articles/[slug]/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./src/app/articles/[slug]/page.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./src/app/articles/[slug]/loading.tsx": {
-      "*": {
-        "id": "(sc_client)/./src/app/articles/[slug]/loading.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -186,22 +170,6 @@
         "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
-    },
-    "D:\\candidate-college\\src\\app\\articles\\[slug]\\page.tsx": {
-      "id": "(app-client)/./src/app/articles/[slug]/page.tsx",
-      "name": "*",
-      "chunks": [
-        "app/articles/[slug]/page:static/chunks/app/articles/[slug]/page.js"
-      ],
-      "async": false
-    },
-    "D:\\candidate-college\\src\\app\\articles\\[slug]\\loading.tsx": {
-      "id": "(app-client)/./src/app/articles/[slug]/loading.tsx",
-      "name": "*",
-      "chunks": [
-        "app/articles/[slug]/loading:static/chunks/app/articles/[slug]/loading.js"
-      ],
-      "async": false
     }
   },
   "entryCSSFiles": {
@@ -210,12 +178,6 @@
     ],
     "D:\\candidate-college\\src\\app\\layout": [
       "static/css/app/layout.css"
-    ],
-    "D:\\candidate-college\\src\\app\\articles\\[slug]\\page": [
-      "static/css/app/articles/[slug]/page.css"
-    ],
-    "D:\\candidate-college\\src\\app\\articles\\[slug]\\loading": [
-      "static/css/app/articles/[slug]/loading.css"
     ]
   }
 }

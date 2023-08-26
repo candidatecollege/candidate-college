@@ -50,12 +50,9 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
     const email = e.target.email.value;
     const message = e.target.message.value;
 
-    console.log("Email:", email); // Log the email
-    console.log("Message:", message); // Log the message
-
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/contact-us", // please change it to the real endpoint.
+        "https://resource.candidatecollegeind.com/api/contact-us",
         {
           email,
           message,
@@ -64,13 +61,13 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
 
       if (response.status === 200) {
         const responseData = response.data;
-        console.log("Message sent successfully:", responseData);
+        // console.log("Message sent successfully:", responseData);
 
         // Show success alert with timer
         Swal.fire({
           icon: "success",
           title: "Message Sent",
-          text: "Your message has been successfully sent!",
+          text: responseData.message,
           confirmButtonColor: "#FFDE59",
           timer: 3000,
           timerProgressBar: true,
@@ -90,7 +87,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
           title: "Message Failed",
           text: "An error occurred while sending your message. Please try again.",
           confirmButtonColor: "#FFDE59",
-          timer: 5000,
+          timer: 3000,
           timerProgressBar: true,
         });
       }
@@ -103,7 +100,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
         title: "Message Failed",
         text: "An error occurred while sending your message. Please try again.",
         confirmButtonColor: "#FFDE59",
-        timer: 5000,
+        timer: 3000,
         timerProgressBar: true,
       });
     }
