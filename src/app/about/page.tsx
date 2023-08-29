@@ -307,14 +307,14 @@ const About = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[100px] pb-40">
-        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+      <section className="w-full h-full bg-white pt-[100px] pb-40">
+        <h3 className="text-[#90A3BF] md:px-[70px] px-5 xl:text-base text-sm font-normal text-center">
           Testimonials
         </h3>
-        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+        <h2 className="text-primary md:px-[70px] px-5 xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           What Our Interns Say
         </h2>
-        <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
+        <p className="text-[#90A3BF] md:px-[70px] px-5 xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
