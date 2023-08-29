@@ -323,10 +323,11 @@ const About = () => {
 
         <div className="mt-[105px] w-full">
           <Swiper
-            slidesPerView={1}
+            slidesPerView={"auto"}
             spaceBetween={55}
             centeredSlides={true}
             grabCursor={true}
+            initialSlide={1}
             navigation={{
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
