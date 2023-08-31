@@ -1,6 +1,13 @@
 {
   "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
   "/articles/page": "app/articles/page.js",
+  "/events/page": "app/events/page.js",
+  "/merchandise/page": "app/merchandise/page.js",
+  "/coming/page": "app/coming/page.js",
   "/programs/page": "app/programs/page.js",
-  "/articles/[slug]/page": "app/articles/[slug]/page.js"
+  "/articles/read-insightful-articles/page": "app/articles/read-insightful-articles/page.js",
+  "/articles/[slug]/page": "app/articles/[slug]/page.js",
+  "/articles/latest/page": "app/articles/latest/page.js",
+  "/programs/eksternal/[slug]/page": "app/programs/eksternal/[slug]/page.js"
 }
