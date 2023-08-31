@@ -57,7 +57,7 @@ const About = () => {
   ];
 
   return (
-    <main className="bg-primary h-full">
+    <main className="bg-white h-full">
       {/* Navbar */}
       <Navbar active="About Us" isDetail={false} />
 
@@ -417,8 +417,12 @@ const About = () => {
         </div>
       </section>
 
+      <CTA />
+
       {/* Footer */}
+      <div className="w-full bg-primary">
       <Footer />
+      </div>
     </main>
   );
 };

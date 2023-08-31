@@ -136,21 +136,24 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
   return (
     <header className={`w-full z-50 ${isDetail ? 'bg-white shadow-lg' : 'bg-primary'} fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${isContactOpen ? 'lg:px-0' : 'lg:px-0'}`}>
       <nav className={`lg:mx-auto md:hidden lg:flex-1 flex flex-row items-center justify-between px-7 py-1 border-b border-b-border lg:border-none h-[10vh] md:h-fit`}>
-        <Image 
-          src={`/logo/logo-full-cc.png`}
-          width={100}
-          height={70}
-          alt={`Logo Candidate College`}
-          title={`Logo Candidate College`}
-          className={`block w-[150px] h-[100px] lg:h-[80px] object-contain`}
-          loading="lazy"
-        />
+        <Link href="/" title="Candidate College Home" about="Candidate College Home"  className='block cursor-pointer'>
+          <Image 
+            src={`/logo/logo-full-cc.png`}
+            width={100}
+            height={70}
+            alt={`Logo Candidate College`}
+            title={`Logo Candidate College`}
+            className={`block w-[150px] h-[100px] lg:h-[80px] object-contain cursor-pointer`}
+            loading="lazy"
+          />
+        </Link>
         <span onClick={(e) => toggleIsOpen()} className={`block lg:hidden text-2xl ${isDetail ? 'text-primary' : 'text-white'} transition-all duration-800 cursor-pointer`}>{isOpen? (<CloseIcon color='inherit' fontSize='inherit' />) : (<MenuIcon color='inherit' fontSize='inherit' />)}</span>
       </nav>
 
       <div className="w-full">
         <nav className="md:flex hidden max-w-5xl flex-row items-center justify-between mx-auto">
-          <Image 
+          <Link href="/" title="Candidate College Home" about="Candidate College Home"  className='block cursor-pointer'>
+            <Image 
               src={`/logo/logo-full-cc.png`}
               width={100}
               height={70}
@@ -159,6 +162,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
               className={`block w-[150px] h-[100px] lg:h-[80px] object-contain`}
               loading="lazy"
             />
+          </Link>
 
           <section className="hidden md:flex flex-row w-fit">
               {
@@ -186,7 +190,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
             {
               menus.map((menu, index) => (
                 <Link href={menu.link} about={menu.name} title={menu.name} key={index} className={`bg-secondary ${isSelected == menu.name ? 'w-full px-5 py-3' : 'w-fit flex items-center justify-center px-4 py-3 self-end'} rounded-full text-primary duration-800 transition-all`} onClick={(e) => setIsSelected(menu.name)}>
-                  <p className={`font-medium text-base flex items-center ${isSelected == menu.name ? 'gap-3' : 'gap-0'} justify-center`}><span>{isSelected == menu.name ? menu.name : null}</span> <span className='text-primary text-2xl'>
+                  <p className={`font-medium text-base flex items-center ${isSelected == menu.name ? 'gap-3' : 'gap-0'} justify-center`}><span>{isSelected == menu.name ? menu.name : null}</span> <span className='text-primary text-2xl pb-[0.15rem]'>
                     {
                       menu.name == 'Home' ? (<HomeRoundedIcon color='inherit' fontSize='inherit' />) : menu.name == 'About Us' ? (<GroupsRoundedIcon color='inherit' fontSize='inherit' />) : menu.name == 'Contact Us' ? (<LocalPhoneRoundedIcon color='inherit' fontSize='inherit' />) : menu.name == 'Articles' ? (<ImportContactsRoundedIcon color='inherit' fontSize='inherit' />) : (<AutoAwesomeRoundedIcon color='inherit' fontSize='inherit' />)
                     }

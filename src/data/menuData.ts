@@ -1,8 +1,8 @@
 export const menus = [
     { id: 1, name: 'Home', link: '/', },
-    { id: 2, name: 'About Us', link: '/about', },
+    { id: 2, name: 'About Us', link: '/coming', },
     { id: 4, name: 'Articles', link: '/articles', },
-    { id: 5, name: 'Programs', link: '/programs', },
+    { id: 5, name: 'Programs', link: '/coming', },
 ]
 
 export const footers = [

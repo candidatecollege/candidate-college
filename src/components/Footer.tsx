@@ -10,19 +10,22 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import PodcastsIcon from '@mui/icons-material/Podcasts';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
+import SpotifyIcon from './icons/SpotifyIcon'
+import TiktokIcon from './icons/TiktokIcon'
 
 const Footer = () => {
   const socials = [
     { id: 1, name: 'Twitter', link: 'https://twitter.com/CCollege_Ind', component: <TwitterIcon color='inherit' fontSize='inherit' /> },
     { id: 2, name: 'Instagram', link: 'https://www.instagram.com/candidate.college/', component: <InstagramIcon color='inherit' fontSize='inherit' /> },
     { id: 3, name: 'Youtube', link: 'https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ', component: <YouTubeIcon color='inherit' fontSize='inherit' /> },
-    { id: 4, name: 'Spotify', link: 'https://open.spotify.com/show/0xhjenJefepCIKH5UeVyiE?si=08402adcbd92430b', component: <PodcastsIcon color='inherit' fontSize='inherit' /> },
-    { id: 5, name: 'Tiktok', link: 'https://www.tiktok.com/@candidatecollege', component: <AudiotrackIcon color='inherit' fontSize='inherit' /> },
+    { id: 4, name: 'Spotify', link: 'https://open.spotify.com/show/0xhjenJefepCIKH5UeVyiE?si=08402adcbd92430b', component: <SpotifyIcon color='#FFDE59' size={'30'} /> },
+    { id: 5, name: 'Tiktok', link: 'https://www.tiktok.com/@candidatecollege', component: <TiktokIcon size={'30'} color='#FFDE59' /> },
   ]
 
   return (
     <footer className='w-full h-full px-7 md:px-0 md:mx-auto md:max-w-5xl py-6 bg-primary flex flex-col gap-6'>
       <section className={`w-full flex flex-col`}>
+      <Link href="/" title="Candidate College Home" about="Candidate College Home"  className='block cursor-pointer'>
         <Image 
           src={`/logo/logo-full-cc.png`}
           width={100}
@@ -32,6 +35,7 @@ const Footer = () => {
           className={`block w-[150px] h-[100px] object-contain`}
           loading="lazy"
         />
+        </Link>
 
         <p className="text-gray text-sm -mt-3">Education Platform that works to facilitate students in Indonesia.
         </p>
@@ -84,7 +88,7 @@ const Footer = () => {
           <div className="flex flex-col gap-2">
             <p className='font-medium text-white text-base'>Our Socials</p>
 
-            <ul className='flex flex-row gap-2'>
+            <ul className='flex flex-row gap-2 items-center'>
               {
                 socials.map((social, index) => (
                   <Link className='text-3xl text-secondary font-normal hover:text-white duration-700 transition-all' href={social.link} title={social.name} about={social.name} key={index}>{social.component}</Link>
@@ -113,7 +117,7 @@ const Footer = () => {
         <div className="flex flex-col gap-2">
           <p className='font-medium text-white text-base'>Our Socials</p>
 
-          <ul className='flex flex-row gap-2'>
+          <ul className='flex flex-row gap-2 items-center'>
             {
               socials.map((social, index) => (
                 <Link className='text-3xl text-secondary font-normal hover:text-white duration-700 transition-all' href={social.link} title={social.name} about={social.name} key={index}>{social.component}</Link>
