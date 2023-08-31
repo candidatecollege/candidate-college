@@ -1,9 +1,10 @@
+'use client'
 import { articles } from '@/data/articleData'
 import { latestEvents } from '@/data/eventData'
 import { footers, menus } from '@/data/menuData'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -12,8 +13,47 @@ import PodcastsIcon from '@mui/icons-material/Podcasts';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import SpotifyIcon from './icons/SpotifyIcon'
 import TiktokIcon from './icons/TiktokIcon'
+import axios from 'axios'
 
 const Footer = () => {
+  const [articles, setArticles] = useState<any[]>([])
+  const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(true)
+
+  const [events, setEvents] = useState<any[]>([])
+  const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(true)
+
+  const fetchArticles = async () => {
+    setIsLoadingArticles(true)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles?count=4`)
+
+      setTimeout(() => {
+        setArticles(response.data.data);
+        setIsLoadingArticles(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingArticles(false)
+    }
+  }
+
+  const fetchEvents = async () => {
+    setIsLoadingArticles(true)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/events?count=4`)
+
+      setTimeout(() => {
+        setEvents(response.data.data);
+        setIsLoadingEvents(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingEvents(false)
+    }
+  }
+
   const socials = [
     { id: 1, name: 'Twitter', link: 'https://twitter.com/CCollege_Ind', component: <TwitterIcon color='inherit' fontSize='inherit' /> },
     { id: 2, name: 'Instagram', link: 'https://www.instagram.com/candidate.college/', component: <InstagramIcon color='inherit' fontSize='inherit' /> },
@@ -21,6 +61,11 @@ const Footer = () => {
     { id: 4, name: 'Spotify', link: 'https://open.spotify.com/show/0xhjenJefepCIKH5UeVyiE?si=08402adcbd92430b', component: <SpotifyIcon color='#FFDE59' size={'30'} /> },
     { id: 5, name: 'Tiktok', link: 'https://www.tiktok.com/@candidatecollege', component: <TiktokIcon size={'30'} color='#FFDE59' /> },
   ]
+
+  useEffect(() => {
+    fetchArticles()
+    fetchEvents()
+  }, [])
 
   return (
     <footer className='w-full h-full px-7 md:px-0 md:mx-auto md:max-w-5xl py-6 bg-primary flex flex-col gap-6'>
@@ -61,8 +106,8 @@ const Footer = () => {
 
             <ul className='flex flex-col gap-2'>
               {
-                latestEvents.map((event, index) => (
-                  <Link className='text-sm text-gray font-normal hover:text-white duration-700 transition-all' href={event.link} title={event.name} about={event.name} key={index}>{event.name}</Link>
+                events.map((event, index) => (
+                  <Link className='text-sm text-gray font-normal hover:text-white duration-700 transition-all' href={event && event.link_registration} title={event && event.name} about={event && event.name} key={index}>{event && event.name}</Link>
                 ))
               }
             </ul>
@@ -76,7 +121,7 @@ const Footer = () => {
               <ul className='flex flex-col gap-2'>
                 {
                   articles.map((article, index) => (
-                    <Link className='text-sm text-gray font-normal hover:text-white duration-700 transition-all' href={article.link} title={article.title} about={article.title} key={index}>{article.title}</Link>
+                    <Link className='text-sm text-gray font-normal hover:text-white duration-700 transition-all' href={article && article.slug} title={article && article && article.title} about={article && article && article.title} key={index}>{article && article && article.title.substring(0, 70) + '...'}</Link>
                   ))
                 }
               </ul>
@@ -106,7 +151,7 @@ const Footer = () => {
               <ul className='flex flex-col gap-2'>
                 {
                   articles.map((article, index) => (
-                    <Link className='text-sm text-gray font-normal hover:text-white duration-700 transition-all' href={article.link} title={article.title} about={article.title} key={index}>{article.title}</Link>
+                    <Link className='text-sm text-gray font-normal hover:text-white duration-700 transition-all' href={article && article.slug} title={article && article.title} about={article && article.title} key={index}>{article && article.title.substring(0, 70) + '...'}</Link>
                   ))
                 }
               </ul>

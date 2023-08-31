@@ -69,7 +69,7 @@ const Articles = () => {
     setIsLoadingArticles(true)
 
     try {
-      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles`)
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles?count=10`)
 
       setTimeout(() => {
         setArticles(response.data.data);
@@ -143,11 +143,11 @@ const Articles = () => {
               {
                 isLoadingCategories ? 
                 loadingContent?.map((category, index) => (
-                  <ListItem data={category} isLoading={true} onClick={(e: any) => setActiveCategory('')} active={''} />
+                  <ListItem data={category} key={index} isLoading={true} onClick={(e: any) => setActiveCategory('')} active={''} />
                 ))
                 : 
                 categories?.map((category, index) => (
-                  <ListItem data={category} isLoading={false} onClick={(e: any) => activeCategoryHandler(category.name)} active={activeCategory} />
+                  <ListItem data={category} key={index} isLoading={false} onClick={(e: any) => activeCategoryHandler(category.name)} active={activeCategory} />
                 ))
               }
             </div>
@@ -254,7 +254,7 @@ const Articles = () => {
             {
               isLoadingArticles ? 
               loadingContent?.map((article, index) => (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <div className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
                     <div className="rounded-lg w-[22rem] h-[22rem] bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
 
@@ -275,7 +275,7 @@ const Articles = () => {
               ))
               :
               articles?.slice().reverse().map((article, index) => (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <Link href={`/articles/${article.slug}`} title='Read More' about='Read More' className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]">
                       <Image 
                       src={`https://resource.candidatecollegeind.com/storage/${article.cover}`}

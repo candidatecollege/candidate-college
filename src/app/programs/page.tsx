@@ -10,6 +10,17 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import axios from 'axios'
 import CardItemLandscape from '@/components/CardItemLandscape'
 import JumboItem from '@/components/JumboItem'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
+
 
 const Programs = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
@@ -20,6 +31,9 @@ const Programs = () => {
   const [categories, setCategories] = useState<any[]>([])
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(false)
   const loadingContent = [1, 2, 3, 4, 5, 6]
+
+  const [events, setEvents] = useState<any[]>([])
+  const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(true)
 
   const fetchCategories = async () => {
     setIsLoadingCategories(true)
@@ -36,12 +50,32 @@ const Programs = () => {
     }
   }
 
+  const fetchEvents = async () => {
+    setIsLoadingEvents(true)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/events?count=7&type=Eksternal`)
+
+      console.log(response)
+
+      setTimeout(() => {
+        setEvents(response.data.data);
+        setIsLoadingEvents(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingEvents(false)
+    }
+  }
+
   useEffect(() => {
     fetchCategories()
+    fetchEvents()
+    console.log(events)
   }, [])
 
   return (
-    <main className="bg-white h-full">
+    <main className="bg-primary h-full">
       {/* Navbar */}
       <Navbar active='Programs' isDetail={false} />
 
@@ -162,13 +196,75 @@ const Programs = () => {
             </div>
 
             <section className="w-full h-full bg-white py-10 md:pt-10 md:pb-2 flex flex-col gap-9 overflow-hidden">
-              <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-                <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
-                  {articlesOnLanding.map((article, index) => (
-                    <CardItem key={index} data={article} type={'Programs'} isLoading={true} />
-                  ))}
-                </div>
-              </div>
+            <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            navigation={true}
+            breakpoints={{
+              // Adjust the number of slides per view for different screen widths
+              // When the screen width is less than 640px (typical mobile width), show only 1 slide
+              0: {
+                slidesPerView: 1,
+              },
+              // For larger screens, revert to 3 slides per view
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            modules={[Navigation]}
+            className="mySwiper"
+        >
+            {
+              isLoadingEvents ? 
+              loadingContent?.map((event, index) => (
+                <SwiperSlide key={index}>
+                  <div className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
+                    <div className="rounded-lg w-[22rem] h-[22rem] bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+
+                    <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                        <div className="bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse w-2/3 rounded-lg py-3"></div>
+
+                        <div className="flex flex-col gap-1 w-full">
+                            <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                            <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                            <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                            <div className="w-2/3 py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
+                        </div>
+
+                        <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-transparent font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5 bg-gradient-to-r from-yellow-200 to-yellow-300 animate-pulse'>Read More</Link>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))
+              :
+              events?.slice().reverse().map((event, index) => (
+                <SwiperSlide key={index}>
+                  <Link href={`/programs/${event.type.toLowerCase()}/${event.slug}`} title='Read More' about='Read More' className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]">
+                      <Image 
+                      src={`https://resource.candidatecollegeind.com/storage/${event.cover}`}
+                          alt={event.name}
+                          title={event.name}
+                          className="rounded-lg w-[22rem] h-[22rem] object-cover"
+                          width={0}
+                          height={0}
+                      />
+
+                      <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                          <h3 className="font-semibold text-base text-primary">
+                              {
+                                  event.name.length > 33 ? (event.name.substring(0, 33) + '...') : (event.name)
+                              }
+                          </h3>
+                          <p className="font-normal text-sm text-gray">
+                              {event.snippets.substring(0, 150) + '...'}
+                          </p>
+                          <Link href={`/programs/${event.type.toLowerCase()}/${event.slug}`} title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>See Details</Link>
+                      </div>
+                  </Link>
+                </SwiperSlide>
+              ))
+            }
+        </Swiper>
             </section>
 
             <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16">

@@ -31,7 +31,7 @@ export default function Home() {
     setIsLoadingArticles(true)
 
     try {
-      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles`)
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles?count=10`)
 
       setTimeout(() => {
         setArticles(response.data.data);
