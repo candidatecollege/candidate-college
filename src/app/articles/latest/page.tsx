@@ -16,7 +16,7 @@ const Latest = () => {
         setIsLoadingArticles(true)
     
         try {
-          const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles`)
+          const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles?count=100`)
     
           setTimeout(() => {
             setArticles(response.data.data);

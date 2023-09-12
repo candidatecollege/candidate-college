@@ -1,0 +1,12 @@
+{
+  "/page": "/",
+  "/about/page": "/about",
+  "/coming/page": "/coming",
+  "/events/page": "/events",
+  "/merchandise/page": "/merchandise",
+  "/programs/page": "/programs",
+  "/articles/page": "/articles",
+  "/articles/latest/page": "/articles/latest",
+  "/articles/[slug]/page": "/articles/[slug]",
+  "/articles/read-insightful-articles/page": "/articles/read-insightful-articles"
+}
