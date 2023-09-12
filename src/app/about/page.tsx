@@ -57,12 +57,12 @@ const About = () => {
   ];
 
   return (
-    <main className="bg-white h-full">
+    <main className="bg-primary h-full">
       {/* Navbar */}
       <Navbar active="About Us" isDetail={false} />
 
       {/* Hero */}
-      <section className="flex flex-col w-full h-full lg:pt-[90px] md:pt-[165px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto justify-center md:items-center relative lg:h-screen">
+      <section className="flex flex-col w-full h-full lg:pt-[90px] md:pt-[165px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto justify-center md:items-center relative lg:h-screen bg-primary">
         <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
           Developing With Us
         </p>
@@ -308,7 +308,7 @@ const About = () => {
 
       {/* Testimonials */}
       <section className="w-full h-full bg-white pt-[100px] pb-40">
-        <h3 className="text-[#90A3BF] md:px-[70px] px-5 xl:text-base text-sm font-normal text-center">
+        <h3 className="text-[#90A3BF] md:px-[70px] xl:text-base text-sm font-normal text-center">
           Testimonials
         </h3>
         <h2 className="text-primary md:px-[70px] px-5 xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
@@ -323,7 +323,7 @@ const About = () => {
 
         <div className="mt-[105px] w-full">
           <Swiper
-            slidesPerView={"auto"}
+            slidesPerView={'auto'}
             spaceBetween={55}
             centeredSlides={true}
             grabCursor={true}
