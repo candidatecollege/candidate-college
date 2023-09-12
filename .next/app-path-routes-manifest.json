@@ -1,12 +1,12 @@
 {
   "/page": "/",
-  "/about/page": "/about",
-  "/coming/page": "/coming",
   "/events/page": "/events",
+  "/coming/page": "/coming",
+  "/about/page": "/about",
   "/merchandise/page": "/merchandise",
-  "/programs/page": "/programs",
   "/articles/page": "/articles",
-  "/articles/latest/page": "/articles/latest",
+  "/programs/page": "/programs",
   "/articles/[slug]/page": "/articles/[slug]",
-  "/articles/read-insightful-articles/page": "/articles/read-insightful-articles"
+  "/articles/read-insightful-articles/page": "/articles/read-insightful-articles",
+  "/articles/latest/page": "/articles/latest"
 }
