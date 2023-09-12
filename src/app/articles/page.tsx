@@ -69,7 +69,7 @@ const Articles = () => {
     setIsLoadingArticles(true)
 
     try {
-      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles`)
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/articles?count=8`)
 
       setTimeout(() => {
         setArticles(response.data.data);
@@ -181,7 +181,7 @@ const Articles = () => {
                   <CardItemLandscape key={index} data={article} type={'Article'} isLoading={true} />
                 ))
                 :
-                articlesByCategory.map((article, index) => (
+                articlesByCategory.reverse().map((article, index) => (
                   <CardItemLandscape key={index} data={article} type={'Article'} isLoading={false} />
                 ))
               }
@@ -207,9 +207,9 @@ const Articles = () => {
               <div className="md:flex flex-row gap-4 hidden">
                 {
                   isLoadingArticles ? 
-                  articles.slice(1, articles.length - 1).map((article, index) => (
+                  articles.slice(0, 3).map((article, index) => (
                     <CardItemLandscape key={index} data={article} type='Article' isLoading={true} />
-                  )) : articles.slice(1, articles.length - 1).map((article, index) => (
+                  )) : articles.slice(0, 3).map((article, index) => (
                     <CardItemLandscape key={index} data={article} type='Article' isLoading={false} />
                   ))
                 }
@@ -217,7 +217,7 @@ const Articles = () => {
 
               <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
                 {
-                  articles.slice(1, articles.length - 1).map((article, index) => (
+                  articles.slice(0, 3).map((article, index) => (
                     <div key={index} onClick={(e) => setCurrentIndexSlider(index)} className={`flex  p-[5px] h-2 ${currentIndexSlider == index ? 'w-8 bg-secondary' : 'w-2 bg-primary'} rounded-full cursor-pointer`}></div>
                   ))
                 }
@@ -274,7 +274,7 @@ const Articles = () => {
                 </SwiperSlide>
               ))
               :
-              articles?.map((article, index) => (
+              articles?.reverse().map((article, index) => (
                 <SwiperSlide>
                   <Link href={`/articles/${article.slug}`} title='Read More' about='Read More' className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]">
                       <Image 
