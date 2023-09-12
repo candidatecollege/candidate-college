@@ -1,5 +1,5 @@
 "use client";
-import { Footer, Navbar } from "@/components";
+import { CTA, Footer, Navbar } from "@/components";
 import Link from "next/link";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
