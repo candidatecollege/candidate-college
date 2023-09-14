@@ -1,3 +1,7 @@
 .slider-controler .slider-arrow::after {
   content: '';
 }
+
+.swiper-slide {
+  width: 580px !important;
+}
