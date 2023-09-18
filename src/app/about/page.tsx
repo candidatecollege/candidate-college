@@ -167,6 +167,42 @@ const About = () => {
         </div>
       </section>
 
+      {/* Founder */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
+        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+          Our Founder
+        </h3>
+        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+          Rasya Dwi Julitha
+        </h2>
+        <div className="flex justify-center">
+          <Image
+            src="/decoration/founder.jpeg"
+            alt="Founder"
+            className="object-contain rounded-full"
+            width={163}
+            height={163}
+          />
+        </div>
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-5/6 md:w-4/5 w-[95%] pt-[30px]">
+          Candidate College is an educational platform established on October
+          25, 2020. It was founded thanks to the motivation of a young
+          individual who wanted to advance SDG #4. In roughly 2 years of its
+          establishment, Candidate College has facilitated young Indonesians
+          pursuing education both domestically and abroad through 30 projects
+          that have been conducted. These include intensive mentoring programs,
+          webinars, and direct outreach in various schools throughout Indonesia.
+          Every year, Candidate College sets a vision and mission to assist our
+          mentees who wish to continue their education at their dream campuses,
+          helping them achieve their aspirations. Year after year, through the
+          programs we offer, Candidate College has successfully helped its
+          mentees gain admission to their dream universities both in Indonesia
+          and overseas. Now it's your turn to join Candidate College and advance
+          the educational system in Indonesia by supporting the next generation
+          in developing their individual potentials!
+        </p>
+      </section>
+
       {/* Events */}
       <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
@@ -323,7 +359,7 @@ const About = () => {
 
         <div className="mt-[105px] w-full">
           <Swiper
-            slidesPerView={'auto'}
+            slidesPerView={"auto"}
             spaceBetween={55}
             centeredSlides={true}
             grabCursor={true}
@@ -421,7 +457,7 @@ const About = () => {
 
       {/* Footer */}
       <div className="w-full bg-primary">
-      <Footer />
+        <Footer />
       </div>
     </main>
   );
