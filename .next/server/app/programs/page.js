@@ -383,18 +383,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56786);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48245);
-/* harmony import */ var _data_articleData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(89008);
-/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48421);
-/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(71244);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48421);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31621);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(18038);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _mui_icons_material_ArrowForwardRounded__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(92981);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(40248);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(40248);
 /* harmony import */ var _components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(71914);
-/* harmony import */ var _components_JumboItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(59335);
+/* harmony import */ var _utils_time__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(64525);
 /* __next_internal_client_entry_do_not_use__ default auto */ 
-
 
 
 
@@ -420,7 +419,7 @@ const Programs = ()=>{
     const fetchCategories = async ()=>{
         setIsLoadingCategories(true);
         try {
-            const response = await axios__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z.get(`https://resource.candidatecollegeind.com/api/event/categories`);
+            const response = await axios__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z.get(`https://resource.candidatecollegeind.com/api/event/categories`);
             setTimeout(()=>{
                 setCategories(response.data.data);
                 setIsLoadingCategories(false); // After setting the data, set isLoading to false
@@ -429,11 +428,35 @@ const Programs = ()=>{
             console.error(error);
         }
     };
+    const [events, setEvents] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
+    const [isLoadingEvents, setIsLoadingEvents] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+    const loadingContents = [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ];
+    const fetchEvents = async ()=>{
+        setIsLoadingEvents(true);
+        try {
+            const response = await axios__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z.get(`https://resource.candidatecollegeind.com/api/events?count=100`);
+            setTimeout(()=>{
+                setEvents(response.data.data);
+                setIsLoadingEvents(false); // After setting the data, set isLoading to false
+            }, 1500);
+        } catch (error) {
+            console.error(error);
+            setIsLoadingEvents(false);
+        }
+    };
     (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(()=>{
         fetchCategories();
+        fetchEvents();
     }, []);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
-        className: "bg-white h-full",
+        className: "bg-primary h-full",
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_1__/* .Navbar */ .wp, {
                 active: "Programs",
@@ -442,7 +465,7 @@ const Programs = ()=>{
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
                 className: "flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]",
                 children: [
-                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_image__WEBPACK_IMPORTED_MODULE_3___default()), {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
                         src: "/decoration/programs.png",
                         width: 0,
                         height: 0,
@@ -471,210 +494,56 @@ const Programs = ()=>{
                     className: "flex flex-col md:mx-auto md:max-w-5xl bg-white",
                     children: [
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                            className: "overflow-x-auto scrollbar-hide relative",
-                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                className: "flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide",
-                                children: isLoadingCategories ? loadingContent?.map((category, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_1__/* .ListItem */ .HC, {
-                                        data: category,
-                                        isLoading: true,
-                                        onClick: (e)=>setActiveCategory(""),
-                                        active: ""
-                                    })) : categories?.map((category, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_1__/* .ListItem */ .HC, {
-                                        data: category,
-                                        isLoading: false,
-                                        onClick: (e)=>setActiveCategory(category.name),
-                                        active: activeCategory
-                                    }))
-                            })
-                        }),
-                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: `${activeCategory != "All" ? "flex flex-col" : "hidden"}`,
-                            children: [
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                    className: "flex flex-row items-center justify-between pb-6 border-b border-b-gray",
-                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-                                        className: "font-semibold text-2xl md:text-4xl text-primary",
-                                        children: activeCategory
-                                    })
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                    className: "flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3",
-                                    children: _data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnPage */ .NE.map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: `flex-col gap-2 md:items-center md:gap-5 flex`,
+                            className: "flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3",
+                            children: isLoadingEvents ? loadingContent?.map((event, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
+                                    data: event,
+                                    type: "Event",
+                                    isLoading: true
+                                }, index)) : events.map((event, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
+                                    href: `/events/${event.slug}`,
+                                    about: event.name,
+                                    title: event.name,
+                                    className: `flex-col gap-2 md:items-center md:gap-2 flex md:w-[320px]`,
+                                    children: [
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_image__WEBPACK_IMPORTED_MODULE_2___default()), {
+                                            width: 100,
+                                            height: 180,
+                                            src: `https://resource.candidatecollegeind.com/storage/${event.cover_landscape}`,
+                                            alt: event.name,
+                                            title: event.name,
+                                            className: "w-full h-[178px] md:h-[168px] rounded-xl object-cover",
+                                            priority: true
+                                        }),
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+                                            className: "flex md:flex-1 flex-col gap",
                                             children: [
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_image__WEBPACK_IMPORTED_MODULE_3___default()), {
-                                                    width: 100,
-                                                    height: 50,
-                                                    src: article.coverLandscape,
-                                                    alt: article.title,
-                                                    title: article.title,
-                                                    className: "w-full md:flex-1 h-full rounded-xl",
-                                                    priority: true
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
+                                                    href: `/events/${event.slug}`,
+                                                    about: event.name,
+                                                    title: event.name,
+                                                    className: "font-semibold text-2xl text-primary",
+                                                    children: event.name.length > 40 ? event.name.substring(0, 48) + " ..." : event.name
                                                 }),
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                    className: "flex md:flex-1 flex-col gap",
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
+                                                    className: "font-normal text-sm text-gray",
+                                                    children: event.snippets.substring(0, 150) + " ..."
+                                                }),
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
+                                                    className: "font-normal text-xs text-gray mt-5",
                                                     children: [
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h3", {
-                                                            className: "font-semibold text-xl md:text-2xl text-primary",
-                                                            children: article.title
-                                                        }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-                                                            className: "font-normal text-sm md:text-base text-gray",
-                                                            children: article.snippets
-                                                        }),
-                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
-                                                            className: "font-normal text-xs text-gray md:mt-5 mt-3",
-                                                            children: [
-                                                                article.publishedAt,
-                                                                " | ",
-                                                                article.duration,
-                                                                " min read"
-                                                            ]
-                                                        })
+                                                        "On ",
+                                                        (0,_utils_time__WEBPACK_IMPORTED_MODULE_7__/* .formatDate */ .p6)(event.start_date_time),
+                                                        " \xa0 | \xa0 Regist On ",
+                                                        (0,_utils_time__WEBPACK_IMPORTED_MODULE_7__/* .formatDate */ .p6)(event.registration_date_time)
                                                     ]
                                                 })
                                             ]
-                                        }, index))
-                                })
-                            ]
+                                        })
+                                    ]
+                                }))
                         }),
-                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            className: `${activeCategory != "All" ? "hidden" : "flex flex-col"}`,
-                            children: [
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "flex flex-row items-center justify-between pb-6 border-b border-b-gray",
-                                    children: [
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-                                            className: "font-semibold text-2xl md:text-4xl text-primary",
-                                            children: "Latest"
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary",
-                                            children: [
-                                                "See all ",
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                                                    className: "text-primary text-sm md:text-base",
-                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_icons_material_ArrowForwardRounded__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
-                                                        fontSize: "inherit",
-                                                        color: "inherit"
-                                                    })
-                                                })
-                                            ]
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "flex flex-col gap-5 w-full mt-7",
-                                    children: [
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_JumboItem__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-                                            data: _data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnPage */ .NE[currentIndexSlider],
-                                            isLoading: true
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                            className: "md:flex flex-row gap-4 hidden",
-                                            children: _data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnPage */ .NE.slice(1, _data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnPage */ .NE.length - 1).map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
-                                                    data: article,
-                                                    type: "Article",
-                                                    isLoading: true
-                                                }, index))
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                            className: "flex flex-row gap-1 md:hidden items-center justify-center w-full",
-                                            children: _data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnPage */ .NE.map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                                    onClick: (e)=>setCurrentIndexSlider(index),
-                                                    className: `flex  p-[5px] h-2 ${currentIndexSlider == index ? "w-8 bg-secondary" : "w-2 bg-primary"} rounded-full cursor-pointer`
-                                                }))
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("section", {
-                                    className: "my-14 w-full rounded-xl bg-primary h-[350px]"
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-6",
-                                    children: [
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-                                            className: "font-semibold text-2xl md:text-4xl text-primary",
-                                            children: "External Programs"
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary",
-                                            children: [
-                                                "See all ",
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                                                    className: "text-primary text-sm md:text-base",
-                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_icons_material_ArrowForwardRounded__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
-                                                        fontSize: "inherit",
-                                                        color: "inherit"
-                                                    })
-                                                })
-                                            ]
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("section", {
-                                    className: "w-full h-full bg-white py-10 md:pt-10 md:pb-2 flex flex-col gap-9 overflow-hidden",
-                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                        className: "flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide",
-                                        style: {
-                                            scrollbarWidth: "none"
-                                        },
-                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                            className: "flex flex-row gap-4 no-scrollbar scrollbar-hide",
-                                            style: {
-                                                minWidth: `${_data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnLanding */ .RB.length * 22}rem`
-                                            },
-                                            children: _data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnLanding */ .RB.map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_1__/* .CardItem */ .Ss, {
-                                                    data: article,
-                                                    type: "Programs",
-                                                    isLoading: true
-                                                }, index))
-                                        })
-                                    })
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    className: "flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16",
-                                    children: [
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
-                                            className: "font-semibold text-2xl md:text-4xl text-primary",
-                                            children: "Internal Programs"
-                                        }),
-                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            className: "flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary",
-                                            children: [
-                                                "See all ",
-                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
-                                                    className: "text-primary text-sm md:text-base",
-                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_icons_material_ArrowForwardRounded__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
-                                                        fontSize: "inherit",
-                                                        color: "inherit"
-                                                    })
-                                                })
-                                            ]
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("section", {
-                                    className: "w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden",
-                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                        className: "flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide",
-                                        style: {
-                                            scrollbarWidth: "none"
-                                        },
-                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-                                            className: "flex flex-row gap-4 no-scrollbar scrollbar-hide",
-                                            style: {
-                                                minWidth: `${_data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnLanding */ .RB.length * 22}rem`
-                                            },
-                                            children: _data_articleData__WEBPACK_IMPORTED_MODULE_2__/* .articlesOnLanding */ .RB.map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_1__/* .CardItem */ .Ss, {
-                                                    data: article,
-                                                    type: "Programs",
-                                                    isLoading: true
-                                                }, index))
-                                        })
-                                    })
-                                })
-                            ]
+                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+                            className: `${activeCategory != "All" ? "hidden" : "flex flex-col"}`
                         })
                     ]
                 })
@@ -725,7 +594,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [323,989,298,245,914,158], () => (__webpack_exec__(71165)));
+var __webpack_exports__ = __webpack_require__.X(0, [174,105,914], () => (__webpack_exec__(71165)));
 module.exports = __webpack_exports__;
 
 })();

@@ -385,7 +385,7 @@ Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_re
 /***/ 90936:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 22630))
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 33421))
 
 /***/ }),
 
@@ -399,7 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56786);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48245);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(71244);
 /* __next_internal_client_entry_do_not_use__ default auto */ 
 
 function Loading() {
@@ -476,61 +476,33 @@ function Loading() {
 
 /***/ }),
 
-/***/ 22630:
+/***/ 33421:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ page)
-});
-
-// EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(56786);
-// EXTERNAL MODULE: external "next/dist/compiled/react"
-var react_ = __webpack_require__(18038);
-// EXTERNAL MODULE: ./src/components/index.ts + 10 modules
-var components = __webpack_require__(48245);
-// EXTERNAL MODULE: ./node_modules/next/image.js
-var next_image = __webpack_require__(48421);
-var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
-// EXTERNAL MODULE: ./node_modules/@mui/icons-material/Twitter.js
-var Twitter = __webpack_require__(27370);
-// EXTERNAL MODULE: ./node_modules/@mui/icons-material/Instagram.js
-var Instagram = __webpack_require__(99994);
-// EXTERNAL MODULE: ./node_modules/@mui/icons-material/WhatsApp.js
-var WhatsApp = __webpack_require__(57619);
-// EXTERNAL MODULE: ./node_modules/next/navigation.js
-var navigation = __webpack_require__(59483);
-// EXTERNAL MODULE: ./node_modules/axios/lib/axios.js + 46 modules
-var axios = __webpack_require__(40248);
-// EXTERNAL MODULE: ./src/utils/time.ts
-var time = __webpack_require__(64525);
-;// CONCATENATED MODULE: ./src/utils/socials.ts
-function generateShareLinks(articleTitle, articleURL) {
-    const encodedArticleTitle = encodeURIComponent(articleTitle);
-    const encodedArticleURL = encodeURIComponent(articleURL);
-    const twitterLink = `https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20article%3A%20${encodedArticleTitle}%20-%20${encodedArticleURL}`;
-    const whatsappLink = `whatsapp://send?text=Check%20out%20this%20awesome%20article%3A%20${encodedArticleTitle}%20-%20${encodedArticleURL}`;
-    const instagramLink = `https://www.instagram.com/create/caption/?text=Check%20out%20this%20awesome%20article%3A%20${encodedArticleTitle}%20-%20${encodedArticleURL}`;
-    return {
-        twitter: twitterLink,
-        whatsapp: whatsappLink,
-        instagram: instagramLink
-    };
-}
-
-// EXTERNAL MODULE: ./node_modules/next/link.js
-var next_link = __webpack_require__(31621);
-var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
-// EXTERNAL MODULE: ./src/utils/category.ts
-var category = __webpack_require__(17744);
-// EXTERNAL MODULE: ./src/components/CardItemLandscape.tsx
-var CardItemLandscape = __webpack_require__(71914);
-;// CONCATENATED MODULE: ./src/app/articles/[slug]/page.tsx
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56786);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18038);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(71244);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48421);
+/* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _mui_icons_material_Twitter__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(27370);
+/* harmony import */ var _mui_icons_material_Instagram__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(99994);
+/* harmony import */ var _mui_icons_material_WhatsApp__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(57619);
+/* harmony import */ var next_navigation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59483);
+/* harmony import */ var next_navigation__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_navigation__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(40248);
+/* harmony import */ var _utils_time__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(64525);
+/* harmony import */ var _utils_socials__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(57008);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(31621);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _utils_category__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(17744);
+/* harmony import */ var _components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(71914);
 /* __next_internal_client_entry_do_not_use__ default auto */ 
 
 
@@ -546,9 +518,9 @@ var CardItemLandscape = __webpack_require__(71914);
 
 
 const Detail = ()=>{
-    const slug = (0,navigation.usePathname)().slice(10);
-    const [article, setArticle] = (0,react_.useState)(null);
-    const [isLoading, setIsLoading] = (0,react_.useState)(true);
+    const slug = (0,next_navigation__WEBPACK_IMPORTED_MODULE_4__.usePathname)().slice(10);
+    const [article, setArticle] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+    const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
     const loadingContents = [
         1,
         2,
@@ -560,7 +532,7 @@ const Detail = ()=>{
     const fetchArticle = async ()=>{
         setIsLoading(true);
         try {
-            const response = await axios/* default */.Z.get(`https://resource.candidatecollegeind.com/api/articles/${slug}`);
+            const response = await axios__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z.get(`https://resource.candidatecollegeind.com/api/articles/${slug}`);
             setTimeout(()=>{
                 setArticle(response.data.data);
                 setIsLoading(false); // After setting the data, set isLoading to false
@@ -570,11 +542,11 @@ const Detail = ()=>{
             setIsLoading(false);
         }
     };
-    const [relatedArticles, setRelatedArticles] = (0,react_.useState)([]);
-    const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] = (0,react_.useState)(true);
+    const [relatedArticles, setRelatedArticles] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+    const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
     const fetchRelatedArticles = async ()=>{
         setIsLoadingRelatedArticles(true);
-        const id = (0,category/* categoryId */.C)(article && article.category, [
+        const id = (0,_utils_category__WEBPACK_IMPORTED_MODULE_8__/* .categoryId */ .C)(article && article.category, [
             "All",
             "Students",
             "Education",
@@ -583,7 +555,7 @@ const Detail = ()=>{
             "Nowdays"
         ]);
         try {
-            const response = await axios/* default */.Z.get(`https://resource.candidatecollegeind.com/api/article/categories/${id}`);
+            const response = await axios__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z.get(`https://resource.candidatecollegeind.com/api/article/categories/${id}`);
             setTimeout(()=>{
                 setRelatedArticles(response.data.data.articles);
                 setIsLoadingRelatedArticles(false);
@@ -593,13 +565,13 @@ const Detail = ()=>{
             setIsLoadingRelatedArticles(false);
         }
     };
-    const links = generateShareLinks(article && article.title, `https://candidatecollegeind.com/articles/${article && article.slug}`);
+    const links = (0,_utils_socials__WEBPACK_IMPORTED_MODULE_9__/* .generateShareLinks */ .p)(article && article.title, `https://candidatecollegeind.com/articles/${article && article.slug}`);
     const socials = [
         {
             id: 1,
             name: "Twitter",
             link: links.twitter,
-            component: /*#__PURE__*/ (0,jsx_runtime_.jsx)(Twitter/* default */.Z, {
+            component: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_icons_material_Twitter__WEBPACK_IMPORTED_MODULE_10__/* ["default"] */ .Z, {
                 color: "inherit",
                 fontSize: "inherit"
             })
@@ -608,7 +580,7 @@ const Detail = ()=>{
             id: 2,
             name: "Instagram",
             link: links.instagram,
-            component: /*#__PURE__*/ (0,jsx_runtime_.jsx)(Instagram/* default */.Z, {
+            component: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_icons_material_Instagram__WEBPACK_IMPORTED_MODULE_11__/* ["default"] */ .Z, {
                 color: "inherit",
                 fontSize: "inherit"
             })
@@ -617,91 +589,91 @@ const Detail = ()=>{
             id: 3,
             name: "Whatsapp",
             link: links.whatsapp,
-            component: /*#__PURE__*/ (0,jsx_runtime_.jsx)(WhatsApp/* default */.Z, {
+            component: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_mui_icons_material_WhatsApp__WEBPACK_IMPORTED_MODULE_12__/* ["default"] */ .Z, {
                 color: "inherit",
                 fontSize: "inherit"
             })
         }
     ];
-    (0,react_.useEffect)(()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
         fetchArticle();
         fetchRelatedArticles();
     }, []);
     console.log(relatedArticles);
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("main", {
+    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {
         className: "bg-white h-full w-full",
         children: [
-            /*#__PURE__*/ (0,jsx_runtime_.jsx)(components/* Navbar */.wp, {
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__/* .Navbar */ .wp, {
                 active: "Articles",
                 isDetail: true
             }),
-            isLoading ? /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
+            isLoading ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
                 className: "p-16 md:max-w-6xl md:mx-auto pt-32 md:pt-40 h-screen overflow-scroll scrollbar-hide gap-4 px-5 md:px-16",
                 children: [
-                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         className: "flex flex-col gap-4 md:px-24",
                         children: [
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 className: "flex flex-col gap-4 pb-6 border-b border-b-gray items-center justify-center",
                                 children: [
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                         className: " md:w-[50%] md:py-10 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                     }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "flex flex-col gap-1 w-full items-start justity-start md:items-center md:justify-center",
                                         children: [
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                             }),
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                             }),
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                             }),
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "w-2/3 py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                             })
                                         ]
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 className: "flex flex-col md:flex-row md:items-center pt-2 gap-4 w-full md:justify-between",
                                 children: [
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "flex flex-row gap-2 text-gray items-center w-full",
                                         children: [
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                             }),
                                             " | ",
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                             }),
                                             " | ",
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "w-[5rem] py-4 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                             })
                                         ]
                                     }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "flex flex-row items-center gap-2 w-full md:justify-end md:self-end",
                                         children: [
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("p", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
                                                 className: "text-gray",
                                                 children: "Share : "
                                             }),
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                 className: "flex flex-row gap-2",
                                                 children: [
-                                                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                         className: "w-3 h-3 rounded-full p-5 bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                                     }),
-                                                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                         className: "w-3 h-3 rounded-full p-5 bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                                     }),
-                                                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                         className: "w-3 h-3 rounded-full p-5 bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                                                     })
                                                 ]
@@ -712,102 +684,102 @@ const Detail = ()=>{
                             })
                         ]
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                         className: "w-full h-[15rem] md:h-[30rem] my-6 rounded-xl bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse object-cover mx-auto"
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         className: "flex flex-col gap-2 w-full",
                         children: [
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-full py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                 className: "w-2/3 py-3 rounded-lg bg-gradient-to-r from-blue-100 to-blue-300 animate-pulse"
                             })
                         ]
                     })
                 ]
-            }) : /*#__PURE__*/ (0,jsx_runtime_.jsxs)("section", {
+            }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", {
                 className: "flex flex-col pt-32 md:pt-40 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-white md:justify-center md:items-center relative h-full",
                 children: [
-                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         className: "flex flex-col gap-4 md:px-24",
                         children: [
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 className: "flex flex-col gap-4 pb-6 border-b border-b-gray",
                                 children: [
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("h1", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
                                         className: "font-semibold text-primary text-3xl md:text-[60px] md:text-center md:w-[100%] md:leading-[100%] leading-[150%]",
                                         children: article && article.title
                                     }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("p", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
                                         className: "text-gray text-base md:text-base md:text-center md:w-[100%]",
                                         children: article && article.snippets
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 className: "flex flex-col md:flex-row md:items-center md:justify-between md:w-full pt-2 gap-4",
                                 children: [
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                                         className: "text-sm text-gray",
                                         children: [
                                             article && article.duration,
                                             " Min Read  \xa0 | \xa0 ",
-                                            (0,time/* formatDate */.p6)(article && article.created_at),
+                                            (0,_utils_time__WEBPACK_IMPORTED_MODULE_13__/* .formatDate */ .p6)(article && article.created_at),
                                             " | \xa0 ",
                                             article && article.author
                                         ]
                                     }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "flex flex-row items-center gap-3",
                                         children: [
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("p", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
                                                 className: "text-sm text-gray",
                                                 children: "Share :"
                                             }),
-                                            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                                                 className: "flex flex-row gap-3",
-                                                children: socials.map((social, index)=>/*#__PURE__*/ (0,jsx_runtime_.jsx)((link_default()), {
+                                                children: socials.map((social, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_link__WEBPACK_IMPORTED_MODULE_5___default()), {
                                                         href: social.link,
                                                         about: social.name,
                                                         title: social.name,
@@ -822,7 +794,7 @@ const Detail = ()=>{
                             })
                         ]
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsx)((image_default()), {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_image__WEBPACK_IMPORTED_MODULE_3___default()), {
                         src: `https://resource.candidatecollegeind.com/storage/${article && article.cover_landscape}`,
                         alt: "Cover Landscape",
                         title: "Cover Landscape",
@@ -830,7 +802,7 @@ const Detail = ()=>{
                         height: 0,
                         className: "w-full h-full mt-2 rounded-xl object-cover hidden md:block"
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsx)((image_default()), {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((next_image__WEBPACK_IMPORTED_MODULE_3___default()), {
                         src: `https://resource.candidatecollegeind.com/storage/${article && article.cover}`,
                         alt: "Cover Landscape",
                         title: "Cover Landscape",
@@ -838,40 +810,40 @@ const Detail = ()=>{
                         height: 0,
                         className: "w-full h-full mt-2 rounded-xl object-cover block md:hidden"
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                         className: "text-primary text-lg text-justify w-full prose prose-rich-text prose-headings:text-primary prose-strong:text-primary md:pt-10",
                         dangerouslySetInnerHTML: {
                             __html: article && article && article.body
                         }
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                         className: "flex flex-row items-center justify-between pb-6 mt-10 border-b border-b-gray w-full",
-                        children: /*#__PURE__*/ (0,jsx_runtime_.jsx)("h2", {
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
                             className: "font-semibold text-2xl md:text-4xl text-primary",
                             children: "Related Articles"
                         })
                     }),
-                    /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                         className: "flex flex-col gap-8 md:gap-5 mt-5 md:flex-row md:items-start md:justify-start w-full",
-                        children: isLoadingRelatedArticles ? loadingContents.slice(0, 3).map((article, index)=>/*#__PURE__*/ (0,jsx_runtime_.jsx)(CardItemLandscape/* default */.Z, {
+                        children: isLoadingRelatedArticles ? loadingContents.slice(0, 3).map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
                                 data: article,
                                 isLoading: true
-                            }, index)) : relatedArticles.slice(0, 3).map((article, index)=>/*#__PURE__*/ (0,jsx_runtime_.jsx)(CardItemLandscape/* default */.Z, {
+                            }, index)) : relatedArticles.slice(0, 3).map((article, index)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_CardItemLandscape__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
                                 data: article,
                                 isLoading: false
                             }, index))
                     })
                 ]
             }),
-            /*#__PURE__*/ (0,jsx_runtime_.jsx)(components/* CTA */.MV, {}),
-            /*#__PURE__*/ (0,jsx_runtime_.jsx)("div", {
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__/* .CTA */ .MV, {}),
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
                 className: "w-full bg-primary",
-                children: /*#__PURE__*/ (0,jsx_runtime_.jsx)(components/* Footer */.$_, {})
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components__WEBPACK_IMPORTED_MODULE_2__/* .Footer */ .$_, {})
             })
         ]
     });
 };
-/* harmony default export */ const page = (Detail);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Detail);
 
 
 /***/ }),
@@ -891,6 +863,29 @@ const categoryId = (categoryInput, categories)=>{
     }
     return 16;
 };
+
+
+/***/ }),
+
+/***/ 57008:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   p: () => (/* binding */ generateShareLinks)
+/* harmony export */ });
+function generateShareLinks(articleTitle, articleURL) {
+    const encodedArticleTitle = encodeURIComponent(articleTitle);
+    const encodedArticleURL = encodeURIComponent(articleURL);
+    const twitterLink = `https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20article%3A%20${encodedArticleTitle}%20-%20${encodedArticleURL}`;
+    const whatsappLink = `whatsapp://send?text=Check%20out%20this%20awesome%20article%3A%20${encodedArticleTitle}%20-%20${encodedArticleURL}`;
+    const instagramLink = `https://www.instagram.com/create/caption/?text=Check%20out%20this%20awesome%20article%3A%20${encodedArticleTitle}%20-%20${encodedArticleURL}`;
+    return {
+        twitter: twitterLink,
+        whatsapp: whatsappLink,
+        instagram: instagramLink
+    };
+}
 
 
 /***/ }),
@@ -954,7 +949,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [323,989,750,298,245,914], () => (__webpack_exec__(70187)));
+var __webpack_exports__ = __webpack_require__.X(0, [174,750,105,914], () => (__webpack_exec__(70187)));
 module.exports = __webpack_exports__;
 
 })();
