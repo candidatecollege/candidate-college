@@ -10,6 +10,7 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import axios from 'axios'
 import CardItemLandscape from '@/components/CardItemLandscape'
 import JumboItem from '@/components/JumboItem'
+import { formatDate } from '@/utils/time'
 
 const Programs = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
@@ -36,12 +37,34 @@ const Programs = () => {
     }
   }
 
+  const [events, setEvents] = useState<any[]>([])
+  const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(false)
+  const loadingContents = [1, 2, 3, 4, 5, 6]
+
+
+  const fetchEvents = async () => {
+    setIsLoadingEvents(true)
+
+    try {
+      const response = await axios.get(`https://resource.candidatecollegeind.com/api/events?count=100`)
+
+      setTimeout(() => {
+        setEvents(response.data.data);
+        setIsLoadingEvents(false); // After setting the data, set isLoading to false
+      }, 1500);
+    } catch (error) {
+      console.error(error)
+      setIsLoadingEvents(false)
+    }
+  }
+
   useEffect(() => {
     fetchCategories()
+    fetchEvents()
   }, [])
 
   return (
-    <main className="bg-white h-full">
+    <main className="bg-primary h-full">
       {/* Navbar */}
       <Navbar active='Programs' isDetail={false} />
 
@@ -72,7 +95,7 @@ const Programs = () => {
       <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
 
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
-          <div className="overflow-x-auto scrollbar-hide relative">
+          {/* <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
               {
                 isLoadingCategories ? 
@@ -85,9 +108,47 @@ const Programs = () => {
                 ))
               }
             </div>
-          </div>
+          </div> */}
 
-          <div className={`${activeCategory != 'All' ? 'flex flex-col' : 'hidden'}`}>
+            <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
+              {
+                isLoadingEvents ? 
+                loadingContent?.map((event, index) => (
+                  <CardItemLandscape key={index} data={event} type={'Event'} isLoading={true} />
+                ))
+                :
+                events.map((event, index) => (
+                  <Link href={`/events/${event.slug}`} about={event.name} title={event.name} className={`flex-col gap-2 md:items-center md:gap-2 flex md:w-[320px]`}>
+                    
+                <Image 
+                    width={100}
+                    height={180}
+                    src={`https://resource.candidatecollegeind.com/storage/${event.cover_landscape}`}
+                    alt={event.name}
+                    title={event.name}
+                    className='w-full h-[178px] md:h-[168px] rounded-xl object-cover'
+                    priority
+                />
+
+                <div className="flex md:flex-1 flex-col gap">
+                    <Link href={`/events/${event.slug}`} about={event.name} title={event.name} className="font-semibold text-2xl text-primary">
+                        {event.name.length > 40 ? event.name.substring(0, 48) + ' ...' : event.name}
+                    </Link>
+
+                    <p className="font-normal text-sm text-gray">
+                        {event.snippets.substring(0, 150) + ' ...'}
+                    </p>
+
+                    <p className="font-normal text-xs text-gray mt-5">
+                        On {formatDate(event.start_date_time)} &nbsp; | &nbsp; Regist On {formatDate(event.registration_date_time)}
+                    </p>
+                </div>
+            </Link>
+                ))
+              }
+            </div> 
+
+          {/* <div className={`${activeCategory != 'All' ? 'flex flex-col' : 'hidden'}`}>
             <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
                 <h2 className="font-semibold text-2xl md:text-4xl text-primary">{activeCategory}</h2>
             </div>
@@ -100,15 +161,15 @@ const Programs = () => {
                       width={100}
                       height={50}
                       src={article.coverLandscape}
-                      alt={article.title}
-                      title={article.title}
+                      alt={article.name}
+                      title={article.name}
                       className='w-full md:flex-1 h-full rounded-xl'
                       priority
                     />
 
                     <div className="flex md:flex-1 flex-col gap">
                         <h3 className="font-semibold text-xl md:text-2xl text-primary">
-                          {article.title}
+                          {article.name}
                         </h3>
                         <p className="font-normal text-sm md:text-base text-gray">
                           {article.snippets}
@@ -122,17 +183,17 @@ const Programs = () => {
                 ))
               }
             </div>
-          </div>
+          </div> */}
 
           <div className={`${activeCategory != 'All' ? 'hidden' : 'flex flex-col'}`}>
-            <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
+            {/* <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">Latest</h2>
               <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
                 See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
               </div>
-            </div>
+            </div> */}
             
-            <div className="flex flex-col gap-5 w-full mt-7">
+            {/* <div className="flex flex-col gap-5 w-full mt-7">
               <JumboItem data={articlesOnPage[currentIndexSlider]} isLoading={true} />
 
               <div className="md:flex flex-row gap-4 hidden">
@@ -150,18 +211,18 @@ const Programs = () => {
                   ))
                 }
               </div>
-            </div>
+            </div> */}
 
-            <section className="my-14 w-full rounded-xl bg-primary h-[350px]"></section>
+            {/* <section className="my-14 w-full rounded-xl bg-primary h-[350px]"></section> */}
 
-            <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-6">
+            {/* <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-6">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">External Programs</h2>
               <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
                 See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
               </div>
-            </div>
+            </div> */}
 
-            <section className="w-full h-full bg-white py-10 md:pt-10 md:pb-2 flex flex-col gap-9 overflow-hidden">
+            {/* <section className="w-full h-full bg-white py-10 md:pt-10 md:pb-2 flex flex-col gap-9 overflow-hidden">
               <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
                 <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
                   {articlesOnLanding.map((article, index) => (
@@ -169,16 +230,16 @@ const Programs = () => {
                   ))}
                 </div>
               </div>
-            </section>
+            </section> */}
 
-            <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16">
+            {/* <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">Internal Programs</h2>
               <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
                 See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
               </div>
-            </div>
+            </div> */}
 
-            <section className="w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden">
+            {/* <section className="w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden">
               <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
                 <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
                   {articlesOnLanding.map((article, index) => (
@@ -186,7 +247,7 @@ const Programs = () => {
                   ))}
                 </div>
               </div>
-            </section>
+            </section> */}
           </div>
         </div>
 

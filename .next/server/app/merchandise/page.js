@@ -387,8 +387,8 @@ __webpack_require__.d(__webpack_exports__, {
 
 // EXTERNAL MODULE: external "next/dist/compiled/react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(56786);
-// EXTERNAL MODULE: ./src/components/index.ts + 10 modules
-var components = __webpack_require__(48245);
+// EXTERNAL MODULE: ./src/components/index.ts + 11 modules
+var components = __webpack_require__(71244);
 // EXTERNAL MODULE: ./src/components/icons/SearchIcon.tsx
 var SearchIcon = __webpack_require__(88518);
 // EXTERNAL MODULE: ./node_modules/next/image.js
@@ -963,7 +963,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [323,989,298,245,518], () => (__webpack_exec__(67353)));
+var __webpack_exports__ = __webpack_require__.X(0, [174,105,518], () => (__webpack_exec__(67353)));
 module.exports = __webpack_exports__;
 
 })();

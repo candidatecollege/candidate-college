@@ -2,7 +2,7 @@ export const menus = [
     { id: 1, name: 'Home', link: '/', },
     { id: 2, name: 'About Us', link: '/about', },
     { id: 4, name: 'Articles', link: '/articles', },
-    { id: 5, name: 'Programs', link: '/coming', },
+    { id: 5, name: 'Events', link: '/events', },
 ]
 
 export const footers = [
