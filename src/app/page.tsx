@@ -307,31 +307,12 @@ export default function Home() {
           >
             <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
               <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
-                <div className="flex justify-start flex-wrap">
-                  <button className="bg-secondary text-primary mb-[120px] mt-8 xl:mt-[52px] rounded-[20px] px-6 py-2 text-sm font-semibold">
+                <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
+                  <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
                     COUNTDOWN
                   </button>
-                  <button className="bg-secondary text-primary mb-[120px] mt-8 xl:mt-[52px] rounded-[20px] px-6 py-2 text-sm font-semibold">
-                    TESSS
-                  </button>
-                </div>
-                <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
-                  Web Designer
-                </h5>
-                <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
-                </p>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
-              <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
-                <div className="flex justify-start">
-                  <button className="bg-secondary text-primary mb-[120px] mt-8 xl:mt-[52px] rounded-[20px] px-6 py-2 text-sm font-semibold">
-                    COUNTDOWN
+                  <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
+                    TIPE EVENT
                   </button>
                 </div>
                 <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
@@ -348,9 +329,34 @@ export default function Home() {
 
             <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
               <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
-                <div className="flex justify-start">
-                  <button className="bg-secondary text-primary mb-[120px] mt-8 xl:mt-[52px] rounded-[20px] px-6 py-2 text-sm font-semibold">
+                <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
+                  <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
                     COUNTDOWN
+                  </button>
+                  <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
+                    TIPE EVENT
+                  </button>
+                </div>
+                <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
+                  Web Designer
+                </h5>
+                <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                  vulputate libero et velit interdum, ac aliquet odio mattis.
+                  Class aptent taciti sociosqu ad litora torquent per conubia
+                  nostra, per inceptos himenaeos.
+                </p>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
+              <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
+                  <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
+                    COUNTDOWN
+                  </button>
+                  <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
+                    TIPE EVENT
                   </button>
                 </div>
                 <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
