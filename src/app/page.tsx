@@ -33,6 +33,17 @@ import "../styles/swiper-event.css";
 export default function Home() {
   const [articles, setArticles] = useState<any[]>([]);
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(false);
+  const [events, setEvents] = useState([]);
+  const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(false);
+  const [eventStartTime, setEventStartTime] = useState(0); // Initialize with 0 or the actual start time from the API
+  const [timeRemaining, setTimeRemaining] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [eventCountdowns, setEventCountdowns] = useState({});
+
   const loadingContent = [1, 2, 3, 4, 5, 6];
 
   const fetchArticles = async () => {
@@ -58,6 +69,122 @@ export default function Home() {
   useEffect(() => {
     fetchArticles();
   }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get(
+        "https://resource.candidatecollegeind.com/api/events"
+      );
+      const eventData = response.data.data; // Get the data from the response
+      setEvents(eventData);
+      setIsLoadingEvents(false);
+
+      // Calculate and set the countdown for each event
+      const now = new Date().getTime();
+      const countdowns = {};
+
+      eventData.forEach((event) => {
+        const eventStartTime = new Date(event.start_date_time).getTime();
+        const timeDifference = eventStartTime - now;
+
+        if (timeDifference <= 0) {
+          // Event has started, set countdown to 0
+          countdowns[event.slug] = {
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+          };
+        } else {
+          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+          countdowns[event.slug] = {
+            days,
+            hours,
+            minutes,
+            seconds,
+          };
+        }
+      });
+
+      setEventCountdowns(countdowns);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      setIsLoadingEvents(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  // Function to calculate and update the countdown for a specific event
+  const updateCountdownForEvent = (eventSlug, startTime) => {
+    const now = new Date().getTime();
+    const timeDifference = startTime - now;
+
+    if (timeDifference <= 0) {
+      // Event has started, set countdown to 0
+      setEventCountdowns((prevCountdowns) => ({
+        ...prevCountdowns,
+        [eventSlug]: {
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        },
+      }));
+    } else {
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      setEventCountdowns((prevCountdowns) => ({
+        ...prevCountdowns,
+        [eventSlug]: {
+          days,
+          hours,
+          minutes,
+          seconds,
+        },
+      }));
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    // Update the countdown for each event
+    for (const event of events) {
+      const eventStartTime = new Date(event.start_date_time).getTime();
+      updateCountdownForEvent(event.slug, eventStartTime);
+    }
+
+    // Set up an interval to update the countdown every second
+    const countdownInterval = setInterval(() => {
+      for (const event of events) {
+        const eventStartTime = new Date(event.start_date_time).getTime();
+        updateCountdownForEvent(event.slug, eventStartTime);
+      }
+    }, 1000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(countdownInterval);
+  }, [events]);
 
   return (
     <main className="bg-primary h-full">
@@ -275,10 +402,8 @@ export default function Home() {
           Join and Develop With Us
         </h2>
         <p className="text-primary text-base md:text-[18px] font-normal leading-6 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt saepe
-          quaerat ratione, cupiditate nobis optio omnis eum! Consequatur, sit
-          exercitationem recusandae molestiae eos ipsum minima quaerat? Autem
-          ullam voluptas vitae.
+          Engage in enriching experiences that foster growth. Join us for
+          insightful sessions, workshops, and more. Don't miss out!
         </p>
 
         <div className="mt-[105px] w-full m-auto">
@@ -305,29 +430,55 @@ export default function Home() {
             modules={[Navigation]}
             className="swiper_container !overflow-y-visible flex justify-center"
           >
-            <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
-              <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
-                <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
-                  <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
-                    COUNTDOWN
-                  </button>
-                  <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
-                    TIPE EVENT
-                  </button>
-                </div>
-                <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
-                  Web Designer
-                </h5>
-                <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
-                </p>
-              </div>
-            </SwiperSlide>
+            {isLoadingEvents
+              ? loadingContent.map((_, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
+                  >
+                    <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                      <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
+                        <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4"></button>
+                        <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold"></button>
+                      </div>
+                      <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3"></h5>
+                      <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8"></p>
+                    </div>
+                  </SwiperSlide>
+                ))
+              : events.map((event) => (
+                  <SwiperSlide
+                    key={event.slug}
+                    className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
+                    style={{
+                      backgroundImage: `url(https://resource.candidatecollegeind.com/storage/${event.cover})`,
+                      backgroundSize: "cover",
+                    }}
+                  >
+                    <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                      <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
+                        <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
+                          {`${eventCountdowns[event.slug]?.days}d ${
+                            eventCountdowns[event.slug]?.hours
+                          }h ${eventCountdowns[event.slug]?.minutes}m ${
+                            eventCountdowns[event.slug]?.seconds
+                          }s`}
+                        </button>
+                        <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
+                          {event.type}
+                        </button>
+                      </div>
+                      <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
+                        {event.name}
+                      </h5>
+                      <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
+                        {event.snippets}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
 
-            <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
+            {/* <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
               <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
                 <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
                   <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
@@ -338,38 +489,13 @@ export default function Home() {
                   </button>
                 </div>
                 <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
-                  Web Designer
+                  JUDUL EVENT
                 </h5>
                 <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
+                  SNIPPET EVENT
                 </p>
               </div>
-            </SwiperSlide>
-
-            <SwiperSlide className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0">
-              <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
-                <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
-                  <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
-                    COUNTDOWN
-                  </button>
-                  <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
-                    TIPE EVENT
-                  </button>
-                </div>
-                <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
-                  Web Designer
-                </h5>
-                <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  vulputate libero et velit interdum, ac aliquet odio mattis.
-                  Class aptent taciti sociosqu ad litora torquent per conubia
-                  nostra, per inceptos himenaeos.
-                </p>
-              </div>
-            </SwiperSlide>
+            </SwiperSlide> */}
 
             <div className="slider-controler relative bottom-[-4rem] flex items-center justify-center">
               <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[25%] lg:!left-[40%] !translate-x-[40%]">
