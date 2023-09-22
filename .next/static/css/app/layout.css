@@ -940,11 +940,17 @@ video {
 .relative {
   position: relative;
 }
+.\!left-\[25\%\] {
+  left: 25% !important;
+}
 .\!left-\[40\%\] {
   left: 40% !important;
 }
 .\!left-\[55\%\] {
   left: 55% !important;
+}
+.\!left-\[65\%\] {
+  left: 65% !important;
 }
 .-bottom-5 {
   bottom: -1.25rem;
@@ -1328,6 +1334,42 @@ video {
 }
 .\!translate-x-\[40\%\] {
   --tw-translate-x: 40% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[45\%\] {
+  --tw-translate-x: 45% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[42\%\] {
+  --tw-translate-x: 42% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[-57\%\] {
+  --tw-translate-x: -57% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[-52\%\] {
+  --tw-translate-x: -52% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[-50\%\] {
+  --tw-translate-x: -50% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[-45\%\] {
+  --tw-translate-x: -45% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[-40\%\] {
+  --tw-translate-x: -40% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[-30\%\] {
+  --tw-translate-x: -30% !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+}
+.\!translate-x-\[30\%\] {
+  --tw-translate-x: 30% !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
 .transform {
@@ -1764,6 +1806,9 @@ video {
 .pt-\[185px\] {
   padding-top: 185px;
 }
+.pt-\[30px\] {
+  padding-top: 30px;
+}
 .pt-\[60px\] {
   padding-top: 60px;
 }
@@ -1775,9 +1820,6 @@ video {
 }
 .pt-\[90px\] {
   padding-top: 90px;
-}
-.pt-\[30px\] {
-  padding-top: 30px;
 }
 .text-center {
   text-align: center;
@@ -2163,6 +2205,10 @@ body {
     width: 75%;
   }
 
+  .md\:w-4\/5 {
+    width: 80%;
+  }
+
   .md\:w-\[100\%\] {
     width: 100%;
   }
@@ -2249,10 +2295,6 @@ body {
 
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:w-4\/5 {
-    width: 80%;
   }
 
   .md\:max-w-5xl {
@@ -2486,6 +2528,46 @@ body {
 
 @media (min-width: 1024px) {
 
+  .lg\:\!left-\[40\%\] {
+    left: 40% !important;
+  }
+
+  .lg\:left-\[55\%\] {
+    left: 55%;
+  }
+
+  .lg\:\!left-\[45\%\] {
+    left: 45% !important;
+  }
+
+  .lg\:\!left-\[42\%\] {
+    left: 42% !important;
+  }
+
+  .lg\:left-\[57\%\] {
+    left: 57%;
+  }
+
+  .lg\:left-\[52\%\] {
+    left: 52%;
+  }
+
+  .lg\:left-\[50\%\] {
+    left: 50%;
+  }
+
+  .lg\:left-\[45\%\] {
+    left: 45%;
+  }
+
+  .lg\:left-\[40\%\] {
+    left: 40%;
+  }
+
+  .lg\:left-\[30\%\] {
+    left: 30%;
+  }
+
   .lg\:mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -2521,14 +2603,6 @@ body {
 
   .lg\:w-4\/6 {
     width: 66.666667%;
-  }
-
-  .lg\:w-3\/4 {
-    width: 75%;
-  }
-
-  .lg\:w-4\/5 {
-    width: 80%;
   }
 
   .lg\:w-5\/6 {

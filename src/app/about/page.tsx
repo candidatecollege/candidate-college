@@ -442,10 +442,10 @@ const About = () => {
               </h6>
             </SwiperSlide>
             <div className="slider-controler relative bottom-[-4rem] flex items-center justify-center">
-              <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[40%] !translate-x-[40%]">
+              <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[25%] lg:!left-[40%] !translate-x-[40%]">
                 <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
               </div>
-              <div className="swiper-button-next slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[55%] !translate-x-[-55%]">
+              <div className="swiper-button-next slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[65%] lg:left-[55%] !translate-x-[-55%]">
                 <ArrowForwardIosIcon className="!w-[2rem] text-primary" />
               </div>
             </div>
