@@ -63,6 +63,14 @@
         "chunks": [],
         "async": false
       }
+    },
+    "(app-client)/./src/app/not-found.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/not-found.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -186,6 +194,14 @@
         "app/about/page:static/chunks/app/about/page.js"
       ],
       "async": false
+    },
+    "F:\\Magang\\Candidate College\\candidate-college\\src\\app\\not-found.tsx": {
+      "id": "(app-client)/./src/app/not-found.tsx",
+      "name": "*",
+      "chunks": [
+        "app/not-found:static/chunks/app/not-found.js"
+      ],
+      "async": false
     }
   },
   "entryCSSFiles": {
@@ -197,6 +213,9 @@
     ],
     "F:\\Magang\\Candidate College\\candidate-college\\src\\app\\about\\page": [
       "static/css/app/about/page.css"
+    ],
+    "F:\\Magang\\Candidate College\\candidate-college\\src\\app\\not-found": [
+      "static/css/app/not-found.css"
     ]
   }
 }
