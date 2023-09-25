@@ -30,11 +30,31 @@ import { Navigation } from "swiper/modules";
 import "../styles/swiper-article.css";
 import "../styles/swiper-event.css";
 
+// Define a type for the event object
+type Event = {
+  start_date_time: string;
+  slug: string;
+  cover: string;
+  type: string;
+  name: string;
+  snippets: string;
+};
+
+type EventCountdowns = {
+  [slug: string]: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  };
+};
+
 export default function Home() {
   const [articles, setArticles] = useState<any[]>([]);
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(false);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(false);
+
   const [eventStartTime, setEventStartTime] = useState(0); // Initialize with 0 or the actual start time from the API
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -42,8 +62,7 @@ export default function Home() {
     minutes: 0,
     seconds: 0,
   });
-  const [eventCountdowns, setEventCountdowns] = useState({});
-
+  const [eventCountdowns, setEventCountdowns] = useState<EventCountdowns>({});
   const loadingContent = [1, 2, 3, 4, 5, 6];
 
   const fetchArticles = async () => {
@@ -81,9 +100,10 @@ export default function Home() {
 
       // Calculate and set the countdown for each event
       const now = new Date().getTime();
-      const countdowns = {};
+      const countdowns: { [key: string]: any } = {};
 
-      eventData.forEach((event) => {
+      eventData.forEach((event: any) => {
+        // Specify the type of 'event' as 'any'
         const eventStartTime = new Date(event.start_date_time).getTime();
         const timeDifference = eventStartTime - now;
 
@@ -126,7 +146,7 @@ export default function Home() {
   }, []);
 
   // Function to calculate and update the countdown for a specific event
-  const updateCountdownForEvent = (eventSlug, startTime) => {
+  const updateCountdownForEvent = (eventSlug: any, startTime: any) => {
     const now = new Date().getTime();
     const timeDifference = startTime - now;
 
