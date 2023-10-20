@@ -25,7 +25,7 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  background-color: #FFDE59;
+  background-color: #ffde59;
   padding: 8px 16px;
   border-radius: 100%;
   color: red;
@@ -34,8 +34,9 @@
   height: 3rem !important;
 }
 
-.swiper-button-next:after, .swiper-button-prev:after  {
-  color: #1B4E6B;
-  fill: #1B4E6B;
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  color: #1b4e6b;
+  fill: #1b4e6b;
   font-size: 1.2rem !important;
 }
