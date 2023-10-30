@@ -100,7 +100,7 @@ const Careers = () => {
       {/* Akhir Hero Section */}
 
       {/* Open Position Section */}
-      <section className="w-full flex flex-col justify-center items-center relative bottom-[72px] lg:mt-[96px] lg:bottom-[220px]">
+      <section className="w-full mb-[72px] flex flex-col justify-center items-center relative bottom-[72px] lg:mt-[96px] lg:bottom-[220px]">
         <h2 className="relative right-[80px] lg:right-[240px] lg:text-[32px] lg:leading-10 text-[#90A3BF]">
           All Open Positions
         </h2>
@@ -166,8 +166,25 @@ const Careers = () => {
             </div>
           </div>
 
-          <h4 className="text-primary self-center font-bold text-center text-[14px] lg:text-[22px] leading-[28px] mb-12 mt-6">
-            <a href="">View more jobs</a>
+          <h4 className="text-primary flex items-center justify-center font-bold text-center text-[14px] lg:text-[22px] leading-[28px] mb-12 mt-6">
+            <a href="#">View more jobs</a>
+            <div className="relative top-1 ml-3">
+              <svg
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="ep:arrow-up-bold">
+                  <path
+                    id="Vector"
+                    d="M5.79295 1.63269C5.60548 1.82022 5.50017 2.07453 5.50017 2.33969C5.50017 2.60486 5.60548 2.85916 5.79295 3.04669L10.743 7.99669L5.79295 12.9467C5.61079 13.1353 5.51 13.3879 5.51228 13.6501C5.51456 13.9123 5.61973 14.1631 5.80513 14.3485C5.99054 14.5339 6.24135 14.6391 6.50355 14.6414C6.76575 14.6436 7.01835 14.5429 7.20695 14.3607L12.864 8.70369C13.0514 8.51617 13.1567 8.26186 13.1567 7.99669C13.1567 7.73153 13.0514 7.47722 12.864 7.28969L7.20695 1.63269C7.01942 1.44522 6.76512 1.3399 6.49995 1.3399C6.23479 1.3399 5.98048 1.44522 5.79295 1.63269Z"
+                    fill="#1B4E6B"
+                  />
+                </g>
+              </svg>
+            </div>
           </h4>
         </div>
       </section>

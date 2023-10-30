@@ -12,11 +12,29 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/events/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/events/page.css",
+      "static/chunks/app/events/page.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/about/page.css",
+      "static/chunks/app/about/page.js"
+    ],
     "/careers/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/careers/page.css",
       "static/chunks/app/careers/page.js"
+    ],
+    "/articles/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/articles/page.css",
+      "static/chunks/app/articles/page.js"
     ]
   }
 }
