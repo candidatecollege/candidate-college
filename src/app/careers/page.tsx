@@ -16,7 +16,7 @@ const Careers = () => {
 
         <form action="" className="mt-[42px] flex space-x-6">
           <div className="flex flex-col md:flex-row w-full mx-7 items-center">
-            <div className="relative">
+            <div className="relative w-full">
               <div className="absolute inset-y-0 bottom-2 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
                   width="20"
@@ -39,20 +39,39 @@ const Careers = () => {
             </div>
 
             <div className="flex w-full gap-2 mb-2">
-              <select
-                className="w-[50%] md:w-[216px] h-[52px] rounded-[50px] px-6 py-1"
-                name=""
-                id=""
-              >
-                <option value="">Department</option>
-              </select>
-              <select
-                className="w-[50%] md:w-[153px] h-[52px] rounded-[50px] px-6 py-1"
-                name=""
-                id=""
-              >
-                <option value="">Divisi</option>
-              </select>
+              <div className="relative w-full">
+                <select
+                  className="w-full md:w-[216px] h-[52px] rounded-[50px] px-6 py-1 appearance-none border"
+                  name=""
+                  id=""
+                >
+                  <option value="">Department</option>
+                </select>
+                <div className="absolute inset-y-0 top-1 right-2 md:right-5 flex items-center pointer-events-none">
+                  <svg
+                    width="13"
+                    height="8"
+                    viewBox="0 0 13 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.0685 0.628083C11.9044 0.464046 11.6819 0.371895 11.4499 0.371895C11.2179 0.371895 10.9954 0.464046 10.8313 0.628083L6.50002 4.95933L2.16877 0.628082C2.00374 0.468694 1.78271 0.380499 1.55329 0.382493C1.32387 0.384486 1.10441 0.476509 0.942176 0.638741C0.779944 0.800973 0.687923 1.02043 0.685929 1.24986C0.683936 1.47928 0.77213 1.7003 0.931519 1.86533L5.88139 6.81521C6.04548 6.97924 6.268 7.0714 6.50002 7.0714C6.73204 7.0714 6.95456 6.97924 7.11864 6.81521L12.0685 1.86533C12.2326 1.70125 12.3247 1.47873 12.3247 1.24671C12.3247 1.01469 12.2326 0.79217 12.0685 0.628083Z"
+                      fill="#90A3BF"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div className="relative w-full">
+                <select
+                  className="w-full md:w-[153px] h-[52px] rounded-[50px] px-6 py-1"
+                  name=""
+                  id=""
+                >
+                  <option value="">Divisi</option>
+                </select>
+              </div>
             </div>
             <button
               className="bg-secondary w-full lg:w-[92px] h-[52px] rounded-[50px] px-5"
