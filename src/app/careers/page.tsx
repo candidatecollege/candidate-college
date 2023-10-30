@@ -111,10 +111,10 @@ const Careers = () => {
               Front-end Developer
             </h3>
             <div className="flex gap-4 items-center">
-              <p className="text-[12px]">
+              <p className="text-[12px] text-black">
                 <i className="fi fi-rr-briefcase"></i>Department
               </p>
-              <p className="text-[12px]">Web Development</p>
+              <p className="text-[12px] text-black">Web Development</p>
               <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
                 Internship
               </p>
@@ -126,10 +126,10 @@ const Careers = () => {
               Back-end Developer
             </h3>
             <div className="flex gap-4 items-center">
-              <p className="text-[12px]">
+              <p className="text-[12px] text-black">
                 <i className="fi fi-rr-briefcase"></i>Department
               </p>
-              <p className="text-[12px]">Web Development</p>
+              <p className="text-[12px] text-black">Web Development</p>
               <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
                 Internship
               </p>
@@ -141,10 +141,10 @@ const Careers = () => {
               QA Analyst (WFH)
             </h3>
             <div className="flex gap-4 items-center">
-              <p className="text-[12px]">
+              <p className="text-[12px] text-black">
                 <i className="fi fi-rr-briefcase"></i>Department
               </p>
-              <p className="text-[12px]">Web Development</p>
+              <p className="text-[12px] text-black">Web Development</p>
               <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
                 Internship
               </p>
@@ -156,10 +156,10 @@ const Careers = () => {
               UI/UX Designer
             </h3>
             <div className="flex gap-4 items-center">
-              <p className="text-[12px]">
+              <p className="text-[12px] text-black">
                 <i className="fi fi-rr-briefcase"></i>Department
               </p>
-              <p className="text-[12px]">Web Development</p>
+              <p className="text-[12px] text-black">Web Development</p>
               <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
                 Internship
               </p>
@@ -189,6 +189,55 @@ const Careers = () => {
         </div>
       </section>
       {/* AKhir Open Position Section */}
+
+      {/* Life at CC Section */}
+      <section className="w-full h-full flex flex-col lg:flex-row-reverse justify-center items-center lg:relative lg:bottom-[280px]">
+        {/* image */}
+        <div className="w-[327px] h-[296px] rounded-[25px] ">
+          <img
+            className="w-full h-full object-cover rounded-[25px]"
+            src="https://i.postimg.cc/4yDrKs43/redd-f-5-U-28ojjgms-unsplash.jpg"
+            alt="Life at CC"
+          />
+        </div>
+
+        {/* text */}
+        <div className="w-full h-full p-[48px] lg:w-[51%]">
+          <h2 className="text-primary text-[28px] leading-9 text-center lg:text-start lg:text-[32px] font-bold mt-10 mb-6">
+            Explore Life at CC
+          </h2>
+
+          <p className="text-[16px] text-black lg:text-[20px] leading-6 font-normal tracking-[0.5%] mb-6">
+            Our core philosophy is people over process. Our culture has been
+            instrumental to our success and has helped us attract and retain
+            stunning colleagues, making work here more satisfying.
+          </p>
+
+          <div className="w-[150px] rounded-[50px] flex justify-start items-center bg-secondary">
+            <a href="" className="px-4 py-3 text-[14px]">
+              Read More
+            </a>
+            <div className="relative top-[2px] ml-3">
+              <svg
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="ep:arrow-up-bold">
+                  <path
+                    id="Vector"
+                    d="M5.79295 1.63269C5.60548 1.82022 5.50017 2.07453 5.50017 2.33969C5.50017 2.60486 5.60548 2.85916 5.79295 3.04669L10.743 7.99669L5.79295 12.9467C5.61079 13.1353 5.51 13.3879 5.51228 13.6501C5.51456 13.9123 5.61973 14.1631 5.80513 14.3485C5.99054 14.5339 6.24135 14.6391 6.50355 14.6414C6.76575 14.6436 7.01835 14.5429 7.20695 14.3607L12.864 8.70369C13.0514 8.51617 13.1567 8.26186 13.1567 7.99669C13.1567 7.73153 13.0514 7.47722 12.864 7.28969L7.20695 1.63269C7.01942 1.44522 6.76512 1.3399 6.49995 1.3399C6.23479 1.3399 5.98048 1.44522 5.79295 1.63269Z"
+                    fill="#1B4E6B"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Akhir Life at CC Section */}
     </main>
   );
 };
