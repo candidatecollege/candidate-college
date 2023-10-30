@@ -1,11 +1,29 @@
 "use client";
-import { Navbar } from "@/components";
+import { Navbar, Footer } from "@/components";
 import Link from "next/link";
 import SearchIcon from "@/components/icons/SearchIcon";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "../../styles/swiper-careers.css";
 
 const Careers = () => {
+  const careers = [
+    { id: 1, url: "/decoration/life-at-cc (1).jpg" },
+    { id: 2, url: "/decoration/life-at-cc (2).jpg" },
+    { id: 3, url: "/decoration/life-at-cc (3).jpg" },
+    { id: 4, url: "/decoration/life-at-cc (4).jpg" },
+    { id: 5, url: "/decoration/life-at-cc (5).jpg" },
+    { id: 6, url: "/decoration/life-at-cc (6).jpg" },
+    { id: 7, url: "/decoration/life-at-cc (7).jpg" },
+  ];
+
   return (
-    <main className="bg-white h-full overflow-hidden">
+    <main className="bg-white w-full h-full overflow-hidden">
       <Navbar />
 
       {/* Hero */}
@@ -106,63 +124,271 @@ const Careers = () => {
         </h2>
 
         <div className="mt-6 w-full  md:w-[972px] h-full rounded-[50px] pt-[42px] pb-8 bg-white">
-          <div className="ml-6 lg:ml-[74px] mb-7">
-            <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
-              Front-end Developer
-            </h3>
-            <div className="flex gap-4 items-center">
-              <p className="text-[12px] text-black">
-                <i className="fi fi-rr-briefcase"></i>Department
-              </p>
-              <p className="text-[12px] text-black">Web Development</p>
-              <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
-                Internship
-              </p>
+          <div className="flex items-center">
+            <div className="ml-6 lg:ml-[74px] mb-7 w-full lg:w-[80%]">
+              <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
+                Front-end Developer
+              </h3>
+              <div className="flex items-center">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="uil:bag">
+                    <path
+                      id="Vector"
+                      d="M19 6H16V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V6H5C4.20435 6 3.44129 6.31607 2.87868 6.87868C2.31607 7.44129 2 8.20435 2 9V18C2 18.7956 2.31607 19.5587 2.87868 20.1213C3.44129 20.6839 4.20435 21 5 21H19C19.7956 21 20.5587 20.6839 21.1213 20.1213C21.6839 19.5587 22 18.7956 22 18V9C22 8.20435 21.6839 7.44129 21.1213 6.87868C20.5587 6.31607 19.7956 6 19 6ZM10 5H14V6H10V5ZM20 18C20 18.2652 19.8946 18.5196 19.7071 18.7071C19.5196 18.8946 19.2652 19 19 19H5C4.73478 19 4.48043 18.8946 4.29289 18.7071C4.10536 18.5196 4 18.2652 4 18V12.39L8.68 14C8.78618 14.0144 8.89382 14.0144 9 14H15C15.1084 13.998 15.2161 13.9812 15.32 13.95L20 12.39V18ZM20 10.28L14.84 12H9.16L4 10.28V9C4 8.73478 4.10536 8.48043 4.29289 8.29289C4.48043 8.10536 4.73478 8 5 8H19C19.2652 8 19.5196 8.10536 19.7071 8.29289C19.8946 8.48043 20 8.73478 20 9V10.28Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">Department</p>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="carbon:dot-mark">
+                    <path
+                      id="Vector"
+                      d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">
+                  Web Development
+                </p>
+                <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
+                  Internship
+                </p>
+              </div>
+            </div>
+
+            <div className="hidden lg:block lg:relative lg:bottom-[30px]">
+              <svg
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="ep:arrow-up-bold">
+                  <path
+                    id="Vector"
+                    d="M5.79295 1.63269C5.60548 1.82022 5.50017 2.07453 5.50017 2.33969C5.50017 2.60486 5.60548 2.85916 5.79295 3.04669L10.743 7.99669L5.79295 12.9467C5.61079 13.1353 5.51 13.3879 5.51228 13.6501C5.51456 13.9123 5.61973 14.1631 5.80513 14.3485C5.99054 14.5339 6.24135 14.6391 6.50355 14.6414C6.76575 14.6436 7.01835 14.5429 7.20695 14.3607L12.864 8.70369C13.0514 8.51617 13.1567 8.26186 13.1567 7.99669C13.1567 7.73153 13.0514 7.47722 12.864 7.28969L7.20695 1.63269C7.01942 1.44522 6.76512 1.3399 6.49995 1.3399C6.23479 1.3399 5.98048 1.44522 5.79295 1.63269Z"
+                    fill="#1B4E6B"
+                  />
+                </g>
+              </svg>
             </div>
           </div>
 
-          <div className="ml-6 lg:ml-[74px] mb-7">
-            <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
-              Back-end Developer
-            </h3>
-            <div className="flex gap-4 items-center">
-              <p className="text-[12px] text-black">
-                <i className="fi fi-rr-briefcase"></i>Department
-              </p>
-              <p className="text-[12px] text-black">Web Development</p>
-              <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
-                Internship
-              </p>
+          <div className="flex items-center">
+            <div className="ml-6 lg:ml-[74px] mb-7 w-full lg:w-[80%]">
+              <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
+                Back-end Developer
+              </h3>
+              <div className="flex items-center">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="uil:bag">
+                    <path
+                      id="Vector"
+                      d="M19 6H16V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V6H5C4.20435 6 3.44129 6.31607 2.87868 6.87868C2.31607 7.44129 2 8.20435 2 9V18C2 18.7956 2.31607 19.5587 2.87868 20.1213C3.44129 20.6839 4.20435 21 5 21H19C19.7956 21 20.5587 20.6839 21.1213 20.1213C21.6839 19.5587 22 18.7956 22 18V9C22 8.20435 21.6839 7.44129 21.1213 6.87868C20.5587 6.31607 19.7956 6 19 6ZM10 5H14V6H10V5ZM20 18C20 18.2652 19.8946 18.5196 19.7071 18.7071C19.5196 18.8946 19.2652 19 19 19H5C4.73478 19 4.48043 18.8946 4.29289 18.7071C4.10536 18.5196 4 18.2652 4 18V12.39L8.68 14C8.78618 14.0144 8.89382 14.0144 9 14H15C15.1084 13.998 15.2161 13.9812 15.32 13.95L20 12.39V18ZM20 10.28L14.84 12H9.16L4 10.28V9C4 8.73478 4.10536 8.48043 4.29289 8.29289C4.48043 8.10536 4.73478 8 5 8H19C19.2652 8 19.5196 8.10536 19.7071 8.29289C19.8946 8.48043 20 8.73478 20 9V10.28Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">Department</p>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="carbon:dot-mark">
+                    <path
+                      id="Vector"
+                      d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">
+                  Web Development
+                </p>
+                <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
+                  Internship
+                </p>
+              </div>
+            </div>
+
+            <div className="hidden lg:block lg:relative lg:bottom-[30px]">
+              <svg
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="ep:arrow-up-bold">
+                  <path
+                    id="Vector"
+                    d="M5.79295 1.63269C5.60548 1.82022 5.50017 2.07453 5.50017 2.33969C5.50017 2.60486 5.60548 2.85916 5.79295 3.04669L10.743 7.99669L5.79295 12.9467C5.61079 13.1353 5.51 13.3879 5.51228 13.6501C5.51456 13.9123 5.61973 14.1631 5.80513 14.3485C5.99054 14.5339 6.24135 14.6391 6.50355 14.6414C6.76575 14.6436 7.01835 14.5429 7.20695 14.3607L12.864 8.70369C13.0514 8.51617 13.1567 8.26186 13.1567 7.99669C13.1567 7.73153 13.0514 7.47722 12.864 7.28969L7.20695 1.63269C7.01942 1.44522 6.76512 1.3399 6.49995 1.3399C6.23479 1.3399 5.98048 1.44522 5.79295 1.63269Z"
+                    fill="#1B4E6B"
+                  />
+                </g>
+              </svg>
             </div>
           </div>
 
-          <div className="ml-6 lg:ml-[74px] mb-7">
-            <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
-              QA Analyst (WFH)
-            </h3>
-            <div className="flex gap-4 items-center">
-              <p className="text-[12px] text-black">
-                <i className="fi fi-rr-briefcase"></i>Department
-              </p>
-              <p className="text-[12px] text-black">Web Development</p>
-              <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
-                Internship
-              </p>
+          <div className="flex items-center">
+            <div className="ml-6 lg:ml-[74px] mb-7 w-full lg:w-[80%]">
+              <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
+                QA Analyst (WFH)
+              </h3>
+              <div className="flex items-center">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="uil:bag">
+                    <path
+                      id="Vector"
+                      d="M19 6H16V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V6H5C4.20435 6 3.44129 6.31607 2.87868 6.87868C2.31607 7.44129 2 8.20435 2 9V18C2 18.7956 2.31607 19.5587 2.87868 20.1213C3.44129 20.6839 4.20435 21 5 21H19C19.7956 21 20.5587 20.6839 21.1213 20.1213C21.6839 19.5587 22 18.7956 22 18V9C22 8.20435 21.6839 7.44129 21.1213 6.87868C20.5587 6.31607 19.7956 6 19 6ZM10 5H14V6H10V5ZM20 18C20 18.2652 19.8946 18.5196 19.7071 18.7071C19.5196 18.8946 19.2652 19 19 19H5C4.73478 19 4.48043 18.8946 4.29289 18.7071C4.10536 18.5196 4 18.2652 4 18V12.39L8.68 14C8.78618 14.0144 8.89382 14.0144 9 14H15C15.1084 13.998 15.2161 13.9812 15.32 13.95L20 12.39V18ZM20 10.28L14.84 12H9.16L4 10.28V9C4 8.73478 4.10536 8.48043 4.29289 8.29289C4.48043 8.10536 4.73478 8 5 8H19C19.2652 8 19.5196 8.10536 19.7071 8.29289C19.8946 8.48043 20 8.73478 20 9V10.28Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">Department</p>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="carbon:dot-mark">
+                    <path
+                      id="Vector"
+                      d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">
+                  Web Development
+                </p>
+                <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
+                  Internship
+                </p>
+              </div>
+            </div>
+
+            <div className="hidden lg:block lg:relative lg:bottom-[30px]">
+              <svg
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="ep:arrow-up-bold">
+                  <path
+                    id="Vector"
+                    d="M5.79295 1.63269C5.60548 1.82022 5.50017 2.07453 5.50017 2.33969C5.50017 2.60486 5.60548 2.85916 5.79295 3.04669L10.743 7.99669L5.79295 12.9467C5.61079 13.1353 5.51 13.3879 5.51228 13.6501C5.51456 13.9123 5.61973 14.1631 5.80513 14.3485C5.99054 14.5339 6.24135 14.6391 6.50355 14.6414C6.76575 14.6436 7.01835 14.5429 7.20695 14.3607L12.864 8.70369C13.0514 8.51617 13.1567 8.26186 13.1567 7.99669C13.1567 7.73153 13.0514 7.47722 12.864 7.28969L7.20695 1.63269C7.01942 1.44522 6.76512 1.3399 6.49995 1.3399C6.23479 1.3399 5.98048 1.44522 5.79295 1.63269Z"
+                    fill="#1B4E6B"
+                  />
+                </g>
+              </svg>
             </div>
           </div>
 
-          <div className="ml-6 lg:ml-[74px] mb-7">
-            <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
-              UI/UX Designer
-            </h3>
-            <div className="flex gap-4 items-center">
-              <p className="text-[12px] text-black">
-                <i className="fi fi-rr-briefcase"></i>Department
-              </p>
-              <p className="text-[12px] text-black">Web Development</p>
-              <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
-                Internship
-              </p>
+          <div className="flex items-center">
+            <div className="ml-6 lg:ml-[74px] mb-7 w-full lg:w-[80%]">
+              <h3 className="text-[16px] lg:text-[22px] text-primary font-bold lg:leading-[28px] mb-4">
+                UI/UX Designer
+              </h3>
+              <div className="flex items-center">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="uil:bag">
+                    <path
+                      id="Vector"
+                      d="M19 6H16V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V6H5C4.20435 6 3.44129 6.31607 2.87868 6.87868C2.31607 7.44129 2 8.20435 2 9V18C2 18.7956 2.31607 19.5587 2.87868 20.1213C3.44129 20.6839 4.20435 21 5 21H19C19.7956 21 20.5587 20.6839 21.1213 20.1213C21.6839 19.5587 22 18.7956 22 18V9C22 8.20435 21.6839 7.44129 21.1213 6.87868C20.5587 6.31607 19.7956 6 19 6ZM10 5H14V6H10V5ZM20 18C20 18.2652 19.8946 18.5196 19.7071 18.7071C19.5196 18.8946 19.2652 19 19 19H5C4.73478 19 4.48043 18.8946 4.29289 18.7071C4.10536 18.5196 4 18.2652 4 18V12.39L8.68 14C8.78618 14.0144 8.89382 14.0144 9 14H15C15.1084 13.998 15.2161 13.9812 15.32 13.95L20 12.39V18ZM20 10.28L14.84 12H9.16L4 10.28V9C4 8.73478 4.10536 8.48043 4.29289 8.29289C4.48043 8.10536 4.73478 8 5 8H19C19.2652 8 19.5196 8.10536 19.7071 8.29289C19.8946 8.48043 20 8.73478 20 9V10.28Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">Department</p>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="carbon:dot-mark">
+                    <path
+                      id="Vector"
+                      d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                      fill="#1B4E6B"
+                    />
+                  </g>
+                </svg>
+
+                <p className="text-[12px] text-black ml-2 mr-4">
+                  Web Development
+                </p>
+                <p className="bg-secondary px-2 py-1 text-primary rounded-2xl text-[12px]">
+                  Internship
+                </p>
+              </div>
+            </div>
+
+            <div className="hidden lg:block lg:relative lg:bottom-[30px]">
+              <svg
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="ep:arrow-up-bold">
+                  <path
+                    id="Vector"
+                    d="M5.79295 1.63269C5.60548 1.82022 5.50017 2.07453 5.50017 2.33969C5.50017 2.60486 5.60548 2.85916 5.79295 3.04669L10.743 7.99669L5.79295 12.9467C5.61079 13.1353 5.51 13.3879 5.51228 13.6501C5.51456 13.9123 5.61973 14.1631 5.80513 14.3485C5.99054 14.5339 6.24135 14.6391 6.50355 14.6414C6.76575 14.6436 7.01835 14.5429 7.20695 14.3607L12.864 8.70369C13.0514 8.51617 13.1567 8.26186 13.1567 7.99669C13.1567 7.73153 13.0514 7.47722 12.864 7.28969L7.20695 1.63269C7.01942 1.44522 6.76512 1.3399 6.49995 1.3399C6.23479 1.3399 5.98048 1.44522 5.79295 1.63269Z"
+                    fill="#1B4E6B"
+                  />
+                </g>
+              </svg>
             </div>
           </div>
 
@@ -191,7 +417,7 @@ const Careers = () => {
       {/* AKhir Open Position Section */}
 
       {/* Life at CC Section */}
-      <section className="w-full h-full flex flex-col lg:flex-row-reverse justify-center items-center lg:relative lg:bottom-[280px]">
+      <section className="w-full h-full bg-white flex flex-col lg:flex-row-reverse justify-center relative bottom-[80px] items-center">
         {/* image */}
         <div className="w-[327px] h-[296px] rounded-[25px] ">
           <img
@@ -238,6 +464,65 @@ const Careers = () => {
         </div>
       </section>
       {/* Akhir Life at CC Section */}
+
+      {/* Slider life at CC Section */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 py-[70px] relative bottom-[80px]">
+        <h2 className="text-primary xl:text-[36px] text-[28px] font-semibold text-center pt-[10px] mb-6">
+          Life at CC
+        </h2>
+
+        <div className="mt-[55px] mx-auto mb-0 rounded-[25px]">
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={"auto"}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 10,
+              slideShadows: false,
+            }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            modules={[EffectCoverflow, Navigation, Autoplay]}
+            className="swiper_container"
+          >
+            {careers.map((careers, index) => (
+              <SwiperSlide className="!w-[183px] !h-[130px] lg:!w-[522px] lg:!h-[371px] relative">
+                <img
+                  src={careers.url}
+                  key={index}
+                  alt="slide_image"
+                  className="w-[183px] h-[130px] lg:!w-[522px] lg:!h-[371px] object-cover shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)] rounded-[16px]"
+                />
+              </SwiperSlide>
+            ))}
+            <div className="slider-controler">
+              <div className="swiper-button-prev slider-arrow bg-secondary !w-[24px] !h-[24px] rounded-full !left-[0%] lg:!left-[5%] !translate-x-[40%]">
+                <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
+              </div>
+              <div className="swiper-button-next slider-arrow bg-secondary !w-[24px] !h-[24px] rounded-full !left-[95%] lg:!left-[92%] !translate-x-[-55%]">
+                <ArrowForwardIosIcon className="!w-[2rem] text-primary" />
+              </div>
+            </div>
+          </Swiper>
+        </div>
+      </section>
+      {/* Akhir Slider life at CC Section */}
+
+      {/* Footer */}
+      <div className="w-full bg-primary">
+        <Footer />
+      </div>
     </main>
   );
 };
