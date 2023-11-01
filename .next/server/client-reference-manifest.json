@@ -63,6 +63,14 @@
         "chunks": [],
         "async": false
       }
+    },
+    "(app-client)/./src/app/careers/[slug]/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/careers/[slug]/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -186,6 +194,14 @@
         "app/careers/page:static/chunks/app/careers/page.js"
       ],
       "async": false
+    },
+    "D:\\candidate-college\\src\\app\\careers\\[slug]\\page.tsx": {
+      "id": "(app-client)/./src/app/careers/[slug]/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/careers/[slug]/page:static/chunks/app/careers/[slug]/page.js"
+      ],
+      "async": false
     }
   },
   "entryCSSFiles": {
@@ -197,6 +213,9 @@
     ],
     "D:\\candidate-college\\src\\app\\careers\\page": [
       "static/css/app/careers/page.css"
+    ],
+    "D:\\candidate-college\\src\\app\\careers\\[slug]\\page": [
+      "static/css/app/careers/[slug]/page.css"
     ]
   }
 }

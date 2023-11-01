@@ -47,7 +47,7 @@ const Detail = () => {
           </div>
 
           <button className="mt-10 rounded-[50px] px-[35px] py-3 w-full h-full bg-secondary flex items-center justify-center lg:hidden">
-            Apply Now
+            <a href="#applyForm">Apply Now</a>
             <div className="ml-2 self-center">
               <BlackCaretIcon />
             </div>
@@ -145,7 +145,11 @@ const Detail = () => {
 
             {/* form */}
             <div className="flex flex-col w-full items-start mt-12">
-              <form action="" className="flex flex-col w-full gap-4">
+              <form
+                action=""
+                className="flex flex-col w-full gap-4"
+                id="applyForm"
+              >
                 <div className="flex flex-col lg:flex-row lg:gap-6 lg:w-full">
                   <div className="flex flex-col lg:w-full">
                     <label htmlFor="firstName">First Name</label>
@@ -229,7 +233,7 @@ const Detail = () => {
                     />
                   </div>
 
-                  <div className="flex flex-col lg:w-full">
+                  <div className="flex flex-col lg:w-full mt-4">
                     <p className="text-[16px] leading-[24px] font-medium">
                       Additional file
                     </p>
@@ -274,7 +278,7 @@ const Detail = () => {
 
           <div className="flex flex-col">
             <button className="mt-10 rounded-[50px] px-[35px] py-3 h-full bg-secondary items-center justify-center hidden lg:flex w-max">
-              Apply Now
+              <a href="#applyForm">Apply Now</a>
               <div className="ml-2 self-center">
                 <BlackCaretIcon />
               </div>

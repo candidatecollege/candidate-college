@@ -1,3 +1,4 @@
 {
-  "/careers/page": "app/careers/page.js"
+  "/careers/page": "app/careers/page.js",
+  "/careers/[slug]/page": "app/careers/[slug]/page.js"
 }
