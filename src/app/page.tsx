@@ -37,7 +37,7 @@ export default function Home() {
 
     try {
       const response = await axios.get(
-        `https://resource.candidatecollegeind.com/api/articles?count=8`
+        `https://resource-candidatecollege.infinityfreeapp.com/api/articles?count=8`
       );
 
       setTimeout(() => {
@@ -217,7 +217,7 @@ export default function Home() {
                     className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
                   >
                     <Image
-                      src={`https://resource.candidatecollegeind.com/storage/${article.cover}`}
+                      src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${article.cover}`}
                       alt={article.title}
                       title={article.title}
                       className="rounded-lg w-[22rem] h-[22rem] object-cover"

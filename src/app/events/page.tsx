@@ -1,99 +1,110 @@
-'use client'
-import { CTA, CardItem, ComingSoon, Footer, ListItem, Navbar } from '@/components'
-import { articlesOnLanding, articlesOnPage } from '@/data/articleData'
-import { categories } from '@/data/eventData'
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+"use client";
+import {
+  CTA,
+  CardItem,
+  ComingSoon,
+  Footer,
+  ListItem,
+  Navbar,
+} from "@/components";
+import { articlesOnLanding, articlesOnPage } from "@/data/articleData";
+import { categories } from "@/data/eventData";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
-import axios from 'axios'
-import CardItemLandscape from '@/components/CardItemLandscape'
-import JumboItem from '@/components/JumboItem'
-import { formatDate } from '@/utils/time'
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import axios from "axios";
+import CardItemLandscape from "@/components/CardItemLandscape";
+import JumboItem from "@/components/JumboItem";
+import { formatDate } from "@/utils/time";
 
 const Programs = () => {
-  const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false)
-  const [isSeeLatest, setIsSeeLatest] = useState<boolean>(false)
-  const [currentIndexSlider, setCurrentIndexSlider] = useState<number>(0)
-  const [activeCategory, setActiveCategory] = useState<string>('All')
+  const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false);
+  const [isSeeLatest, setIsSeeLatest] = useState<boolean>(false);
+  const [currentIndexSlider, setCurrentIndexSlider] = useState<number>(0);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const [categories, setCategories] = useState<any[]>([])
-  const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(false)
-  const loadingContent = [1, 2, 3, 4, 5, 6]
+  const [categories, setCategories] = useState<any[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] =
+    useState<boolean>(false);
+  const loadingContent = [1, 2, 3, 4, 5, 6];
 
   const fetchCategories = async () => {
-    setIsLoadingCategories(true)
+    setIsLoadingCategories(true);
 
     try {
-      const response = await axios.get(`https://resource.candidatecollegeind.com/api/event/categories`)
+      const response = await axios.get(
+        `https://resource-candidatecollege.infinityfreeapp.com/api/event/categories`
+      );
 
       setTimeout(() => {
         setCategories(response.data.data);
         setIsLoadingCategories(false); // After setting the data, set isLoading to false
       }, 1500);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
-  const [events, setEvents] = useState<any[]>([])
-  const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(false)
-  const loadingContents = [1, 2, 3, 4, 5, 6]
-
+  const [events, setEvents] = useState<any[]>([]);
+  const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(false);
+  const loadingContents = [1, 2, 3, 4, 5, 6];
 
   const fetchEvents = async () => {
-    setIsLoadingEvents(true)
+    setIsLoadingEvents(true);
 
     try {
-      const response = await axios.get(`https://resource.candidatecollegeind.com/api/events?count=100`)
+      const response = await axios.get(
+        `https://resource-candidatecollege.infinityfreeapp.com/api/events?count=100`
+      );
 
       setTimeout(() => {
         setEvents(response.data.data);
         setIsLoadingEvents(false); // After setting the data, set isLoading to false
       }, 1500);
     } catch (error) {
-      console.error(error)
-      setIsLoadingEvents(false)
+      console.error(error);
+      setIsLoadingEvents(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchCategories()
-    fetchEvents()
-  }, [])
+    fetchCategories();
+    fetchEvents();
+  }, []);
 
   return (
     <main className="bg-primary h-full">
       {/* Navbar */}
-      <Navbar active='Events' isDetail={false} />
+      <Navbar active="Events" isDetail={false} />
 
       {/* Hero */}
       <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
-
-        <Image 
-          src={'/decoration/programs.png'}
+        <Image
+          src={"/decoration/programs.png"}
           width={0}
           height={0}
-          className='w-[25rem]'
-          alt='Article Decoration'
-          title='Article Decoration'
+          className="w-[25rem]"
+          alt="Article Decoration"
+          title="Article Decoration"
         />
 
         <div className="flex flex-col gap-4 mb-3">
           <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:leading-[100%] leading-[150%]">
-          Achieve Quality Equally For All Indonesian Student.
+            Achieve Quality Equally For All Indonesian Student.
           </h1>
 
           <p className="text-gray text-sm lg:text-base md:w-[85%]">
-          Candidate College is an Education Platform that works to facilitate students in Indonesia at home and aboard to achieve a quality education system.
+            Candidate College is an Education Platform that works to facilitate
+            students in Indonesia at home and aboard to achieve a quality
+            education system.
           </p>
         </div>
       </section>
 
       {/* Events */}
       <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
-
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           {/* <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
@@ -110,43 +121,57 @@ const Programs = () => {
             </div>
           </div> */}
 
-            <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
-              {
-                isLoadingEvents ? 
-                loadingContent?.map((event, index) => (
-                  <CardItemLandscape key={index} data={event} type={'Event'} isLoading={true} />
+          <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
+            {isLoadingEvents
+              ? loadingContent?.map((event, index) => (
+                  <CardItemLandscape
+                    key={index}
+                    data={event}
+                    type={"Event"}
+                    isLoading={true}
+                  />
                 ))
-                :
-                events.map((event, index) => (
-                  <Link href={`/events/${event.slug}`} about={event.name} title={event.name} className={`flex-col gap-2 md:items-center md:gap-2 flex md:w-[320px]`}>
-                    
-                <Image 
-                    width={100}
-                    height={180}
-                    src={`https://resource.candidatecollegeind.com/storage/${event.cover_landscape}`}
-                    alt={event.name}
+              : events.map((event, index) => (
+                  <Link
+                    href={`/events/${event.slug}`}
+                    about={event.name}
                     title={event.name}
-                    className='w-full h-[178px] md:h-[168px] rounded-xl object-cover'
-                    priority
-                />
+                    className={`flex-col gap-2 md:items-center md:gap-2 flex md:w-[320px]`}
+                  >
+                    <Image
+                      width={100}
+                      height={180}
+                      src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${event.cover_landscape}`}
+                      alt={event.name}
+                      title={event.name}
+                      className="w-full h-[178px] md:h-[168px] rounded-xl object-cover"
+                      priority
+                    />
 
-                <div className="flex md:flex-1 flex-col gap">
-                    <Link href={`/events/${event.slug}`} about={event.name} title={event.name} className="font-semibold text-2xl text-primary">
-                        {event.name.length > 40 ? event.name.substring(0, 48) + ' ...' : event.name}
-                    </Link>
+                    <div className="flex md:flex-1 flex-col gap">
+                      <Link
+                        href={`/events/${event.slug}`}
+                        about={event.name}
+                        title={event.name}
+                        className="font-semibold text-2xl text-primary"
+                      >
+                        {event.name.length > 40
+                          ? event.name.substring(0, 48) + " ..."
+                          : event.name}
+                      </Link>
 
-                    <p className="font-normal text-sm text-gray">
-                        {event.snippets.substring(0, 150) + ' ...'}
-                    </p>
+                      <p className="font-normal text-sm text-gray">
+                        {event.snippets.substring(0, 150) + " ..."}
+                      </p>
 
-                    <p className="font-normal text-xs text-gray mt-5">
-                        On {formatDate(event.start_date_time)} &nbsp; | &nbsp; Regist On {formatDate(event.registration_date_time)}
-                    </p>
-                </div>
-            </Link>
-                ))
-              }
-            </div> 
+                      <p className="font-normal text-xs text-gray mt-5">
+                        On {formatDate(event.start_date_time)} &nbsp; | &nbsp;
+                        Regist On {formatDate(event.registration_date_time)}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+          </div>
 
           {/* <div className={`${activeCategory != 'All' ? 'flex flex-col' : 'hidden'}`}>
             <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
@@ -185,14 +210,18 @@ const Programs = () => {
             </div>
           </div> */}
 
-          <div className={`${activeCategory != 'All' ? 'hidden' : 'flex flex-col'}`}>
+          <div
+            className={`${
+              activeCategory != "All" ? "hidden" : "flex flex-col"
+            }`}
+          >
             {/* <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">Latest</h2>
               <div className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary">
                 See all <span className='text-primary text-sm md:text-base'><ArrowForwardRoundedIcon fontSize='inherit' color='inherit' /></span>
               </div>
             </div> */}
-            
+
             {/* <div className="flex flex-col gap-5 w-full mt-7">
               <JumboItem data={articlesOnPage[currentIndexSlider]} isLoading={true} />
 
@@ -250,7 +279,6 @@ const Programs = () => {
             </section> */}
           </div>
         </div>
-
       </section>
 
       {/* CTA */}
@@ -258,10 +286,10 @@ const Programs = () => {
 
       {/* Footer */}
       <div className="w-full bg-primary">
-      <Footer />
+        <Footer />
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Programs
+export default Programs;
