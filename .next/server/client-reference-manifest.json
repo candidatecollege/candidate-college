@@ -40,14 +40,6 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./src/app/page.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
     "(app-client)/./src/components/GoogleAnalytics.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/GoogleAnalytics.tsx",
@@ -56,17 +48,25 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/careers/page.tsx": {
+    "(app-client)/./src/app/page.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/careers/page.tsx",
+        "id": "(sc_client)/./src/app/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
       }
     },
-    "(app-client)/./src/app/careers/[slug]/page.tsx": {
+    "(app-client)/./src/app/about/page.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/careers/[slug]/page.tsx",
+        "id": "(sc_client)/./src/app/about/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/coming/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/coming/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -75,7 +75,7 @@
   },
   "edgeSSRModuleMapping": {},
   "clientModules": {
-    "D:\\candidate-college\\node_modules\\next\\dist\\client\\components\\error-boundary.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\client\\components\\error-boundary.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/error-boundary.js",
       "name": "*",
       "chunks": [
@@ -83,7 +83,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\error-boundary.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\error-boundary.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/error-boundary.js",
       "name": "*",
       "chunks": [
@@ -91,7 +91,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\client\\components\\app-router.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\client\\components\\app-router.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/app-router.js",
       "name": "*",
       "chunks": [
@@ -99,7 +99,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\app-router.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\app-router.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/app-router.js",
       "name": "*",
       "chunks": [
@@ -107,7 +107,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\client\\components\\layout-router.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\client\\components\\layout-router.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/layout-router.js",
       "name": "*",
       "chunks": [
@@ -115,7 +115,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\layout-router.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\layout-router.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/layout-router.js",
       "name": "*",
       "chunks": [
@@ -123,7 +123,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\client\\components\\render-from-template-context.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\client\\components\\render-from-template-context.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/render-from-template-context.js",
       "name": "*",
       "chunks": [
@@ -131,7 +131,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\render-from-template-context.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\render-from-template-context.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/render-from-template-context.js",
       "name": "*",
       "chunks": [
@@ -139,7 +139,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\client\\components\\static-generation-searchparams-bailout-provider.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\client\\components\\static-generation-searchparams-bailout-provider.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js",
       "name": "*",
       "chunks": [
@@ -147,7 +147,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\static-generation-searchparams-bailout-provider.js": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\dist\\esm\\client\\components\\static-generation-searchparams-bailout-provider.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/static-generation-searchparams-bailout-provider.js",
       "name": "*",
       "chunks": [
@@ -155,15 +155,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\src\\app\\page.tsx": {
-      "id": "(app-client)/./src/app/page.tsx",
-      "name": "*",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "D:\\candidate-college\\node_modules\\next\\font\\google\\target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}": {
+    "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\font\\google\\target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}": {
       "id": "(app-client)/./node_modules/next/font/google/target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}",
       "name": "*",
       "chunks": [
@@ -171,7 +163,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\src\\components\\GoogleAnalytics.tsx": {
+    "D:\\CODING\\CC\\candidate-college\\src\\components\\GoogleAnalytics.tsx": {
       "id": "(app-client)/./src/components/GoogleAnalytics.tsx",
       "name": "*",
       "chunks": [
@@ -179,7 +171,7 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\src\\app\\globals.css": {
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\globals.css": {
       "id": "(app-client)/./src/app/globals.css",
       "name": "*",
       "chunks": [
@@ -187,35 +179,43 @@
       ],
       "async": false
     },
-    "D:\\candidate-college\\src\\app\\careers\\page.tsx": {
-      "id": "(app-client)/./src/app/careers/page.tsx",
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\page.tsx": {
+      "id": "(app-client)/./src/app/page.tsx",
       "name": "*",
       "chunks": [
-        "app/careers/page:static/chunks/app/careers/page.js"
+        "app/page:static/chunks/app/page.js"
       ],
       "async": false
     },
-    "D:\\candidate-college\\src\\app\\careers\\[slug]\\page.tsx": {
-      "id": "(app-client)/./src/app/careers/[slug]/page.tsx",
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\page.tsx": {
+      "id": "(app-client)/./src/app/about/page.tsx",
       "name": "*",
       "chunks": [
-        "app/careers/[slug]/page:static/chunks/app/careers/[slug]/page.js"
+        "app/about/page:static/chunks/app/about/page.js"
+      ],
+      "async": false
+    },
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\coming\\page.tsx": {
+      "id": "(app-client)/./src/app/coming/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/coming/page:static/chunks/app/coming/page.js"
       ],
       "async": false
     }
   },
   "entryCSSFiles": {
-    "D:\\candidate-college\\src\\app\\page": [
-      "static/css/app/page.css"
-    ],
-    "D:\\candidate-college\\src\\app\\layout": [
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\layout": [
       "static/css/app/layout.css"
     ],
-    "D:\\candidate-college\\src\\app\\careers\\page": [
-      "static/css/app/careers/page.css"
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\page": [
+      "static/css/app/page.css"
     ],
-    "D:\\candidate-college\\src\\app\\careers\\[slug]\\page": [
-      "static/css/app/careers/[slug]/page.css"
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\page": [
+      "static/css/app/about/page.css"
+    ],
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\coming\\page": [
+      "static/css/app/coming/page.css"
     ]
   }
 }
