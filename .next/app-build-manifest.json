@@ -12,17 +12,16 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/about/page": [
+    "/careers/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/about/page.css",
-      "static/chunks/app/about/page.js"
+      "static/css/app/careers/page.css",
+      "static/chunks/app/careers/page.js"
     ],
-    "/coming/page": [
+    "/careers/admin/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/coming/page.css",
-      "static/chunks/app/coming/page.js"
+      "static/chunks/app/careers/admin/dashboard/page.js"
     ]
   }
 }

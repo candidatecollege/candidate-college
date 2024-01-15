@@ -56,17 +56,17 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/about/page.tsx": {
+    "(app-client)/./src/app/careers/page.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/about/page.tsx",
+        "id": "(sc_client)/./src/app/careers/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
       }
     },
-    "(app-client)/./src/app/coming/page.tsx": {
+    "(app-client)/./src/app/careers/admin/dashboard/page.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/coming/page.tsx",
+        "id": "(sc_client)/./src/app/careers/admin/dashboard/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -187,19 +187,19 @@
       ],
       "async": false
     },
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\page.tsx": {
-      "id": "(app-client)/./src/app/about/page.tsx",
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\page.tsx": {
+      "id": "(app-client)/./src/app/careers/page.tsx",
       "name": "*",
       "chunks": [
-        "app/about/page:static/chunks/app/about/page.js"
+        "app/careers/page:static/chunks/app/careers/page.js"
       ],
       "async": false
     },
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\coming\\page.tsx": {
-      "id": "(app-client)/./src/app/coming/page.tsx",
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\dashboard\\page.tsx": {
+      "id": "(app-client)/./src/app/careers/admin/dashboard/page.tsx",
       "name": "*",
       "chunks": [
-        "app/coming/page:static/chunks/app/coming/page.js"
+        "app/careers/admin/dashboard/page:static/chunks/app/careers/admin/dashboard/page.js"
       ],
       "async": false
     }
@@ -211,11 +211,9 @@
     "D:\\CODING\\CC\\candidate-college\\src\\app\\page": [
       "static/css/app/page.css"
     ],
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\page": [
-      "static/css/app/about/page.css"
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\page": [
+      "static/css/app/careers/page.css"
     ],
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\coming\\page": [
-      "static/css/app/coming/page.css"
-    ]
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\dashboard\\page": []
   }
 }
