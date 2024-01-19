@@ -1,28 +1,26 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/careers/page": [
+    "/careers/admin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/careers/page.css",
-      "static/chunks/app/careers/page.js"
+      "static/chunks/app/careers/admin/layout.js"
     ],
-    "/careers/[slug]/page": [
+    "/careers/admin/(main)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/careers/[slug]/page.css",
-      "static/chunks/app/careers/[slug]/page.js"
+      "static/chunks/app/careers/admin/(main)/layout.js"
+    ],
+    "/careers/admin/(main)/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/careers/admin/(main)/dashboard/page.css",
+      "static/chunks/app/careers/admin/(main)/dashboard/page.js"
     ]
   }
 }
