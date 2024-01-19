@@ -22,7 +22,7 @@ const categories = [
 
 export default function DashboardPage() {
   return (
-    <main className="p-6 py-4 ml-[266px] hidden lg:block">
+    <main className="p-6 py-4 pb-8 ml-[266px] hidden lg:block">
       {/* Bagian header */}
       <section className="flex items-center justify-between">
         <div className="py-4">
