@@ -40,6 +40,22 @@
         "async": false
       }
     },
+    "(app-client)/./src/app/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/font/google/target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/font/google/target.css?{\"path\":\"src\\\\components\\\\admin\\\\dashboard\\\\Profile.tsx\",\"import\":\"Poppins\",\"arguments\":[{\"weight\":\"600\",\"subsets\":[\"devanagari\"]}],\"variableName\":\"poppins\"}",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./src/components/GoogleAnalytics.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/GoogleAnalytics.tsx",
@@ -48,9 +64,9 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/page.tsx": {
+    "(app-client)/./src/app/careers/admin/(main)/layout.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/page.tsx",
+        "id": "(sc_client)/./src/app/careers/admin/(main)/layout.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -64,9 +80,9 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/careers/admin/(main)/layout.tsx": {
+    "(app-client)/./src/app/about/page.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/careers/admin/(main)/layout.tsx",
+        "id": "(sc_client)/./src/app/about/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -155,6 +171,14 @@
       ],
       "async": false
     },
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\page.tsx": {
+      "id": "(app-client)/./src/app/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
     "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\font\\google\\target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}": {
       "id": "(app-client)/./node_modules/next/font/google/target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}",
       "name": "*",
@@ -179,11 +203,11 @@
       ],
       "async": false
     },
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\page.tsx": {
-      "id": "(app-client)/./src/app/page.tsx",
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\(main)\\layout.tsx": {
+      "id": "(app-client)/./src/app/careers/admin/(main)/layout.tsx",
       "name": "*",
       "chunks": [
-        "app/page:static/chunks/app/page.js"
+        "app/careers/admin/(main)/layout:static/chunks/app/careers/admin/(main)/layout.js"
       ],
       "async": false
     },
@@ -195,24 +219,29 @@
       ],
       "async": false
     },
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\(main)\\layout.tsx": {
-      "id": "(app-client)/./src/app/careers/admin/(main)/layout.tsx",
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\page.tsx": {
+      "id": "(app-client)/./src/app/about/page.tsx",
       "name": "*",
       "chunks": [
-        "app/careers/admin/(main)/layout:static/chunks/app/careers/admin/(main)/layout.js"
+        "app/about/page:static/chunks/app/about/page.js"
       ],
       "async": false
     }
   },
   "entryCSSFiles": {
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\layout": [
-      "static/css/app/layout.css"
-    ],
     "D:\\CODING\\CC\\candidate-college\\src\\app\\page": [
       "static/css/app/page.css"
     ],
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\layout": [
+      "static/css/app/layout.css"
+    ],
     "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\layout": [],
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\(main)\\dashboard\\page": [],
-    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\(main)\\layout": []
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\(main)\\layout": [],
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\careers\\admin\\(main)\\dashboard\\page": [
+      "static/css/app/careers/admin/(main)/dashboard/page.css"
+    ],
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\page": [
+      "static/css/app/about/page.css"
+    ]
   }
 }

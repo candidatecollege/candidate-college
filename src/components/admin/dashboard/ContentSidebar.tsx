@@ -49,7 +49,7 @@ export default function ContentSidebar() {
         key={index}
         href={path}
         className={`flex items-center gap-4 cursor-pointer ${
-          path === pathname ? "bg-white" : ""
+          path === pathname ? "bg-secondary" : ""
         } px-4 py-3 rounded-3xl`}
       >
         {icon}
@@ -63,8 +63,4 @@ export default function ContentSidebar() {
       </Link>
     );
   });
-  // <li className="flex items-center gap-4">
-  //   <FolderSvg />
-  //   <h2 className="text-[14px] leading-[20px]">Candidate</h2>
-  // </li>
 }

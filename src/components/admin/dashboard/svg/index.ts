@@ -4,5 +4,6 @@ import Logout from "./LogoutSvg";
 import Notification from "./NotificationSvg";
 import Profile from "./ProfileSvg";
 import Search from "./SearchSvg";
+import Attachment from "./AttachmentSvg";
 
-export { Clipboard, Folder, Logout, Notification, Profile, Search };
+export { Clipboard, Folder, Attachment, Logout, Notification, Profile, Search };

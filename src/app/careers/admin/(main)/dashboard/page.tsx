@@ -1,44 +1,90 @@
 "use client";
 
-import Image from "next/image";
-import { Notification, Search } from "@/components/admin/dashboard/svg";
+import Profile from "@/components/admin/dashboard/Profile";
+import SearchNav from "@/components/admin/dashboard/SearchNav";
+import Table from "@/components/admin/dashboard/Table";
+import Pagination from "@/components/admin/dashboard/Pagination";
+
+const categories = [
+  {
+    title: "Web development",
+    active: true,
+  },
+  {
+    title: "Cloud computing",
+    active: false,
+  },
+  {
+    title: "Linux Developer",
+    active: false,
+  },
+];
 
 export default function DashboardPage() {
   return (
-    <section className="p-6 py-4  w-full">
-      <div className="flex items-center justify-between">
+    <main className="p-6 py-4 ml-[266px] hidden lg:block">
+      {/* Bagian header */}
+      <section className="flex items-center justify-between">
         <div className="py-4">
-          <h1 className="text-[57px] leading-[58px]">Candidate</h1>
+          <h1 className="text-[57px] font-normal leading-[58px]">Candidate</h1>
           <span className="text-[16px] text-gray">
             Reporting of your candidate
           </span>
         </div>
         <div className="flex">
-          <div className="border-r  flex gap-4 px-8 border-r-primary">
-            <button className="rounded-full border border-gray p-4">
-              <Search />
-            </button>
-            <button className="rounded-full border border-gray p-4">
-              <Notification />
-            </button>
-          </div>
-          <div className="flex pl-14 items-center gap-4">
-            <div className="text-[14px] leading-[16px]">
-              <h3 className="text-end text-primary font-semibold">Sabina</h3>
-              <span className="text-gray">Human Resources</span>
-            </div>
-            <div className="w-[55px] h-[55px]  !box-border p-2 border-gray rounded-full border">
-              <Image
-                alt="Foto profile"
-                className="w-full h-full"
-                src={"/logo/logo-cc.png"}
-                width={100}
-                height={100}
-              />
-            </div>
-          </div>
+          <SearchNav />
+          <Profile />
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section>
+        <ul className="flex items-center gap-3 flex-wrap">
+          {categories.map(({ title, active }, index) => {
+            return (
+              <li key={index}>
+                <button
+                  className={`${
+                    active
+                      ? "bg-primary  text-white"
+                      : "bg-transparent border-gray border-2 text-gray"
+                  } text-[14px] rounded-3xl p-3`}
+                >
+                  {title}
+                </button>
+              </li>
+            );
+          })}
+          <li className="text-primary font-medium">
+            <button>All Position</button>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <Table />
+      </section>
+      <section className="flex items-center justify-between pt-5">
+        <div>
+          <span className="text-[#00000081] text-[14px]">
+            Showing 1 to 10 of 20, 567 entries
+          </span>
+        </div>
+        <div>
+          <Pagination />
+        </div>
+        <div className="flex gap-1">
+          <span>show</span>
+          <select
+            className="bg-primary text-white rounded-lg text-[10px]"
+            name=""
+            id=""
+          >
+            <option defaultChecked>10</option>
+            <option defaultChecked>20</option>
+          </select>
+          <span>entries</span>
+        </div>
+      </section>
+    </main>
   );
 }
