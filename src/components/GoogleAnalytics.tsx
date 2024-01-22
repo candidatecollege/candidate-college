@@ -1,9 +1,9 @@
-'use client'
-import Script from 'next/script'
- 
+"use client";
+import Script from "next/script";
+
 const GoogleAnalytics = () => {
   return (
-    <div className="container">
+    <>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-M41SF38MQ6" />
       <Script id="google-analytics">
         {`
@@ -14,8 +14,8 @@ const GoogleAnalytics = () => {
           gtag('config', 'G-M41SF38MQ6');
         `}
       </Script>
-    </div>
-  )
-}
- 
-export default GoogleAnalytics
+    </>
+  );
+};
+
+export default GoogleAnalytics;
