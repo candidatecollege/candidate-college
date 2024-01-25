@@ -16,9 +16,7 @@ const Latest = () => {
     setIsLoadingArticles(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/articles?count=100`
-      );
+      const response = await axios.get(`/api/articles?count=100`);
 
       setTimeout(() => {
         setArticles(response.data.data);

@@ -23,9 +23,7 @@ const Detail = () => {
   const fetchArticle = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/articles/${slug}`
-      );
+      const response = await axios.get(`/api/articles/${slug}`);
 
       setTimeout(() => {
         setArticle(response.data.data);
@@ -52,9 +50,7 @@ const Detail = () => {
       "Nowdays",
     ]);
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/article/categories/${id}`
-      );
+      const response = await axios.get(`/api/article/categories/${id}`);
 
       setTimeout(() => {
         setRelatedArticles(response.data.data.articles);
@@ -199,9 +195,7 @@ const Detail = () => {
           </div>
 
           <Image
-            src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${
-              article && article.cover_landscape
-            }`}
+            src={`/uploads/${article && article.cover_landscape}`}
             alt="Cover Landscape"
             title="Cover Landscape"
             width={100}
@@ -210,9 +204,7 @@ const Detail = () => {
           />
 
           <Image
-            src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${
-              article && article.cover
-            }`}
+            src={`/uploads/${article && article.cover}`}
             alt="Cover Landscape"
             title="Cover Landscape"
             width={100}

@@ -10,6 +10,14 @@ const nextConfig = {
     unoptimized: true,
   },
   optimizeFonts: false,
+  async rewrites() {
+    return [
+      {
+        source: "/:slug(api|uploads)/:path*",
+        destination: "https://cors-proxy-infinityfree.vercel.app/:slug/:path*",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
