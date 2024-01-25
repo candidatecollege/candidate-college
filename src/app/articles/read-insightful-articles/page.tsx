@@ -35,9 +35,7 @@ const ReadInsightfulArticles = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/article/categories`
-      );
+      const response = await axios.get(`/api/article/categories`);
 
       setTimeout(() => {
         setCategories(response.data.data);

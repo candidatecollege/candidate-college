@@ -47,9 +47,7 @@ const Articles = () => {
     const id = categoryId(activeCategory, categories);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/article/categories/${id}`
-      );
+      const response = await axios.get(`/api/article/categories/${id}`);
 
       console.log(response);
 
@@ -72,9 +70,7 @@ const Articles = () => {
     setIsLoadingArticles(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/articles?count=8`
-      );
+      const response = await axios.get(`/api/articles?count=12`);
 
       setTimeout(() => {
         setArticles(response.data.data);
@@ -90,9 +86,7 @@ const Articles = () => {
     setIsLoadingCategories(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/article/categories`
-      );
+      const response = await axios.get(`/api/article/categories`);
 
       setTimeout(() => {
         setCategories(response.data.data);
@@ -248,12 +242,12 @@ const Articles = () => {
             <div className="flex flex-col gap-5 w-full mt-7">
               {isLoadingArticleByCategory ? (
                 <JumboItem
-                  data={articlesByCategory[currentIndexSlider]}
+                  data={articles[currentIndexSlider]}
                   isLoading={true}
                 />
               ) : (
                 <JumboItem
-                  data={articlesByCategory[currentIndexSlider]}
+                  data={articles[currentIndexSlider]}
                   isLoading={false}
                 />
               )}
@@ -261,7 +255,7 @@ const Articles = () => {
               <div className="md:flex flex-row gap-4 hidden">
                 {isLoadingArticles
                   ? articles
-                      .slice(0, 3)
+                      .slice(1, 4)
                       .map((article, index) => (
                         <CardItemLandscape
                           key={index}
@@ -271,7 +265,7 @@ const Articles = () => {
                         />
                       ))
                   : articles
-                      .slice(0, 3)
+                      .slice(1, 4)
                       .map((article, index) => (
                         <CardItemLandscape
                           key={index}
@@ -283,7 +277,7 @@ const Articles = () => {
               </div>
 
               <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
-                {articles.slice(0, 3).map((article, index) => (
+                {articles.slice(1, 4).map((article, index) => (
                   <div
                     key={index}
                     onClick={(e) => setCurrentIndexSlider(index)}
@@ -371,7 +365,7 @@ const Articles = () => {
                           className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
                         >
                           <Image
-                            src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${article.cover}`}
+                            src={`/uploads/${article.cover}`}
                             alt={article.title}
                             title={article.title}
                             className="rounded-lg w-[22rem] h-[22rem] object-cover"
