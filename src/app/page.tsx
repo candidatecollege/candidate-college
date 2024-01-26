@@ -11,6 +11,8 @@ import {
 import { articles, articlesOnLanding } from "@/data/articleData";
 import "./scrollable.css";
 import { useEffect, useState, useRef } from "react";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import axios from "axios";
 
 // Import Swiper React components
@@ -27,18 +29,45 @@ import { Navigation } from "swiper/modules";
 
 import "../styles/swiper-article.css";
 
+type Event = {
+  start_date_time: string;
+  slug: string;
+  cover: string;
+  type: string;
+  name: string;
+  snippets: string;
+};
+
+type EventCountdowns = {
+  [slug: string]: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  };
+};
+
 export default function Home() {
   const [articles, setArticles] = useState<any[]>([]);
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(false);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [isLoadingEvents, setIsLoadingEvents] = useState<boolean>(false);
+
+  const [eventStartTime, setEventStartTime] = useState(0); // Initialize with 0 or the actual start time from the API
+  const [timeRemaining, setTimeRemaining] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [eventCountdowns, setEventCountdowns] = useState<EventCountdowns>({});
   const loadingContent = [1, 2, 3, 4, 5, 6];
 
   const fetchArticles = async () => {
     setIsLoadingArticles(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/articles?count=8`
-      );
+      const response = await axios.get(`/api/articles?count=8`);
 
       setTimeout(() => {
         setArticles(response.data.data);
@@ -55,6 +84,121 @@ export default function Home() {
   useEffect(() => {
     fetchArticles();
   }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get("/api/events");
+      const eventData = response.data.data; // Get the data from the response
+      setEvents(eventData);
+      setIsLoadingEvents(false);
+
+      // Calculate and set the countdown for each event
+      const now = new Date().getTime();
+      const countdowns: { [key: string]: any } = {};
+
+      eventData.forEach((event: any) => {
+        // Specify the type of 'event' as 'any'
+        const eventStartTime = new Date(event.start_date_time).getTime();
+        const timeDifference = eventStartTime - now;
+
+        if (timeDifference <= 0) {
+          // Event has started, set countdown to 0
+          countdowns[event.slug] = {
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+          };
+        } else {
+          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+          countdowns[event.slug] = {
+            days,
+            hours,
+            minutes,
+            seconds,
+          };
+        }
+      });
+
+      setEventCountdowns(countdowns);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      setIsLoadingEvents(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  // Function to calculate and update the countdown for a specific event
+  const updateCountdownForEvent = (eventSlug: any, startTime: any) => {
+    const now = new Date().getTime();
+    const timeDifference = startTime - now;
+
+    if (timeDifference <= 0) {
+      // Event has started, set countdown to 0
+      setEventCountdowns((prevCountdowns) => ({
+        ...prevCountdowns,
+        [eventSlug]: {
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        },
+      }));
+    } else {
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      setEventCountdowns((prevCountdowns) => ({
+        ...prevCountdowns,
+        [eventSlug]: {
+          days,
+          hours,
+          minutes,
+          seconds,
+        },
+      }));
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    // Update the countdown for each event
+    for (const event of events) {
+      const eventStartTime = new Date(event.start_date_time).getTime();
+      updateCountdownForEvent(event.slug, eventStartTime);
+    }
+
+    // Set up an interval to update the countdown every second
+    const countdownInterval = setInterval(() => {
+      for (const event of events) {
+        const eventStartTime = new Date(event.start_date_time).getTime();
+        updateCountdownForEvent(event.slug, eventStartTime);
+      }
+    }, 1000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(countdownInterval);
+  }, [events]);
 
   return (
     <main className="bg-primary h-full">
@@ -217,7 +361,7 @@ export default function Home() {
                     className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
                   >
                     <Image
-                      src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${article.cover}`}
+                      src={`/uploads/${article.cover}`}
                       alt={article.title}
                       title={article.title}
                       className="rounded-lg w-[22rem] h-[22rem] object-cover"
@@ -261,75 +405,103 @@ export default function Home() {
       </section>
 
       {/* Events */}
-      {/* <section className="w-full h-full bg-white px-5 py-10 md:py-10 flex flex-col gap-9 -mt-1 md:px-10 overflow-hidden">
-        <div className="flex flex-col gap-2 w-full md:px-10">
-          <h3 className="text-primary text-xs md:text-base font-medium uppercase">{eventSectionOnLanding.subtitle}</h3>
-          <div className="flex flex-col gap-2 md:flex-row md:gap-20 md:items-center">
-            <h2 className='text-secondary text-2xl md:text-[40px] font-medium w-[20rem] md:w-[30rem] md:leading-[40px]'>{eventSectionOnLanding.title}</h2>
-            <p className="text-gray text-sm lg:text-base md:w-[40%]">
-            {eventSectionOnLanding.description}
-            </p>
-          </div>
-        </div>
-        
-        <div className="flex gap-2 overflow-x-auto overflow-y-hidden w-full h-full pb-2 md:px-10 no-scrollbar scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-          <div className="flex flex-row gap-4 no-scrollbar scrollbar-hide" style={{ minWidth: `${articlesOnLanding.length * 22}rem`, }}>
-            {articlesOnLanding.map((article, index) => (
-              <div key={index} className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
-                <Image 
-                  src={article.cover}
-                  alt={article.title}
-                  title={article.title}
-                  className="rounded-lg w-[22rem] h-[20rem]"
-                  width={0}
-                  height={0}
-                />
+      {/* Should be fixed */}
+      {/* <section className="flex flex-col w-full h-full bg-white pt-[100px] pb-40">
+        <h3 className="text-primary md:px-[70px] xl:text-base text-sm font-normal text-center">
+          Our Events
+        </h3>
+        <h2 className="text-secondary md:px-[70px] xl:text-[40px] text-[35px] font-semibold text-center">
+          Join and Develop With Us
+        </h2>
+        <p className="text-primary text-base md:text-[18px] font-normal leading-6 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
+          Engage in enriching experiences that foster growth. Join us for
+          insightful sessions, workshops, and more. Don't miss out!
+        </p>
 
-                <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
-                  <div className="flex flex-row items-center justify-between">
-                    <div className="flex flex-row gap-4">
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="font-semibold text-primary">5</p>
-                        <p className="text-xs font-normal text-gray">
-                          Days
-                        </p>
+        <div className="mt-[105px] w-full m-auto">
+          <Swiper
+            slidesPerView={"auto"}
+            // spaceBetween={55}
+            centeredSlides={true}
+            grabCursor={true}
+            initialSlide={1}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                // spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: "auto",
+                spaceBetween: 55,
+              },
+            }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            modules={[Navigation]}
+            className="swiper_container !overflow-y-visible flex justify-center"
+          >
+            {isLoadingEvents
+              ? loadingContent.map((_, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
+                  >
+                    <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                      <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
+                        <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4"></button>
+                        <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold"></button>
                       </div>
-
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="font-semibold text-primary">0</p>
-                        <p className="text-xs font-normal text-gray">
-                          Hours
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="font-semibold text-primary">2</p>
-                        <p className="text-xs font-normal text-gray">
-                          Mins
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col items-center justify-center">
-                        <p className="font-semibold text-primary">1</p>
-                        <p className="text-xs font-normal text-gray">
-                          Secs
-                        </p>
-                      </div>
+                      <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3"></h5>
+                      <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8"></p>
                     </div>
-                  </div>
-                  <Link href='/articles' title='Read More' about='Read More' className='bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5'>Register Now</Link>
-                </div>
+                  </SwiperSlide>
+                ))
+              : events.map((event) => (
+                  <SwiperSlide
+                    key={event.slug}
+                    className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
+                    style={{
+                      backgroundImage: `url(/uploads/${event.cover})`,
+                      backgroundSize: "cover",
+                    }}
+                  >
+                    <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                      <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
+                        <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
+                          {`${eventCountdowns[event.slug]?.days}d ${
+                            eventCountdowns[event.slug]?.hours
+                          }h ${eventCountdowns[event.slug]?.minutes}m ${
+                            eventCountdowns[event.slug]?.seconds
+                          }s`}
+                        </button>
+                        <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
+                          {event.type}
+                        </button>
+                      </div>
+                      <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
+                        {event.name}
+                      </h5>
+                      <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
+                        {event.snippets}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+
+            <div className="slider-controler relative bottom-[-4rem] flex items-center justify-center">
+              <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[25%] lg:!left-[40%] !translate-x-[40%]">
+                <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4 md:w-full md:items-center md:justify-center mt-6 md:mt-0">
-          <Link href='/articles' title='Read More Articles' about='Read More Articles' className='bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>See More Our Events</Link>
-
-          <Link href='/events' title='See Events on Candidate College' about='See Events on Candidate College' className='bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4'>Read Articles</Link>
+              <div className="swiper-button-next slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[65%] lg:left-[55%] !translate-x-[-55%]">
+                <ArrowForwardIosIcon className="!w-[2rem] text-primary" />
+              </div>
+            </div>
+          </Swiper>
         </div>
       </section> */}
+      {/* End of New Events */}
 
       {/* CTA */}
       <CTA />

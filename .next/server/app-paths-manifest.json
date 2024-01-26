@@ -1,17 +1,3 @@
 {
-  "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
-  "/articles/page": "app/articles/page.js",
-  "/careers/page": "app/careers/page.js",
-  "/coming/page": "app/coming/page.js",
-  "/events/page": "app/events/page.js",
-  "/merchandise/page": "app/merchandise/page.js",
-  "/programs/page": "app/programs/page.js",
-  "/articles/[slug]/page": "app/articles/[slug]/page.js",
-  "/articles/latest/page": "app/articles/latest/page.js",
-  "/articles/read-insightful-articles/page": "app/articles/read-insightful-articles/page.js",
-  "/events/[slug]/page": "app/events/[slug]/page.js",
-  "/careers/[slug]/page": "app/careers/[slug]/page.js",
-  "/about/division/[slug]/page": "app/about/division/[slug]/page.js",
-  "/careers/admin/(main)/dashboard/page": "app/careers/admin/(main)/dashboard/page.js"
+  "/page": "app/page.js"
 }
