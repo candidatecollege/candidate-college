@@ -38,9 +38,9 @@ const JumboItem: React.FC<any> = ({ data, isLoading }) => {
           className={`flex-col md:flex-row gap-2 md:items-center md:gap-5 flex`}
         >
           <Link
-            href={`/articles/${data.slug}`}
-            about={data.title}
-            title={data.title}
+            href={`/articles/${data?.slug ?? ""}`}
+            about={data?.title ?? ""}
+            title={data?.title ?? ""}
           >
             <Image
               width={100}
@@ -58,7 +58,9 @@ const JumboItem: React.FC<any> = ({ data, isLoading }) => {
               {data && data.title}
             </h3>
             <p className="font-normal text-sm md:text-base text-gray">
-              {data.snippets.substring(0, 100) + " ..."}
+              {data?.snippets
+                ? data.snippets.substring(0, 100) + " ..."
+                : "No snippets available."}
             </p>
 
             <p className="font-normal text-xs text-gray mt-2">
