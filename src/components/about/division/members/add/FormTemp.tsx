@@ -1,9 +1,10 @@
 import { IoIosArrowForward } from "react-icons/io";
 import InputFormTemplate from "./InputFormTemplate";
 import GalleryAdd from "./svg/GalleryAdd";
+import Swal from "sweetalert2";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export type member = {
   firstName: string;
@@ -28,6 +29,7 @@ const defaultValue = {
 export function FormTemp() {
   const formState = useState<member>(defaultValue);
   const imgRef = useRef<HTMLDivElement>(null);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmitFormMember = async (e: FormEvent<HTMLFormElement>) => {
@@ -43,16 +45,29 @@ export function FormTemp() {
     formData.append("instagram", state.instagram);
     formData.append("linkedin", state.linkedin);
     formData.append("image", state.image);
-
+    let message = {
+      msg: "",
+      status: 200,
+    };
     try {
-      await axios.post("/api/members", formData, {
+      const resp = await axios.post("/api/members", formData, {
         headers: {
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
       });
-    } catch (err) {
-      console.log(err);
+      console.log("INI resp :", resp);
+      console.log(resp.data?.status || resp.status);
+      message = {
+        msg: resp.data?.message,
+        status: resp.data?.status || resp.status,
+      };
+    } catch (err: any) {
+      const newErr: AxiosError = err;
+      message = {
+        msg: newErr.message,
+        status: newErr.status as unknown as number,
+      };
     } finally {
       const current = imgRef.current;
 
@@ -71,6 +86,20 @@ export function FormTemp() {
       });
 
       setIsLoading(false);
+      console.log(message.status);
+      if (message.status >= 200 && message.status < 300) {
+        Swal.fire({
+          title: "Success",
+          text: message.msg,
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: message.msg,
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -107,58 +136,55 @@ export function FormTemp() {
   };
   return (
     <>
-      {/* Desktop */}
-      <div className="">
-        <form onSubmit={handleSubmitFormMember}>
-          {/* Loading */}
-          {isLoading && (
-            <div className="fixed z-50  backdrop-blur-sm flex justify-center items-center  inset-0">
-              <AiOutlineLoading3Quarters className="animate-spin text-[42px] text-black" />
-            </div>
-          )}
-          <div className="h-full w-full">
-            <div className="flex flex-col">
-              <div className="flex sm:flex-row flex-col gap-4">
-                <div className="min-w-[222px]">
-                  <div
-                    ref={imgRef}
-                    className="w-[80%] sm:w-full mx-auto h-[276px] sm:h-full flex items-center justify-center rounded-lg text-black bg-white"
-                  >
-                    <label htmlFor="photoMembers" className="cursor-pointer">
-                      <GalleryAdd />
-                    </label>
-                    <input
-                      id="photoMembers"
-                      accept="image/*"
-                      hidden
-                      onChange={handleImageInput}
-                      type="file"
-                    />
-                  </div>
-                </div>
-                <div className="w-full grid gap-6 grid-cols-1 sm:grid-cols-2">
-                  <InputFormTemplate state={formState} />
-                </div>
-              </div>
-              <div className="sm:ml-[238px]">
-                <button
-                  disabled={isLoading}
-                  className="bg-secondary   mt-12 flex items-center gap-2 justify-center uppercase py-3 rounded-3xl w-full xsm:w-[288px]  text-primary text-[14px] font-semibold"
+      <form onSubmit={handleSubmitFormMember}>
+        {/* Loading */}
+        {isLoading && (
+          <div className="fixed z-50  backdrop-blur-sm flex justify-center items-center  inset-0">
+            <AiOutlineLoading3Quarters className="animate-spin text-[42px] text-black" />
+          </div>
+        )}
+        <div className="h-full w-full">
+          <div className="flex flex-col">
+            <div className="flex sm:flex-row flex-col gap-4">
+              <div className="min-w-[222px]">
+                <div
+                  ref={imgRef}
+                  className="w-[80%] sm:w-full mx-auto h-[276px] sm:h-full flex items-center justify-center rounded-lg text-black bg-white"
                 >
-                  {isLoading ? (
-                    "Loading..."
-                  ) : (
-                    <>
-                      Submit Data
-                      <IoIosArrowForward className="text-[18px]" />
-                    </>
-                  )}
-                </button>
+                  <label htmlFor="photoMembers" className="cursor-pointer">
+                    <GalleryAdd />
+                  </label>
+                  <input
+                    id="photoMembers"
+                    accept="image/*"
+                    hidden
+                    onChange={handleImageInput}
+                    type="file"
+                  />
+                </div>
               </div>
+              <div className="w-full grid gap-6 grid-cols-1 sm:grid-cols-2">
+                <InputFormTemplate state={formState} />
+              </div>
+            </div>
+            <div className="sm:ml-[238px]">
+              <button
+                disabled={isLoading}
+                className="bg-secondary   mt-12 flex items-center gap-2 justify-center uppercase py-3 rounded-3xl w-full xsm:w-[288px]  text-primary text-[14px] font-semibold"
+              >
+                {isLoading ? (
+                  "Loading..."
+                ) : (
+                  <>
+                    Submit Data
+                    <IoIosArrowForward className="text-[18px]" />
+                  </>
+                )}
+              </button>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </>
   );
 }
