@@ -56,8 +56,7 @@ export function FormTemp() {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("INI resp :", resp);
-      console.log(resp.data?.status || resp.status);
+
       message = {
         msg: resp.data?.message,
         status: resp.data?.status || resp.status,
@@ -86,7 +85,7 @@ export function FormTemp() {
       });
 
       setIsLoading(false);
-      console.log(message.status);
+
       if (message.status >= 200 && message.status < 300) {
         Swal.fire({
           title: "Success",
