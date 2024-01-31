@@ -16,7 +16,6 @@ export default function InputFormTemplate({
 
   const [form, setForm] = state;
   useEffect(() => {
-    console.log("NIIII ", form);
     const fetch = async () => {
       setIsLoading(true);
       try {
@@ -30,12 +29,9 @@ export default function InputFormTemplate({
             division_id: data.data.data[0].id,
           };
         });
-
-        console.log(data.data.data);
       } catch (err) {
         console.log(err);
       } finally {
-        console.log("OKEE");
         setIsLoading(false);
       }
     };
