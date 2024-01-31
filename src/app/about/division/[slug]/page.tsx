@@ -1,5 +1,5 @@
 "use client";
-import { CTA, Footer, Navbar } from "@/components";
+import { CTA, Footer, Navbar, ComingSoon} from "@/components";
 import "../../../../styles/swiper-about.css";
 
 // Import Swiper styles
@@ -18,6 +18,9 @@ import Profile from "../../../../data/divisionData";
 
 // Import Member Division Card
 import CardMember from "../../../../components/CardDivision";
+
+// Import Function
+import { formatEndpointText } from "../../../../utils/formatEndpointText";
 
 // About Page
 const Division = (props: any) => {
@@ -89,12 +92,12 @@ const Division = (props: any) => {
   };
 
   return (
-    <main className="h-full">
+    <main className="bg-white h-full">
       {/* Navbar */}
-      <Navbar active="About Us" isDetail={false} />
+      <Navbar active="About Us"/>
 
       {/* Hero */}
-      <section className="flex flex-col w-full h-full lg:pt-[100px] xsm:pt-[80px] xxsm:pt-[50px] px-5 py-96 justify-center xsm:items-center xxsm:items-center relative bg-primary z-30">
+      {/* <section className="flex flex-col w-full h-full lg:pt-[100px] xsm:pt-[80px] xxsm:pt-[50px] px-5 py-96 justify-center xsm:items-center xxsm:items-center relative bg-primary z-30">
         <h1 className="font-bold text-white pt-14 lg:text-5xl xsm:text-4xl xxsm:text-3xl">
           {divisionName}
         </h1>
@@ -102,32 +105,27 @@ const Division = (props: any) => {
           {props.description}
         </p>
         <br />
-      </section>
+      </section> */}
 
       {/* Card */}
-      <div className="flex flex-col bg-zinc-100">
+      {/* <div className="flex flex-col bg-zinc-100">
         <div className="flex flex-col -mt-[380px] z-40">{renderCards()}</div>
         <br />
         <br />
-      </div>
+      </div> */}
+
+      {/* Coming Soon */}
+      <ComingSoon />
 
       {/* CTA */}
       <CTA />
 
       {/* Footer */}
-      <div className="w-full bg-primary">
+      <section className="w-full bg-primary">
         <Footer />
-      </div>
+      </section>
     </main>
   );
-};
-
-// Change Format of Endpoint to Uppercase
-const formatEndpointText = (endpoint: any) => {
-  return endpoint
-    .split("-")
-    .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
 };
 
 Division.defaultProps = {
