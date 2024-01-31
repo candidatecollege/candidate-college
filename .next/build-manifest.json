@@ -6,6 +6,7 @@
     "static/chunks/polyfills.js"
   ],
   "devFiles": [
+    "static/chunks/webpack.js",
     "static/chunks/react-refresh.js"
 >>>>>>> ad83e23 (fix: wait sementara, ada tugas mendadak sweetalert)
   ],
@@ -22,6 +23,7 @@
     "static/chunks/main-app-60eadf8f2467b966.js"
   ],
   "pages": {
+<<<<<<< HEAD
     "/_app": [
 <<<<<<< HEAD
       "static/chunks/webpack-50cde20b07dc8105.js",
@@ -45,6 +47,9 @@
       "static/chunks/pages/_error.js"
 >>>>>>> ad83e23 (fix: wait sementara, ada tugas mendadak sweetalert)
     ]
+=======
+    "/_app": []
+>>>>>>> 65fe72a (fix: fixing axios fetching, dan detail event)
   },
   "ampFirstPages": []
 }

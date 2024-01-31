@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/page": "app/page.js",
   "/about/page": "app/about/page.js",
   "/articles/page": "app/articles/page.js",
@@ -21,4 +22,11 @@
   "/events/[slug]/page": "app/events/[slug]/page.js",
   "/about/division/members/add/page": "app/about/division/members/add/page.js"
 >>>>>>> ad83e23 (fix: wait sementara, ada tugas mendadak sweetalert)
+=======
+  "/page": "app/page.js",
+  "/articles/page": "app/articles/page.js",
+  "/events/page": "app/events/page.js",
+  "/articles/[slug]/page": "app/articles/[slug]/page.js",
+  "/events/[slug]/page": "app/events/[slug]/page.js"
+>>>>>>> 65fe72a (fix: fixing axios fetching, dan detail event)
 }

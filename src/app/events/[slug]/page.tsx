@@ -1,5 +1,5 @@
 "use client";
-// lempar id nya fetchrelated article
+
 import React, { useEffect, useState } from "react";
 import { CTA, Footer, Navbar } from "@/components";
 import Image from "next/image";
@@ -25,7 +25,7 @@ const Detail = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(`/api/events/${slug}`);
-      console.log(response);
+
       setArticle(response.data.data);
       setIsLoading(false); // After setting the data, set isLoading to false
     } catch (error) {
@@ -41,9 +41,9 @@ const Detail = () => {
   const fetchRelatedArticles = async (id: number) => {
     setIsLoadingRelatedArticles(true);
     try {
-      const response = await axios.get(`/api/event/categories/${2}`);
-      console.log(response);
-      setRelatedArticles(response.data.data.articles);
+      const response = await axios.get(`/api/event/categories/${id}`);
+
+      setRelatedArticles(response.data.data.events);
       setIsLoadingRelatedArticles(false);
     } catch (error) {
       console.log(error);
@@ -83,8 +83,6 @@ const Detail = () => {
     fetchArticle();
     fetchRelatedArticles(2);
   }, []);
-
-  console.log(relatedArticles);
 
   return (
     <main className="bg-white h-full w-full">
@@ -190,7 +188,8 @@ const Detail = () => {
           </div>
 
           <Image
-            src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${
+            priority={true}
+            src={`/uploads/${
               article && article.cover == article.cover_landscape
                 ? article.cover
                 : article.cover_landscape
@@ -207,7 +206,8 @@ const Detail = () => {
           />
 
           <Image
-            src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${
+            priority={true}
+            src={`/uploads/${
               article && article.cover == article.cover_landscape
                 ? article.cover
                 : article.cover_landscape
@@ -226,22 +226,34 @@ const Detail = () => {
             }}
           />
 
-          {/* <div className="flex flex-row items-center justify-between pb-6 mt-10 border-b border-b-gray w-full">
-              <h2 className="font-semibold text-2xl md:text-4xl text-primary">Related Events</h2>
-            </div> */}
+          <div className="flex flex-row items-center justify-between pb-6 mt-10 border-b border-b-gray w-full">
+            <h2 className="font-semibold text-2xl md:text-4xl text-primary">
+              Related Events
+            </h2>
+          </div>
 
           {/* Articles */}
-          {/* <div className="flex flex-col gap-8 md:gap-5 mt-5 md:flex-row md:items-start md:justify-start w-full">
-                  {
-                    isLoadingRelatedArticles ? 
-                    loadingContents.slice(0, 3).map((article, index) => (
-                      <CardItemLandscape data={article} key={index}  isLoading={true} />
-                    )) :
-                    relatedArticles.slice(0, 3).map((article, index) => (
-                      <CardItemLandscape data={article} key={index}  isLoading={false} />
-                    ))
-                  }
-            </div> */}
+          <div className="flex flex-col gap-8 md:gap-5 mt-5 md:flex-row md:items-start md:justify-start w-full">
+            {isLoadingRelatedArticles
+              ? loadingContents
+                  .slice(0, 3)
+                  .map((article, index) => (
+                    <CardItemLandscape
+                      data={article}
+                      key={index}
+                      isLoading={true}
+                    />
+                  ))
+              : relatedArticles
+                  .slice(0, 3)
+                  .map((article, index) => (
+                    <CardItemLandscape
+                      data={article}
+                      key={index}
+                      isLoading={false}
+                    />
+                  ))}
+          </div>
         </section>
       )}
 

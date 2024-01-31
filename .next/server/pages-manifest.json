@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
@@ -8,3 +9,6 @@
   "/_document": "pages/_document.js"
 >>>>>>> ad83e23 (fix: wait sementara, ada tugas mendadak sweetalert)
 }
+=======
+{}
+>>>>>>> 65fe72a (fix: fixing axios fetching, dan detail event)
