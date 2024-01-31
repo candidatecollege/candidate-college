@@ -18,6 +18,9 @@ import "swiper/css/navigation";
 
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 
+// Import Function
+import { formatEndpointText } from "../../utils/formatEndpointText";
+
 const About = () => {
   const socials = [
     {
@@ -47,13 +50,13 @@ const About = () => {
   ];
 
   const divisions = [
-    { id: 1, url: "/decoration/division.jpg" },
-    { id: 2, url: "/decoration/division.jpg" },
-    { id: 3, url: "/decoration/division.jpg" },
-    { id: 4, url: "/decoration/division.jpg" },
-    { id: 5, url: "/decoration/division.jpg" },
-    { id: 6, url: "/decoration/division.jpg" },
-    { id: 7, url: "/decoration/division.jpg" },
+    { id: 1, url: "/decoration/division.jpg", slug: "web-development" },
+    { id: 2, url: "/decoration/division.jpg", slug: "academic-development" },
+    { id: 3, url: "/decoration/division.jpg", slug: "people-and-culture" },
+    { id: 4, url: "/decoration/division.jpg", slug: "talent-engagement" },
+    { id: 5, url: "/decoration/division.jpg", slug: "social-media-specialist"},
+    { id: 6, url: "/decoration/division.jpg", slug: "social-media-editor"},
+    { id: 7, url: "/decoration/division.jpg", slug: "content-writer"},
   ];
 
   return (
@@ -286,12 +289,15 @@ const About = () => {
           >
             {divisions.map((division, index) => (
               <SwiperSlide className="!w-[550px] !h-[550px] relative">
-                <img
-                  src={division.url}
-                  key={index}
-                  alt="slide_image"
-                  className="w-[550px] h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
-                />
+                <Link href={`/about/division/${division.slug}`}>
+                  <img
+                    src={division.url}
+                    key={index}
+                    title={formatEndpointText(division.slug)}
+                    alt="slide_image"
+                    className="w-[550px] h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                  />
+                </Link>
               </SwiperSlide>
             ))}
             <div className="slider-controler">
