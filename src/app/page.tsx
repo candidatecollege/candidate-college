@@ -406,7 +406,7 @@ export default function Home() {
 
       {/* Events */}
       {/* Should be fixed */}
-      {/* <section className="flex flex-col w-full h-full bg-white pt-[100px] pb-40">
+      <section className="flex flex-col w-full h-full bg-white pt-[100px] pb-40">
         <h3 className="text-primary md:px-[70px] xl:text-base text-sm font-normal text-center">
           Our Events
         </h3>
@@ -500,7 +500,7 @@ export default function Home() {
             </div>
           </Swiper>
         </div>
-      </section> */}
+      </section>
       {/* End of New Events */}
 
       {/* CTA */}

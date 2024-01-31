@@ -1,5 +1,11 @@
 {
   "pages": {
+    "/articles/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/articles/page.css",
+      "static/chunks/app/articles/page.js"
+    ],
     "/events/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -12,23 +18,41 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/events/[slug]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/events/[slug]/page.css",
-      "static/chunks/app/events/[slug]/page.js"
-    ],
     "/events/[slug]/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/events/[slug]/loading.css",
       "static/chunks/app/events/[slug]/loading.js"
     ],
+    "/events/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/events/[slug]/page.css",
+      "static/chunks/app/events/[slug]/page.js"
+    ],
     "/about/division/members/add/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/about/division/members/add/page.css",
       "static/chunks/app/about/division/members/add/page.js"
+    ],
+    "/articles/[slug]/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/articles/[slug]/loading.css",
+      "static/chunks/app/articles/[slug]/loading.js"
+    ],
+    "/articles/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/articles/[slug]/page.css",
+      "static/chunks/app/articles/[slug]/page.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
     ]
   }
 }
