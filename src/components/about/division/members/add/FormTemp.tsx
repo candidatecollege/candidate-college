@@ -36,7 +36,7 @@ export function FormTemp() {
     const formData = new FormData();
     const state = formState[0];
     const fullName = state.firstName + " " + state.lastName;
-    console.log(state);
+
     formData.append("name", fullName);
     formData.append("division_id", state.division_id);
     formData.append("position", state.position);
@@ -45,18 +45,15 @@ export function FormTemp() {
     formData.append("image", state.image);
 
     try {
-      const resp = await axios.post("/api/members", formData, {
+      await axios.post("/api/members", formData, {
         headers: {
           Accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
       });
-      // const resp = await axios.delete("/api/members/34");
-      console.log("WOII baru", resp);
     } catch (err) {
       console.log(err);
     } finally {
-      console.log("WOOW");
       const current = imgRef.current;
 
       if (current) {
@@ -79,7 +76,7 @@ export function FormTemp() {
 
   const handleImageInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const current = imgRef.current;
-    console.log("hai", current);
+
     if (current) {
       if (!e.target.files) return;
       const file = e.target.files[0];
@@ -110,41 +107,8 @@ export function FormTemp() {
   };
   return (
     <>
-      {/* Mobile */}
-      <div className="sm:hidden block">
-        <form onSubmit={handleSubmitFormMember}>
-          {/* Loading */}
-          {isLoading && (
-            <div className="fixed z-50  backdrop-blur-sm flex justify-center items-center  inset-0">
-              <AiOutlineLoading3Quarters className="animate-spin text-[42px] text-black" />
-            </div>
-          )}
-          <div
-            ref={imgRef}
-            className="w-[80%] h-[276px] mx-auto   flex items-center justify-center rounded-lg text-black bg-white"
-          >
-            <label htmlFor="photo" className="cursor-pointer">
-              <GalleryAdd />
-            </label>
-            <input
-              accept="image/*"
-              onChange={handleImageInput}
-              id="photo"
-              type="file"
-              hidden
-            />
-          </div>
-          <div className="flex-1 mt-4 grid gap-3 grid-cols-1">
-            <InputFormTemplate state={formState} />
-          </div>
-          <button className="bg-secondary text-[14px]   mt-12 flex items-center gap-2 justify-center uppercase py-3 rounded-3xl w-full xsm:w-[222px]  text-primary  font-semibold">
-            Submit Data <IoIosArrowForward className="text-[18px]" />
-          </button>
-        </form>
-      </div>
-
       {/* Desktop */}
-      <div className="hidden sm:block">
+      <div className="">
         <form onSubmit={handleSubmitFormMember}>
           {/* Loading */}
           {isLoading && (
@@ -152,13 +116,13 @@ export function FormTemp() {
               <AiOutlineLoading3Quarters className="animate-spin text-[42px] text-black" />
             </div>
           )}
-          <table className="h-full w-full">
-            <tbody>
-              <tr>
-                <td className="w-[232px]">
+          <div className="h-full w-full">
+            <div className="flex flex-col">
+              <div className="flex sm:flex-row flex-col gap-4">
+                <div className="min-w-[222px]">
                   <div
                     ref={imgRef}
-                    className="w-full h-full flex items-center justify-center rounded-lg text-black bg-white"
+                    className="w-[80%] sm:w-full mx-auto h-[276px] sm:h-full flex items-center justify-center rounded-lg text-black bg-white"
                   >
                     <label htmlFor="photoMembers" className="cursor-pointer">
                       <GalleryAdd />
@@ -171,34 +135,28 @@ export function FormTemp() {
                       type="file"
                     />
                   </div>
-                </td>
-                <td className="pl-5 ">
-                  <div className="flex-1 grid gap-6 grid-cols-1 sm:grid-cols-2">
-                    <InputFormTemplate state={formState} />
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td></td>
-                <td className="pl-5">
-                  <button
-                    disabled={isLoading}
-                    className="bg-secondary   mt-12 flex items-center gap-2 justify-center uppercase py-3 rounded-3xl w-[288px]  text-primary text-[14px] font-semibold"
-                  >
-                    {isLoading ? (
-                      "Loading..."
-                    ) : (
-                      <>
-                        Submit Data
-                        <IoIosArrowForward className="text-[18px]" />
-                      </>
-                    )}
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                </div>
+                <div className="w-full grid gap-6 grid-cols-1 sm:grid-cols-2">
+                  <InputFormTemplate state={formState} />
+                </div>
+              </div>
+              <div className="sm:ml-[238px]">
+                <button
+                  disabled={isLoading}
+                  className="bg-secondary   mt-12 flex items-center gap-2 justify-center uppercase py-3 rounded-3xl w-full xsm:w-[288px]  text-primary text-[14px] font-semibold"
+                >
+                  {isLoading ? (
+                    "Loading..."
+                  ) : (
+                    <>
+                      Submit Data
+                      <IoIosArrowForward className="text-[18px]" />
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </>
