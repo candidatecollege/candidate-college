@@ -1,4 +1,5 @@
 "use client";
+// lempar id nya fetchrelated article
 import React, { useEffect, useState } from "react";
 import { CTA, Footer, Navbar } from "@/components";
 import Image from "next/image";
@@ -23,14 +24,10 @@ const Detail = () => {
   const fetchArticle = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/events/${slug}`
-      );
-
-      setTimeout(() => {
-        setArticle(response.data.data);
-        setIsLoading(false); // After setting the data, set isLoading to false
-      }, 1500);
+      const response = await axios.get(`/api/events/${slug}`);
+      console.log(response);
+      setArticle(response.data.data);
+      setIsLoading(false); // After setting the data, set isLoading to false
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -41,17 +38,13 @@ const Detail = () => {
   const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] =
     useState<boolean>(true);
 
-  const fetchRelatedArticles = async () => {
+  const fetchRelatedArticles = async (id: number) => {
     setIsLoadingRelatedArticles(true);
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/events/categories/${2}`
-      );
-
-      setTimeout(() => {
-        setRelatedArticles(response.data.data.articles);
-        setIsLoadingRelatedArticles(false);
-      }, 1500);
+      const response = await axios.get(`/api/event/categories/${2}`);
+      console.log(response);
+      setRelatedArticles(response.data.data.articles);
+      setIsLoadingRelatedArticles(false);
     } catch (error) {
       console.log(error);
       setIsLoadingRelatedArticles(false);
@@ -60,7 +53,9 @@ const Detail = () => {
 
   const links = generateShareLinks(
     article && article.name,
-    `https://candidatecollegeind.com/events/${article && article.slug}`
+    `https://resource-candidatecollege.infinityfreeapp.com/events/${
+      article && article.slug
+    }`
   );
 
   const socials = [

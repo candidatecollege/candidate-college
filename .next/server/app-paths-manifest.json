@@ -1,3 +1,5 @@
 {
+  "/events/page": "app/events/page.js",
+  "/events/[slug]/page": "app/events/[slug]/page.js",
   "/about/division/members/add/page": "app/about/division/members/add/page.js"
 }

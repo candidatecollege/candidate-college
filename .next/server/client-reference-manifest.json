@@ -40,9 +40,33 @@
         "async": false
       }
     },
+    "(app-client)/./src/app/events/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/events/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./src/components/GoogleAnalytics.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/GoogleAnalytics.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/events/[slug]/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/events/[slug]/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/events/[slug]/loading.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/events/[slug]/loading.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -139,6 +163,14 @@
       ],
       "async": false
     },
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\events\\page.tsx": {
+      "id": "(app-client)/./src/app/events/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/events/page:static/chunks/app/events/page.js"
+      ],
+      "async": false
+    },
     "D:\\CODING\\CC\\candidate-college\\node_modules\\next\\font\\google\\target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}": {
       "id": "(app-client)/./node_modules/next/font/google/target.css?{\"path\":\"src\\\\app\\\\layout.tsx\",\"import\":\"Plus_Jakarta_Sans\",\"arguments\":[{\"subsets\":[\"latin\"],\"display\":\"swap\"}],\"variableName\":\"plus_jakarta_sans\"}",
       "name": "*",
@@ -163,6 +195,22 @@
       ],
       "async": false
     },
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\events\\[slug]\\page.tsx": {
+      "id": "(app-client)/./src/app/events/[slug]/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/events/[slug]/page:static/chunks/app/events/[slug]/page.js"
+      ],
+      "async": false
+    },
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\events\\[slug]\\loading.tsx": {
+      "id": "(app-client)/./src/app/events/[slug]/loading.tsx",
+      "name": "*",
+      "chunks": [
+        "app/events/[slug]/loading:static/chunks/app/events/[slug]/loading.js"
+      ],
+      "async": false
+    },
     "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\division\\members\\add\\page.tsx": {
       "id": "(app-client)/./src/app/about/division/members/add/page.tsx",
       "name": "*",
@@ -173,8 +221,17 @@
     }
   },
   "entryCSSFiles": {
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\events\\page": [
+      "static/css/app/events/page.css"
+    ],
     "D:\\CODING\\CC\\candidate-college\\src\\app\\layout": [
       "static/css/app/layout.css"
+    ],
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\events\\[slug]\\page": [
+      "static/css/app/events/[slug]/page.css"
+    ],
+    "D:\\CODING\\CC\\candidate-college\\src\\app\\events\\[slug]\\loading": [
+      "static/css/app/events/[slug]/loading.css"
     ],
     "D:\\CODING\\CC\\candidate-college\\src\\app\\about\\division\\members\\add\\page": [
       "static/css/app/about/division/members/add/page.css"
