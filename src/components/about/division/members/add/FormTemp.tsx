@@ -89,7 +89,7 @@ export function FormTemp() {
       if (message.status >= 200 && message.status < 300) {
         Swal.fire({
           title: "Success",
-          text: message.msg,
+          text: "Successfully add your data!",
           icon: "success",
         });
       } else {
@@ -135,7 +135,7 @@ export function FormTemp() {
   };
   return (
     <>
-      <form onSubmit={handleSubmitFormMember}>
+      <form onSubmit={handleSubmitFormMember} autoComplete="off">
         {/* Loading */}
         {isLoading && (
           <div className="fixed z-50  backdrop-blur-sm flex justify-center items-center  inset-0">

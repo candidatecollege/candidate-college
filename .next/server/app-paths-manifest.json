@@ -1,3 +1,18 @@
 {
-  "/about/division/members/add/page": "app/about/division/members/add/page.js"
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/articles/page": "app/articles/page.js",
+  "/careers/page": "app/careers/page.js",
+  "/events/page": "app/events/page.js",
+  "/merchandise/page": "app/merchandise/page.js",
+  "/coming/page": "app/coming/page.js",
+  "/programs/page": "app/programs/page.js",
+  "/articles/[slug]/page": "app/articles/[slug]/page.js",
+  "/articles/read-insightful-articles/page": "app/articles/read-insightful-articles/page.js",
+  "/articles/latest/page": "app/articles/latest/page.js",
+  "/careers/[slug]/page": "app/careers/[slug]/page.js",
+  "/events/[slug]/page": "app/events/[slug]/page.js",
+  "/about/division/[slug]/page": "app/about/division/[slug]/page.js",
+  "/about/division/members/add/page": "app/about/division/members/add/page.js",
+  "/careers/admin/(main)/dashboard/page": "app/careers/admin/(main)/dashboard/page.js"
 }
