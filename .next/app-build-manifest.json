@@ -2,6 +2,7 @@
   "pages": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/page": [
       "static/chunks/webpack-50cde20b07dc8105.js",
       "static/chunks/bce60fc1-079d22b3bf043094.js",
@@ -30,6 +31,13 @@
       "static/css/app/events/page.css",
       "static/chunks/app/events/page.js"
 >>>>>>> ad83e23 (fix: wait sementara, ada tugas mendadak sweetalert)
+=======
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+>>>>>>> 7a78850 (fix: fixed arrow button next and prev, adding gap button countdown and event type)
     ],
     "/layout": [
       "static/chunks/webpack-50cde20b07dc8105.js",
@@ -248,6 +256,7 @@
       "static/chunks/main-app.js",
       "static/css/app/events/[slug]/page.css",
       "static/chunks/app/events/[slug]/page.js"
+<<<<<<< HEAD
     ],
     "/about/division/members/add/page": [
 <<<<<<< HEAD
@@ -314,6 +323,8 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
 >>>>>>> 65fe72a (fix: fixing axios fetching, dan detail event)
+=======
+>>>>>>> 7a78850 (fix: fixed arrow button next and prev, adding gap button countdown and event type)
     ]
   }
 }
