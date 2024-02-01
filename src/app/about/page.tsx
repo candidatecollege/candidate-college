@@ -323,7 +323,7 @@ const About = () => {
 
         <div className="mt-[105px] w-full">
           <Swiper
-            slidesPerView={'auto'}
+            slidesPerView={"auto"}
             spaceBetween={55}
             centeredSlides={true}
             grabCursor={true}
@@ -421,7 +421,7 @@ const About = () => {
 
       {/* Footer */}
       <div className="w-full bg-primary">
-      <Footer />
+        <Footer />
       </div>
     </main>
   );
