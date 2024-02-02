@@ -425,17 +425,17 @@ export default function Home() {
           <Swiper
             slidesPerView={"auto"}
             // spaceBetween={55}
-            centeredSlides={true}
+            centeredSlides={false}
             grabCursor={true}
             initialSlide={1}
             breakpoints={{
               320: {
                 slidesPerView: 1,
-                // spaceBetween: 20,
+                spaceBetween: 20,
               },
               768: {
                 slidesPerView: "auto",
-                spaceBetween: 55,
+                spaceBetween: 30,
               },
             }}
             navigation={{
@@ -464,30 +464,26 @@ export default function Home() {
               : events.map((event) => (
                   <SwiperSlide
                     key={event.slug}
-                    className="!w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
+                    className="!max-w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
                     style={{
                       backgroundImage: `url(/uploads/${event.cover})`,
                       backgroundSize: "cover",
                     }}
                   >
-                    <Link
-                      href={`/events/${event.slug}`}
-                      title="Read More"
-                      about="Read More"
-                    >
-                      <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                    <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                      <Link href={`/events/${event.slug}`}>
                         <ButtonWrapper
                           event={event}
                           eventCountdowns={eventCountdowns}
                         />
-                        <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
+                        <h5 className="text-[#FFFFFF]  text-[24px]  font-semibold leading-[26px] text-left mb-3">
                           {event.name}
                         </h5>
-                        <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
+                        <p className="text-[#FFFFFF] text-[16px] text-sm font-normal leading-[24px] text-left mb-8">
                           {event.snippets}
                         </p>
-                      </div>
-                    </Link>
+                      </Link>
+                    </div>
                   </SwiperSlide>
                 ))}
 
