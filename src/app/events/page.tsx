@@ -34,9 +34,7 @@ const Programs = () => {
     setIsLoadingCategories(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/event/categories`
-      );
+      const response = await axios.get(`api/event/categories`);
 
       setTimeout(() => {
         setCategories(response.data.data);
@@ -55,9 +53,7 @@ const Programs = () => {
     setIsLoadingEvents(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/events?count=100`
-      );
+      const response = await axios.get(`api/events?count=100`);
 
       setTimeout(() => {
         setEvents(response.data.data);
@@ -133,6 +129,7 @@ const Programs = () => {
                 ))
               : events.map((event, index) => (
                   <Link
+                    key={index}
                     href={`/events/${event.slug}`}
                     about={event.name}
                     title={event.name}
@@ -149,16 +146,11 @@ const Programs = () => {
                     />
 
                     <div className="flex md:flex-1 flex-col gap">
-                      <Link
-                        href={`/events/${event.slug}`}
-                        about={event.name}
-                        title={event.name}
-                        className="font-semibold text-2xl text-primary"
-                      >
+                      <span className="font-semibold text-2xl text-primary">
                         {event.name.length > 40
                           ? event.name.substring(0, 48) + " ..."
                           : event.name}
-                      </Link>
+                      </span>
 
                       <p className="font-normal text-sm text-gray">
                         {event.snippets.substring(0, 150) + " ..."}

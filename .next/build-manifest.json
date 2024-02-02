@@ -1,6 +1,13 @@
 {
   "polyfillFiles": [
+<<<<<<< HEAD
     "static/chunks/polyfills-78c92fac7aa8fdd8.js"
+=======
+    "static/chunks/polyfills.js"
+  ],
+  "devFiles": [
+    "static/chunks/react-refresh.js"
+>>>>>>> ad83e23 (fix: wait sementara, ada tugas mendadak sweetalert)
   ],
   "devFiles": [],
   "ampDevFiles": [],
@@ -16,6 +23,7 @@
   ],
   "pages": {
     "/_app": [
+<<<<<<< HEAD
       "static/chunks/webpack-50cde20b07dc8105.js",
       "static/chunks/framework-8883d1e9be70c3da.js",
       "static/chunks/main-e68db27d759a379d.js",
@@ -26,6 +34,16 @@
       "static/chunks/framework-8883d1e9be70c3da.js",
       "static/chunks/main-e68db27d759a379d.js",
       "static/chunks/pages/_error-7fafba9435aeb6bc.js"
+=======
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/_app.js"
+    ],
+    "/_error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/_error.js"
+>>>>>>> ad83e23 (fix: wait sementara, ada tugas mendadak sweetalert)
     ]
   },
   "ampFirstPages": []
