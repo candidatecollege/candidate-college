@@ -18,10 +18,63 @@ import "swiper/css/navigation";
 
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 
+// Import React Modules
+import React, {useState, useEffect} from 'react';
+
 // Import Function
 import { formatEndpointText } from "../../utils/formatEndpointText";
 
-const About = () => {
+// Initialized Data Types Used for Current Event Data 
+interface EventType {
+  name: string,
+  snippets: string,
+  link_registration: string,
+  cover: string,
+  cover_landscape: string
+}
+
+const About = ( ) => {
+  // Variable that Saves Event Data According to Their Upcoming Order
+  const [firstEvent, setFirstEvent] = useState<EventType[]>([]);
+  const [secondEvent, setSecondEvent] = useState<EventType[]>([]);
+  const [thirdEvent, setThirdEvent] = useState<EventType[]>([]);
+
+  useEffect(() => {
+    // Cut Sentence in Snippets Data to 14 Words
+    const truncatedSnippetsData = (eventsData: any) => {
+      return eventsData.map((data : any) => {
+        const snippets = data.snippets.split(' ');
+        const truncateSnippets = snippets.length > 14 ? `${snippets.slice(0, 14).join(' ')} ...` : data.snippets;
+        return { ...data, snippets: truncateSnippets}
+      })
+    }
+
+    // Retrieve 3 Upcoming Events From API
+    const CurrentEvents = async() => {
+      try {
+        const response = await fetch("https://candidate-college.vercel.app/api/events");
+        const jsonData = await response.json();
+
+        // Sort Event Data Based on Upcoming "start_date_time" Property
+        const today = new Date();
+        const sortedData = jsonData.data.filter((event: any) => new Date(event.start_date_time) >= today);
+        sortedData.sort((dataA: any, dataB: any) => new Date(dataA.start_date_time).getTime() - new Date(dataB.start_date_time).getTime());
+        
+        const firstEventData = truncatedSnippetsData(sortedData.slice(0, 1));
+        const secondEventData = truncatedSnippetsData(sortedData.slice(1, 2));
+        const thirdEventData = truncatedSnippetsData(sortedData.slice(2, 3));
+        
+        setFirstEvent(firstEventData);
+        setSecondEvent(secondEventData);
+        setThirdEvent(thirdEventData);
+      }
+      catch(error) {
+        console.log("Error Fetching Data : ", error);
+      }
+    }
+    CurrentEvents();
+  }, [])
+
   const socials = [
     {
       id: 1,
@@ -178,65 +231,70 @@ const About = () => {
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Success Events
         </h2>
-        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-[95%] pt-[15px]">
-          Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
-          Terabel pov astrobel sar direlig.Lörem ipsum astrobel sar direlig.
-          Kronde est
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xxsm:w-11/12 w-[95%] pt-[15px]">
+        Exciting events are waiting to enrich your learning journey, from inspiring seminars to practical workshops designed to help you develop your best potential in the academic world.
         </p>
-
+        
+        {/* List of Upcoming Events */}
         <div className="grid lg:grid-cols-4 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6 pt-10">
-          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl md:p-10 p-[25px]">
-            <div className="flex md:flex-row flex-col md:items-center items-start z-20">
+          {/* First Event */}
+          {firstEvent.map(item => (
+            <div className="flex items-end relative overflow-hidden w-full bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl md:p-10 p-[25px]" style={{backgroundImage: (`url(https://candidate-college.vercel.app/uploads/${item.cover})`)}}>
+              <div className="flex md:flex-row flex-col md:items-center items-start z-20"> 
               <div className="flex-1">
-                <h4 className="text-white xl:text-[32px] text-[30px] font-semibold">
-                  Website Design
+                <h4 className="text-white lg:text-[22px] xxsm:text-[20px] font-semibold">
+                  {item.name}
                 </h4>
-                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-[25px]">
-                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
-                  kelig. Terabel pov astrobel sar
+                <p className="text-[#D1D4DC] xl:text-base lg:text-[12px] xxsm:text-[14px] font-normal pt-3 leading-[25px]">
+                  {item.snippets}
                 </p>
               </div>
               <div className="flex-1 text-end">
                 <Link
-                  href="/"
+                  href={item.link_registration}
                   className="bg-transparent border-[1px] border-white text-white font-medium text-base rounded-full px-8 py-3 md:mt-0 mt-5 inline-block shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
                 >
                   Let's Join
                 </Link>
               </div>
-            </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full md:h-[40%] h-[70%] bottom-0 left-0 z-10"></div>
-          </div>
-          <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-2.png')] bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5">
-            <div className="flex items-center z-20">
-              <div className="basis-3/4">
-                <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
-                  Website Design
-                </h4>
-                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-7">
-                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
-                  kelig. Terabel pov astrobel sar
-                </p>
               </div>
+            <div className="absolute pt-[20px] bg-[linear-gradient(to_top,_rgba(0,0,0,1),_transparent)] w-full h-full bottom-0 left-0 z-10 lg:backdrop-blur-[1.8px] xsm:backdrop-blur-[1.8px] xxsm:backdrop-blur-[3.4px]"></div>
             </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
-          </div>
-          <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-3.png')] bg-no-repeat bg-cover col-span-2 col-start-3 row-start-2 rounded-3xl p-5">
-            <div className="flex items-center z-20">
-              <div className="basis-3/4">
-                <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
-                  Website Design
-                </h4>
-                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-7">
-                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
-                  kelig. Terabel pov astrobel sar
-                </p>
+          ))}
+          {/* Second Event */}
+          {secondEvent.map(item => (
+            <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5" style={{backgroundImage: (`url(https://candidate-college.vercel.app/uploads/${item.cover_landscape})`)}}>
+              <div className="flex items-center z-20">
+                <div className="basis-3/4">
+                  <h4 className="text-white text-[16px] font-semibold">
+                    {item.name}
+                  </h4>
+                  <p className="text-[#D1D4DC] text-[12px] font-normal pt-3 leading-7">
+                    {item.snippets}
+                  </p>
+                </div>
               </div>
+                <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,1),_transparent)] w-full h-full bottom-0 left-0 z-10 backdrop-blur-[1.4px]"></div>
             </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
-          </div>
+          ))}
+          {/* Third Event */}
+          {thirdEvent.map(item => (
+            <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-3.png')] bg-no-repeat bg-cover col-span-2 col-start-3 row-start-2 rounded-3xl p-5" style={{backgroundImage: (`url(https://candidate-college.vercel.app/uploads/${item.cover_landscape})`)}}>
+              <div className="flex items-center z-20">
+                <div className="basis-3/4">
+                  <h4 className="text-white text-[16px] font-semibold">
+                    {item.name}
+                  </h4>
+                  <p className="text-[#D1D4DC] text-[12px] font-normal pt-3 leading-7">
+                    {item.snippets}
+                  </p>
+                </div>
+              </div>
+              <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,1),_transparent)] w-full h-full bottom-0 left-0 z-10 backdrop-blur-[1.4px]"></div>
+            </div>
+          ))}
         </div>
-
+        {/* Other Events  */}
         <div className="flex justify-center md:pt-10 pt-8">
           <Link
             href="/"
@@ -329,7 +387,7 @@ const About = () => {
 
         <div className="mt-[105px] w-full">
           <Swiper
-            slidesPerView={"auto"}
+            slidesPerView={'auto'}
             spaceBetween={55}
             centeredSlides={true}
             grabCursor={true}
@@ -427,7 +485,7 @@ const About = () => {
 
       {/* Footer */}
       <div className="w-full bg-primary">
-        <Footer />
+      <Footer />
       </div>
     </main>
   );
