@@ -15,6 +15,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import axios from "axios";
 
+import "../styles/swiper-about.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -26,10 +27,12 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
+import ButtonCountdown from "@/components/main/eventSection/molecule/atom/ButtonCountdown";
+import ButtonType from "@/components/main/eventSection/molecule/atom/ButtonType";
+import ButtonWrapper from "@/components/main/eventSection/molecule/ButtonWrapper";
+import ArrowWrapper from "@/components/main/eventSection/molecule/ArrowWrapper";
 
-import "../styles/swiper-article.css";
-
-type Event = {
+export type Event = {
   start_date_time: string;
   slug: string;
   cover: string;
@@ -38,7 +41,7 @@ type Event = {
   snippets: string;
 };
 
-type EventCountdowns = {
+export type EventCountdowns = {
   [slug: string]: {
     days: number;
     hours: number;
@@ -405,8 +408,8 @@ export default function Home() {
       </section>
 
       {/* Events */}
-      {/* Should be fixed */}
-      {/* <section className="flex flex-col w-full h-full bg-white pt-[100px] pb-40">
+
+      <section className="flex flex-col w-full h-full bg-white pt-[100px] pb-40">
         <h3 className="text-primary md:px-[70px] xl:text-base text-sm font-normal text-center">
           Our Events
         </h3>
@@ -467,40 +470,31 @@ export default function Home() {
                       backgroundSize: "cover",
                     }}
                   >
-                    <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
-                      <div className="flex flex-col md:flex-row lg:flex-row justify-start mb-[60px] lg:mb-[88px] mt-8">
-                        <button className="bg-secondary text-primary w-max rounded-[20px] px-6 py-2 text-sm font-semibold lg:mr-4">
-                          {`${eventCountdowns[event.slug]?.days}d ${
-                            eventCountdowns[event.slug]?.hours
-                          }h ${eventCountdowns[event.slug]?.minutes}m ${
-                            eventCountdowns[event.slug]?.seconds
-                          }s`}
-                        </button>
-                        <button className="bg-secondary text-primary w-max mt-3 xl:mt-0 rounded-[20px] px-6 py-2 text-sm font-semibold">
-                          {event.type}
-                        </button>
+                    <Link
+                      href={`/events/${event.slug}`}
+                      title="Read More"
+                      about="Read More"
+                    >
+                      <div className="w-full h-full rounded-[24px] py-5 px-[20px] bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.2)]">
+                        <ButtonWrapper
+                          event={event}
+                          eventCountdowns={eventCountdowns}
+                        />
+                        <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
+                          {event.name}
+                        </h5>
+                        <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
+                          {event.snippets}
+                        </p>
                       </div>
-                      <h5 className="text-[#FFFFFF] xl:text-[26px] text-2xl font-semibold leading-[26px] text-left mb-3">
-                        {event.name}
-                      </h5>
-                      <p className="text-[#FFFFFF] xl:text-lg text-sm font-normal leading-[26px] text-left mb-8">
-                        {event.snippets}
-                      </p>
-                    </div>
+                    </Link>
                   </SwiperSlide>
                 ))}
 
-            <div className="slider-controler relative bottom-[-4rem] flex items-center justify-center">
-              <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[25%] lg:!left-[40%] !translate-x-[40%]">
-                <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
-              </div>
-              <div className="swiper-button-next slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full !left-[65%] lg:left-[55%] !translate-x-[-55%]">
-                <ArrowForwardIosIcon className="!w-[2rem] text-primary" />
-              </div>
-            </div>
+            <ArrowWrapper />
           </Swiper>
         </div>
-      </section> */}
+      </section>
       {/* End of New Events */}
 
       {/* CTA */}
