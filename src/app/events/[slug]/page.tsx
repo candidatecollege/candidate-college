@@ -81,6 +81,7 @@ const Detail = () => {
 
   useEffect(() => {
     fetchArticle();
+    // masih static untuk category nya
     fetchRelatedArticles(2);
   }, []);
 
