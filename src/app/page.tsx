@@ -464,7 +464,7 @@ export default function Home() {
               : events.map((event) => (
                   <SwiperSlide
                     key={event.slug}
-                    className="!max-w-[580px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
+                    className="!max-w-[580px] !h-[389px] rounded-[24px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] mx-5 lg:mx-0"
                     style={{
                       backgroundImage: `url(/uploads/${event.cover})`,
                       backgroundSize: "cover",
@@ -477,10 +477,18 @@ export default function Home() {
                           eventCountdowns={eventCountdowns}
                         />
                         <h5 className="text-[#FFFFFF]  text-[24px]  font-semibold leading-[26px] text-left mb-3">
-                          {event.name}
+                          <div className="inline sm:hidden">
+                            {event.name.substring(0, 48) + "..."}
+                          </div>
+                          <div className="hidden sm:inline">{event.name}</div>
                         </h5>
                         <p className="text-[#FFFFFF] text-[16px] text-sm font-normal leading-[24px] text-left mb-8">
-                          {event.snippets}
+                          <div className="inline sm:hidden">
+                            {event.snippets.substring(0, 32) + "..."}
+                          </div>
+                          <div className="hidden sm:inline">
+                            {event.snippets}
+                          </div>
                         </p>
                       </Link>
                     </div>
