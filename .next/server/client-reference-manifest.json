@@ -40,9 +40,9 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/about/page.tsx": {
+    "(app-client)/./src/app/page.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/about/page.tsx",
+        "id": "(sc_client)/./src/app/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -51,6 +51,14 @@
     "(app-client)/./src/components/GoogleAnalytics.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/GoogleAnalytics.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./src/app/about/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/about/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -139,11 +147,11 @@
       ],
       "async": false
     },
-    "D:\\Experience\\Work Space\\2024 - Candidate College - Web Developer\\Task\\candidate-college\\src\\app\\about\\page.tsx": {
-      "id": "(app-client)/./src/app/about/page.tsx",
+    "D:\\Experience\\Work Space\\2024 - Candidate College - Web Developer\\Task\\candidate-college\\src\\app\\page.tsx": {
+      "id": "(app-client)/./src/app/page.tsx",
       "name": "*",
       "chunks": [
-        "app/about/page:static/chunks/app/about/page.js"
+        "app/page:static/chunks/app/page.js"
       ],
       "async": false
     },
@@ -170,14 +178,25 @@
         "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
+    },
+    "D:\\Experience\\Work Space\\2024 - Candidate College - Web Developer\\Task\\candidate-college\\src\\app\\about\\page.tsx": {
+      "id": "(app-client)/./src/app/about/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/about/page:static/chunks/app/about/page.js"
+      ],
+      "async": false
     }
   },
   "entryCSSFiles": {
-    "D:\\Experience\\Work Space\\2024 - Candidate College - Web Developer\\Task\\candidate-college\\src\\app\\about\\page": [
-      "static/css/app/about/page.css"
+    "D:\\Experience\\Work Space\\2024 - Candidate College - Web Developer\\Task\\candidate-college\\src\\app\\page": [
+      "static/css/app/page.css"
     ],
     "D:\\Experience\\Work Space\\2024 - Candidate College - Web Developer\\Task\\candidate-college\\src\\app\\layout": [
       "static/css/app/layout.css"
+    ],
+    "D:\\Experience\\Work Space\\2024 - Candidate College - Web Developer\\Task\\candidate-college\\src\\app\\about\\page": [
+      "static/css/app/about/page.css"
     ]
   }
 }
