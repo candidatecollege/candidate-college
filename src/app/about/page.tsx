@@ -20,8 +20,33 @@ import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 
 // Import Function
 import { formatEndpointText } from "../../utils/formatEndpointText";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+const loadingContent = [1, 2, 3, 4, 5, 6];
 
 const About = () => {
+  const [isLoadingDivision, setIsLoadingDivision] = useState<boolean>();
+  const [isCenter, setIsCenter] = useState<number>();
+  const [divisions, setDivision] = useState<any[]>();
+  const fetchAboutDivision = async () => {
+    setIsLoadingDivision(true);
+
+    try {
+      const response = await axios.get(`api/divisions`);
+      console.log(response.data.data);
+      setDivision(response.data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoadingDivision(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAboutDivision();
+  }, []);
+
   const socials = [
     {
       id: 1,
@@ -47,16 +72,6 @@ const About = () => {
       link: "https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ",
       component: <YouTubeIcon color="inherit" fontSize="inherit" />,
     },
-  ];
-
-  const divisions = [
-    { id: 1, url: "/decoration/division.jpg", slug: "web-development" },
-    { id: 2, url: "/decoration/division.jpg", slug: "academic-development" },
-    { id: 3, url: "/decoration/division.jpg", slug: "people-and-culture" },
-    { id: 4, url: "/decoration/division.jpg", slug: "talent-engagement" },
-    { id: 5, url: "/decoration/division.jpg", slug: "social-media-specialist"},
-    { id: 6, url: "/decoration/division.jpg", slug: "social-media-editor"},
-    { id: 7, url: "/decoration/division.jpg", slug: "content-writer"},
   ];
 
   return (
@@ -287,19 +302,65 @@ const About = () => {
             modules={[EffectCoverflow, Navigation, Autoplay]}
             className="swiper_container"
           >
-            {divisions.map((division, index) => (
-              <SwiperSlide className="!w-[550px] !h-[550px] relative">
-                <Link href={`/about/division/${division.slug}`}>
-                  <img
-                    src={division.url}
+            {isLoadingDivision
+              ? loadingContent.map((division, index) => (
+                  <SwiperSlide
                     key={index}
-                    title={formatEndpointText(division.slug)}
-                    alt="slide_image"
-                    className="w-[550px] h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
-                  />
-                </Link>
-              </SwiperSlide>
-            ))}
+                    className="!w-[550px] !h-[550px] relative"
+                  >
+                    <Image
+                      height={1}
+                      width={1}
+                      src={`uploads/events/landscape/UsmONZaFheh9f0eZy0dsZxlw1aome7dQm5TTrACE.png`}
+                      alt="slide_image"
+                      className="!w-[550px] !h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                    />
+                  </SwiperSlide>
+                ))
+              : divisions?.map((division, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="!w-[550px] !h-[550px] relative"
+                  >
+                    {({ isActive, isVisible }) => {
+                      {
+                        isActive && setIsCenter(index);
+                      }
+                      return (
+                        <Link href={`/about/division/${division.slug}`}>
+                          {isActive ? (
+                            <div className="  absolute flex z-50 items-end inset-0 p-10">
+                              <span className="text-black font-medium text-[24px]">
+                                {division.name}
+                              </span>
+                            </div>
+                          ) : (
+                            <div
+                              className={`absolute -rotate-90   flex z-50 justify-center ${
+                                isCenter && index < isCenter
+                                  ? "items-start"
+                                  : "items-end"
+                              } inset-0 py-20`}
+                            >
+                              <span className="text-white tracking-widest font-bold text-[24px] uppercase">
+                                {division.name}
+                              </span>
+                            </div>
+                          )}
+                          <Image
+                            height={1}
+                            width={1}
+                            src={`uploads/events/landscape/UsmONZaFheh9f0eZy0dsZxlw1aome7dQm5TTrACE.png`}
+                            key={index}
+                            title={formatEndpointText(division.slug)}
+                            alt="slide_image"
+                            className="!w-[550px] !h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                          />
+                        </Link>
+                      );
+                    }}
+                  </SwiperSlide>
+                ))}
             <div className="slider-controler">
               <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full left-0">
                 <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
@@ -329,7 +390,7 @@ const About = () => {
 
         <div className="mt-[105px] w-full">
           <Swiper
-            slidesPerView={'auto'}
+            slidesPerView={"auto"}
             spaceBetween={55}
             centeredSlides={true}
             grabCursor={true}
@@ -427,7 +488,7 @@ const About = () => {
 
       {/* Footer */}
       <div className="w-full bg-primary">
-      <Footer />
+        <Footer />
       </div>
     </main>
   );
