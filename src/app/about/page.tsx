@@ -395,46 +395,48 @@ const About = () => {
                     <Image
                       height={1}
                       width={1}
-                      src={``}
+                      src={`#`}
                       alt="slide_image"
                       className="!w-[550px] !h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
                     />
                   </SwiperSlide>
                 ))
               : divisions?.map((division, index) => (
-                  <SwiperSlide key={index} className=" relative">
+                  <SwiperSlide key={index} className="relative">
                     {({ isActive }) => {
                       return (
-                        <Link href={`/about/division/${division.slug}`}>
-                          {isActive ? (
-                            <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
-                              <span
-                                className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
+                        <div className="after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgba(0,0,0,0.9)] after:to-[rgba(0,0,0,0.2)]">
+                          <Link href={`/about/division/${division.slug}`}>
+                            {isActive ? (
+                              <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
+                                <span
+                                  className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
+                                >
+                                  {division.name}
+                                </span>
+                              </div>
+                            ) : (
+                              <div
+                                className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
                               >
-                                {division.name}
-                              </span>
-                            </div>
-                          ) : (
-                            <div
-                              className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
-                            >
-                              <span
-                                className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
-                              >
-                                {division.name}
-                              </span>
-                            </div>
-                          )}
-                          <Image
-                            height={1}
-                            width={1}
-                            src={`uploads/${division.image}`}
-                            key={index}
-                            title={formatEndpointText(division.slug)}
-                            alt="slide_image"
-                            className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
-                          />
-                        </Link>
+                                <span
+                                  className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
+                                >
+                                  {division.name}
+                                </span>
+                              </div>
+                            )}
+                            <Image
+                              height={1}
+                              width={1}
+                              src={`uploads/${division.image}`}
+                              key={index}
+                              title={formatEndpointText(division.slug)}
+                              alt="slide_image"
+                              className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                            />
+                          </Link>
+                        </div>
                       );
                     }}
                   </SwiperSlide>
