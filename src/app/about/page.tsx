@@ -11,6 +11,9 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../styles/swiper-about.css";
 
+import { Jost } from "next/font/google";
+const jost = Jost({ weight: "700", subsets: ["cyrillic"] });
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -27,7 +30,7 @@ const loadingContent = [1, 2, 3, 4, 5, 6];
 
 const About = () => {
   const [isLoadingDivision, setIsLoadingDivision] = useState<boolean>();
-  const [isCenter, setIsCenter] = useState<number>();
+
   const [divisions, setDivision] = useState<any[]>();
   const fetchAboutDivision = async () => {
     setIsLoadingDivision(true);
@@ -271,10 +274,9 @@ const About = () => {
           Divisions Who Support CC
         </h2>
         <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vulputate libero et velit interdum, ac aliquet odio mattis. Class
-          aptent taciti sociosqu ad litora torquent per conubia nostra, per
-          inceptos himenaeos.
+          Here, you will find information related to Divisions actively
+          supporting Creative Commons. Gain insights into their contributions
+          and how they strengthen the community.
         </p>
 
         <div className="mt-[55px] mx-auto mb-0">
@@ -311,38 +313,32 @@ const About = () => {
                     <Image
                       height={1}
                       width={1}
-                      src={`uploads/events/landscape/UsmONZaFheh9f0eZy0dsZxlw1aome7dQm5TTrACE.png`}
+                      src={``}
                       alt="slide_image"
                       className="!w-[550px] !h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
                     />
                   </SwiperSlide>
                 ))
               : divisions?.map((division, index) => (
-                  <SwiperSlide
-                    key={index}
-                    className="!w-[550px] !h-[550px] relative"
-                  >
-                    {({ isActive, isVisible }) => {
-                      {
-                        isActive && setIsCenter(index);
-                      }
+                  <SwiperSlide key={index} className=" relative">
+                    {({ isActive }) => {
                       return (
                         <Link href={`/about/division/${division.slug}`}>
                           {isActive ? (
-                            <div className="  absolute flex z-50 items-end inset-0 p-10">
-                              <span className="text-black font-medium text-[24px]">
+                            <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
+                              <span
+                                className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
+                              >
                                 {division.name}
                               </span>
                             </div>
                           ) : (
                             <div
-                              className={`absolute -rotate-90   flex z-50 justify-center ${
-                                isCenter && index < isCenter
-                                  ? "items-start"
-                                  : "items-end"
-                              } inset-0 py-20`}
+                              className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
                             >
-                              <span className="text-white tracking-widest font-bold text-[24px] uppercase">
+                              <span
+                                className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
+                              >
                                 {division.name}
                               </span>
                             </div>
@@ -350,11 +346,11 @@ const About = () => {
                           <Image
                             height={1}
                             width={1}
-                            src={`uploads/events/landscape/UsmONZaFheh9f0eZy0dsZxlw1aome7dQm5TTrACE.png`}
+                            src={`uploads/${division.image}`}
                             key={index}
                             title={formatEndpointText(division.slug)}
                             alt="slide_image"
-                            className="!w-[550px] !h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                            className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
                           />
                         </Link>
                       );
