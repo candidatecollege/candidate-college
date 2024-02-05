@@ -85,15 +85,16 @@ const About = () => {
         );
         const jsonData = await response.json();
 
-        // Sort Event Data Based on Upcoming "start_date_time" Property
+        // Sort Event Data Based on Upcoming "end_date_time" Property
         const today = new Date();
         const sortedData = jsonData.data.filter(
-          (event: any) => new Date(event.start_date_time) >= today
+           (event: any) => new Date(event.end_date_time) <= today
         );
+
         sortedData.sort(
           (dataA: any, dataB: any) =>
-            new Date(dataA.start_date_time).getTime() -
-            new Date(dataB.start_date_time).getTime()
+            new Date(dataB.end_date_time).getTime() -
+            new Date(dataA.start_date_time).getTime()
         );
 
         const firstEventData = truncatedSnippetsData(sortedData.slice(0, 1));
@@ -109,6 +110,7 @@ const About = () => {
     };
     CurrentEvents();
   }, []);
+
 
   const socials = [
     {
