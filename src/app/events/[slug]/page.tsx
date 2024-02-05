@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { CTA, Footer, Navbar } from "@/components";
 import Image from "next/image";
@@ -23,14 +24,10 @@ const Detail = () => {
   const fetchArticle = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/events/${slug}`
-      );
+      const response = await axios.get(`/api/events/${slug}`);
 
-      setTimeout(() => {
-        setArticle(response.data.data);
-        setIsLoading(false); // After setting the data, set isLoading to false
-      }, 1500);
+      setArticle(response.data.data);
+      setIsLoading(false); // After setting the data, set isLoading to false
     } catch (error) {
       console.error(error);
       setIsLoading(false);
@@ -41,17 +38,13 @@ const Detail = () => {
   const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] =
     useState<boolean>(true);
 
-  const fetchRelatedArticles = async () => {
+  const fetchRelatedArticles = async (id: number) => {
     setIsLoadingRelatedArticles(true);
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/events/categories/${2}`
-      );
+      const response = await axios.get(`/api/event/categories/${id}`);
 
-      setTimeout(() => {
-        setRelatedArticles(response.data.data.articles);
-        setIsLoadingRelatedArticles(false);
-      }, 1500);
+      setRelatedArticles(response.data.data.events);
+      setIsLoadingRelatedArticles(false);
     } catch (error) {
       console.log(error);
       setIsLoadingRelatedArticles(false);
@@ -60,7 +53,9 @@ const Detail = () => {
 
   const links = generateShareLinks(
     article && article.name,
-    `https://candidatecollegeind.com/events/${article && article.slug}`
+    `https://resource-candidatecollege.infinityfreeapp.com/events/${
+      article && article.slug
+    }`
   );
 
   const socials = [
@@ -86,10 +81,9 @@ const Detail = () => {
 
   useEffect(() => {
     fetchArticle();
-    fetchRelatedArticles();
+    // masih static untuk category nya
+    fetchRelatedArticles(2);
   }, []);
-
-  console.log(relatedArticles);
 
   return (
     <main className="bg-white h-full w-full">
@@ -195,7 +189,8 @@ const Detail = () => {
           </div>
 
           <Image
-            src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${
+            priority={true}
+            src={`/uploads/${
               article && article.cover == article.cover_landscape
                 ? article.cover
                 : article.cover_landscape
@@ -212,7 +207,8 @@ const Detail = () => {
           />
 
           <Image
-            src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${
+            priority={true}
+            src={`/uploads/${
               article && article.cover == article.cover_landscape
                 ? article.cover
                 : article.cover_landscape
@@ -231,22 +227,34 @@ const Detail = () => {
             }}
           />
 
-          {/* <div className="flex flex-row items-center justify-between pb-6 mt-10 border-b border-b-gray w-full">
-              <h2 className="font-semibold text-2xl md:text-4xl text-primary">Related Events</h2>
-            </div> */}
+          <div className="flex flex-row items-center justify-between pb-6 mt-10 border-b border-b-gray w-full">
+            <h2 className="font-semibold text-2xl md:text-4xl text-primary">
+              Related Events
+            </h2>
+          </div>
 
           {/* Articles */}
-          {/* <div className="flex flex-col gap-8 md:gap-5 mt-5 md:flex-row md:items-start md:justify-start w-full">
-                  {
-                    isLoadingRelatedArticles ? 
-                    loadingContents.slice(0, 3).map((article, index) => (
-                      <CardItemLandscape data={article} key={index}  isLoading={true} />
-                    )) :
-                    relatedArticles.slice(0, 3).map((article, index) => (
-                      <CardItemLandscape data={article} key={index}  isLoading={false} />
-                    ))
-                  }
-            </div> */}
+          <div className="flex flex-col gap-8 md:gap-5 mt-5 md:flex-row md:items-start md:justify-start w-full">
+            {isLoadingRelatedArticles
+              ? loadingContents
+                  .slice(0, 3)
+                  .map((article, index) => (
+                    <CardItemLandscape
+                      data={article}
+                      key={index}
+                      isLoading={true}
+                    />
+                  ))
+              : relatedArticles
+                  .slice(0, 3)
+                  .map((article, index) => (
+                    <CardItemLandscape
+                      data={article}
+                      key={index}
+                      isLoading={false}
+                    />
+                  ))}
+          </div>
         </section>
       )}
 

@@ -34,14 +34,10 @@ const Programs = () => {
     setIsLoadingCategories(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/event/categories`
-      );
+      const response = await axios.get(`api/event/categories`);
 
-      setTimeout(() => {
-        setCategories(response.data.data);
-        setIsLoadingCategories(false); // After setting the data, set isLoading to false
-      }, 1500);
+      setCategories(response.data.data);
+      setIsLoadingCategories(false); // After setting the data, set isLoading to false
     } catch (error) {
       console.error(error);
     }
@@ -55,14 +51,10 @@ const Programs = () => {
     setIsLoadingEvents(true);
 
     try {
-      const response = await axios.get(
-        `https://resource-candidatecollege.infinityfreeapp.com/api/events?count=100`
-      );
+      const response = await axios.get(`api/events?count=100`);
 
-      setTimeout(() => {
-        setEvents(response.data.data);
-        setIsLoadingEvents(false); // After setting the data, set isLoading to false
-      }, 1500);
+      setEvents(response.data.data);
+      setIsLoadingEvents(false); // After setting the data, set isLoading to false
     } catch (error) {
       console.error(error);
       setIsLoadingEvents(false);
@@ -133,6 +125,7 @@ const Programs = () => {
                 ))
               : events.map((event, index) => (
                   <Link
+                    key={index}
                     href={`/events/${event.slug}`}
                     about={event.name}
                     title={event.name}
@@ -141,7 +134,7 @@ const Programs = () => {
                     <Image
                       width={100}
                       height={180}
-                      src={`https://resource-candidatecollege.infinityfreeapp.com/storage/${event.cover_landscape}`}
+                      src={`/uploads/${event.cover_landscape}`}
                       alt={event.name}
                       title={event.name}
                       className="w-full h-[178px] md:h-[168px] rounded-xl object-cover"
@@ -149,16 +142,11 @@ const Programs = () => {
                     />
 
                     <div className="flex md:flex-1 flex-col gap">
-                      <Link
-                        href={`/events/${event.slug}`}
-                        about={event.name}
-                        title={event.name}
-                        className="font-semibold text-2xl text-primary"
-                      >
+                      <span className="font-semibold text-2xl text-primary">
                         {event.name.length > 40
                           ? event.name.substring(0, 48) + " ..."
                           : event.name}
-                      </Link>
+                      </span>
 
                       <p className="font-normal text-sm text-gray">
                         {event.snippets.substring(0, 150) + " ..."}

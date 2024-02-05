@@ -26,7 +26,7 @@ const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
             </div>
           </div>
         </div>
-      ) : (
+      ) : data.title ? (
         <Link
           href={`/${type == "Article" ? "articles" : "events"}/${data.slug}`}
           about={data.title}
@@ -44,10 +44,7 @@ const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
           />
 
           <div className="flex md:flex-1 flex-col gap">
-            <Link
-              href={`/${type == "Article" ? "articles" : "events"}/${
-                data.slug
-              }`}
+            <span
               about={data.title}
               title={data.title}
               className="font-semibold text-2xl text-primary"
@@ -55,7 +52,45 @@ const CardItemLandscape: React.FC<any> = ({ data, type, isLoading }) => {
               {data.title.length > 40
                 ? data.title.substring(0, 48) + " ..."
                 : data.title}
-            </Link>
+            </span>
+
+            <p className="font-normal text-sm text-gray">
+              {data.snippets.substring(0, 170) + " ..."}
+            </p>
+
+            <p className="font-normal text-xs text-gray mt-5">
+              {formatDate(data.created_at)} &nbsp; | &nbsp; {data.duration} min
+              read
+            </p>
+          </div>
+        </Link>
+      ) : (
+        <Link
+          href={`/${type == "Article" ? "articles" : "events"}/${data.slug}`}
+          about={data.name}
+          title={data.name}
+          className={`flex-col gap-2 md:items-center md:gap-2 flex md:w-[320px]`}
+        >
+          <Image
+            width={100}
+            height={180}
+            src={`/uploads/${data.cover_landscape}`}
+            alt={data.name}
+            title={data.name}
+            className="w-full h-[178px] md:h-[168px] rounded-xl object-cover"
+            priority
+          />
+
+          <div className="flex md:flex-1 flex-col gap">
+            <span
+              about={data.name}
+              title={data.name}
+              className="font-semibold text-2xl text-primary"
+            >
+              {data.name.length > 40
+                ? data.name.substring(0, 48) + " ..."
+                : data.name}
+            </span>
 
             <p className="font-normal text-sm text-gray">
               {data.snippets.substring(0, 170) + " ..."}
