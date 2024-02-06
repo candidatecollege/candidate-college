@@ -5,6 +5,10 @@ import Swal from "sweetalert2";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import axios, { AxiosError } from "axios";
+import {
+  validationIntagram,
+  validationLinkedin,
+} from "@/utils/validationFormatLink";
 
 export type member = {
   firstName: string;
@@ -50,6 +54,8 @@ export function FormTemp() {
       status: 200,
     };
     try {
+      validationLinkedin(state.linkedin);
+      validationIntagram(state.instagram);
       const resp = await axios.post("/api/members", formData, {
         headers: {
           Accept: "application/json",
