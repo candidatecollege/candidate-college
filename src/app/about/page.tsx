@@ -357,7 +357,7 @@ const About = () => {
         </h2>
         <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
           Here, you will find information related to Divisions actively
-          supporting Creative Commons. Gain insights into their contributions
+          supporting Candidate College. Gain insights into their contributions
           and how they strengthen the community.
         </p>
 
