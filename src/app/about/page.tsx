@@ -249,6 +249,22 @@ const About = () => {
           </div>
         </div>
       </section>
+      
+      {/* Founder */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
+        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+          Our Founder
+        </h3>
+        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+          Rasya Dwi Julitha
+        </h2>
+        <div className="flex justify-center mt-7">
+          <img src="https://i.ibb.co/dc1X7pJ/founder-of-candidate-college.jpg" className="w-40 rounded-full" title="Founder Candidate College"/>
+        </div>
+        <p className="text-[#90A3BF] text-sm font-normal text-center m-auto leading-6 lg:w-3/5 xsm:w-4/5 xxsm:w-11/12 w-[95%] pt-[15px] mt-6">
+          Welcome to Candidate College, a beacon of educational excellence tailored for Indonesia's aspiring minds. As the founder, I am thrilled to present a platform dedicated to nurturing potential and fostering intellectual growth. Our mission is to bridge the gap between students and quality education, both domestically and internationally. We understand the journey of learning is unique for each individual, and our commitment lies in providing personalized, top-tier educational resources and guidance. Join us, as we embark on this transformative journey together, shaping futures and building dreams with every step. Welcome to your next chapter of success with Candidate College.
+        </p>
+      </section>
 
       {/* Events */}
       <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
@@ -258,7 +274,7 @@ const About = () => {
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Success Events
         </h2>
-        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xxsm:w-11/12 w-[95%] pt-[15px]">
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xsm:w-full xxsm:w-full w-[95%] pt-[15px]">
           Exciting events are waiting to enrich your learning journey, from
           inspiring seminars to practical workshops designed to help you develop
           your best potential in the academic world.
@@ -357,7 +373,7 @@ const About = () => {
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Divisions Who Support CC
         </h2>
-        <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xsm:w-full xxsm:w-full w-[95%] pt-[15px]">
           Here, you will find information related to Divisions actively
           supporting Candidate College. Gain insights into their contributions
           and how they strengthen the community.
@@ -397,48 +413,46 @@ const About = () => {
                     <Image
                       height={1}
                       width={1}
-                      src={`#`}
+                      src={``}
                       alt="slide_image"
                       className="!w-[550px] !h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
                     />
                   </SwiperSlide>
                 ))
               : divisions?.map((division, index) => (
-                  <SwiperSlide key={index} className="relative">
+                  <SwiperSlide key={index} className=" relative">
                     {({ isActive }) => {
                       return (
-                        <div className="after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgba(0,0,0,0.9)] after:to-[rgba(0,0,0,0.2)]">
-                          <Link href={`/about/division/${division.slug}`}>
-                            {isActive ? (
-                              <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
-                                <span
-                                  className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
-                                >
-                                  {division.name}
-                                </span>
-                              </div>
-                            ) : (
-                              <div
-                                className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
+                        <Link href={`/about/division/${division.slug}`}>
+                          {isActive ? (
+                            <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
+                              <span
+                                className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
                               >
-                                <span
-                                  className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
-                                >
-                                  {division.name}
-                                </span>
-                              </div>
-                            )}
-                            <Image
-                              height={1}
-                              width={1}
-                              src={`uploads/${division.image}`}
-                              key={index}
-                              title={formatEndpointText(division.slug)}
-                              alt="slide_image"
-                              className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
-                            />
-                          </Link>
-                        </div>
+                                {division.name}
+                              </span>
+                            </div>
+                          ) : (
+                            <div
+                              className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
+                            >
+                              <span
+                                className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
+                              >
+                                {division.name}
+                              </span>
+                            </div>
+                          )}
+                          <Image
+                            height={1}
+                            width={1}
+                            src={`uploads/${division.image}`}
+                            key={index}
+                            title={formatEndpointText(division.slug)}
+                            alt="slide_image"
+                            className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                          />
+                        </Link>
                       );
                     }}
                   </SwiperSlide>
@@ -463,7 +477,7 @@ const About = () => {
         <h2 className="text-primary md:px-[70px] px-5 xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           What Our Interns Say
         </h2>
-        <p className="text-[#90A3BF] md:px-[70px] px-5 xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
+        <p className="text-[#90A3BF] md:px-[70px] px-5 xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xsm:w-full xxsm:w-full w-[95%] pt-[15px]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
