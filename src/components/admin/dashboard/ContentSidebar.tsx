@@ -18,11 +18,11 @@ export default function ContentSidebar() {
       title: "Candidate",
     },
     {
-      path: "/careers/admin/dashboard/profile",
+      path: "/careers/admin/candidates/profile",
       icon: (
         <ProfileSvg
           stroke={`${
-            pathname === "/careers/admin/dashboard/profile"
+            pathname === "/careers/admin/candidates/profile"
               ? "#1B4E6B"
               : "white"
           }`}
