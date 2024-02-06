@@ -4,7 +4,7 @@ import { Logout } from "./svg";
 
 export default function Sidebar() {
   return (
-    <aside className="w-[266px] fixed inset-y-0 p-4 flex flex-col  bg-primary  text-white">
+    <aside className="w-[266px]   hidden fixed inset-y-0 p-4 sm:flex flex-col  bg-primary  text-white">
       {/* sidebar bagian top */}
       <div className="h-full">
         {/* logo header sidebar */}

@@ -9,16 +9,11 @@ export default function AdminLayout({
 }) {
   return (
     <>
-      <main className="bg-white box-border lg:block hidden w-full min-h-screen   text-black">
+      <main className="bg-white box-border   w-full min-h-screen   text-black">
         {/* sidebar */}
         <Sidebar />
         {/* body content */}
         {children}
-      </main>
-      <main className="lg:hidden flex items-center w-full min-h-screen justify-center">
-        <h1 className="text-primary">
-          Mobile version is not available now, please open in desktop 😥
-        </h1>
       </main>
     </>
   );
