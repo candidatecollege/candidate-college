@@ -15,7 +15,7 @@ import DetailCommitment from "@/components/admin/candidates/profile/details/Deta
 
 export default function DashboardPage() {
   return (
-    <main className="p-6 py-4 pb-8 sm:ml-[266px]">
+    <main className="sm:p-6 px-6  py-16 pb-8  sm:ml-[266px]">
       {/* Bagian header */}
       <HeaderAdmin
         title="Personal Information"
