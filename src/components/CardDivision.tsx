@@ -5,13 +5,13 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 // Component
 const CardMember = (props: any) => {
   return (
-    <div className="flex flex-col bg-white rounded-2xl justify-center items-center shadow-lg w-56 h-80 lg:mx-6 lg:my-9 xsm:m-5 xxsm:m-4">
+    <div className="flex flex-col bg-white rounded-2xl justify-center items-center shadow-lg w-56 h-[320px] lg:mx-8 lg:my-14 xsm:m-5 xxsm:m-4">
       {/* Photo Profile */}
-      <img src={props.img} className="rounded-full w-40 mx-auto" />
+      <img src={props.img} className="rounded-full w-40 h-40 object-cover mx-auto mt-2 object-center" />
       {/* Name */}
-      <p className="text-primary text-xl text-center font-extrabold pt-4">{props.name}</p>
+      <div className="text-primary text-lg text-center font-extrabold pt-4">{props.name}</div>
       {/* Position */}
-      <p className="text-yellow-300 text-sm text-center font-medium">{props.position}</p>
+      <div className="text-yellow-300 text-sm text-center font-medium">{props.position}</div>
       {/* Social Media */}
       <div className="flex flex-row justify-center items-center p-4">
         {/* Instagram */}

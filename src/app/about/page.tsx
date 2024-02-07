@@ -111,7 +111,6 @@ const About = () => {
     CurrentEvents();
   }, []);
 
-
   const socials = [
     {
       id: 1,

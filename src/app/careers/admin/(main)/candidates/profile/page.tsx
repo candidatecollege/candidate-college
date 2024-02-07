@@ -10,18 +10,16 @@ import { CardCandidate } from "@/components/admin/dashboard/CardCandidate";
 export default function DashboardPage() {
   return (
     <main className="p-6 py-4 pb-8 ml-[266px] hidden lg:block">
-      {/* Header */}
-      <section className="flex items-center justify-between">
-        <div className="py-4">
-          <h1 className="text-[57px] font-normal leading-[58px]">Profile</h1>
-          <span className="text-[16px] text-gray">
-            Your Candidate's Profile
-          </span>
-        </div>
-        <div className="flex">
-          <SearchNav />
-          <Profile />
-        </div>
+      {/* Header Section */}
+      <section className="flex lg:flex-row flex-col lg:items-center lg:justify-between">
+          <div className="py-4 w-full lg:w-5/12">
+            <h1 className="lg:mt-4 sm:mt-2 xxsm:mt-20 lg:text-[46px] sm:text-[46px] xxsm:text-[34px] leading-[42px] font-normal">Profile</h1>
+            <div className="text-[16px] mt-2 text-gray">Your Candidate’s Profile</div>
+          </div>
+          <div className="hidden sm:flex  flex-1 ">
+            <SearchNav />
+            <Profile />
+          </div>
       </section>
 
       {/* Card */}

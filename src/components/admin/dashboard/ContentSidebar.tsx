@@ -1,36 +1,29 @@
 import Link from "next/link";
-import FolderSvg from "./svg/FolderSvg";
 import { usePathname } from "next/navigation";
+import FolderSvg from "./svg/FolderSvg";
 import ProfileSvg from "./svg/ProfileSvg";
 import ClipboardSvg from "./svg/ClipboardSvg";
+import JobSvg from "./svg/JobSvg";
 
 export default function ContentSidebar() {
   const pathname = usePathname();
   const urlPath = [
     {
       path: "/careers/admin/dashboard",
-      regex:
-        /^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates)/i,
       icon: (
         <FolderSvg
           stroke={`${
-            pathname.match(
-              /^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates)/i
-            )
-              ? "#1B4E6B"
-              : "white"
+            pathname === "/careers/admin/dashboard" ? "#1B4E6B" : "white"
           }`}
         />
       ),
-      title: "Candidates",
+      title: "Candidate",
     },
     {
-      path: "/careers/admin/dashboard/profile",
-      regex: /^\/careers\/admin\/dashboard\/profile\/?$/i,
+      path: "/careers/admin/candidates/profile",
       icon: (
         <ProfileSvg
           stroke={`${
-            pathname.match(/^\/careers\/admin\/dashboard\/profile\/?$/i) ||
             pathname === "/careers/admin/candidates/profile"
               ? "#1B4E6B"
               : "white"
@@ -41,7 +34,6 @@ export default function ContentSidebar() {
     },
     {
       path: "/careers/admin/dashboard/le",
-      regex: "gsdagasd",
       icon: (
         <ClipboardSvg
           stroke={`${
@@ -51,21 +43,31 @@ export default function ContentSidebar() {
       ),
       title: "Status",
     },
+    {
+      path: "/careers/admin/job/add",
+      icon: (
+        <JobSvg 
+            stroke={`${
+          pathname === "/careers/admin/job/add" ? "#1B4E6B" : "white"
+        }`} />
+      ),
+      title: "Add job"
+    }
   ];
 
-  return urlPath.map(({ path, icon, title, regex }, index) => {
+  return urlPath.map(({ path, icon, title }, index) => {
     return (
       <Link
         key={index}
         href={path}
         className={`flex items-center gap-4 cursor-pointer ${
-          pathname.match(regex) ? "bg-secondary" : ""
+          path === pathname ? "bg-secondary" : ""
         } px-4 py-3 rounded-3xl`}
       >
         {icon}
         <h2
-          className={`text-[14px]  ${
-            pathname.match(regex) ? "text-primary" : "text-white"
+          className={`text-[14px] font-medium ${
+            path === pathname ? "text-primary" : "text-white"
           } leading-[20px]`}
         >
           {title}
