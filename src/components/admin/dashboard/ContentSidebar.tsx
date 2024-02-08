@@ -10,35 +10,45 @@ export default function ContentSidebar() {
   const urlPath = [
     {
       path: "/careers/admin/dashboard",
+      regex: /^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates\/(?!profile\/?$))/i,
       icon: (
         <FolderSvg
-          stroke={`${
-            pathname === "/careers/admin/dashboard" ? "#1B4E6B" : "white"
-          }`}
+          stroke={
+            pathname.match(/^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates\/(?!profile\/?$))/i) ||
+            pathname === "/careers/admin/dashboard"
+              ? "#1B4E6B"
+              : "white"
+          }
         />
       ),
       title: "Candidate",
     },
     {
       path: "/careers/admin/candidates/profile",
+      regex: /^\/careers\/admin\/candidates\/profile\/?/i,
       icon: (
         <ProfileSvg
-          stroke={`${
+          stroke={
+            pathname.match(/^\/careers\/admin\/candidates\/profile\/?/i) ||
             pathname === "/careers/admin/candidates/profile"
               ? "#1B4E6B"
               : "white"
-          }`}
+          }
         />
       ),
       title: "Profile",
     },
     {
-      path: "/careers/admin/dashboard/le",
+      path: "/careers/admin/status",
+      regex: /^\/careers\/admin\/status\/?$/i,
       icon: (
         <ClipboardSvg
-          stroke={`${
-            pathname === "/careers/admin/dashboard/le" ? "#1B4E6B" : "white"
-          }`}
+          stroke={
+            pathname.match(/^\/careers\/admin\/status\/?$/i) ||
+            pathname === "/careers/admin/dashboard/le" // Assuming this was the intended match for the 'feat/display-division-member-page' branch
+              ? "#1B4E6B"
+              : "white"
+          }
         />
       ),
       title: "Status",
@@ -47,27 +57,29 @@ export default function ContentSidebar() {
       path: "/careers/admin/job/add",
       icon: (
         <JobSvg 
-            stroke={`${
-          pathname === "/careers/admin/job/add" ? "#1B4E6B" : "white"
-        }`} />
+          stroke={
+            pathname === "/careers/admin/job/add" ? "#1B4E6B" : "white"
+          }
+        />
       ),
       title: "Add job"
     }
   ];
 
-  return urlPath.map(({ path, icon, title }, index) => {
+  return urlPath.map(({ path, regex, icon, title }, index) => {
+    const isActive = regex ? pathname.match(regex) || pathname === path : pathname === path;
     return (
       <Link
         key={index}
         href={path}
         className={`flex items-center gap-4 cursor-pointer ${
-          path === pathname ? "bg-secondary" : ""
+          isActive ? "bg-secondary" : ""
         } px-4 py-3 rounded-3xl`}
       >
         {icon}
         <h2
           className={`text-[14px] font-medium ${
-            path === pathname ? "text-primary" : "text-white"
+            isActive ? "text-primary" : "text-white"
           } leading-[20px]`}
         >
           {title}

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Attachment } from "./svg";
 
 export default function Table() {
   return (
@@ -8,12 +7,9 @@ export default function Table() {
         <thead>
           <tr className="text-[14px] font-medium text-gray">
             <td className="pl-4">PROFILE</td>
-            <td className="pl-4">DIVISI</td>
-            <td className="pl-4">INTEREST</td>
-            <td className="pl-4">RESUME</td>
-            <td className="pl-4">PORTFOLIO</td>
-            <td className="pl-4">DATE</td>
-            <td className="w-11"></td>
+            <td className="pl-4">DIVISION</td>
+            <td className="pl-4">WHATSAPP</td>
+            <td className="pl-4">STATUS</td>
           </tr>
         </thead>
         <tbody className="text-[13px] text-white ">
@@ -47,22 +43,21 @@ export default function Table() {
                     <span className="text-[#D1D5DB]">Talent Management</span>
                   </div>
                 </td>
-                <td className="bg-primary px-4 py-2 max-w-[200px]">
-                  Lorem ipsum dolor sit amet consectetur.
+                <td className="bg-primary text-[#D1D5DB] px-4 py-2 max-w-[200px]">
+                  +6285269877675
                 </td>
-                <td className="px-4 py-2 bg-primary">
-                  <div className="flex gap-1 text-[#D1D5DB] items-center">
-                    See Attachment <Attachment />
-                  </div>
-                </td>
-                <td className="px-4 py-2 bg-primary">
-                  <div className="flex gap-1 text-[#D1D5DB]  items-center">
-                    See Attachment <Attachment />
-                  </div>
-                </td>
-                <td className="px-4 py-2 bg-primary">14/06/21</td>
-                <td className="px-4 py-2 pr-8 bg-primary rounded-e-xl text-center w-20">
-                  <button>View</button>
+
+                <td className="px-4 py-2 pr-8 bg-primary rounded-e-xl">
+                  <select
+                    className="bg-primary w-full outline-none"
+                    name="cars"
+                    id="cars"
+                  >
+                    <option defaultChecked>Status</option>
+                    <option value="saab">Interviewed</option>
+                    <option value="mercedes">Process</option>
+                    <option value="audi">Applicant</option>
+                  </select>
                 </td>
               </tr>
             );
