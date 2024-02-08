@@ -10,12 +10,12 @@ export default function ContentSidebar() {
     {
       path: "/careers/admin/dashboard",
       regex:
-        /^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates)/i,
+        /^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates\/(?!profile\/?$))/i,
       icon: (
         <FolderSvg
           stroke={`${
             pathname.match(
-              /^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates)/i
+              /^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates\/(?!profile\/?$))/i
             )
               ? "#1B4E6B"
               : "white"
@@ -25,13 +25,12 @@ export default function ContentSidebar() {
       title: "Candidates",
     },
     {
-      path: "/careers/admin/dashboard/profile",
-      regex: /^\/careers\/admin\/dashboard\/profile\/?$/i,
+      path: "/careers/admin/candidates/profile",
+      regex: /^\/careers\/admin\/candidates\/profile\/?/i,
       icon: (
         <ProfileSvg
           stroke={`${
-            pathname.match(/^\/careers\/admin\/dashboard\/profile\/?$/i) ||
-            pathname === "/careers/admin/candidates/profile"
+            pathname.match(/^\/careers\/admin\/candidates\/profile\/?/i)
               ? "#1B4E6B"
               : "white"
           }`}
@@ -40,12 +39,14 @@ export default function ContentSidebar() {
       title: "Profile",
     },
     {
-      path: "/careers/admin/dashboard/le",
-      regex: "gsdagasd",
+      path: "/careers/admin/status",
+      regex: /^\/careers\/admin\/status\/?$/i,
       icon: (
         <ClipboardSvg
           stroke={`${
-            pathname === "/careers/admin/dashboard/le" ? "#1B4E6B" : "white"
+            pathname.match(/^\/careers\/admin\/status\/?$/i)
+              ? "#1B4E6B"
+              : "white"
           }`}
         />
       ),
