@@ -14,7 +14,8 @@ export default function ContentSidebar() {
       icon: (
         <FolderSvg
           stroke={
-            pathname.match(/^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates\/(?!profile\/?$))/i)
+            pathname.match(/^\/careers\/admin\/(dashboard\/profile\/?$|dashboard\/?$|candidates\/(?!profile\/?$))/i) ||
+            pathname === "/careers/admin/dashboard"
               ? "#1B4E6B"
               : "white"
           }
@@ -28,7 +29,8 @@ export default function ContentSidebar() {
       icon: (
         <ProfileSvg
           stroke={
-            pathname.match(/^\/careers\/admin\/candidates\/profile\/?/i)
+            pathname.match(/^\/careers\/admin\/candidates\/profile\/?/i) ||
+            pathname === "/careers/admin/candidates/profile"
               ? "#1B4E6B"
               : "white"
           }
@@ -42,7 +44,8 @@ export default function ContentSidebar() {
       icon: (
         <ClipboardSvg
           stroke={
-            pathname.match(/^\/careers\/admin\/status\/?$/i)
+            pathname.match(/^\/careers\/admin\/status\/?$/i) ||
+            pathname === "/careers/admin/dashboard/le" // Assuming this was the intended match for the 'feat/display-division-member-page' branch
               ? "#1B4E6B"
               : "white"
           }
@@ -64,7 +67,7 @@ export default function ContentSidebar() {
   ];
 
   return urlPath.map(({ path, regex, icon, title }, index) => {
-    const isActive = regex ? pathname.match(regex) : pathname === path;
+    const isActive = regex ? pathname.match(regex) || pathname === path : pathname === path;
     return (
       <Link
         key={index}
