@@ -88,7 +88,7 @@ const About = () => {
         // Sort Event Data Based on Upcoming "end_date_time" Property
         const today = new Date();
         const sortedData = jsonData.data.filter(
-           (event: any) => new Date(event.end_date_time) <= today
+          (event: any) => new Date(event.end_date_time) <= today
         );
 
         sortedData.sort(
@@ -184,7 +184,7 @@ const About = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-[70px] px-5 pt-[90px]">
+      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-[70px] px-5 pt-[90px] pb-40">
         <div className="flex items-center md:m-auto relative md:w-[520px] w-full h-[308px] p-6 bg-primary rounded-3xl overflow-hidden">
           <div className="flex flex-col xl:w-[55%] w-[50%]">
             <p className="text-[#90A3BF] xl:text-[15px] text-sm font-normal">
@@ -217,7 +217,8 @@ const About = () => {
               Trusted Partner
             </h2>
             <p className="text-[#90A3BF] xl:text-base text-sm font-normal pt-[10px] leading-7">
-              Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
+              Our commitment to excellence has established us as a trusted
+              partner in industry innovation and growth.
             </p>
           </div>
           <div className="flex xl:flex-row md:flex-col flex-row xl:basis-1/2 basis-1/4 xl:justify-center justify-evenly items-center xl:gap-9 md:gap-0 gap-4">
@@ -248,9 +249,9 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Founder */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-40">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
           Our Founder
         </h3>
@@ -258,15 +259,28 @@ const About = () => {
           Rasya Dwi Julitha
         </h2>
         <div className="flex justify-center mt-7">
-          <img src="https://i.ibb.co/dc1X7pJ/founder-of-candidate-college.jpg" className="w-40 rounded-full" title="Founder Candidate College"/>
+          <img
+            src="https://i.ibb.co/dc1X7pJ/founder-of-candidate-college.jpg"
+            className="w-40 rounded-full"
+            title="Founder Candidate College"
+          />
         </div>
         <p className="text-[#90A3BF] text-sm font-normal text-center m-auto leading-6 lg:w-3/5 xsm:w-4/5 xxsm:w-11/12 w-[95%] pt-[15px] mt-6">
-          Welcome to Candidate College, a beacon of educational excellence tailored for Indonesia's aspiring minds. As the founder, I am thrilled to present a platform dedicated to nurturing potential and fostering intellectual growth. Our mission is to bridge the gap between students and quality education, both domestically and internationally. We understand the journey of learning is unique for each individual, and our commitment lies in providing personalized, top-tier educational resources and guidance. Join us, as we embark on this transformative journey together, shaping futures and building dreams with every step. Welcome to your next chapter of success with Candidate College.
+          Welcome to Candidate College, a beacon of educational excellence
+          tailored for Indonesia's aspiring minds. As the founder, I am thrilled
+          to present a platform dedicated to nurturing potential and fostering
+          intellectual growth. Our mission is to bridge the gap between students
+          and quality education, both domestically and internationally. We
+          understand the journey of learning is unique for each individual, and
+          our commitment lies in providing personalized, top-tier educational
+          resources and guidance. Join us, as we embark on this transformative
+          journey together, shaping futures and building dreams with every step.
+          Welcome to your next chapter of success with Candidate College.
         </p>
       </section>
 
       {/* Events */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-40">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
           Events
         </h3>
@@ -365,7 +379,7 @@ const About = () => {
       </section>
 
       {/* Divisions */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[70px]">
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[70px] pb-40">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
           Divisions
         </h3>
@@ -422,36 +436,38 @@ const About = () => {
                   <SwiperSlide key={index} className=" relative">
                     {({ isActive }) => {
                       return (
-                        <Link href={`/about/division/${division.slug}`}>
-                          {isActive ? (
-                            <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
-                              <span
-                                className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
+                        <div className="after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgba(0,0,0,0.9)] after:to-[rgba(0,0,0,0.2)]">
+                          <Link href={`/about/division/${division.slug}`}>
+                            {isActive ? (
+                              <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
+                                <span
+                                  className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
+                                >
+                                  {division.name}
+                                </span>
+                              </div>
+                            ) : (
+                              <div
+                                className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
                               >
-                                {division.name}
-                              </span>
-                            </div>
-                          ) : (
-                            <div
-                              className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
-                            >
-                              <span
-                                className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
-                              >
-                                {division.name}
-                              </span>
-                            </div>
-                          )}
-                          <Image
-                            height={1}
-                            width={1}
-                            src={`uploads/${division.image}`}
-                            key={index}
-                            title={formatEndpointText(division.slug)}
-                            alt="slide_image"
-                            className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
-                          />
-                        </Link>
+                                <span
+                                  className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
+                                >
+                                  {division.name}
+                                </span>
+                              </div>
+                            )}
+                            <Image
+                              height={1}
+                              width={1}
+                              src={`uploads/${division.image}`}
+                              key={index}
+                              title={formatEndpointText(division.slug)}
+                              alt="slide_image"
+                              className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                            />
+                          </Link>
+                        </div>
                       );
                     }}
                   </SwiperSlide>
@@ -469,7 +485,8 @@ const About = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="w-full h-full bg-white pt-[100px] pb-40">
+      {/* Sementara akan dikomentari karena akan di redesign */}
+      {/* <section className="w-full h-full bg-white pt-[100px] pb-40">
         <h3 className="text-[#90A3BF] md:px-[70px] xl:text-base text-sm font-normal text-center">
           Testimonials
         </h3>
@@ -497,7 +514,6 @@ const About = () => {
             modules={[Navigation]}
             className="swiper_container !overflow-y-visible"
           >
-            {/* Shadow yang digunakan belum mengikuti yang di Figma */}
             <SwiperSlide className="bg-white relative !w-[580px] rounded-[42px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] pt-20 pb-5 px-[65px]">
               <div className="flex justify-center">
                 <Image
@@ -577,7 +593,7 @@ const About = () => {
             </div>
           </Swiper>
         </div>
-      </section>
+      </section> */}
 
       <CTA />
 
