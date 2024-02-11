@@ -1,5 +1,5 @@
 "use client";
-import { CTA, Footer, Navbar, ComingSoon} from "@/components";
+import { CTA, Footer, Navbar, ComingSoon } from "@/components";
 import "../../../../styles/swiper-about.css";
 
 // Import Swiper styles
@@ -33,7 +33,8 @@ const Division = (props: any) => {
 
   const [isAvailable, setIsAvailable] = useState(true);
   const [profiles, setProfiles] = useState<Profile[]>([]);
-  
+  const [snippets, setSnippets] = useState("");
+
   // Fetch Data from API
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +43,9 @@ const Division = (props: any) => {
           `https://candidate-college.vercel.app/api/divisions/${lastEndPoint}`
         );
         const responseData = await response.json();
-        
+
+        setSnippets(responseData.data.snippets);
+
         if (responseData.data.members.length > 0) {
           const MembersData = responseData.data.members.map((item: any) => ({
             img: item.image,
@@ -51,7 +54,7 @@ const Division = (props: any) => {
             linkedin: item.linkedin,
             instagram: item.instagram,
           }));
-  
+
           setProfiles(MembersData);
         } else {
           setIsAvailable(false);
@@ -64,14 +67,13 @@ const Division = (props: any) => {
     fetchData();
   }, []);
 
-
   // Setting Layout Card
   const renderCards = () => {
     const headAndCoHeadCards: any = [];
     const staffCards: any = [];
 
-    // Classify data based on value position property 
-    profiles.forEach(profile => {
+    // Classify data based on value position property
+    profiles.forEach((profile) => {
       if (profile.position === "Head") {
         headAndCoHeadCards.unshift(profile);
       } else if (profile.position === "Co Head") {
@@ -79,19 +81,22 @@ const Division = (props: any) => {
       } else if (profile.position === "Staff") {
         staffCards.push(profile);
       }
-    })
+    });
 
     // Setting number of cards per row
     const cardsPerRow = [2, 4, 4];
-    
-    // Apply card layout according predetermined settings 
+
+    // Apply card layout according predetermined settings
     return cardsPerRow.map((numCards, rowIndex) => {
       let rowCards = [];
 
-      if(rowIndex === 0) {
+      if (rowIndex === 0) {
         rowCards = headAndCoHeadCards;
       } else if (rowIndex === 1 || rowIndex || 2) {
-        rowCards = staffCards.slice(numCards * (rowIndex - 1), numCards * rowIndex);
+        rowCards = staffCards.slice(
+          numCards * (rowIndex - 1),
+          numCards * rowIndex
+        );
       }
 
       return (
@@ -112,14 +117,14 @@ const Division = (props: any) => {
           ))}
         </div>
       );
-    })
+    });
   };
 
   return (
     <main className="bg-white h-full">
       {/* Navbar */}
-      <Navbar active="About Us"/>
-      
+      <Navbar active="About Us" />
+
       {/* 
           If data members exist, display division members page; 
           if data member not exist, display coming soon page
@@ -132,14 +137,17 @@ const Division = (props: any) => {
               {divisionName}
             </h1>
             <p className="text-gray text-sm leading-7 lg:pt-8 xsm:pt-7 xxsm:pt-6 max-w-[600px] mx-auto text-center">
-              {props.description}
+              {snippets}
             </p>
-            <br /><br />
+            <br />
+            <br />
           </section>
 
           {/* Card */}
           <div className="flex flex-col bg-zinc-100">
-            <div className="flex flex-col lg:-mt-[420px] xxsm:-mt-[400px] z-40">{renderCards()}</div>
+            <div className="flex flex-col lg:-mt-[420px] xxsm:-mt-[400px] z-40">
+              {renderCards()}
+            </div>
             <br />
             <br />
           </div>
@@ -160,9 +168,8 @@ const Division = (props: any) => {
   );
 };
 
-Division.defaultProps = {
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-};
+// Division.defaultProps = {
+//   description: "Tes",
+// };
 
 export default Division;
