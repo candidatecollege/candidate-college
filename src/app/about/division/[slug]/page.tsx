@@ -1,5 +1,5 @@
 "use client";
-import { CTA, Footer, Navbar, ComingSoon} from "@/components";
+import { CTA, Footer, Navbar, ComingSoon } from "@/components";
 import "../../../../styles/swiper-about.css";
 
 // Import Swiper styles
@@ -20,7 +20,9 @@ import Profile from "../../../../data/divisionData";
 import CardMember from "../../../../components/CardDivision";
 
 // Import Function
-import { formatEndpointText } from "../../../../utils/formatEndpointText";
+import { formatEndpointText } from "@/utils/formatEndpointText";
+import { formatName } from "@/utils/formatName";
+import { profile } from "console";
 
 // About Page
 const Division = (props: any) => {
@@ -29,30 +31,34 @@ const Division = (props: any) => {
   const lastEndPoint = pathArray[pathArray.length - 1];
   const divisionName = formatEndpointText(lastEndPoint);
 
+  const [isAvailable, setIsAvailable] = useState(true);
   const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [snippets, setSnippets] = useState("");
 
   // Fetch Data from API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("Fetching data...");
-
         const response = await fetch(
-          "https://cors-proxy-infinityfree.vercel.app/api/members"
+          `https://candidate-college.vercel.app/api/divisions/${lastEndPoint}`
         );
         const responseData = await response.json();
 
-        console.log("Response status:", response.status);
+        setSnippets(responseData.data.snippets);
 
-        const MembersData = responseData.data.map((item: any) => ({
-          img: item.image,
-          name: item.name,
-          position: item.position,
-          linkedin: item.linkedin,
-          instagram: item.instagram,
-        }));
+        if (responseData.data.members.length > 0) {
+          const MembersData = responseData.data.members.map((item: any) => ({
+            img: item.image,
+            name: item.name,
+            position: item.position,
+            linkedin: item.linkedin,
+            instagram: item.instagram,
+          }));
 
-        setProfiles(MembersData);
+          setProfiles(MembersData);
+        } else {
+          setIsAvailable(false);
+        }
       } catch (error) {
         console.error("Error fetching data from API : ", error);
       }
@@ -63,23 +69,46 @@ const Division = (props: any) => {
 
   // Setting Layout Card
   const renderCards = () => {
-    const cardsPerRow = [2, 4, 4];
-    let currentIndex = 0;
+    const headAndCoHeadCards: any = [];
+    const staffCards: any = [];
 
+    // Classify data based on value position property
+    profiles.forEach((profile) => {
+      if (profile.position === "Head") {
+        headAndCoHeadCards.unshift(profile);
+      } else if (profile.position === "Co Head") {
+        headAndCoHeadCards.push(profile);
+      } else if (profile.position === "Staff") {
+        staffCards.push(profile);
+      }
+    });
+
+    // Setting number of cards per row
+    const cardsPerRow = [2, 4, 4];
+
+    // Apply card layout according predetermined settings
     return cardsPerRow.map((numCards, rowIndex) => {
-      const rowCards = profiles.slice(currentIndex, currentIndex + numCards);
-      currentIndex += numCards;
+      let rowCards = [];
+
+      if (rowIndex === 0) {
+        rowCards = headAndCoHeadCards;
+      } else if (rowIndex === 1 || rowIndex || 2) {
+        rowCards = staffCards.slice(
+          numCards * (rowIndex - 1),
+          numCards * rowIndex
+        );
+      }
 
       return (
         <div
           key={rowIndex}
           className="flex lg:justify-center lg:items-centers lg:flex-row xsm:flex-col xxsm:flex-col"
         >
-          {rowCards.map((profile) => (
+          {rowCards.map((profile: any) => (
             <div className="lg:mx-0 xsm:mx-auto xxsm:mx-auto">
               <CardMember
                 img={`https://cors-proxy-infinityfree.vercel.app/uploads/${profile.img}`}
-                name={profile.name}
+                name={formatName(profile.name)}
                 position={profile.position}
                 linkedin={profile.linkedin}
                 instagram={profile.instagram}
@@ -94,28 +123,39 @@ const Division = (props: any) => {
   return (
     <main className="bg-white h-full">
       {/* Navbar */}
-      <Navbar active="About Us"/>
+      <Navbar active="About Us" />
 
-      {/* Hero */}
-      {/* <section className="flex flex-col w-full h-full lg:pt-[100px] xsm:pt-[80px] xxsm:pt-[50px] px-5 py-96 justify-center xsm:items-center xxsm:items-center relative bg-primary z-30">
-        <h1 className="font-bold text-white pt-14 lg:text-5xl xsm:text-4xl xxsm:text-3xl">
-          {divisionName}
-        </h1>
-        <p className="text-gray text-sm leading-7 lg:pt-8 xsm:pt-7 xxsm:pt-6 max-w-[600px] mx-auto text-center">
-          {props.description}
-        </p>
-        <br />
-      </section> */}
+      {/* 
+          If data members exist, display division members page; 
+          if data member not exist, display coming soon page
+      */}
+      {isAvailable ? (
+        <React.Fragment>
+          {/* Hero */}
+          <section className="flex flex-col w-full h-full lg:pt-[100px] xsm:pt-[80px] xxsm:pt-[50px] px-5 py-96 justify-center xsm:items-center xxsm:items-center relative bg-primary z-30">
+            <h1 className="font-bold text-white pt-14 lg:text-5xl xsm:text-4xl xxsm:text-3xl">
+              {divisionName}
+            </h1>
+            <p className="text-gray text-sm leading-7 lg:pt-8 xsm:pt-7 xxsm:pt-6 max-w-[600px] mx-auto text-center">
+              {snippets}
+            </p>
+            <br />
+            <br />
+          </section>
 
-      {/* Card */}
-      {/* <div className="flex flex-col bg-zinc-100">
-        <div className="flex flex-col -mt-[380px] z-40">{renderCards()}</div>
-        <br />
-        <br />
-      </div> */}
-
-      {/* Coming Soon */}
-      <ComingSoon />
+          {/* Card */}
+          <div className="flex flex-col bg-zinc-100">
+            <div className="flex flex-col lg:-mt-[420px] xxsm:-mt-[400px] z-40">
+              {renderCards()}
+            </div>
+            <br />
+            <br />
+          </div>
+        </React.Fragment>
+      ) : (
+        // Coming Soon
+        <ComingSoon />
+      )}
 
       {/* CTA */}
       <CTA />
@@ -128,9 +168,8 @@ const Division = (props: any) => {
   );
 };
 
-Division.defaultProps = {
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-};
+// Division.defaultProps = {
+//   description: "Tes",
+// };
 
 export default Division;

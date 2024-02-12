@@ -2,20 +2,21 @@
 
 import Profile from "@/components/admin/dashboard/Profile";
 import SearchNav from "@/components/admin/dashboard/SearchNav";
-import Table from "@/components/admin/dashboard/Table";
+import Table from "@/components/admin/status/Table";
 import Pagination from "@/components/admin/dashboard/Pagination";
+import HeaderAdmin from "@/components/admin/HeaderAdmin";
 
 const categories = [
   {
-    title: "Web development",
+    title: "Advance To Interview",
     active: true,
   },
   {
-    title: "Cloud computing",
+    title: "On Progress",
     active: false,
   },
   {
-    title: "Linux Developer",
+    title: "Rejected",
     active: false,
   },
 ];
@@ -24,18 +25,7 @@ export default function DashboardPage() {
   return (
     <main className="p-6 py-4 pb-8 ml-[266px] hidden lg:block">
       {/* Bagian header */}
-      <section className="flex items-center justify-between">
-        <div className="py-4">
-          <h1 className="text-[57px] font-normal leading-[58px]">Candidate</h1>
-          <span className="text-[16px] text-gray">
-            Reporting of your candidate
-          </span>
-        </div>
-        <div className="flex">
-          <SearchNav />
-          <Profile />
-        </div>
-      </section>
+      <HeaderAdmin title="Status" description="Your Candidate’s Status" />
 
       <section>
         <ul className="flex items-center gap-3 flex-wrap">

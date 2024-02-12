@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import { CTA, Footer, Navbar } from "@/components";
 import Link from "next/link";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -11,6 +12,9 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../styles/swiper-about.css";
 
+import { Jost } from "next/font/google";
+const jost = Jost({ weight: "700", subsets: ["cyrillic"] });
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -20,8 +24,93 @@ import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 
 // Import Function
 import { formatEndpointText } from "../../utils/formatEndpointText";
+import axios from "axios";
+
+const loadingContent = [1, 2, 3, 4, 5, 6];
+
+// Initialized Data Types Used for Current Event Data
+interface EventType {
+  name: string;
+  snippets: string;
+  link_registration: string;
+  cover: string;
+  cover_landscape: string;
+}
 
 const About = () => {
+  // Variable that Saves Event Data According to Their Upcoming Order
+  const [firstEvent, setFirstEvent] = useState<EventType[]>([]);
+  const [secondEvent, setSecondEvent] = useState<EventType[]>([]);
+  const [thirdEvent, setThirdEvent] = useState<EventType[]>([]);
+
+  const [isLoadingDivision, setIsLoadingDivision] = useState<boolean>();
+
+  const [divisions, setDivision] = useState<any[]>();
+  const fetchAboutDivision = async () => {
+    setIsLoadingDivision(true);
+
+    try {
+      const response = await axios.get(`api/divisions`);
+      console.log(response.data.data);
+      setDivision(response.data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoadingDivision(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAboutDivision();
+  }, []);
+
+  useEffect(() => {
+    // Cut Sentence in Snippets Data to 14 Words
+    const truncatedSnippetsData = (eventsData: any) => {
+      return eventsData.map((data: any) => {
+        const snippets = data.snippets.split(" ");
+        const truncateSnippets =
+          snippets.length > 14
+            ? `${snippets.slice(0, 14).join(" ")} ...`
+            : data.snippets;
+        return { ...data, snippets: truncateSnippets };
+      });
+    };
+
+    // Retrieve 3 Upcoming Events From API
+    const CurrentEvents = async () => {
+      try {
+        const response = await fetch(
+          "https://candidate-college.vercel.app/api/events"
+        );
+        const jsonData = await response.json();
+
+        // Sort Event Data Based on Upcoming "end_date_time" Property
+        const today = new Date();
+        const sortedData = jsonData.data.filter(
+          (event: any) => new Date(event.end_date_time) <= today
+        );
+
+        sortedData.sort(
+          (dataA: any, dataB: any) =>
+            new Date(dataB.end_date_time).getTime() -
+            new Date(dataA.start_date_time).getTime()
+        );
+
+        const firstEventData = truncatedSnippetsData(sortedData.slice(0, 1));
+        const secondEventData = truncatedSnippetsData(sortedData.slice(1, 2));
+        const thirdEventData = truncatedSnippetsData(sortedData.slice(2, 3));
+
+        setFirstEvent(firstEventData);
+        setSecondEvent(secondEventData);
+        setThirdEvent(thirdEventData);
+      } catch (error) {
+        console.log("Error Fetching Data : ", error);
+      }
+    };
+    CurrentEvents();
+  }, []);
+
   const socials = [
     {
       id: 1,
@@ -47,16 +136,6 @@ const About = () => {
       link: "https://www.youtube.com/channel/UCk2XANWkjfjc9K305H2WjrQ",
       component: <YouTubeIcon color="inherit" fontSize="inherit" />,
     },
-  ];
-
-  const divisions = [
-    { id: 1, url: "/decoration/division.jpg", slug: "web-development" },
-    { id: 2, url: "/decoration/division.jpg", slug: "academic-development" },
-    { id: 3, url: "/decoration/division.jpg", slug: "people-and-culture" },
-    { id: 4, url: "/decoration/division.jpg", slug: "talent-engagement" },
-    { id: 5, url: "/decoration/division.jpg", slug: "social-media-specialist"},
-    { id: 6, url: "/decoration/division.jpg", slug: "social-media-editor"},
-    { id: 7, url: "/decoration/division.jpg", slug: "content-writer"},
   ];
 
   return (
@@ -105,7 +184,7 @@ const About = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-[70px] px-5 pt-[90px]">
+      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-[70px] px-5 pt-[90px] pb-40">
         <div className="flex items-center md:m-auto relative md:w-[520px] w-full h-[308px] p-6 bg-primary rounded-3xl overflow-hidden">
           <div className="flex flex-col xl:w-[55%] w-[50%]">
             <p className="text-[#90A3BF] xl:text-[15px] text-sm font-normal">
@@ -138,7 +217,8 @@ const About = () => {
               Trusted Partner
             </h2>
             <p className="text-[#90A3BF] xl:text-base text-sm font-normal pt-[10px] leading-7">
-              Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
+              Our commitment to excellence has established us as a trusted
+              partner in industry innovation and growth.
             </p>
           </div>
           <div className="flex xl:flex-row md:flex-col flex-row xl:basis-1/2 basis-1/4 xl:justify-center justify-evenly items-center xl:gap-9 md:gap-0 gap-4">
@@ -170,73 +250,124 @@ const About = () => {
         </div>
       </section>
 
+      {/* Founder */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-40">
+        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+          Our Founder
+        </h3>
+        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+          Rasya Dwi Julitha
+        </h2>
+        <div className="flex justify-center mt-7">
+          <img
+            src="https://i.ibb.co/dc1X7pJ/founder-of-candidate-college.jpg"
+            className="w-40 rounded-full"
+            title="Founder Candidate College"
+          />
+        </div>
+        <p className="text-[#90A3BF] text-sm font-normal text-center m-auto leading-6 lg:w-3/5 xsm:w-4/5 xxsm:w-11/12 w-[95%] pt-[15px] mt-6">
+          Welcome to Candidate College, a beacon of educational excellence
+          tailored for Indonesia's aspiring minds. As the founder, I am thrilled
+          to present a platform dedicated to nurturing potential and fostering
+          intellectual growth. Our mission is to bridge the gap between students
+          and quality education, both domestically and internationally. We
+          understand the journey of learning is unique for each individual, and
+          our commitment lies in providing personalized, top-tier educational
+          resources and guidance. Join us, as we embark on this transformative
+          journey together, shaping futures and building dreams with every step.
+          Welcome to your next chapter of success with Candidate College.
+        </p>
+      </section>
+
       {/* Events */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px]">
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-40">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
           Events
         </h3>
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Success Events
         </h2>
-        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-2/4 md:w-3/4 w-[95%] pt-[15px]">
-          Lörem ipsum astrobel sar direlig. Kronde est konfoni med kelig.
-          Terabel pov astrobel sar direlig.Lörem ipsum astrobel sar direlig.
-          Kronde est
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xsm:w-full xxsm:w-full w-[95%] pt-[15px]">
+          Exciting events are waiting to enrich your learning journey, from
+          inspiring seminars to practical workshops designed to help you develop
+          your best potential in the academic world.
         </p>
 
+        {/* List of Upcoming Events */}
         <div className="grid lg:grid-cols-4 grid-cols-1 lg:grid-rows-2 grid-rows-1 gap-6 pt-10">
-          <div className="flex items-end relative overflow-hidden w-full bg-[url('/decoration/event-1.png')] bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl md:p-10 p-[25px]">
-            <div className="flex md:flex-row flex-col md:items-center items-start z-20">
-              <div className="flex-1">
-                <h4 className="text-white xl:text-[32px] text-[30px] font-semibold">
-                  Website Design
-                </h4>
-                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-[25px]">
-                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
-                  kelig. Terabel pov astrobel sar
-                </p>
+          {/* First Event */}
+          {firstEvent.map((item) => (
+            <div
+              className="flex items-end relative overflow-hidden w-full bg-no-repeat bg-cover aspect-square col-span-2 row-span-2 rounded-3xl md:p-10 p-[25px]"
+              style={{
+                backgroundImage: `url(https://candidate-college.vercel.app/uploads/${item.cover})`,
+              }}
+            >
+              <div className="flex md:flex-row flex-col md:items-center items-start z-20">
+                <div className="flex-1">
+                  <h4 className="text-white lg:text-[22px] xxsm:text-[20px] font-semibold">
+                    {item.name}
+                  </h4>
+                  <p className="text-[#D1D4DC] xl:text-base lg:text-[12px] xxsm:text-[14px] font-normal pt-3 leading-[25px]">
+                    {item.snippets}
+                  </p>
+                </div>
+                <div className="flex-1 text-end">
+                  <Link
+                    href={item.link_registration}
+                    className="bg-transparent border-[1px] border-white text-white font-medium text-base rounded-full px-8 py-3 md:mt-0 mt-5 inline-block shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
+                  >
+                    Let's Join
+                  </Link>
+                </div>
               </div>
-              <div className="flex-1 text-end">
-                <Link
-                  href="/"
-                  className="bg-transparent border-[1px] border-white text-white font-medium text-base rounded-full px-8 py-3 md:mt-0 mt-5 inline-block shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
-                >
-                  Let's Join
-                </Link>
-              </div>
+              <div className="absolute pt-[20px] bg-[linear-gradient(to_top,_rgba(0,0,0,1),_transparent)] w-full h-full bottom-0 left-0 z-10 lg:backdrop-blur-[1.8px] xsm:backdrop-blur-[1.8px] xxsm:backdrop-blur-[3.4px]"></div>
             </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full md:h-[40%] h-[70%] bottom-0 left-0 z-10"></div>
-          </div>
-          <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-2.png')] bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5">
-            <div className="flex items-center z-20">
-              <div className="basis-3/4">
-                <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
-                  Website Design
-                </h4>
-                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-7">
-                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
-                  kelig. Terabel pov astrobel sar
-                </p>
+          ))}
+          {/* Second Event */}
+          {secondEvent.map((item) => (
+            <div
+              className="lg:flex hidden items-end relative overflow-hidden w-full bg-no-repeat bg-cover col-span-2 col-start-3 rounded-3xl p-5"
+              style={{
+                backgroundImage: `url(https://candidate-college.vercel.app/uploads/${item.cover_landscape})`,
+              }}
+            >
+              <div className="flex items-center z-20">
+                <div className="basis-3/4">
+                  <h4 className="text-white text-[16px] font-semibold">
+                    {item.name}
+                  </h4>
+                  <p className="text-[#D1D4DC] text-[12px] font-normal pt-3 leading-7">
+                    {item.snippets}
+                  </p>
+                </div>
               </div>
+              <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,1),_transparent)] w-full h-full bottom-0 left-0 z-10 backdrop-blur-[1.4px]"></div>
             </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
-          </div>
-          <div className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-3.png')] bg-no-repeat bg-cover col-span-2 col-start-3 row-start-2 rounded-3xl p-5">
-            <div className="flex items-center z-20">
-              <div className="basis-3/4">
-                <h4 className="text-white xl:text-2xl text-[30px] font-semibold">
-                  Website Design
-                </h4>
-                <p className="text-[#D1D4DC] xl:text-base text-sm font-normal pt-3 leading-7">
-                  Lörem ipsum astrobel sar direlig. Kronde est konfoni med
-                  kelig. Terabel pov astrobel sar
-                </p>
+          ))}
+          {/* Third Event */}
+          {thirdEvent.map((item) => (
+            <div
+              className="lg:flex hidden items-end relative overflow-hidden w-full bg-[url('/decoration/event-3.png')] bg-no-repeat bg-cover col-span-2 col-start-3 row-start-2 rounded-3xl p-5"
+              style={{
+                backgroundImage: `url(https://candidate-college.vercel.app/uploads/${item.cover_landscape})`,
+              }}
+            >
+              <div className="flex items-center z-20">
+                <div className="basis-3/4">
+                  <h4 className="text-white text-[16px] font-semibold">
+                    {item.name}
+                  </h4>
+                  <p className="text-[#D1D4DC] text-[12px] font-normal pt-3 leading-7">
+                    {item.snippets}
+                  </p>
+                </div>
               </div>
+              <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,1),_transparent)] w-full h-full bottom-0 left-0 z-10 backdrop-blur-[1.4px]"></div>
             </div>
-            <div className="absolute pt-[60px] bg-[linear-gradient(to_top,_rgba(0,0,0,0.85),_transparent)] w-full h-full bottom-0 left-0 z-10"></div>
-          </div>
+          ))}
         </div>
-
+        {/* Other Events  */}
         <div className="flex justify-center md:pt-10 pt-8">
           <Link
             href="/"
@@ -248,18 +379,17 @@ const About = () => {
       </section>
 
       {/* Divisions */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[70px]">
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[70px] pb-40">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
           Divisions
         </h3>
         <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           Divisions Who Support CC
         </h2>
-        <p className="text-[#90A3BF] xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vulputate libero et velit interdum, ac aliquet odio mattis. Class
-          aptent taciti sociosqu ad litora torquent per conubia nostra, per
-          inceptos himenaeos.
+        <p className="text-[#90A3BF] xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xsm:w-full xxsm:w-full w-[95%] pt-[15px]">
+          Here, you will find information related to Divisions actively
+          supporting Candidate College. Gain insights into their contributions
+          and how they strengthen the community.
         </p>
 
         <div className="mt-[55px] mx-auto mb-0">
@@ -287,19 +417,61 @@ const About = () => {
             modules={[EffectCoverflow, Navigation, Autoplay]}
             className="swiper_container"
           >
-            {divisions.map((division, index) => (
-              <SwiperSlide className="!w-[550px] !h-[550px] relative">
-                <Link href={`/about/division/${division.slug}`}>
-                  <img
-                    src={division.url}
+            {isLoadingDivision
+              ? loadingContent.map((division, index) => (
+                  <SwiperSlide
                     key={index}
-                    title={formatEndpointText(division.slug)}
-                    alt="slide_image"
-                    className="w-[550px] h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
-                  />
-                </Link>
-              </SwiperSlide>
-            ))}
+                    className="!w-[550px] !h-[550px] relative"
+                  >
+                    <Image
+                      height={1}
+                      width={1}
+                      src={``}
+                      alt="slide_image"
+                      className="!w-[550px] !h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                    />
+                  </SwiperSlide>
+                ))
+              : divisions?.map((division, index) => (
+                  <SwiperSlide key={index} className=" relative">
+                    {({ isActive }) => {
+                      return (
+                        <div className="after:absolute after:inset-0 after:bg-gradient-to-t after:from-[rgba(0,0,0,0.9)] after:to-[rgba(0,0,0,0.2)]">
+                          <Link href={`/about/division/${division.slug}`}>
+                            {isActive ? (
+                              <div className=" uppercase shadow absolute flex z-50 items-end inset-0 p-4 sm:p-10">
+                                <span
+                                  className={`${jost.className} text-white font-medium text-[11px] sm:text-[24px]`}
+                                >
+                                  {division.name}
+                                </span>
+                              </div>
+                            ) : (
+                              <div
+                                className={`absolute -rotate-90   flex z-50 justify-center  items-center   inset-0 sm:py-20`}
+                              >
+                                <span
+                                  className={`${jost.className} text-white tracking-[4px] font-bold text-[11px] sm:text-[24px] uppercase`}
+                                >
+                                  {division.name}
+                                </span>
+                              </div>
+                            )}
+                            <Image
+                              height={1}
+                              width={1}
+                              src={`uploads/${division.image}`}
+                              key={index}
+                              title={formatEndpointText(division.slug)}
+                              alt="slide_image"
+                              className="!w-[261px] !h-[256px] sm:!w-[550px] sm:!h-[550px] object-cover rounded-sm shadow-[0_10px_20px_0px_rgba(0,_0,_0,_0.15)]"
+                            />
+                          </Link>
+                        </div>
+                      );
+                    }}
+                  </SwiperSlide>
+                ))}
             <div className="slider-controler">
               <div className="swiper-button-prev slider-arrow bg-secondary !w-[70px] !h-[70px] rounded-full left-0">
                 <ArrowBackIosNewIcon className="!w-[2rem] text-primary" />
@@ -313,14 +485,15 @@ const About = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="w-full h-full bg-white pt-[100px] pb-40">
+      {/* Sementara akan dikomentari karena akan di redesign */}
+      {/* <section className="w-full h-full bg-white pt-[100px] pb-40">
         <h3 className="text-[#90A3BF] md:px-[70px] xl:text-base text-sm font-normal text-center">
           Testimonials
         </h3>
         <h2 className="text-primary md:px-[70px] px-5 xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
           What Our Interns Say
         </h2>
-        <p className="text-[#90A3BF] md:px-[70px] px-5 xl:text-lg text-sm font-normal leading-7 text-center m-auto lg:w-4/6 md:w-3/4 w-[95%] pt-[15px]">
+        <p className="text-[#90A3BF] md:px-[70px] px-5 xl:text-base text-sm font-normal leading-7 text-center m-auto lg:w-3/4 xsm:w-full xxsm:w-full w-[95%] pt-[15px]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
@@ -341,7 +514,6 @@ const About = () => {
             modules={[Navigation]}
             className="swiper_container !overflow-y-visible"
           >
-            {/* Shadow yang digunakan belum mengikuti yang di Figma */}
             <SwiperSlide className="bg-white relative !w-[580px] rounded-[42px] shadow-[0_0px_15px_3px_rgba(0,_0,_0,_0.1)] pt-20 pb-5 px-[65px]">
               <div className="flex justify-center">
                 <Image
@@ -421,7 +593,7 @@ const About = () => {
             </div>
           </Swiper>
         </div>
-      </section>
+      </section> */}
 
       <CTA />
 
