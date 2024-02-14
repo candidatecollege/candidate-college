@@ -66,18 +66,31 @@ export default function Home() {
   const [eventCountdowns, setEventCountdowns] = useState<EventCountdowns>({});
   const loadingContent = [1, 2, 3, 4, 5, 6];
 
+  // Set it to retrive article data randomly
+  const getRandomArticles = (arr:any, n:any) => {
+    const randomSorting = arr.sort(() => 0.5 - Math.random());
+    return randomSorting.slice(0, n);
+  }
+
   const fetchArticles = async () => {
     setIsLoadingArticles(true);
-
     try {
-      const response = await axios.get(`/api/articles?count=8`);
+      const allDataResponse = await axios.get('/api/articles');
+      const allArticles = allDataResponse.data.data;
+      
+      // Retrieve last uploaded article
+      const latestArticle = allArticles[0];
+
+      // Retrive article data randomly and only up to 9
+      const randomArticles = getRandomArticles(allArticles.slice(1), 9);
+
+      // Concatenate all article data into single array that has been set up previously
+      const combinedArticles = [latestArticle, ...randomArticles]; 
 
       setTimeout(() => {
-        setArticles(response.data.data);
-        setIsLoadingArticles(false); // After setting the data, set isLoading to false
-      }, 1500);
-
-      console.log(response);
+          setArticles(combinedArticles);
+          setIsLoadingArticles(false); // After setting the data, set isLoading to false
+        }, 1500);
     } catch (error) {
       console.error(error);
       setIsLoadingArticles(false);
@@ -408,7 +421,6 @@ export default function Home() {
       </section>
 
       {/* Events */}
-
       <section className="flex flex-col w-full h-full bg-white pt-[100px] pb-40">
         <h3 className="text-primary md:px-[70px] xl:text-base text-sm font-normal text-center">
           Our Events
