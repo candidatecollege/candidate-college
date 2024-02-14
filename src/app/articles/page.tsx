@@ -70,12 +70,47 @@ const Articles = () => {
     setIsLoadingArticles(true);
 
     try {
-      const response = await axios.get(`/api/articles?count=12`);
+      const response = await axios.get(`/api/articles`);
+      const sortedArticles: any[] = response.data.data.sort(
+        (a: any, b: any) => {
+          if (a.view > b.view) return 1;
+          if (a.view < b.view) return -1;
+          return 0;
+        }
+      );
 
-      setTimeout(() => {
-        setArticles(response.data.data);
-        setIsLoadingArticles(false); // After setting the data, set isLoading to false
-      }, 1500);
+      const sortedArticleGreatThanZero = sortedArticles
+        .filter((article) => article.view > 0)
+        .reverse();
+
+      const numberCountArticles = 5;
+      // sortedArticleGreatThanZero.length;
+      if (sortedArticleGreatThanZero.length < numberCountArticles) {
+        const restCount =
+          numberCountArticles - sortedArticleGreatThanZero.length;
+        const articleViewEqualZero = sortedArticles.filter(
+          (article) => article.view === 0
+        );
+
+        const randomPickArticleEqualZero = articleViewEqualZero
+          .sort(() => Math.random() - 0.5)
+          .slice(0, restCount);
+
+        const mergedArticles = sortedArticleGreatThanZero.concat(
+          randomPickArticleEqualZero
+        );
+        console.log("WOWOWO 11");
+        setArticles(mergedArticles);
+        setIsLoadingArticles(false);
+      } else {
+        console.log("WOWOWO");
+        const slicedArticle = sortedArticleGreatThanZero.slice(0, 5);
+        console.log(slicedArticle);
+        setArticles(slicedArticle);
+        setIsLoadingArticles(false);
+      }
+
+      console.log(sortedArticleGreatThanZero.slice(0, 5));
     } catch (error) {
       console.error(error);
       setIsLoadingArticles(false);
@@ -100,6 +135,7 @@ const Articles = () => {
 
   useEffect(() => {
     fetchArticles();
+
     fetchCategories();
   }, []);
 
@@ -203,6 +239,7 @@ const Articles = () => {
                       />
                     ))
                   : articlesByCategory
+                      .slice(0)
                       .reverse()
                       .map((article, index) => (
                         <CardItemLandscape
@@ -255,7 +292,7 @@ const Articles = () => {
               <div className="md:flex flex-row gap-4 hidden">
                 {isLoadingArticles
                   ? articles
-                      .slice(1, 4)
+                      .slice(1)
                       .map((article, index) => (
                         <CardItemLandscape
                           key={index}
@@ -265,7 +302,7 @@ const Articles = () => {
                         />
                       ))
                   : articles
-                      .slice(1, 4)
+                      .slice(1)
                       .map((article, index) => (
                         <CardItemLandscape
                           key={index}
@@ -277,10 +314,10 @@ const Articles = () => {
               </div>
 
               <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
-                {articles.slice(1, 4).map((article, index) => (
+                {articles.map((article, index) => (
                   <div
                     key={index}
-                    onClick={(e) => setCurrentIndexSlider(index)}
+                    onClick={(e) => setCurrentIndexSlider((prev) => index)}
                     className={`flex  p-[5px] h-2 ${
                       currentIndexSlider == index
                         ? "w-8 bg-secondary"
@@ -356,44 +393,47 @@ const Articles = () => {
                         </div>
                       </SwiperSlide>
                     ))
-                  : articles?.reverse().map((article, index) => (
-                      <SwiperSlide>
-                        <Link
-                          href={`/articles/${article.slug}`}
-                          title="Read More"
-                          about="Read More"
-                          className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
-                        >
-                          <Image
-                            src={`/uploads/${article.cover}`}
-                            alt={article.title}
-                            title={article.title}
-                            className="rounded-lg w-[22rem] h-[22rem] object-cover"
-                            width={0}
-                            height={0}
-                          />
+                  : articles
+                      ?.slice(0)
+                      .reverse()
+                      .map((article, index) => (
+                        <SwiperSlide>
+                          <Link
+                            href={`/articles/${article.slug}`}
+                            title="Read More"
+                            about="Read More"
+                            className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
+                          >
+                            <Image
+                              src={`/uploads/${article.cover}`}
+                              alt={article.title}
+                              title={article.title}
+                              className="rounded-lg w-[22rem] h-[22rem] object-cover"
+                              width={0}
+                              height={0}
+                            />
 
-                          <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
-                            <h3 className="font-semibold text-base text-primary">
-                              {article.title.length > 33
-                                ? article.title.substring(0, 33) + "..."
-                                : article.title}
-                            </h3>
-                            <p className="font-normal text-sm text-gray">
-                              {article.snippets.substring(0, 150) + "..."}
-                            </p>
-                            <Link
-                              href={`/articles/${article.slug}`}
-                              title="Read More"
-                              about="Read More"
-                              className="bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5"
-                            >
-                              Read More
-                            </Link>
-                          </div>
-                        </Link>
-                      </SwiperSlide>
-                    ))}
+                            <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                              <h3 className="font-semibold text-base text-primary">
+                                {article.title.length > 33
+                                  ? article.title.substring(0, 33) + "..."
+                                  : article.title}
+                              </h3>
+                              <p className="font-normal text-sm text-gray">
+                                {article.snippets.substring(0, 150) + "..."}
+                              </p>
+                              <Link
+                                href={`/articles/${article.slug}`}
+                                title="Read More"
+                                about="Read More"
+                                className="bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5"
+                              >
+                                Read More
+                              </Link>
+                            </div>
+                          </Link>
+                        </SwiperSlide>
+                      ))}
               </Swiper>
             </section>
           </div>
