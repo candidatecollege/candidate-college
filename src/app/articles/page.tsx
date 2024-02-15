@@ -25,6 +25,23 @@ import { Navigation } from "swiper/modules";
 
 import "../../styles/swiper-article-page.css";
 
+type ArticleType = {
+  id: number;
+  title: string;
+  author: string;
+  slug: string;
+  category: string;
+  cover_landscape: string;
+  cover: string;
+  body: string;
+  snippets: string;
+  duration: number;
+  view: number;
+  created_at: string;
+  page: null | string | number;
+  count: string;
+};
+
 const Articles = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false);
   const [isSeeLatest, setIsSeeLatest] = useState<boolean>(false);
@@ -70,21 +87,28 @@ const Articles = () => {
     setIsLoadingArticles(true);
 
     try {
-      const response = await axios.get(`/api/articles`);
-      const sortedArticles: any[] = response.data.data.sort(
-        (a: any, b: any) => {
-          if (a.view > b.view) return 1;
-          if (a.view < b.view) return -1;
-          return 0;
-        }
+      const response = await axios.get(`/api/articles?sortby=view&count=10`);
+      // const sortedArticles: any[] = response.data.data.sort(
+      //   (a: any, b: any) => {
+      //     if (a.view > b.view) return 1;
+      //     if (a.view < b.view) return -1;
+      //     return 0;
+      //   }
+      // );
+      const sortedArticles: ArticleType[] = response.data.data;
+      console.log("sort", sortedArticles);
+      // filter article greater then zero
+      const sortedArticleGreatThanZero = sortedArticles.filter(
+        (article) => article.view > 0
       );
 
-      const sortedArticleGreatThanZero = sortedArticles
-        .filter((article) => article.view > 0)
-        .reverse();
-
+      console.log("Sort zero", sortedArticleGreatThanZero);
+      // Change this if want change number of article most view
       const numberCountArticles = 5;
-      // sortedArticleGreatThanZero.length;
+
+      // if number count of article view > 0 is less than numberCountArticle in above,
+      // its mean in array articles there was zero views, so au ah so inglish,
+      // ambil secara acak views yang 0.
       if (sortedArticleGreatThanZero.length < numberCountArticles) {
         const restCount =
           numberCountArticles - sortedArticleGreatThanZero.length;
@@ -92,25 +116,23 @@ const Articles = () => {
           (article) => article.view === 0
         );
 
-        const randomPickArticleEqualZero = articleViewEqualZero
-          .sort(() => Math.random() - 0.5)
-          .slice(0, restCount);
+        const randomPickArticleEqualZero = articleViewEqualZero.sort(
+          () => Math.random() - 0.5
+        );
+        // .slice(0, restCount);
 
         const mergedArticles = sortedArticleGreatThanZero.concat(
           randomPickArticleEqualZero
         );
-        console.log("WOWOWO 11");
+
         setArticles(mergedArticles);
         setIsLoadingArticles(false);
       } else {
-        console.log("WOWOWO");
-        const slicedArticle = sortedArticleGreatThanZero.slice(0, 5);
-        console.log(slicedArticle);
-        setArticles(slicedArticle);
+        // const slicedArticle = sortedArticleGreatThanZero.slice(0, 5);
+
+        setArticles(sortedArticleGreatThanZero);
         setIsLoadingArticles(false);
       }
-
-      console.log(sortedArticleGreatThanZero.slice(0, 5));
     } catch (error) {
       console.error(error);
       setIsLoadingArticles(false);
@@ -292,7 +314,7 @@ const Articles = () => {
               <div className="md:flex flex-row gap-4 hidden">
                 {isLoadingArticles
                   ? articles
-                      .slice(1)
+                      .slice(1, 5)
                       .map((article, index) => (
                         <CardItemLandscape
                           key={index}
@@ -302,7 +324,7 @@ const Articles = () => {
                         />
                       ))
                   : articles
-                      .slice(1)
+                      .slice(1, 5)
                       .map((article, index) => (
                         <CardItemLandscape
                           key={index}
@@ -314,7 +336,7 @@ const Articles = () => {
               </div>
 
               <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
-                {articles.map((article, index) => (
+                {articles.slice(0, 5).map((article, index) => (
                   <div
                     key={index}
                     onClick={(e) => setCurrentIndexSlider((prev) => index)}
