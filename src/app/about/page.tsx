@@ -22,6 +22,10 @@ import "swiper/css/navigation";
 
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 
+// Import Component
+import CardFounder from "@/components/about/CardFounder";
+import CardCLevel from "@/components/about/CardCLevel";
+
 // Import Function
 import { formatEndpointText } from "../../utils/formatEndpointText";
 import axios from "axios";
@@ -251,34 +255,47 @@ const About = () => {
       </section>
 
       {/* Founder */}
-      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-40">
-        <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
-          Our Founder
-        </h3>
-        <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
-          Rasya Dwi Julitha
-        </h2>
-        <div className="flex justify-center mt-7">
-          <img
-            src="https://i.ibb.co/dc1X7pJ/founder-of-candidate-college.jpg"
-            className="w-40 rounded-full"
-            title="Founder Candidate College"
-          />
-        </div>
-        <p className="text-[#90A3BF] text-sm font-normal text-center m-auto leading-6 lg:w-3/5 xsm:w-4/5 xxsm:w-11/12 w-[95%] pt-[15px] mt-6">
-          Welcome to Candidate College, a beacon of educational excellence
-          tailored for Indonesia's aspiring minds. As the founder, I am thrilled
-          to present a platform dedicated to nurturing potential and fostering
-          intellectual growth. Our mission is to bridge the gap between students
-          and quality education, both domestically and internationally. We
-          understand the journey of learning is unique for each individual, and
-          our commitment lies in providing personalized, top-tier educational
-          resources and guidance. Join us, as we embark on this transformative
-          journey together, shaping futures and building dreams with every step.
-          Welcome to your next chapter of success with Candidate College.
-        </p>
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-24">
+        <CardFounder img="/decoration/founder-candidate-college.png"
+                     title="Our Founder"
+                     name="Rasya Dwi Julitha"
+                     chair="Founder Candidate College"
+                     description="Welcome to Candidate College, a beacon of educational excellence tailored for Indonesia's aspiring minds. As the founder, I am thrilled to present a platform dedicated to nurturing potential and fostering intellectual growth. Our mission is to bridge the gap between students and quality education, both domestically and internationally. We understand the journey of learning is unique for each individual, and our commitment lies in providing personalized, top-tier educational resources and guidance. Join us, as we embark on this transformative journey together, shaping futures and building dreams with every step. Welcome to your next chapter of success with Candidate College."/>
+      </section>
+      
+      {/* Co-Founder */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pb-24">
+        <CardFounder img="/decoration/example-co-founder-image.png"
+                      title="Our Co-Founder"
+                      name="Reza Rahadian Matulessy"
+                      chair="Co-Founder Candidate College"
+                      description="
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin risus massa, condimentum id aliquam ac, fermentum vitae lectus. Suspendisse eu rhoncus mi, a scelerisque ligula. Duis dignissim felis et odio placerat, vel maximus quam pulvinar. Maecenas neque nibh, elementum vitae mollis sit amet, vestibulum vel quam. Phasellus scelerisque ligula nec efficitur facilisis. Proin vitae orci bibendum, mattis nulla eget, fringilla est. Sed semper, dolor eu semper dapibus, mauris ex semper ligula."/>
       </section>
 
+      {/* C-Level */}
+      <section className="w-full h-full bg-white md:px-[70px] px-5 pb-24">
+        {/* Section Title */}
+        <div>
+          <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
+            Our C-Levels
+          </h3>
+          <h2 className="text-primary xl:text-[40px] text-[36px] font-semibold text-center pt-[10px]">
+            C-Levels That Support CC
+          </h2>
+        </div>
+        {/* Division Members */}
+        <div className="flex pt-6 lg:flex-row lg:mx-auto lg:flex-wrap lg:w-1/2 lg:gap-x-24 lg:gap-y-4 xxsm:flex-col xxsm:justify-center">
+          {[...Array(6)].map((_, index) => (
+            <CardCLevel key={index}
+                        img="/decoration/example-c-level-image.png"
+                        name="Nabila Afifah Qotrunnanda"
+                        chair="Chief Development Officer"/>
+          ))}
+        </div>
+      </section>
+      
+      
       {/* Events */}
       <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-40">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
