@@ -15,9 +15,9 @@ const CardFounder = (props: any) => {
       </h2>
       {/* Profile Picture */}
       <div className="flex justify-center mt-7">
-        <div className="flex flex-col bg-primary w-56 h-56 rounded-lg hover:bg-sky-950 transition duration-700 ease-in-out justify-end items-center group">
+        <div className="flex flex-col bg-primary w-56 h-56 rounded-lg shadow-lg hover:bg-sky-950 transition duration-700 ease-in-out justify-end items-center group">
           <picture className="flex justify-center rounded-lg block overflow-hidden">
-            <img className="w-48 group-hover:scale-[1.1] transition duration-500 ease-in-out" src={props.img} title={props.chair}/>
+            <img className="w-48 group-hover:scale-[1.1] transition duration-500 ease-in-out" src={props.img} title={props.chair} />
           </picture>
         </div>
       </div>
