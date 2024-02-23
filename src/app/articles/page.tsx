@@ -415,47 +415,44 @@ const Articles = () => {
                         </div>
                       </SwiperSlide>
                     ))
-                  : articles
-                      ?.slice(0)
-                      .reverse()
-                      .map((article, index) => (
-                        <SwiperSlide>
-                          <Link
-                            href={`/articles/${article.slug}`}
-                            title="Read More"
-                            about="Read More"
-                            className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
-                          >
-                            <Image
-                              src={`/uploads/${article.cover}`}
-                              alt={article.title}
-                              title={article.title}
-                              className="rounded-lg w-[22rem] h-[22rem] object-cover"
-                              width={0}
-                              height={0}
-                            />
+                  : articles?.slice(0, 5).map((article, index) => (
+                      <SwiperSlide>
+                        <Link
+                          href={`/articles/${article.slug}`}
+                          title="Read More"
+                          about="Read More"
+                          className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
+                        >
+                          <Image
+                            src={`/uploads/${article.cover}`}
+                            alt={article.title}
+                            title={article.title}
+                            className="rounded-lg w-[22rem] h-[22rem] object-cover"
+                            width={0}
+                            height={0}
+                          />
 
-                            <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
-                              <h3 className="font-semibold text-base text-primary">
-                                {article.title.length > 33
-                                  ? article.title.substring(0, 33) + "..."
-                                  : article.title}
-                              </h3>
-                              <p className="font-normal text-sm text-gray">
-                                {article.snippets.substring(0, 150) + "..."}
-                              </p>
-                              <Link
-                                href={`/articles/${article.slug}`}
-                                title="Read More"
-                                about="Read More"
-                                className="bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5"
-                              >
-                                Read More
-                              </Link>
-                            </div>
-                          </Link>
-                        </SwiperSlide>
-                      ))}
+                          <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
+                            <h3 className="font-semibold text-base text-primary">
+                              {article.title.length > 33
+                                ? article.title.substring(0, 33) + "..."
+                                : article.title}
+                            </h3>
+                            <p className="font-normal text-sm text-gray">
+                              {article.snippets.substring(0, 150) + "..."}
+                            </p>
+                            <Link
+                              href={`/articles/${article.slug}`}
+                              title="Read More"
+                              about="Read More"
+                              className="bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5"
+                            >
+                              Read More
+                            </Link>
+                          </div>
+                        </Link>
+                      </SwiperSlide>
+                    ))}
               </Swiper>
             </section>
           </div>
