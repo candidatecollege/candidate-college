@@ -60,4 +60,10 @@ export const cLevel = [
     name: "Aprilda Armin Yohanes",
     position: "Chief Creative Officer"
   },
+  {
+    id: 10,
+    img: "members/Vania Sala.png",
+    name: "Vania Sala",
+    position: "Vice Chief Creative Officer"
+  },
 ];  
