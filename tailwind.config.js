@@ -16,6 +16,10 @@ module.exports = {
           "0%, 100%": { opacity: 1 },
           "50%": { opacity: 0 },
         },
+        shrink: {
+          "0%, 100%": { transform: "scale(1.12)" },
+          "50%": { transform: "scale(1)" },
+        },
       },
 
       fontFamily: {

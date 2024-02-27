@@ -156,10 +156,10 @@ const About = () => {
 
       {/* Hero */}
       <section className="flex overflow-hidden relative  flex-col w-full h-full     justify-center md:items-center  lg:h-screen bg-primary">
-        <div className="-inset-x-5 md:inset-x-60  aspect-square absolute animate-[fade_4s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
-        <div className="-inset-x-14 md:inset-x-44  aspect-square absolute animate-[fade_4.3s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
-        <div className="-inset-x-28 md:inset-x-20  aspect-square absolute animate-[fade_4.8s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
-        <div className="-inset-x-36 md:-inset-x-10  aspect-square absolute animate-[fade_5s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="-inset-x-5 md:inset-x-60  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_4s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="-inset-x-14 md:inset-x-44  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_4.3s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="-inset-x-28 md:inset-x-20  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_4.8s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="-inset-x-36 md:-inset-x-10  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_5s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
         <div className="flex flex-col w-full h-full lg:pt-[90px] md:pt-[165px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto justify-center md:items-center   lg:h-screen bg-primary">
           <h1 className="font-bold z-10 animate__animated animate__fadeInRightBig text-white pt-4 text-[36px] md:text-[48px] md:w-[80%]  text-center leading-[35px] md:leading-[72px]">
             Welcome to Candidate College, where Indonesia's brightest minds!
