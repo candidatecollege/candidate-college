@@ -1,23 +1,27 @@
-# Candidate College 2.2.0 Release Notes
-Release Date: February 12, 2023
+# Candidate College 2.3.0 Release Notes
+Release Date: February 27, 2023
 
-We're excited to roll out version 2.2.0 of Candidate College, introducing new features and improvements to enhance your experience. Here's what's new and what we've fixed in this update:
+We're thrilled to announce the rollout of Candidate College 2.3.0, packed with new features and significant improvements aimed at enriching your learning and exploration on our platform. Here's a snapshot of what's new and what we've enhanced:
 
 ## What's New 
-### About Us Enhancements
-#### Founder Section
-Get to know the visionaries behind Candidate College. Our updated About Us page now features a section dedicated to our founders, sharing their stories and the vision that drives our mission forward.
+### New Design Hero Section on Homepage
+Experience a fresh welcome with our redesigned Hero Section, crafted to inspire and engage from the first click.
 
-#### Division Section
-Dive deeper into the core of Candidate College with our new Division Section on the About Us page. Learn about the various divisions that contribute to our success, their roles, and how they empower our community.
+### Co-Founder Section
+Gain insights into our foundation with a new section dedicated to our co-founder, highlighting their vision and contributions.
 
-##### Division Details
-Curious about what each division does? We've added detailed descriptions for every division, offering insights into their operations and contributions to Candidate College.
+### C-Levels Section on About Us Page
+Meet the leaders driving Candidate College forward in our newly added C-Levels section, providing transparency and connection.
 
-### Homepage Updates
-##### Event Section
-Stay connected with the latest Candidate College events right from our homepage. The new Event Section displays up-to-the-minute happenings, bringing the vibrant life of our community to your fingertips.
+### Related Articles by Category
+Enhance your learning journey with smarter article recommendations on detail pages, now showing related reads by category.
 
-## Bug Fixes 
-### Event Section on About Us Page
-We've fixed an issue with the Event Section not displaying correctly on the About Us page. It now showcases the three latest events of Candidate College, ensuring you're always in the loop with our latest activities.
+### Refreshed Founder Section Design
+Explore the roots of Candidate College with a newly designed section for our founder on the About Us page, offering deeper insights.
+
+## Improvements
+### Enhanced Article Slider (Swiper) on Homepage
+Discover more with our improved slider, now featuring ten articles randomly for a diverse reading experience.
+
+### Read Insightful Articles Section
+Delve deeper into topics that matter with an updated section now showcasing five articles randomly, ensuring fresh insights with every visit.
