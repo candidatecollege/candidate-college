@@ -1,5 +1,6 @@
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
+import "animate.css";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
