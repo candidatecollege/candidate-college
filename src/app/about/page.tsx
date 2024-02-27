@@ -268,7 +268,7 @@ const About = () => {
       
       {/* Co-Founder */}
       <section className="w-full h-full bg-white md:px-[70px] px-5 pb-24">
-        <CardFounder img="/members/lidya.png"
+        <CardFounder img="/members/Lidya.png"
                       title="Our Co-Founder"
                       name="Lidya"
                       chair="Co-Founder Candidate College"
