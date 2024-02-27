@@ -16,9 +16,17 @@ import CardItemLandscape from "@/components/CardItemLandscape";
 
 const Detail = () => {
   const slug = usePathname().slice(10);
-  const [article, setArticle] = useState<any>(null);
+  const [article, setArticle] = useState<any>(null); 
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [relatedArticles, setRelatedArticles] = useState<any[]>([]);
+  const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] = useState<boolean>(true);
   const loadingContents = [1, 2, 3, 4, 5, 6];
+
+  // Set it to retrive article data randomly
+  const getRandomArticles = (arr: any[], n: number) => {
+     const randomSorting = arr.sort(() => 0.5 - Math.random());
+     return randomSorting.slice(0, n);
+  }
 
   const fetchArticle = async () => {
     setIsLoading(true);
@@ -35,27 +43,25 @@ const Detail = () => {
     }
   };
 
-  const [relatedArticles, setRelatedArticles] = useState<any[]>([]);
-  const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] =
-    useState<boolean>(true);
-
   const fetchRelatedArticles = async () => {
     setIsLoadingRelatedArticles(true);
-    const id = categoryId(article && article.category, [
-      "All",
-      "Students",
-      "Education",
-      "Gen Z",
-      "Technology",
-      "Nowdays",
-    ]);
     try {
-      const response = await axios.get(`/api/article/categories/${id}`);
+      const allDataResponse = await axios.get('/api/articles');
+      const allArticles = allDataResponse.data.data;
 
+      // Take articles data that match category of article being read 
+      const articleInSameCategory = allArticles.filter((item: any) => {
+        return item.category === article.category && item.slug !== article.slug;
+      });
+
+      // Retrieve articles data randomly and only up to 3 
+      const randomArticles = getRandomArticles(articleInSameCategory, 3);
+            
       setTimeout(() => {
-        setRelatedArticles(response.data.data.articles);
+        setRelatedArticles(randomArticles);
         setIsLoadingRelatedArticles(false);
       }, 1500);
+
     } catch (error) {
       console.log(error);
       setIsLoadingRelatedArticles(false);
@@ -90,10 +96,14 @@ const Detail = () => {
 
   useEffect(() => {
     fetchArticle();
-    fetchRelatedArticles();
-  }, []);
+  }, [slug]);
 
-  console.log(relatedArticles);
+  useEffect(() => {
+    if (article) {
+      fetchRelatedArticles();
+    }
+  }, [article]);
+
 
   return (
     <main className="bg-white h-full w-full">
@@ -243,6 +253,7 @@ const Detail = () => {
                     <CardItemLandscape
                       data={article}
                       key={index}
+                      type="Article"
                       isLoading={false}
                     />
                   ))}

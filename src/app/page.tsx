@@ -31,6 +31,9 @@ import ButtonCountdown from "@/components/main/eventSection/molecule/atom/Button
 import ButtonType from "@/components/main/eventSection/molecule/atom/ButtonType";
 import ButtonWrapper from "@/components/main/eventSection/molecule/ButtonWrapper";
 import ArrowWrapper from "@/components/main/eventSection/molecule/ArrowWrapper";
+import ChecklistIcon from "@/components/icons/ChecklistIcon";
+import ThunderIcon from "@/components/icons/ThunderIcon";
+import StarIcon from "@/components/icons/StarIcon";
 
 export type Event = {
   start_date_time: string;
@@ -66,18 +69,31 @@ export default function Home() {
   const [eventCountdowns, setEventCountdowns] = useState<EventCountdowns>({});
   const loadingContent = [1, 2, 3, 4, 5, 6];
 
+  // Set it to retrive article data randomly
+  const getRandomArticles = (arr: any, n: any) => {
+    const randomSorting = arr.sort(() => 0.5 - Math.random());
+    return randomSorting.slice(0, n);
+  };
+
   const fetchArticles = async () => {
     setIsLoadingArticles(true);
-
     try {
-      const response = await axios.get(`/api/articles?count=8`);
+      const allDataResponse = await axios.get("/api/articles");
+      const allArticles = allDataResponse.data.data;
+
+      // Retrieve last uploaded article
+      const latestArticle = allArticles[0];
+
+      // Retrive article data randomly and only up to 9
+      const randomArticles = getRandomArticles(allArticles.slice(1), 9);
+
+      // Concatenate all article data into single array that has been set up previously
+      const combinedArticles = [latestArticle, ...randomArticles];
 
       setTimeout(() => {
-        setArticles(response.data.data);
+        setArticles(combinedArticles);
         setIsLoadingArticles(false); // After setting the data, set isLoading to false
       }, 1500);
-
-      console.log(response);
     } catch (error) {
       console.error(error);
       setIsLoadingArticles(false);
@@ -209,34 +225,89 @@ export default function Home() {
       <Navbar active="Home" isDetail={false} />
 
       {/* Hero */}
-      <section className="flex flex-col pt-36 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-screen">
-        <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:text-center md:leading-[100%] leading-[150%]">
-          Achieve Quality Equally For All Indonesian Student.
-        </h1>
+      <section className="block md:flex pt-36 px-5 gap-12  md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit min-h-screen md:h-screen">
+        {/* dot blue */}
+        <div className="w-[35px] bottom-4 left-5 md:bottom-44 lg:bottom-16  xl:-left-12 absolute z-10 bg-[linear-gradient(138.82deg,#B9D4FD_9.95%,#5EACDD_92.12%)] rounded-full h-[35px]" />
 
-        <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
-          Candidate College is an Education Platform that works to facilitate
-          students in Indonesia at home and aboard to achieve a quality
-          education system.
-        </p>
+        <div className="flex-auto  text-center md:text-start">
+          <h1 className="font-semibold inline-block relative text-white text-3xl lg:text-[68px]  lg:leading-[82px] leading-[150%]">
+            <div className="absolute right-0 -top-10">
+              <StarIcon />
+            </div>
+            Achieve Quality Equally For All Indonesian Student
+          </h1>
 
-        <Link
-          href="/coming"
-          title="Get To Know About CC"
-          about="Get To Know About CC"
-          className="bg-secondary text-primary font-medium text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4 mt-6 md:mt-0"
-        >
-          Get To Know About CC
-        </Link>
+          <p className="text-gray lg:leading-[28px] mt-5 text-sm lg:text-base">
+            Candidate College is an Education Platform that works to facilitate
+            students in Indonesia at home and aboard to achieve a quality
+            education system.
+          </p>
 
-        <Link
-          href="/coming"
-          title="See Events on Candidate College"
-          about="See Events on Candidate College"
-          className="bg-transparent text-gray font-normal -mt-3 text-base rounded-full px-5 py-3 text-center cursor-pointer md:w-1/4"
-        >
-          See Events
-        </Link>
+          <div className="mt-6 flex gap-5">
+            <Link
+              href="/coming"
+              title="Get To Know About CC"
+              about="Get To Know About CC"
+              className="bg-secondary block w-6/12 md:w-4/12 text-primary font-medium text-base rounded-full p-5 text-center cursor-pointer"
+            >
+              Get To Know
+            </Link>
+
+            <Link
+              href="/coming"
+              title="See Events on Candidate College"
+              about="See Events on Candidate College"
+              className="bg-transparent border border-secondary block w-6/12 md:w-4/12 text-secondary font-normal text-base rounded-full p-5 text-center cursor-pointer"
+            >
+              See Events
+            </Link>
+          </div>
+        </div>
+        <div className="relative   mt-20 md:mt-0 mx-auto flex justify-center items-center md:block w-full flex-1">
+          {/* thumbs */}
+          <div className="top-12 left-0 md:-left-8 md:top-0 rounded-[5px] w-[178px] absolute items-center gap-2 bg-white/20 border p-2 border-white   flex">
+            <div className="w-fit p-2 aspect-square rounded-full bg-secondary">
+              <ChecklistIcon />
+            </div>
+            <div>
+              <h3 className="text-secondary font-extrabold text-[14px] leading-[17px]">
+                Unlock
+              </h3>
+              <h4 className="text-white font-medium text-[12px] leading-[15px]">
+                Your Potential
+              </h4>
+            </div>
+          </div>
+          {/* thumbs */}
+          <div className="bottom-6 right-0 xl:-right-12 z-20 rounded-[5px] w-[200px] absolute items-center gap-2 bg-white/20 border p-2 border-white   flex">
+            <div className="w-fit px-2 flex items-center justify-center p-1 aspect-square rounded-full bg-secondary">
+              <ThunderIcon />
+            </div>
+            <div>
+              <h3 className="text-white font-medium text-[14px] leading-[17px]">
+                Take Your Learning to the{" "}
+                <span className="text-secondary font-extrabold">
+                  Next Level
+                </span>
+              </h3>
+            </div>
+          </div>
+          {/* dot blue */}
+          <div className="w-[35px] left-12 -top-6 md:left-0 md:-top-24 absolute z-10 bg-[linear-gradient(138.82deg,#B9D4FD_9.95%,#5EACDD_92.12%)] rounded-full h-[35px]" />
+          {/* dot green */}
+          <div className="w-[35px] -bottom-6 right-6 md:-bottom-16 md:right-0 absolute z-10 bg-[linear-gradient(138.82deg,#C7EFC6_7.18%,#539352_81.98%)] rounded-full h-[35px]" />
+
+          <div className="w-full aspect-square md:w-[360px] md:h-[490px] lg:w-[429px]  lg:h-[620px] bottom-0 md:-bottom-8   rounded-full overflow-hidden  absolute z-10">
+            <Image
+              className="h-full object-cover w-full"
+              src={"person.png"}
+              height={100}
+              width={100}
+              alt="Person"
+            />
+          </div>
+          <div className="w-[80%] aspect-square   md:w-[340px] md:h-[350px] lg:w-[419px] rounded-full lg:h-[426px] bg-secondary" />
+        </div>
       </section>
 
       {/* Values */}
@@ -408,7 +479,6 @@ export default function Home() {
       </section>
 
       {/* Events */}
-
       <section className="flex flex-col w-full h-full bg-white pt-[100px] pb-40">
         <h3 className="text-primary md:px-[70px] xl:text-base text-sm font-normal text-center">
           Our Events
