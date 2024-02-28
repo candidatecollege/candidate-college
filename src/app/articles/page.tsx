@@ -24,6 +24,7 @@ import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 
 import "../../styles/swiper-article-page.css";
+import "./hero-background.css";
 
 type ArticleType = {
   id: number;
@@ -57,6 +58,15 @@ const Articles = () => {
   const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] =
     useState<boolean>(true);
   const loadingContent = [1, 2, 3, 4, 5, 6];
+
+  const scrollAnimation = () => {
+    const targetPosition = 700;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
+  };  
 
   const fetchArticleByCategory = async () => {
     setIsLoadingArticleByCategory(true);
@@ -168,30 +178,40 @@ const Articles = () => {
   return (
     <main className="bg-primary h-full w-full">
       {/* Navbar */}
-      <Navbar active="Articles" isDetail={false} />
+      <Navbar
+        className="animate__animated animate__fadeInDownBig"
+        active="Articles"
+        isDetail={false}
+      />
 
       {/* Hero */}
-      <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
-        <Image
-          src={"/decoration/article.png"}
-          width={0}
-          height={0}
-          className="w-[25rem]"
-          alt="Article Decoration"
-          title="Article Decoration"
-        />
+      <section className="flex overflow-hidden relative flex-col w-full justify-center lg:h-screen bg-[url('/decoration/hero-section-background.png')] bg-cover bg-hero-image">
+        <div className="flex flex-col lg:mx-32 xsm:mx-10 xxsm:mx-8 lg:mt-40 xsm:mt-44 xxsm:mt-32 mb-20">
+          {/* Title */}
+          <div className="flex">
+            <h1 className="text-right font-bold lg:text-6xl xsm:text-5xl xxsm:text-3xl lg:pl-[200px] lg:leading-[5rem] xsm:leading-[4rem] xxsm:leading-[2.6rem] animate-slideRight">
+              Find Insightful Articles To Make You More <span className="text-secondary">Thoughtful</span> And Full Of New <span className="text-sky-300">Knowledge.</span>
+            </h1>            
+          </div>
 
-        <div className="flex flex-col gap-4 mb-3">
-          <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:leading-[100%] leading-[150%]">
-            Achieve Quality Equally For All Indonesian Student.
-          </h1>
-
-          <p className="text-gray text-sm lg:text-base md:w-[85%]">
-            Candidate College is an Education Platform that works to facilitate
-            students in Indonesia at home and aboard to achieve a quality
-            education system.
-          </p>
-        </div>
+          {/* Sub Title */}
+          <div className="flex flex-row lg:pr-[520px] xsm:pr-[100px] xxsm:pr-[40px] lg:-mt-[30px] xsm:mt-[140px] xxsm:mt-[120px] gap-x-8 lg:items-start xsm:items-center xxsm:items-end">
+            {/* Button */}
+            <div className="flex flex-col justify-center items-center lg:gap-y-8 xsm:gap-y-10 xxsm:gap-y-8">
+              <div className="bg-white w-[0.8px] lg:h-28 xsm:h-20 xxsm:h-20 rounded-lg"></div>
+              <button className="w-16 h-16 border-[1px] border-white rounded-full text-center" onClick={scrollAnimation} title="Click to scroll down">
+                Scroll
+              </button>
+            </div>
+            {/* Desc */}
+            <div className="flex flex-col lg:gap-y-11 xsm:gap-y-6 xxsm:gap-y-12">
+              <p className="text-gray lg:text-[15px] xsm:text-[15px] xxsm:text-[13px] animate-slideRight">
+                Candidate College can help you explore your potential and gain a comprehensive understanding, make you discover your dream education system, and help you get one step closer to your dreams, And make you shine brighter.
+              </p> 
+              <p className="font-semibold lg:text-2xl xsm:text-2xl xxsm:text-xl lg:pt-0 lg:pb-0 xsm:pt-12 xsm:pb-10 xxsm:pt-2 xxsm:pb-5 ">Latest Article</p>
+            </div>
+          </div>
+        </div>  
       </section>
 
       {/* Articles */}
