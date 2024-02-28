@@ -245,7 +245,7 @@ export default function Home() {
 
           <div className="mt-6 flex gap-5">
             <Link
-              href="/coming"
+              href="/about"
               title="Get To Know About CC"
               about="Get To Know About CC"
               className="bg-secondary block w-6/12 md:w-4/12 text-primary font-medium text-base rounded-full p-5 text-center cursor-pointer"
@@ -254,7 +254,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href="/coming"
+              href="/events"
               title="See Events on Candidate College"
               about="See Events on Candidate College"
               className="bg-transparent border border-secondary block w-6/12 md:w-4/12 text-secondary font-normal text-base rounded-full p-5 text-center cursor-pointer"
