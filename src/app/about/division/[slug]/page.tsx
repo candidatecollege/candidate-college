@@ -43,6 +43,7 @@ const Division = (props: any) => {
           `https://candidate-college.vercel.app/api/divisions/${lastEndPoint}`
         );
         const responseData = await response.json();
+        console.log(responseData);
 
         setSnippets(responseData.data.snippets);
 
@@ -73,9 +74,10 @@ const Division = (props: any) => {
     const staffCards: any = [];
 
     // Classify data based on value position property
-    profiles.forEach((profile) => {
+    console.log("JUmlah data:", profiles.length);
+    profiles.forEach((profile, index) => {
       if (profile.position === "Head") {
-        headAndCoHeadCards.unshift(profile);
+        headAndCoHeadCards.push(profile);
       } else if (profile.position === "Co Head") {
         headAndCoHeadCards.push(profile);
       } else if (profile.position === "Staff") {
@@ -84,15 +86,21 @@ const Division = (props: any) => {
     });
 
     // Setting number of cards per row
-    const cardsPerRow = [2, 4, 4];
+    const countProfiles = profiles.length - headAndCoHeadCards.length;
+
+    const cardsPerRow = [2];
+    for (let i = 0; i < Math.floor(countProfiles / 4); i++) {
+      cardsPerRow.push(4);
+    }
+    cardsPerRow.push(countProfiles % 4);
 
     // Apply card layout according predetermined settings
     return cardsPerRow.map((numCards, rowIndex) => {
       let rowCards = [];
 
       if (rowIndex === 0) {
-        rowCards = headAndCoHeadCards;
-      } else if (rowIndex === 1 || rowIndex || 2) {
+        rowCards = headAndCoHeadCards.slice(0, 2).reverse();
+      } else {
         rowCards = staffCards.slice(
           numCards * (rowIndex - 1),
           numCards * rowIndex
@@ -102,10 +110,10 @@ const Division = (props: any) => {
       return (
         <div
           key={rowIndex}
-          className="flex lg:justify-center lg:items-centers lg:flex-row xsm:flex-col xxsm:flex-col"
+          className="flex lg:justify-center overflow-auto lg:items-centers lg:flex-row xsm:flex-col xxsm:flex-col"
         >
-          {rowCards.map((profile: any) => (
-            <div className="lg:mx-0 xsm:mx-auto xxsm:mx-auto">
+          {rowCards.map((profile: any, index: number) => (
+            <div key={index} className="lg:mx-0 xsm:mx-auto xxsm:mx-auto">
               <CardMember
                 img={`https://cors-proxy-infinityfree.vercel.app/uploads/${profile.img}`}
                 name={formatName(profile.name)}
