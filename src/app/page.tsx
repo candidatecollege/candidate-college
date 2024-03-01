@@ -546,6 +546,7 @@ export default function Home() {
                           event={event}
                           eventCountdowns={eventCountdowns}
                         />
+
                         <h5 className="text-[#FFFFFF]  text-[24px]  font-semibold leading-[26px] text-left mb-3">
                           <div className="inline sm:hidden">
                             {event.name.substring(0, 48) + "..."}
@@ -554,7 +555,7 @@ export default function Home() {
                         </h5>
                         <p className="text-[#FFFFFF] text-[16px] text-sm font-normal leading-[24px] text-left mb-8">
                           <div className="inline sm:hidden">
-                            {event.snippets.substring(0, 32) + "..."}
+                            {event.snippets?.substring(0, 32) + "..."}
                           </div>
                           <div className="hidden sm:inline">
                             {event.snippets}
