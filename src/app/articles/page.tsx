@@ -24,7 +24,6 @@ import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 
 import "../../styles/swiper-article-page.css";
-import "./hero-background.css";
 
 type ArticleType = {
   id: number;
@@ -58,15 +57,6 @@ const Articles = () => {
   const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] =
     useState<boolean>(true);
   const loadingContent = [1, 2, 3, 4, 5, 6];
-
-  const scrollAnimation = () => {
-    const targetPosition = 700;
-
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
-  };  
 
   const fetchArticleByCategory = async () => {
     setIsLoadingArticleByCategory(true);
@@ -185,12 +175,12 @@ const Articles = () => {
       />
 
       {/* Hero */}
-      <section className="flex overflow-hidden relative flex-col w-full justify-center lg:h-screen bg-[url('/decoration/hero-section-background.png')] bg-cover bg-hero-image">
+      <section className="flex overflow-hidden relative flex-col w-full h-auto min-h-full justify-center bg-[url('/decoration/hero-section-background.png')] bg-cover">
         <div className="flex flex-col lg:mx-32 xsm:mx-10 xxsm:mx-8 lg:mt-40 xsm:mt-44 xxsm:mt-32 mb-20">
           {/* Title */}
           <div className="flex">
             <h1 className="text-right font-bold lg:text-6xl xsm:text-5xl xxsm:text-3xl lg:pl-[200px] lg:leading-[5rem] xsm:leading-[4rem] xxsm:leading-[2.6rem] animate-slideRight">
-              Find Insightful Articles To Make You More <span className="text-secondary">Thoughtful</span> And Full Of New <span className="text-sky-300">Knowledge.</span>
+              Find Insightful Articles To Make You More <span className="text-secondary">Thoughtful</span> And Full Of New <span className="text-[#5EACDD]">Knowledge.</span>
             </h1>            
           </div>
 
@@ -199,9 +189,11 @@ const Articles = () => {
             {/* Button */}
             <div className="flex flex-col justify-center items-center lg:gap-y-8 xsm:gap-y-10 xxsm:gap-y-8">
               <div className="bg-white w-[0.8px] lg:h-28 xsm:h-20 xxsm:h-20 rounded-lg"></div>
-              <button className="w-16 h-16 border-[1px] border-white rounded-full text-center" onClick={scrollAnimation} title="Click to scroll down">
-                Scroll
-              </button>
+              <Link href="#articles" scroll={true} >
+                <button className="w-16 h-16 border-[1px] border-white rounded-full text-center" title="Click to scroll down">
+                  Scroll
+                </button>
+              </Link>
             </div>
             {/* Desc */}
             <div className="flex flex-col lg:gap-y-11 xsm:gap-y-6 xxsm:gap-y-12">
@@ -215,7 +207,7 @@ const Articles = () => {
       </section>
 
       {/* Articles */}
-      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
+      <section id="articles" className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
         {/* Latest */}
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           <div className="overflow-x-auto scrollbar-hide relative">
