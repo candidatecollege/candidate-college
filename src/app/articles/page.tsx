@@ -1,7 +1,7 @@
 "use client";
 import { CTA, CardItem, Footer, ListItem, Navbar } from "@/components";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { articlesOnPage } from "@/data/articleData";
@@ -57,6 +57,9 @@ const Articles = () => {
   const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] =
     useState<boolean>(true);
   const loadingContent = [1, 2, 3, 4, 5, 6];
+
+  const myRef = useRef<HTMLDivElement>(null);
+  const scrollToRef = () => myRef.current?.scrollIntoView({ behavior: 'smooth' });
 
   const fetchArticleByCategory = async () => {
     setIsLoadingArticleByCategory(true);
@@ -189,11 +192,9 @@ const Articles = () => {
             {/* Button */}
             <div className="flex flex-col justify-center items-center lg:gap-y-8 xsm:gap-y-10 xxsm:gap-y-8">
               <div className="bg-white w-[0.8px] lg:h-28 xsm:h-20 xxsm:h-20 rounded-lg"></div>
-              <Link href="#articles" scroll={true} >
-                <button className="w-16 h-16 border-[1px] border-white rounded-full text-center" title="Click to scroll down">
+                <button className="w-16 h-16 border-[1px] border-white rounded-full text-center" title="Click to scroll down" onClick={scrollToRef}>
                   Scroll
                 </button>
-              </Link>
             </div>
             {/* Desc */}
             <div className="flex flex-col lg:gap-y-11 xsm:gap-y-6 xxsm:gap-y-12">
@@ -207,9 +208,9 @@ const Articles = () => {
       </section>
 
       {/* Articles */}
-      <section id="articles" className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
+      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
         {/* Latest */}
-        <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
+        <div ref={myRef} className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
               {isLoadingCategories
