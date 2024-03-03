@@ -25,6 +25,17 @@ import { Navigation } from "swiper/modules";
 
 import "../../styles/swiper-article-page.css";
 
+// Import Static File
+import {popularArticles, popularArticlesDataType} from "@/data/popularArticleData";
+
+// Import Function
+import { formatDate } from "@/utils/formatDate";
+import { formatArticleTitle } from "@/utils/formatArticleTitle";
+import { formatName } from "@/utils/formatName";
+
+// Import Component
+import CardPopularArticle  from "@/components/articles/CardPopularArticle";
+
 type ArticleType = {
   id: number;
   title: string;
@@ -57,6 +68,7 @@ const Articles = () => {
   const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] =
     useState<boolean>(true);
   const loadingContent = [1, 2, 3, 4, 5, 6];
+
 
   const myRef = useRef<HTMLDivElement>(null);
   const scrollToRef = () => myRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -158,6 +170,65 @@ const Articles = () => {
     }
   };
 
+  // Used to sort articles data based on largest views
+  const getMostViewedArticles = (arr: any[], n:any) => {
+    const sortedArticles = arr.sort((a: any, b: any) => {
+      return b.views - a.views;
+    });
+
+    return sortedArticles.slice(0, n)
+  };
+
+  // Used to sort articles data based on latest date
+  const getLatestArticles = (arr: any[], n:any) => {
+    const sortedArticles = arr.sort((a: any, b: any) => {
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    return sortedArticles.slice(0, n);
+  };
+
+  // Used to format number of articles cards per row and simultaneously render cards
+  const renderPopularArticles = () => {
+    const mostViewed = getMostViewedArticles(popularArticles, 8);
+    const latest = getLatestArticles(popularArticles, 2);
+    
+    const cardsPerRow = [3, 2, 3, 2];
+    let currentIndex  = 0;
+    let number = 1;
+
+    return cardsPerRow.map((numCards, rowIndex) => {
+      let rowCards = [];
+
+      rowCards = mostViewed.slice(currentIndex, currentIndex + numCards);
+      currentIndex += numCards;
+
+      if (rowIndex == 3) {
+        rowCards = latest;
+      };
+
+      return (
+        <div key={rowIndex} className='flex lg:flex-row xxsm:flex-col lg:gap-2 xxsm:gap-4 lg:mt-0 xxsm:-mt-[22px]'>
+          {rowCards.map((article: popularArticlesDataType, index: number) => (
+            <CardPopularArticle 
+                number={number++}
+                rowIndex={rowIndex}
+                index={index}
+                title={formatArticleTitle(article.title)}
+                duration={article.duration}
+                date={formatDate(article.created_at)}
+                author={formatName(article.author)}
+                cover_landscape={article.cover_landscape}
+            />
+          ))};
+        </div>
+      );
+    });
+  };
+
   useEffect(() => {
     fetchArticles();
 
@@ -207,268 +278,15 @@ const Articles = () => {
         </div>  
       </section>
 
-      {/* Articles */}
-      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
-        {/* Latest */}
-        <div ref={myRef} className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
-          <div className="overflow-x-auto scrollbar-hide relative">
-            <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
-              {isLoadingCategories
-                ? loadingContent?.map((category, index) => (
-                    <ListItem
-                      data={category}
-                      isLoading={true}
-                      onClick={(e: any) => setActiveCategory("")}
-                      active={""}
-                    />
-                  ))
-                : categories?.map((category, index) => (
-                    <ListItem
-                      data={category}
-                      isLoading={false}
-                      onClick={(e: any) => activeCategoryHandler(category.name)}
-                      active={activeCategory}
-                    />
-                  ))}
-            </div>
-          </div>
-
-          <div
-            className={`${
-              activeCategory != "All" ? "flex flex-col" : "hidden"
-            }`}
-          >
-            <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
-              <h2 className="font-semibold text-2xl md:text-4xl text-primary">
-                {activeCategory}
-              </h2>
-            </div>
-
-            {/* Articles */}
-            {articlesByCategory.length == 0 ? (
-              <div className="w-full h-fit py-10 flex items-center justify-center">
-                <div className="flex flex-col gap-2">
-                  <Image
-                    src="/decoration/empty.png"
-                    title="Empty Article Decoration"
-                    alt="Empty Article Decoration"
-                    width={0}
-                    height={0}
-                    className="w-[25rem] h-[25rem] object-contain mx-auto"
-                    priority
-                  />
-                  <p className="text-gray text-base text-center">
-                    No Article Available on This Category
-                  </p>
-                </div>
-              </div>
-            ) : activeCategory != "All" ? (
-              <div className="flex flex-col gap-8 md:gap-5 mt-7 md:grid md:grid-cols-3">
-                {isLoadingArticleByCategory
-                  ? loadingContent?.map((article, index) => (
-                      <CardItemLandscape
-                        key={index}
-                        data={article}
-                        type={"Article"}
-                        isLoading={true}
-                      />
-                    ))
-                  : articlesByCategory
-                      .slice(0)
-                      .reverse()
-                      .map((article, index) => (
-                        <CardItemLandscape
-                          key={index}
-                          data={article}
-                          type={"Article"}
-                          isLoading={false}
-                        />
-                      ))}
-              </div>
-            ) : null}
-          </div>
-
-          <div
-            className={`${
-              activeCategory != "All" ? "hidden" : "flex flex-col"
-            }`}
-          >
-            <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray">
-              <h2 className="font-semibold text-2xl md:text-4xl text-primary">
-                Latest
-              </h2>
-              <Link
-                href="/articles/latest"
-                title="Latest Articles"
-                about="Latest Articles"
-                className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary"
-              >
-                See all{" "}
-                <span className="text-primary text-sm md:text-base">
-                  <ArrowForwardRoundedIcon fontSize="inherit" color="inherit" />
-                </span>
-              </Link>
-            </div>
-
-            {/* Scollable */}
-            <div className="flex flex-col gap-5 w-full mt-7">
-              {isLoadingArticleByCategory ? (
-                <JumboItem
-                  data={articles[currentIndexSlider]}
-                  isLoading={true}
-                />
-              ) : (
-                <JumboItem
-                  data={articles[currentIndexSlider]}
-                  isLoading={false}
-                />
-              )}
-
-              <div className="md:flex flex-row gap-4 hidden">
-                {isLoadingArticles
-                  ? articles
-                      .slice(1, 5)
-                      .map((article, index) => (
-                        <CardItemLandscape
-                          key={index}
-                          data={article}
-                          type="Article"
-                          isLoading={true}
-                        />
-                      ))
-                  : articles
-                      .slice(1, 5)
-                      .map((article, index) => (
-                        <CardItemLandscape
-                          key={index}
-                          data={article}
-                          type="Article"
-                          isLoading={false}
-                        />
-                      ))}
-              </div>
-
-              <div className="flex flex-row gap-1 md:hidden items-center justify-center w-full">
-                {articles.slice(0, 5).map((article, index) => (
-                  <div
-                    key={index}
-                    onClick={(e) => setCurrentIndexSlider((prev) => index)}
-                    className={`flex  p-[5px] h-2 ${
-                      currentIndexSlider == index
-                        ? "w-8 bg-secondary"
-                        : "w-2 bg-primary"
-                    } rounded-full cursor-pointer`}
-                  ></div>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16">
-              <h2 className="font-semibold text-2xl md:text-4xl text-primary">
-                Read Insightful Articles
-              </h2>
-              <Link
-                href="/articles/read-insightful-articles"
-                title="Read Insightful Articles"
-                about="Read Insightful Articles"
-                className="flex flex-row items-center justify-center text-sm gap-1 cursor-pointer text-primary"
-              >
-                See all{" "}
-                <span className="text-primary text-sm md:text-base">
-                  <ArrowForwardRoundedIcon fontSize="inherit" color="inherit" />
-                </span>
-              </Link>
-            </div>
-
-            {/* Articles */}
-            <section className="w-full h-full bg-white py-10 md:py-10 flex flex-col gap-9 overflow-hidden">
-              <Swiper
-                slidesPerView={1}
-                spaceBetween={10}
-                navigation={true}
-                breakpoints={{
-                  // Adjust the number of slides per view for different screen widths
-                  // When the screen width is less than 640px (typical mobile width), show only 1 slide
-                  0: {
-                    slidesPerView: 1,
-                  },
-                  // For larger screens, revert to 3 slides per view
-                  1024: {
-                    slidesPerView: 3,
-                  },
-                }}
-                modules={[Navigation]}
-                className="mySwiper"
-              >
-                {isLoadingArticles
-                  ? loadingContent?.map((article, index) => (
-                      <SwiperSlide>
-                        <div className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
-                          <div className="rounded-lg w-[22rem] h-[22rem] bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
-
-                          <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
-                            <div className="bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse w-2/3 rounded-lg py-3"></div>
-
-                            <div className="flex flex-col gap-1 w-full">
-                              <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
-                              <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
-                              <div className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
-                              <div className="w-2/3 py-2 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
-                            </div>
-
-                            <Link
-                              href="/articles"
-                              title="Read More"
-                              about="Read More"
-                              className="bg-secondary text-transparent font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5 bg-gradient-to-r from-yellow-200 to-yellow-300 animate-pulse"
-                            >
-                              Read More
-                            </Link>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                    ))
-                  : articles?.slice(0, 5).map((article, index) => (
-                      <SwiperSlide>
-                        <Link
-                          href={`/articles/${article.slug}`}
-                          title="Read More"
-                          about="Read More"
-                          className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer w-[22rem]"
-                        >
-                          <Image
-                            src={`/uploads/${article.cover}`}
-                            alt={article.title}
-                            title={article.title}
-                            className="rounded-lg w-[22rem] h-[22rem] object-cover"
-                            width={0}
-                            height={0}
-                          />
-
-                          <div className="flex flex-col gap-2 pt-3 pb-5 relative px-5">
-                            <h3 className="font-semibold text-base text-primary">
-                              {article.title.length > 33
-                                ? article.title.substring(0, 33) + "..."
-                                : article.title}
-                            </h3>
-                            <p className="font-normal text-sm text-gray">
-                              {article.snippets.substring(0, 150) + "..."}
-                            </p>
-                            <Link
-                              href={`/articles/${article.slug}`}
-                              title="Read More"
-                              about="Read More"
-                              className="bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5"
-                            >
-                              Read More
-                            </Link>
-                          </div>
-                        </Link>
-                      </SwiperSlide>
-                    ))}
-              </Swiper>
-            </section>
-          </div>
+      {/* Popular Articles */}
+      <section className="flex flex-col lg:px-14 pt-14 pb-20 bg-white" ref={myRef}>
+        {/* Title */}
+        <h1 className="text-primary text-2xl font-bold m-8 lg:mb-10 xxsm:mb-16">
+          Popular Article
+        </h1>
+        {/* Card */}
+        <div className="flex flex-col lg:justify-center lg:items-center lg:gap-4 xxsm:gap-0 md:px-36 xxsm:px-6">
+          {renderPopularArticles()}
         </div>
       </section>
 
