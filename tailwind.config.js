@@ -10,6 +10,7 @@ module.exports = {
       // that is actual animation
       animation: {
         fade: "fade 3s ease-in-out infinite",
+        slideRight: "slideRight 0.9s ease-in-out",
       },
       keyframes: {
         fade: {
@@ -20,6 +21,10 @@ module.exports = {
           "0%, 100%": { transform: "scale(1.12)" },
           "50%": { transform: "scale(1)" },
         },
+        slideRight: {
+          "0%": {transform: "translateX(100%)", opacity: 0},
+          "100%": {transform: "translateX(0)", opacity: 1},
+        }
       },
 
       fontFamily: {
@@ -38,8 +43,8 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       screens: {
-        xsm: "394px",
-        xxsm: "200px",
+        xsm: "430px",  // Tablet Minimum Size
+        xxsm: "200px", // Mobile Minimum Size
       },
     },
   },
