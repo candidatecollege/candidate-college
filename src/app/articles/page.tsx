@@ -69,7 +69,6 @@ const Articles = () => {
     useState<boolean>(true);
   const loadingContent = [1, 2, 3, 4, 5, 6];
 
-
   const myRef = useRef<HTMLDivElement>(null);
   const scrollToRef = () => myRef.current?.scrollIntoView({ behavior: 'smooth' });
 
@@ -255,9 +254,7 @@ const Articles = () => {
           <div className="flex">
             <h1 className="text-right font-bold lg:text-6xl xsm:text-5xl xxsm:text-3xl lg:pl-[200px] lg:leading-[5rem] xsm:leading-[4rem] xxsm:leading-[2.6rem] animate-slideRight">
               Find Insightful Articles To Make You More <span className="text-secondary">Thoughtful</span> And Full Of New <span className="text-[#5EACDD]">Knowledge.</span>
-            </h1>            
-          </div>
-
+            </h1>           
           {/* Sub Title */}
           <div className="flex flex-row lg:pr-[520px] xsm:pr-[100px] xxsm:pr-[40px] lg:-mt-[30px] xsm:mt-[140px] xxsm:mt-[120px] gap-x-8 lg:items-start xsm:items-center xxsm:items-end">
             {/* Button */}
