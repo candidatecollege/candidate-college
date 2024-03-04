@@ -25,6 +25,17 @@ import { Navigation } from "swiper/modules";
 
 import "../../styles/swiper-article-page.css";
 
+// Import Static File
+import {popularArticles, popularArticlesDataType} from "@/data/popularArticleData";
+
+// Import Function
+import { formatDate } from "@/utils/formatDate";
+import { formatArticleTitle } from "@/utils/formatArticleTitle";
+import { formatName } from "@/utils/formatName";
+
+// Import Component
+import CardPopularArticle  from "@/components/articles/CardPopularArticle";
+
 type ArticleType = {
   id: number;
   title: string;
@@ -57,6 +68,7 @@ const Articles = () => {
   const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] =
     useState<boolean>(true);
   const loadingContent = [1, 2, 3, 4, 5, 6];
+
 
   const myRef = useRef<HTMLDivElement>(null);
   const scrollToRef = () => myRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -156,6 +168,48 @@ const Articles = () => {
       console.error(error);
       setIsLoadingArticles(false);
     }
+  };
+
+  // Used to sort articles data based on largest views
+  const getMostViewedArticles = (arr: any[], n:any) => {
+    const sortedArticles = arr.sort((a: any, b: any) => {
+      return b.views - a.views;
+    });
+
+    return sortedArticles.slice(0, n)
+  };
+
+  // Used to format number of articles cards per row and simultaneously render cards
+  const renderPopularArticles = () => {
+    const mostViewed = getMostViewedArticles(popularArticles, 10);
+    
+    const cardsPerRow = [3, 2, 3, 2];
+    let currentIndex  = 0;
+    let number = 1;
+
+    return cardsPerRow.map((numCards, rowIndex) => {
+      let rowCards = [];
+
+      rowCards = mostViewed.slice(currentIndex, currentIndex + numCards);
+      currentIndex += numCards;
+
+      return (
+        <div key={rowIndex} className='flex lg:flex-row xxsm:flex-col lg:gap-2 xxsm:gap-4 lg:mt-0 xxsm:-mt-[22px]'>
+          {rowCards.map((article: popularArticlesDataType, index: number) => (
+            <CardPopularArticle 
+                number={number++}
+                rowIndex={rowIndex}
+                index={index}
+                title={formatArticleTitle(article.title)}
+                duration={article.duration}
+                date={formatDate(article.created_at)}
+                author={formatName(article.author)}
+                cover_landscape={article.cover_landscape}
+            />
+          ))};
+        </div>
+      );
+    });
   };
 
   useEffect(() => {
@@ -362,7 +416,20 @@ const Articles = () => {
                 ))}
               </div>
             </div>
+            
+            {/* Popular Articles */}
+            <div className="flex flex-col pt-14 pb-20 bg-white" ref={myRef}>
+              {/* Title */}
+              <h1 className="text-primary text-2xl font-bold lg:mb-10 xxsm:mb-16">
+                Popular Article
+              </h1>
+              {/* Card */}
+              <div className="flex flex-col lg:justify-center lg:items-center lg:gap-4 xxsm:gap-0 md:px-36 xxsm:px-6">
+                {renderPopularArticles()}
+              </div>
+            </div>
 
+            {/* Read Insightful Articles */}
             <div className="flex flex-row items-center justify-between pb-6 border-b border-b-gray mt-16">
               <h2 className="font-semibold text-2xl md:text-4xl text-primary">
                 Read Insightful Articles
