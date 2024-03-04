@@ -24,7 +24,7 @@ import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 
 import "../../styles/swiper-article-page.css";
-import getRandom from "@/utils/getRandom";
+import getRandom, { Article } from "@/utils/getRandom";
 
 type ArticleType = {
   id: number;
@@ -49,13 +49,11 @@ const Articles = () => {
   const [currentIndexSlider, setCurrentIndexSlider] = useState<number>(0);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const [articles, setArticles] = useState<any[]>([]);
-  const [randomArticles, setRandomArticles] = useState<any[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [randomArticles, setRandomArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true);
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(true);
-  const [isLoadingRandomArticles, setIsLoadingRandomArticles] =
-    useState<boolean>(true);
 
   const [articlesByCategory, setArticlesByCategory] = useState<any[]>([]);
   const [isLoadingArticleByCategory, setIsLoadingArticleByCategory] =
