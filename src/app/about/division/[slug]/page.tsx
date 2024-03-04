@@ -22,7 +22,6 @@ import CardMember from "../../../../components/CardDivision";
 // Import Function
 import { formatEndpointText } from "@/utils/formatEndpointText";
 import { formatName } from "@/utils/formatName";
-import { profile } from "console";
 
 // About Page
 const Division = (props: any) => {
@@ -43,7 +42,6 @@ const Division = (props: any) => {
           `https://candidate-college.vercel.app/api/divisions/${lastEndPoint}`
         );
         const responseData = await response.json();
-        console.log(responseData);
 
         setSnippets(responseData.data.snippets);
 
@@ -74,7 +72,7 @@ const Division = (props: any) => {
     const staffCards: any = [];
 
     // Classify data based on value position property
-    console.log("JUmlah data:", profiles.length);
+
     profiles.forEach((profile, index) => {
       if (profile.position === "Head") {
         headAndCoHeadCards.push(profile);
@@ -85,26 +83,36 @@ const Division = (props: any) => {
       }
     });
 
-    // Setting number of cards per row
-    const countProfiles = profiles.length - headAndCoHeadCards.length;
+    // Simplified logic to calculate cards per row
+    const cardsPerRow = [2]; // The first row for head and co-head remains constant
+    const remainingProfiles = profiles.length - 2; // Adjust based on actual head/co-head count
 
-    const cardsPerRow = [2];
-    for (let i = 0; i < Math.floor(countProfiles / 4); i++) {
-      cardsPerRow.push(4);
+    const fullRows = Math.floor(remainingProfiles / 4);
+    const partialRow = remainingProfiles % 4;
+
+    // Create rows of 4 for the full rows
+    if (fullRows > 0) {
+      const newArr = new Array(fullRows).fill(4);
+      cardsPerRow.push(...newArr);
     }
-    cardsPerRow.push(countProfiles % 4);
+
+    // Add the partial row, if any
+    if (partialRow > 0) {
+      cardsPerRow.push(partialRow);
+    }
 
     // Apply card layout according predetermined settings
+    let finish = 0;
+    let start = 0;
     return cardsPerRow.map((numCards, rowIndex) => {
       let rowCards = [];
 
       if (rowIndex === 0) {
         rowCards = headAndCoHeadCards.slice(0, 2).reverse();
       } else {
-        rowCards = staffCards.slice(
-          numCards * (rowIndex - 1),
-          numCards * rowIndex
-        );
+        finish += numCards;
+        rowCards = staffCards.slice(start, finish);
+        start += numCards;
       }
 
       return (
