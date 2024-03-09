@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { CTA, Footer, Navbar } from "@/components";
 import Image from "next/image";
 import { articlesOnPage } from "@/data/articleData";
@@ -15,37 +15,38 @@ import ViewsIcon from "@/components/icons/ViewsIcon";
 import ReadingTimeIcon from "@/components/icons/ReadingTimeIcon";
 import AuthorIcon from "@/components/icons/AuthorIcon";
 import LinkIcon from "@/components/icons/LinkIcon";
-import TwitterIcon from "@/components/icons/TwitterIcon"
+import TwitterIcon from "@/components/icons/TwitterIcon";
 import WhatsappIcon from "@/components/icons/WhatsappIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import ShareIcon from "@/components/icons/ShareIcon";
 
 // Import Function
-import {formatTime} from "@/utils/formatTime";
+import { formatTime } from "@/utils/formatTime";
 
 // Import Component
 import SocialSharingButton from "@/components/SocialSharingButton";
 
 const Detail = () => {
   const slug = usePathname().slice(10);
-  const [article, setArticle] = useState<any>(null); 
+  const [article, setArticle] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [open, setOpen] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [relatedArticles, setRelatedArticles] = useState<any[]>([]);
-  const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] = useState<boolean>(true);
+  const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] =
+    useState<boolean>(true);
   const loadingContents = [1, 2, 3, 4, 5, 6];
-  
+
   const currentPath = usePathname();
   const articleUrl = `https://candidate-college.vercel.app${currentPath}`;
-  const caption = "Check out this awesome article :";
+  const caption = "Check out this awesome article by Candidate College :";
 
   // Set it to retrive article data randomly
   const getRandomArticles = (arr: any[], n: number) => {
-     const randomSorting = arr.sort(() => 0.5 - Math.random());
-     return randomSorting.slice(0, n);
-  }
+    const randomSorting = arr.sort(() => 0.5 - Math.random());
+    return randomSorting.slice(0, n);
+  };
 
   const fetchArticle = async () => {
     setIsLoading(true);
@@ -65,22 +66,21 @@ const Detail = () => {
   const fetchRelatedArticles = async () => {
     setIsLoadingRelatedArticles(true);
     try {
-      const allDataResponse = await axios.get('/api/articles');
+      const allDataResponse = await axios.get("/api/articles");
       const allArticles = allDataResponse.data.data;
 
-      // Take articles data that match category of article being read 
+      // Take articles data that match category of article being read
       const articleInSameCategory = allArticles.filter((item: any) => {
         return item.category === article.category && item.slug !== article.slug;
       });
 
-      // Retrieve articles data randomly and only up to 3 
+      // Retrieve articles data randomly and only up to 3
       const randomArticles = getRandomArticles(articleInSameCategory, 3);
-            
+
       setTimeout(() => {
         setRelatedArticles(randomArticles);
         setIsLoadingRelatedArticles(false);
       }, 1500);
-
     } catch (error) {
       console.log(error);
       setIsLoadingRelatedArticles(false);
@@ -94,11 +94,11 @@ const Detail = () => {
       title: "Copy Link",
       desc: "Copy article link",
       articleUrl: articleUrl,
-      width: isMobile ? "10" : "16", 
+      width: isMobile ? "10" : "16",
       height: isMobile ? "10" : "16",
       Icon: LinkIcon,
-      share: ""
-    }, 
+      share: "",
+    },
     {
       id: 2,
       title: "Share on Twitter",
@@ -107,8 +107,10 @@ const Detail = () => {
       width: isMobile ? "10" : "16",
       height: isMobile ? "10" : "16",
       Icon: TwitterIcon,
-      share: `https://twitter.com/intent/tweet?text=${encodeURIComponent(caption + "\n" + articleUrl)}`,
-    }, 
+      share: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        caption + "\n" + articleUrl
+      )}`,
+    },
     {
       id: 3,
       title: "Share on Whatsapp",
@@ -117,8 +119,10 @@ const Detail = () => {
       width: isMobile ? "10" : "16",
       height: isMobile ? "10" : "16",
       Icon: WhatsappIcon,
-      share: `https://api.whatsapp.com/send?text=${encodeURIComponent(caption + "\n" + articleUrl)}`,
-    }, 
+      share: `https://api.whatsapp.com/send?text=${encodeURIComponent(
+        caption + "\n" + articleUrl
+      )}`,
+    },
     // {
     //   id: 4,
     //   title: "Share on Instagram",
@@ -140,7 +144,7 @@ const Detail = () => {
       fetchRelatedArticles();
     }
   }, [article]);
-  
+
   // Used to check screen size every time it changes
   const handleResize = () => {
     setIsMobile(window.innerWidth < 400);
@@ -148,11 +152,11 @@ const Detail = () => {
 
   useEffect(() => {
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    return() => {
-      window.removeEventListener('resize', handleResize)
-    }
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   });
 
   return (
@@ -231,7 +235,8 @@ const Detail = () => {
 
               {/* Created At */}
               <p className="text-[#707070] text-center font-normal m-2">
-                {formatDate(article && article.created_at)} | {formatTime(article && article.created_at)}
+                {formatDate(article && article.created_at)} |{" "}
+                {formatTime(article && article.created_at)}
               </p>
             </div>
 
@@ -239,51 +244,65 @@ const Detail = () => {
               <div className="flex flex-row gap-x-4 items-center">
                 {/* Views */}
                 <div className="flex flex-row gap-x-2 items-center">
-                  <ViewsIcon width={isMobile ? "12" : "18"} height={isMobile ? "20" : "26"} />
+                  <ViewsIcon
+                    width={isMobile ? "12" : "18"}
+                    height={isMobile ? "20" : "26"}
+                  />
                   <div className="text-[#707070] text-[10px] md:text-sm font-normal">
-                    40 Views
-                  </div>  
+                    {article && article.view} Views
+                  </div>
                 </div>
                 {/* Reading Time */}
                 <div className="flex flex-row gap-x-2 items-center">
-                  <ReadingTimeIcon width={isMobile ? "12" : "18"} height={isMobile ? "20" : "26"} />
+                  <ReadingTimeIcon
+                    width={isMobile ? "12" : "18"}
+                    height={isMobile ? "20" : "26"}
+                  />
                   <div className="text-[#707070] text-[10px] md:text-sm font-normal">
                     {article && article.duration} Min Read
                   </div>
                 </div>
                 {/* Author */}
                 <div className="flex flex-row gap-x-2 items-center">
-                  <AuthorIcon width={isMobile ? "12" : "18"} height={isMobile ? "20" : "26"} />
+                  <AuthorIcon
+                    width={isMobile ? "12" : "18"}
+                    height={isMobile ? "20" : "26"}
+                  />
                   <div className="text-[#707070] text-[10px] md:text-sm font-normal">
-                    {article && article.author}    
+                    {article && article.author}
                   </div>
                 </div>
               </div>
               <div className="flex flex-row items-center gap-3 mx-2 relative">
                 {/* Share */}
-                <div className="flex flex-row gap-x-2 items-center cursor-pointer"  
-                     onMouseEnter = {() => setIsHovered(true)}
-                     onMouseLeave = {() => setIsHovered(false)}
-                     onClick={() => setOpen((prevOpen) => !prevOpen)}>
-                  <ShareIcon width={isMobile ? "12" : "18"} 
-                             height={isMobile ? "20" : "26"} 
-                             strokeOpacity = {isHovered || open ? "1.0" : "0.5"}/>
+                <div
+                  className="flex flex-row gap-x-2 items-center cursor-pointer"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  onClick={() => setOpen((prevOpen) => !prevOpen)}
+                >
+                  <ShareIcon
+                    width={isMobile ? "12" : "18"}
+                    height={isMobile ? "20" : "26"}
+                    strokeOpacity={isHovered || open ? "1.0" : "0.5"}
+                  />
                 </div>
                 {/* Pop up Share */}
                 {open && (
                   <div className="absolute w-40 md:w-48 top-10 -right-[10px] p-4 bg-white shadow-xl rounded-lg">
                     <div className="flex flex-col gap-y-4">
-                      {SocialSharing.map((social, index) => 
+                      {SocialSharing.map((social, index) => (
                         <SocialSharingButton
-                          key={index} 
+                          key={index}
                           articleUrl={social.articleUrl}
                           title={social.title}
                           desc={social.desc}
                           width={social.width}
                           height={social.height}
                           Icon={social.Icon}
-                          share={social.share}/>
-                      )}
+                          share={social.share}
+                        />
+                      ))}
                     </div>
                   </div>
                 )}

@@ -26,7 +26,10 @@ import { Navigation } from "swiper/modules";
 import "../../styles/swiper-article-page.css";
 
 // Import Static File
-import {popularArticles, popularArticlesDataType} from "@/data/popularArticleData";
+import {
+  popularArticles,
+  popularArticlesDataType,
+} from "@/data/popularArticleData";
 
 // Import Function
 import { formatDate } from "@/utils/formatDate";
@@ -34,7 +37,7 @@ import { formatArticleTitle } from "@/utils/formatArticleTitle";
 import { formatName } from "@/utils/formatName";
 
 // Import Component
-import CardPopularArticle  from "@/components/articles/CardPopularArticle";
+import CardPopularArticle from "@/components/articles/CardPopularArticle";
 
 type ArticleType = {
   id: number;
@@ -69,9 +72,9 @@ const Articles = () => {
     useState<boolean>(true);
   const loadingContent = [1, 2, 3, 4, 5, 6];
 
-
   const myRef = useRef<HTMLDivElement>(null);
-  const scrollToRef = () => myRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToRef = () =>
+    myRef.current?.scrollIntoView({ behavior: "smooth" });
 
   const fetchArticleByCategory = async () => {
     setIsLoadingArticleByCategory(true);
@@ -171,20 +174,20 @@ const Articles = () => {
   };
 
   // Used to sort articles data based on largest views
-  const getMostViewedArticles = (arr: any[], n:any) => {
+  const getMostViewedArticles = (arr: any[], n: any) => {
     const sortedArticles = arr.sort((a: any, b: any) => {
       return b.views - a.views;
     });
 
-    return sortedArticles.slice(0, n)
+    return sortedArticles.slice(0, n);
   };
 
   // Used to format number of articles cards per row and simultaneously render cards
   const renderPopularArticles = () => {
     const mostViewed = getMostViewedArticles(popularArticles, 10);
-    
+
     const cardsPerRow = [3, 2, 3, 2];
-    let currentIndex  = 0;
+    let currentIndex = 0;
     let number = 1;
 
     return cardsPerRow.map((numCards, rowIndex) => {
@@ -194,19 +197,23 @@ const Articles = () => {
       currentIndex += numCards;
 
       return (
-        <div key={rowIndex} className='flex lg:flex-row xxsm:flex-col lg:gap-2 xxsm:gap-4 lg:mt-0 xxsm:-mt-[22px]'>
+        <div
+          key={rowIndex}
+          className="flex lg:flex-row xxsm:flex-col lg:gap-2 xxsm:gap-4 lg:mt-0 xxsm:-mt-[22px]"
+        >
           {rowCards.map((article: popularArticlesDataType, index: number) => (
-            <CardPopularArticle 
-                number={number++}
-                rowIndex={rowIndex}
-                index={index}
-                title={formatArticleTitle(article.title)}
-                duration={article.duration}
-                date={formatDate(article.created_at)}
-                author={formatName(article.author)}
-                cover_landscape={article.cover_landscape}
+            <CardPopularArticle
+              number={number++}
+              rowIndex={rowIndex}
+              index={index}
+              title={formatArticleTitle(article.title)}
+              duration={article.duration}
+              date={formatDate(article.created_at)}
+              author={formatName(article.author)}
+              cover_landscape={article.cover_landscape}
             />
-          ))};
+          ))}
+          ;
         </div>
       );
     });
@@ -236,9 +243,11 @@ const Articles = () => {
         <div className="flex flex-col lg:mx-32 xsm:mx-10 xxsm:mx-8 lg:mt-40 xsm:mt-44 xxsm:mt-32 mb-20">
           {/* Title */}
           <div className="flex">
-            <h1 className="text-right font-bold lg:text-6xl xsm:text-5xl xxsm:text-3xl lg:pl-[200px] lg:leading-[5rem] xsm:leading-[4rem] xxsm:leading-[2.6rem] animate-slideRight">
-              Find Insightful Articles To Make You More <span className="text-secondary">Thoughtful</span> And Full Of New <span className="text-[#5EACDD]">Knowledge.</span>
-            </h1>            
+            <h1 className="text-right font-bold lg:text-6xl xsm:text-5xl xxsm:text-3xl lg:pl-[200px] lg:leading-[5rem] xsm:leading-[4rem] xxsm:leading-[2.6rem] animate-slideRight text-white">
+              Find Insightful Articles To Make You More{" "}
+              <span className="text-secondary">Thoughtful</span> And Full Of New{" "}
+              <span className="text-[#5EACDD]">Knowledge.</span>
+            </h1>
           </div>
 
           {/* Sub Title */}
@@ -246,25 +255,37 @@ const Articles = () => {
             {/* Button */}
             <div className="flex flex-col justify-center items-center lg:gap-y-8 xsm:gap-y-10 xxsm:gap-y-8">
               <div className="bg-white w-[0.8px] lg:h-28 xsm:h-20 xxsm:h-20 rounded-lg"></div>
-                <button className="w-16 h-16 border-[1px] border-white rounded-full text-center" title="Click to scroll down" onClick={scrollToRef}>
-                  Scroll
-                </button>
+              <button
+                className="w-16 h-16 border-[1px] border-white text-white rounded-full text-center"
+                title="Click to scroll down"
+                onClick={scrollToRef}
+              >
+                Scroll
+              </button>
             </div>
             {/* Desc */}
             <div className="flex flex-col lg:gap-y-11 xsm:gap-y-6 xxsm:gap-y-12">
               <p className="text-gray lg:text-[15px] xsm:text-[15px] xxsm:text-[13px] animate-slideRight">
-                Candidate College can help you explore your potential and gain a comprehensive understanding, make you discover your dream education system, and help you get one step closer to your dreams, And make you shine brighter.
-              </p> 
-              <p className="font-semibold lg:text-2xl xsm:text-2xl xxsm:text-xl lg:pt-0 lg:pb-0 xsm:pt-12 xsm:pb-10 xxsm:pt-2 xxsm:pb-5 ">Latest Article</p>
+                Candidate College can help you explore your potential and gain a
+                comprehensive understanding, make you discover your dream
+                education system, and help you get one step closer to your
+                dreams, And make you shine brighter.
+              </p>
+              <p className="font-semibold text-white lg:text-2xl xsm:text-2xl xxsm:text-xl lg:pt-0 lg:pb-0 xsm:pt-12 xsm:pb-10 xxsm:pt-2 xxsm:pb-5 ">
+                Latest Article
+              </p>
             </div>
           </div>
-        </div>  
+        </div>
       </section>
 
       {/* Articles */}
       <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
         {/* Latest */}
-        <div ref={myRef} className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
+        <div
+          ref={myRef}
+          className="flex flex-col md:mx-auto md:max-w-5xl bg-white"
+        >
           <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
               {isLoadingCategories
@@ -416,7 +437,7 @@ const Articles = () => {
                 ))}
               </div>
             </div>
-            
+
             {/* Popular Articles */}
             <div className="flex flex-col pt-14 pb-20 bg-white" ref={myRef}>
               {/* Title */}
