@@ -1,26 +1,45 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef} from "react";
 import { CTA, Footer, Navbar } from "@/components";
 import Image from "next/image";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import { WhatsApp } from "@mui/icons-material";
 import { articlesOnPage } from "@/data/articleData";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { formatDate } from "@/utils/time";
-import { generateShareLinks } from "@/utils/socials";
 import Link from "next/link";
 import { categoryId } from "@/utils/category";
 import CardItemLandscape from "@/components/CardItemLandscape";
+
+// Import Icon
+import ViewsIcon from "@/components/icons/ViewsIcon";
+import ReadingTimeIcon from "@/components/icons/ReadingTimeIcon";
+import AuthorIcon from "@/components/icons/AuthorIcon";
+import LinkIcon from "@/components/icons/LinkIcon";
+import TwitterIcon from "@/components/icons/TwitterIcon"
+import WhatsappIcon from "@/components/icons/WhatsappIcon";
+import InstagramIcon from "@/components/icons/InstagramIcon";
+import ShareIcon from "@/components/icons/ShareIcon";
+
+// Import Function
+import {formatTime} from "@/utils/formatTime";
+
+// Import Component
+import SocialSharingButton from "@/components/SocialSharingButton";
 
 const Detail = () => {
   const slug = usePathname().slice(10);
   const [article, setArticle] = useState<any>(null); 
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [relatedArticles, setRelatedArticles] = useState<any[]>([]);
   const [isLoadingRelatedArticles, setIsLoadingRelatedArticles] = useState<boolean>(true);
   const loadingContents = [1, 2, 3, 4, 5, 6];
+  
+  const currentPath = usePathname();
+  const articleUrl = `https://candidate-college.vercel.app${currentPath}`;
+  const caption = "Check out this awesome article :";
 
   // Set it to retrive article data randomly
   const getRandomArticles = (arr: any[], n: number) => {
@@ -68,30 +87,48 @@ const Detail = () => {
     }
   };
 
-  const links = generateShareLinks(
-    article && article.title,
-    `https://candidatecollegeind.com/articles/${article && article.slug}`
-  );
-
-  const socials = [
+  // Social Sharing Static Data
+  const SocialSharing = [
     {
       id: 1,
-      name: "Twitter",
-      link: links.twitter,
-      component: <TwitterIcon color="inherit" fontSize="inherit" />,
-    },
+      title: "Copy Link",
+      desc: "Copy article link",
+      articleUrl: articleUrl,
+      width: isMobile ? "10" : "16", 
+      height: isMobile ? "10" : "16",
+      Icon: LinkIcon,
+      share: ""
+    }, 
     {
       id: 2,
-      name: "Instagram",
-      link: links.instagram,
-      component: <InstagramIcon color="inherit" fontSize="inherit" />,
-    },
+      title: "Share on Twitter",
+      desc: "Share article on Twitter",
+      articleUrl: "",
+      width: isMobile ? "10" : "16",
+      height: isMobile ? "10" : "16",
+      Icon: TwitterIcon,
+      share: `https://twitter.com/intent/tweet?text=${encodeURIComponent(caption + "\n" + articleUrl)}`,
+    }, 
     {
       id: 3,
-      name: "Whatsapp",
-      link: links.whatsapp,
-      component: <WhatsApp color="inherit" fontSize="inherit" />,
-    },
+      title: "Share on Whatsapp",
+      desc: "Share article on Whatsapp",
+      articleUrl: "",
+      width: isMobile ? "10" : "16",
+      height: isMobile ? "10" : "16",
+      Icon: WhatsappIcon,
+      share: `https://api.whatsapp.com/send?text=${encodeURIComponent(caption + "\n" + articleUrl)}`,
+    }, 
+    // {
+    //   id: 4,
+    //   title: "Share on Instagram",
+    //   desc: "Share article on Instagram",
+    //   articleUrl: "",
+    //   width: isMobile ? "12" : "18",
+    //   height: isMobile ? "12" : "18",
+    //   Icon: InstagramIcon,
+    //   share: "https://www.instagram.com",
+    // }
   ];
 
   useEffect(() => {
@@ -103,7 +140,20 @@ const Detail = () => {
       fetchRelatedArticles();
     }
   }, [article]);
+  
+  // Used to check screen size every time it changes
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 400);
+  };
 
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return() => {
+      window.removeEventListener('resize', handleResize)
+    }
+  });
 
   return (
     <main className="bg-white h-full w-full">
@@ -169,37 +219,74 @@ const Detail = () => {
         <section className="flex flex-col pt-32 md:pt-40 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-white md:justify-center md:items-center relative h-full">
           <div className="flex flex-col gap-4 md:px-24">
             <div className="flex flex-col gap-4 pb-6 border-b border-b-gray">
-              <h1 className="font-semibold text-primary text-3xl md:text-[60px] md:text-center md:w-[100%] md:leading-[100%] leading-[150%]">
+              {/* Title */}
+              <h1 className="font-bold md:font-semibold text-primary text-3xl md:text-[60px] text-center md:w-[100%] md:leading-[110%] leading-[150%]">
                 {article && article.title}
               </h1>
 
-              <p className="text-gray text-base md:text-base md:text-center md:w-[100%]">
+              {/* Snippets */}
+              <p className="mt-2 md:mt-3 text-sm md:text-base text-center text-gray px-4 md:px-0 md:w-[100%] leading-[180%]">
                 {article && article.snippets}
+              </p>
+
+              {/* Created At */}
+              <p className="text-[#707070] text-center font-normal m-2">
+                {formatDate(article && article.created_at)} | {formatTime(article && article.created_at)}
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between md:w-full pt-2 gap-4">
-              <p className="text-sm text-gray">
-                {article && article.duration} Min Read &nbsp; | &nbsp;{" "}
-                {formatDate(article && article.created_at)} | &nbsp;{" "}
-                {article && article.author}
-              </p>
-              <div className="flex flex-row items-center gap-3">
-                <p className="text-sm text-gray">Share :</p>
-                <div className="flex flex-row gap-3">
-                  {socials.map((social, index) => (
-                    <Link
-                      href={social.link}
-                      about={social.name}
-                      title={social.name}
-                      target="_blank"
-                      key={index}
-                      className="text-xl rounded-full text-primary bg-secondary px-[0.65rem] pt-1 pb-2 hover:bg-primary hover:text-white duration-700 transition-all cursor-pointer"
-                    >
-                      {social.component}
-                    </Link>
-                  ))}
+            <div className="flex flex-row items-center justify-between w-full pt-2 gap-4">
+              <div className="flex flex-row gap-x-4 items-center">
+                {/* Views */}
+                <div className="flex flex-row gap-x-2 items-center">
+                  <ViewsIcon width={isMobile ? "12" : "18"} height={isMobile ? "20" : "26"} />
+                  <div className="text-[#707070] text-[10px] md:text-sm font-normal">
+                    40 Views
+                  </div>  
                 </div>
+                {/* Reading Time */}
+                <div className="flex flex-row gap-x-2 items-center">
+                  <ReadingTimeIcon width={isMobile ? "12" : "18"} height={isMobile ? "20" : "26"} />
+                  <div className="text-[#707070] text-[10px] md:text-sm font-normal">
+                    {article && article.duration} Min Read
+                  </div>
+                </div>
+                {/* Author */}
+                <div className="flex flex-row gap-x-2 items-center">
+                  <AuthorIcon width={isMobile ? "12" : "18"} height={isMobile ? "20" : "26"} />
+                  <div className="text-[#707070] text-[10px] md:text-sm font-normal">
+                    {article && article.author}    
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-row items-center gap-3 mx-2 relative">
+                {/* Share */}
+                <div className="flex flex-row gap-x-2 items-center cursor-pointer"  
+                     onMouseEnter = {() => setIsHovered(true)}
+                     onMouseLeave = {() => setIsHovered(false)}
+                     onClick={() => setOpen((prevOpen) => !prevOpen)}>
+                  <ShareIcon width={isMobile ? "12" : "18"} 
+                             height={isMobile ? "20" : "26"} 
+                             strokeOpacity = {isHovered || open ? "1.0" : "0.5"}/>
+                </div>
+                {/* Pop up Share */}
+                {open && (
+                  <div className="absolute w-40 md:w-48 top-10 -right-[10px] p-4 bg-white shadow-xl rounded-lg">
+                    <div className="flex flex-col gap-y-4">
+                      {SocialSharing.map((social, index) => 
+                        <SocialSharingButton
+                          key={index} 
+                          articleUrl={social.articleUrl}
+                          title={social.title}
+                          desc={social.desc}
+                          width={social.width}
+                          height={social.height}
+                          Icon={social.Icon}
+                          share={social.share}/>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
