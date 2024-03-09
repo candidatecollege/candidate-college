@@ -60,6 +60,7 @@ const Articles = () => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const [articles, setArticles] = useState<any[]>([]);
+  const [allArticles, setAllArticles] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true);
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(true);
@@ -72,6 +73,16 @@ const Articles = () => {
 
   const myRef = useRef<HTMLDivElement>(null);
   const scrollToRef = () => myRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+  // Used to get all articles data
+  const fetchAllArticles = async () => {
+    try {
+      const response = await axios.get('/api/articles');
+      setAllArticles(response.data.data);
+    } catch(error) {
+      console.log(error);
+    }
+  };
 
   const fetchArticleByCategory = async () => {
     setIsLoadingArticleByCategory(true);
@@ -173,7 +184,7 @@ const Articles = () => {
   // Used to sort articles data based on largest views
   const getMostViewedArticles = (arr: any[], n:any) => {
     const sortedArticles = arr.sort((a: any, b: any) => {
-      return b.views - a.views;
+      return b.view - a.view;
     });
 
     return sortedArticles.slice(0, n)
@@ -181,7 +192,7 @@ const Articles = () => {
 
   // Used to format number of articles cards per row and simultaneously render cards
   const renderPopularArticles = () => {
-    const mostViewed = getMostViewedArticles(popularArticles, 10);
+    const mostViewed = getMostViewedArticles(allArticles, 10);
     
     const cardsPerRow = [3, 2, 3, 2];
     let currentIndex  = 0;
@@ -214,7 +225,7 @@ const Articles = () => {
 
   useEffect(() => {
     fetchArticles();
-
+    fetchAllArticles();
     fetchCategories();
   }, []);
 

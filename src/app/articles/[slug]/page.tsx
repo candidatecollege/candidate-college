@@ -241,7 +241,7 @@ const Detail = () => {
                 <div className="flex flex-row gap-x-2 items-center">
                   <ViewsIcon width={isMobile ? "12" : "18"} height={isMobile ? "20" : "26"} />
                   <div className="text-[#707070] text-[10px] md:text-sm font-normal">
-                    40 Views
+                  {article && article.view}  Views
                   </div>  
                 </div>
                 {/* Reading Time */}
