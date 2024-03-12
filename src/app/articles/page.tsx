@@ -222,6 +222,7 @@ const Articles = () => {
               date={formatDate(article.created_at)}
               author={formatName(article.author)}
               cover_landscape={article.cover_landscape}
+              slug={article.slug}
             />
           ))}
           ;
