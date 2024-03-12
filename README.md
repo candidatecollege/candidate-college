@@ -1,27 +1,33 @@
-# Candidate College 2.3.0 Release Notes
-Release Date: February 27, 2023
+# Candidate College 2.4.0 Release Notes
 
-We're thrilled to announce the rollout of Candidate College 2.3.0, packed with new features and significant improvements aimed at enriching your learning and exploration on our platform. Here's a snapshot of what's new and what we've enhanced:
+Release Date: March 12, 2024
 
-## What's New 
-### New Design Hero Section on Homepage
-Experience a fresh welcome with our redesigned Hero Section, crafted to inspire and engage from the first click.
+We're thrilled to introduce Candidate College 2.4.0, an update dedicated to enhancing your learning experience with new features and improvements. Here's what we've rolled out in this version:
 
-### Co-Founder Section
-Gain insights into our foundation with a new section dedicated to our co-founder, highlighting their vision and contributions.
+## What's New
 
-### C-Levels Section on About Us Page
-Meet the leaders driving Candidate College forward in our newly added C-Levels section, providing transparency and connection.
+### New Design Hero Section on Articles Page
 
-### Related Articles by Category
-Enhance your learning journey with smarter article recommendations on detail pages, now showing related reads by category.
+Greeted with a revamped Hero Section, your reading sessions are now more welcoming and engaging.
 
-### Refreshed Founder Section Design
-Explore the roots of Candidate College with a newly designed section for our founder on the About Us page, offering deeper insights.
+### Popular Section at Articles Page
 
-## Improvements
-### Enhanced Article Slider (Swiper) on Homepage
-Discover more with our improved slider, now featuring ten articles randomly for a diverse reading experience.
+Stay on top of trends with our new Popular Section, highlighting articles that are gaining traction among our community.
 
-### Read Insightful Articles Section
-Delve deeper into topics that matter with an updated section now showcasing five articles randomly, ensuring fresh insights with every visit.
+### Redesigned Detail Article Page
+
+Enjoy an enriched reading experience with our newly designed Detail Article Page, crafted for better engagement and immersion.
+
+### Sharing Buttons for X and WA Story
+
+Share your favorite insights easily with new sharing buttons, allowing you to post directly to X and WA Story from the Detail Article Page.
+
+## Bug Fixes
+
+### Updated Co-Founder Photo
+
+Refreshed the photo of our co-founder, ensuring the authenticity and connection with our community.
+
+### Insightful and Latest Section Error Fixes
+
+Addressed and fixed errors in the insightful and latest sections, making your browsing experience smoother and more enjoyable.
