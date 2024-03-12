@@ -22,7 +22,15 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import PodcastsIcon from "@mui/icons-material/Podcasts";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 
-const Navbar: React.FC<any> = ({ active, isDetail }) => {
+const Navbar: React.FC<any> = ({
+  active,
+  isDetail,
+  className,
+}: {
+  className?: string;
+  active: any;
+  isDetail: any;
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isSelected, setIsSelected] = useState<string>(active);
 
@@ -309,7 +317,7 @@ const Navbar: React.FC<any> = ({ active, isDetail }) => {
 
   return (
     <header
-      className={`w-full z-50 ${
+      className={`${className} w-full z-50 ${
         isDetail ? "bg-white shadow-lg" : "bg-primary"
       } fixed lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-b-border ${
         isContactOpen ? "lg:px-0" : "lg:px-0"

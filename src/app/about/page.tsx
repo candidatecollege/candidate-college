@@ -148,50 +148,54 @@ const About = () => {
   return (
     <main className="bg-primary h-full">
       {/* Navbar */}
-      <Navbar active="About Us" isDetail={false} />
+      <Navbar
+        className="animate__animated animate__fadeInDownBig"
+        active="About Us"
+        isDetail={false}
+      />
 
       {/* Hero */}
-      <section className="flex flex-col w-full h-full lg:pt-[90px] md:pt-[165px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto justify-center md:items-center relative lg:h-screen bg-primary">
-        <p className="text-gray text-sm md:text-center lg:text-base md:w-[40%]">
-          Developing With Us
-        </p>
-
-        <h1 className="font-semibold text-white pt-4 text-3xl md:text-[70px] xl:w-[70%] md:w-[90%] md:text-center leading-[110%]">
-          Top Education Platform in Indonesia
-        </h1>
-
-        <p className="text-gray text-sm leading-7 md:pt-6 pt-4 md:text-center lg:text-base md:w-[50%]">
-          With us achieving dreams in building your education, together
-          say&nbsp;
-          <span className="underline">“Yes”</span> to extraordinary dreams
-        </p>
-
-        <Link
-          href="/about"
-          title="Get To Know About CC"
-          about="Get To Know About CC"
-          className="bg-secondary text-primary font-semibold text-base rounded-full px-8 py-3 text-center md:self-center self-start cursor-pointer mt-6 md:mt-[31px]"
-        >
-          Get To Know About CC
-        </Link>
-
-        <ul className="flex flex-row mt-[38px] gap-6">
-          {socials.map((social, index) => (
-            <Link
-              className="flex text-3xl bg-secondary text-primary w-12 h-12 justify-center items-center rounded-full font-normal"
-              href={social.link}
-              title={social.name}
-              about={social.name}
-              key={index}
-            >
-              {social.component}
-            </Link>
-          ))}
-        </ul>
+      <section className="flex overflow-hidden relative  flex-col w-full h-full     justify-center md:items-center  lg:h-screen bg-primary">
+        <div className="-inset-x-5 md:inset-x-60  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_4s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="-inset-x-14 md:inset-x-44  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_4.3s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="-inset-x-28 md:inset-x-20  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_4.8s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="-inset-x-36 md:-inset-x-10  aspect-square absolute animate-[shrink_4s_ease-in-out_infinite] md:animate-[fade_5s_ease-in-out_infinite] bg-transparent border-secondary border-2 rounded-full   "></div>
+        <div className="flex flex-col w-full h-full lg:pt-[90px] md:pt-[165px] pt-[155px] px-5 py-12 md:max-w-6xl md:mx-auto justify-center md:items-center   lg:h-screen bg-primary">
+          <h1 className="font-bold z-10 animate__animated animate__fadeInRightBig text-white pt-4 text-[36px] md:text-[48px] md:w-[80%]  text-center leading-[35px] md:leading-[72px]">
+            Welcome to Candidate College, where Indonesia's brightest minds!
+          </h1>
+          <p className="text-gray animate__animated animate__fadeInLeftBig  z-10 leading-[28px] md:leading-[24px] md:pt-6 pt-4 text-[12px] md:text-[16px]  text-center md:w-[80%]">
+            Unlocking your full potential with personalized education that fuels
+            your intellectual fire. At Candidate College, we're not just another
+            school; we're your launchpad to academic excellence, both in
+            Indonesia and beyond.
+          </p>
+          <Link
+            href="/about"
+            title="Get To Know About CC"
+            about="Get To Know About CC"
+            className="bg-secondary animate__animated animate__fadeInUpBig z-10 text-primary font-semibold text-base rounded-full px-8 py-3 text-center self-center  cursor-pointer mt-6 md:mt-[31px]"
+          >
+            Get To Know
+          </Link>
+          {/* <ul className="flex flex-row mt-[38px] gap-6">
+            {socials.map((social, index) => (
+              <Link
+                className="flex text-3xl bg-secondary text-primary w-12 h-12 justify-center items-center rounded-full font-normal"
+                href={social.link}
+                title={social.name}
+                about={social.name}
+                key={index}
+              >
+                {social.component}
+              </Link>
+            ))}
+          </ul> */}
+        </div>
       </section>
 
       {/* Work With Us */}
-      <section className="w-full h-full flex lg:flex-row flex-col gap-6 bg-white md:px-[70px] px-5 pt-[90px] pb-40">
+      <section className="w-full   h-full flex lg:flex-row flex-col gap-6 bg-white md:px-[70px] px-5 pt-[90px] pb-40">
         <div className="flex items-center md:m-auto relative md:w-[520px] w-full h-[308px] p-6 bg-primary rounded-3xl overflow-hidden">
           <div className="flex flex-col xl:w-[55%] w-[50%]">
             <p className="text-[#90A3BF] xl:text-[15px] text-sm font-normal">
@@ -249,7 +253,7 @@ const About = () => {
           <div className="flex basis-auto justify-end items-center">
             <Link
               href="/"
-              className="bg-secondary text-primary font-semibold text-base rounded-full md:px-8 px-[50px] py-3 text-center cursor-pointer inline-block self-center shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
+              className="bg-secondary  text-primary font-semibold text-base rounded-full md:px-8 px-[50px] py-3 text-center cursor-pointer inline-block self-center shadow-[0_25px_30px_0px_rgba(0,_65,_232,_0.10)]"
             >
               Let's work
             </Link>
@@ -259,21 +263,25 @@ const About = () => {
 
       {/* Founder */}
       <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-24">
-        <CardFounder img="/members/Rasya Dwi Julitha.png"
-                     title="Our Founder"
-                     name="Rasya Dwi Julitha"
-                     chair="Founder Candidate College"
-                     description="Welcome to Candidate College, a beacon of educational excellence tailored for Indonesia's aspiring minds. As the founder, I am thrilled to present a platform dedicated to nurturing potential and fostering intellectual growth. Our mission is to bridge the gap between students and quality education, both domestically and internationally. We understand the journey of learning is unique for each individual, and our commitment lies in providing personalized, top-tier educational resources and guidance. Join us, as we embark on this transformative journey together, shaping futures and building dreams with every step. Welcome to your next chapter of success with Candidate College."/>
+        <CardFounder
+          img="/members/Rasya Dwi Julitha.png"
+          title="Our Founder"
+          name="Rasya Dwi Julitha"
+          chair="Founder Candidate College"
+          description="Welcome to Candidate College, a beacon of educational excellence tailored for Indonesia's aspiring minds. As the founder, I am thrilled to present a platform dedicated to nurturing potential and fostering intellectual growth. Our mission is to bridge the gap between students and quality education, both domestically and internationally. We understand the journey of learning is unique for each individual, and our commitment lies in providing personalized, top-tier educational resources and guidance. Join us, as we embark on this transformative journey together, shaping futures and building dreams with every step. Welcome to your next chapter of success with Candidate College."
+        />
       </section>
-      
+
       {/* Co-Founder */}
       <section className="w-full h-full bg-white md:px-[70px] px-5 pb-24">
-        <CardFounder img="/members/Lidya.png"
-                      title="Our Co-Founder"
-                      name="Lidya"
-                      chair="Co-Founder Candidate College"
-                      description="
-                      Welcome to the Candidate College platform. A platform that supports Indonesian children to experience education by providing opportunities, platforms and information for them. Indonesia, which still has gaps, especially in the economic sector, means that many children do not get the opportunity to study. Cadidate College exists and was formed to support their dreams, because we believe that every individual has unique dreams, has high dreams and definitely wants to achieve them for achievement and family pride. As the co-founder, I continue to support education in Indonesia and even internationally, so that Indonesian children become inspirational and innovative successors to the nation. Let's start quality education now, because your future is determined by what you do now."/>
+        <CardFounder
+          img="/members/Lidya.png"
+          title="Our Co-Founder"
+          name="Lidya"
+          chair="Co-Founder Candidate College"
+          description="
+                      Welcome to the Candidate College platform. A platform that supports Indonesian children to experience education by providing opportunities, platforms and information for them. Indonesia, which still has gaps, especially in the economic sector, means that many children do not get the opportunity to study. Cadidate College exists and was formed to support their dreams, because we believe that every individual has unique dreams, has high dreams and definitely wants to achieve them for achievement and family pride. As the co-founder, I continue to support education in Indonesia and even internationally, so that Indonesian children become inspirational and innovative successors to the nation. Let's start quality education now, because your future is determined by what you do now."
+        />
       </section>
 
       {/* C-Level */}
@@ -290,15 +298,16 @@ const About = () => {
         {/* Division Members */}
         <div className="flex pt-6 lg:flex-row lg:mx-auto lg:flex-wrap lg:w-1/2 lg:gap-x-24 lg:gap-y-4 xxsm:flex-col xxsm:justify-center">
           {cLevel.map((data: cLevelDataType) => (
-            <CardCLevel key={data.id}
-                        img={data.img}
-                        name={data.name}
-                        chair={data.position} />
+            <CardCLevel
+              key={data.id}
+              img={data.img}
+              name={data.name}
+              chair={data.position}
+            />
           ))}
-
         </div>
       </section>
-      
+
       {/* Events */}
       <section className="w-full h-full bg-white md:px-[70px] px-5 pt-[65px] pb-40">
         <h3 className="text-[#90A3BF] xl:text-base text-sm font-normal text-center">
