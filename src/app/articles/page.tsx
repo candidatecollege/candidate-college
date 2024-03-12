@@ -24,6 +24,7 @@ import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 
 import "../../styles/swiper-article-page.css";
+import getRandom, { Article } from "@/utils/getRandom";
 
 // Import Static File
 import {
@@ -62,8 +63,9 @@ const Articles = () => {
   const [currentIndexSlider, setCurrentIndexSlider] = useState<number>(0);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const [articles, setArticles] = useState<any[]>([]);
-  const [allArticles, setAllArticles] = useState<any[]>([]);
+
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [randomArticles, setRandomArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true);
   const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(true);
@@ -95,8 +97,6 @@ const Articles = () => {
     try {
       const response = await axios.get(`/api/article/categories/${id}`);
 
-      console.log(response);
-
       setArticlesByCategory(response.data.data.articles);
 
       setTimeout(() => {
@@ -116,52 +116,13 @@ const Articles = () => {
     setIsLoadingArticles(true);
 
     try {
-      const response = await axios.get(`/api/articles?sortby=view&count=10`);
-      // const sortedArticles: any[] = response.data.data.sort(
-      //   (a: any, b: any) => {
-      //     if (a.view > b.view) return 1;
-      //     if (a.view < b.view) return -1;
-      //     return 0;
-      //   }
-      // );
+      const response = await axios.get(`/api/articles?count=10`);
+
       const sortedArticles: ArticleType[] = response.data.data;
-      console.log("sort", sortedArticles);
-      // filter article greater then zero
-      const sortedArticleGreatThanZero = sortedArticles.filter(
-        (article) => article.view > 0
-      );
 
-      console.log("Sort zero", sortedArticleGreatThanZero);
-      // Change this if want change number of article most view
-      const numberCountArticles = 5;
-
-      // if number count of article view > 0 is less than numberCountArticle in above,
-      // its mean in array articles there was zero views, so au ah so inglish,
-      // ambil secara acak views yang 0.
-      if (sortedArticleGreatThanZero.length < numberCountArticles) {
-        const restCount =
-          numberCountArticles - sortedArticleGreatThanZero.length;
-        const articleViewEqualZero = sortedArticles.filter(
-          (article) => article.view === 0
-        );
-
-        const randomPickArticleEqualZero = articleViewEqualZero.sort(
-          () => Math.random() - 0.5
-        );
-        // .slice(0, restCount);
-
-        const mergedArticles = sortedArticleGreatThanZero.concat(
-          randomPickArticleEqualZero
-        );
-
-        setArticles(mergedArticles);
-        setIsLoadingArticles(false);
-      } else {
-        // const slicedArticle = sortedArticleGreatThanZero.slice(0, 5);
-
-        setArticles(sortedArticleGreatThanZero);
-        setIsLoadingArticles(false);
-      }
+      setArticles(sortedArticles);
+      setRandomArticles(getRandom(sortedArticles, 5));
+      setIsLoadingArticles(false);
     } catch (error) {
       console.error(error);
       setIsLoadingArticles(false);
@@ -303,6 +264,7 @@ const Articles = () => {
               {isLoadingCategories
                 ? loadingContent?.map((category, index) => (
                     <ListItem
+                      key={index}
                       data={category}
                       isLoading={true}
                       onClick={(e: any) => setActiveCategory("")}
@@ -311,6 +273,7 @@ const Articles = () => {
                   ))
                 : categories?.map((category, index) => (
                     <ListItem
+                      key={index}
                       data={category}
                       isLoading={false}
                       onClick={(e: any) => activeCategoryHandler(category.name)}
@@ -502,7 +465,7 @@ const Articles = () => {
               >
                 {isLoadingArticles
                   ? loadingContent?.map((article, index) => (
-                      <SwiperSlide>
+                      <SwiperSlide key={index}>
                         <div className="flex flex-col gap-2 rounded-xl bg-white shadow-md cursor-pointer">
                           <div className="rounded-lg w-[22rem] h-[22rem] bg-gradient-to-r from-blue-100 to-blue-200 animate-pulse"></div>
 
@@ -528,8 +491,8 @@ const Articles = () => {
                         </div>
                       </SwiperSlide>
                     ))
-                  : articles?.slice(0, 5).map((article, index) => (
-                      <SwiperSlide>
+                  : randomArticles?.map((article, index) => (
+                      <SwiperSlide key={index}>
                         <Link
                           href={`/articles/${article.slug}`}
                           title="Read More"
@@ -554,14 +517,9 @@ const Articles = () => {
                             <p className="font-normal text-sm text-gray">
                               {article.snippets.substring(0, 150) + "..."}
                             </p>
-                            <Link
-                              href={`/articles/${article.slug}`}
-                              title="Read More"
-                              about="Read More"
-                              className="bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5"
-                            >
+                            <div className="bg-secondary text-primary font-medium text-sm rounded-full py-3 text-center cursor-pointer mt-5">
                               Read More
-                            </Link>
+                            </div>
                           </div>
                         </Link>
                       </SwiperSlide>
