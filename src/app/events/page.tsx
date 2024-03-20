@@ -1,23 +1,25 @@
 "use client";
-import {
-  CTA,
-  CardItem,
-  ComingSoon,
-  Footer,
-  ListItem,
-  Navbar,
-} from "@/components";
-import { articlesOnLanding, articlesOnPage } from "@/data/articleData";
-import { categories } from "@/data/eventData";
+import { CTA, Footer, Navbar } from "@/components";
+
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import { FaArrowDownLong } from "react-icons/fa6";
 import axios from "axios";
 import CardItemLandscape from "@/components/CardItemLandscape";
-import JumboItem from "@/components/JumboItem";
+
 import { formatDate } from "@/utils/time";
+import CalendarIcon from "@/components/icons/CalendarIcon";
+import StarIcon from "@/components/icons/StarIcon";
+import StarEventIcon from "@/components/icons/StarEventIcon";
+import MegaphoneIcon from "@/components/icons/MegaphoneIcon";
+import TickCicleIcon from "@/components/icons/TickCicleIcon";
+import LampOnIcon from "@/components/icons/LampOnIcon";
+
+import LampOn from "@/components/event/particle/LampOn";
+import Circle from "@/components/event/particle/Circle";
+import BackCircle from "@/components/event/particle/BackCircle";
+import TickCicle from "@/components/event/particle/TickCicle";
 
 const Programs = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false);
@@ -72,31 +74,46 @@ const Programs = () => {
       <Navbar active="Events" isDetail={false} />
 
       {/* Hero */}
-      <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
-        <Image
-          src={"/decoration/programs.png"}
-          width={0}
-          height={0}
-          className="w-[25rem]"
-          alt="Article Decoration"
-          title="Article Decoration"
-        />
-
-        <div className="flex flex-col gap-4 mb-3">
-          <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:leading-[100%] leading-[150%]">
-            Achieve Quality Equally For All Indonesian Student.
+      <section className="block md:flex px-5 relative justify-center pt-28  items-center  md:max-w-6xl  md:mx-auto bg-primary min-h-screen ">
+        <div className="w-full md:w-4/6">
+          <h1 className="font-bold text-[36px] leading-[45px] md:text-start text-center md:text-[68px] md:leading-[84px]">
+            Discover Various Events for Your Shining Future
           </h1>
-
-          <p className="text-gray text-sm lg:text-base md:w-[85%]">
-            Candidate College is an Education Platform that works to facilitate
-            students in Indonesia at home and aboard to achieve a quality
-            education system.
+          <p className="md:text-start md:max-w-none max-w-[80%] md:mx-0 mx-auto text-center text-[12px] md:text-[20px] mt-6 text-[rgba(144,163,191,1)]">
+            Candidate College Presenting a variety of productive activities done
+            online to increase knowledge and new opportunities.
           </p>
+
+          <Link href={"#event-main"}>
+            <button
+              type="button"
+              className="flex px-8 py-4 mt-6 gap-2 md:mx-0 mx-auto font-semibold rounded-[30px] justify-center bg-secondary items-center text-primary"
+            >
+              See All Events <FaArrowDownLong />
+            </button>
+          </Link>
+        </div>
+        <div className="w-full  max-w-[500px] md:max-w-none md:mx-0 mx-auto md:w-3/6 md:my-0 mb-24 mt-32  relative flex justify-center items-center">
+          <TickCicle />
+          <LampOn />
+          <Circle />
+          <BackCircle />
+          <Image
+            src={"/main-image-event.png"}
+            width={0}
+            className="w-[90%] absolute bottom-2 left-[12%]"
+            height={0}
+            alt="Event Image"
+            title="Event Image"
+          />
         </div>
       </section>
 
       {/* Events */}
-      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
+      <section
+        id="event-main"
+        className="flex z-10 relative flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white"
+      >
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           {/* <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">

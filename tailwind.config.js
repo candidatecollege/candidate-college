@@ -10,9 +10,45 @@ module.exports = {
       // that is actual animation
       animation: {
         fade: "fade 3s ease-in-out infinite",
+        circleUp: "circleUp 4s ease-in-out infinite",
+        circleDown: "circleDown 4s ease-in-out infinite",
+        upDown: "upDown 5s ease-in-out infinite",
+        downUp: "downUp 5s ease-in-out infinite",
         slideRight: "slideRight 0.9s ease-in-out",
       },
       keyframes: {
+        circleUp: {
+          "0%, 100%": {
+            transform: "rotate(20deg)",
+          },
+          "50%": {
+            transform: "rotate(0)",
+          },
+        },
+        circleDown: {
+          "0%, 100%": {
+            transform: "rotate(-20deg)",
+          },
+          "50%": {
+            transform: "rotate(0)",
+          },
+        },
+        upDown: {
+          "0%, 100%": {
+            transform: "translateY(-20px)",
+          },
+          "50%": {
+            transform: "translateY(0px)",
+          },
+        },
+        downUp: {
+          "0%, 100%": {
+            transform: "translateY(20px)",
+          },
+          "50%": {
+            transform: "translateY(0px)",
+          },
+        },
         fade: {
           "0%, 100%": { opacity: 1 },
           "50%": { opacity: 0 },
@@ -22,9 +58,9 @@ module.exports = {
           "50%": { transform: "scale(1)" },
         },
         slideRight: {
-          "0%": {transform: "translateX(100%)", opacity: 0},
-          "100%": {transform: "translateX(0)", opacity: 1},
-        }
+          "0%": { transform: "translateX(100%)", opacity: 0 },
+          "100%": { transform: "translateX(0)", opacity: 1 },
+        },
       },
 
       fontFamily: {
@@ -43,7 +79,7 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       screens: {
-        xsm: "430px",  // Tablet Minimum Size
+        xsm: "430px", // Tablet Minimum Size
         xxsm: "200px", // Mobile Minimum Size
       },
     },
