@@ -9,17 +9,7 @@ import axios from "axios";
 import CardItemLandscape from "@/components/CardItemLandscape";
 
 import { formatDate } from "@/utils/time";
-import CalendarIcon from "@/components/icons/CalendarIcon";
-import StarIcon from "@/components/icons/StarIcon";
-import StarEventIcon from "@/components/icons/StarEventIcon";
-import MegaphoneIcon from "@/components/icons/MegaphoneIcon";
-import TickCicleIcon from "@/components/icons/TickCicleIcon";
-import LampOnIcon from "@/components/icons/LampOnIcon";
-
-import LampOn from "@/components/event/particle/LampOn";
-import Circle from "@/components/event/particle/Circle";
-import BackCircle from "@/components/event/particle/BackCircle";
-import TickCicle from "@/components/event/particle/TickCicle";
+import HeroSection from "@/components/event/HeroSection";
 
 const Programs = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false);
@@ -74,40 +64,7 @@ const Programs = () => {
       <Navbar active="Events" isDetail={false} />
 
       {/* Hero */}
-      <section className="block md:flex px-5 relative justify-center pt-28  items-center  md:max-w-6xl  md:mx-auto bg-primary min-h-screen ">
-        <div className="w-full md:w-4/6">
-          <h1 className="font-bold text-[36px] leading-[45px] md:text-start text-center md:text-[68px] md:leading-[84px]">
-            Discover Various Events for Your Shining Future
-          </h1>
-          <p className="md:text-start md:max-w-none max-w-[80%] md:mx-0 mx-auto text-center text-[12px] md:text-[20px] mt-6 text-[rgba(144,163,191,1)]">
-            Candidate College Presenting a variety of productive activities done
-            online to increase knowledge and new opportunities.
-          </p>
-
-          <Link href={"#event-main"}>
-            <button
-              type="button"
-              className="flex px-8 py-4 mt-6 gap-2 md:mx-0 mx-auto font-semibold rounded-[30px] justify-center bg-secondary items-center text-primary"
-            >
-              See All Events <FaArrowDownLong />
-            </button>
-          </Link>
-        </div>
-        <div className="w-full  max-w-[500px] md:max-w-none md:mx-0 mx-auto md:w-3/6 md:my-0 mb-24 mt-32  relative flex justify-center items-center">
-          <TickCicle />
-          <LampOn />
-          <Circle />
-          <BackCircle />
-          <Image
-            src={"/main-image-event.png"}
-            width={0}
-            className="w-[90%] absolute bottom-2 left-[12%]"
-            height={0}
-            alt="Event Image"
-            title="Event Image"
-          />
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Events */}
       <section
