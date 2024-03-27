@@ -63,8 +63,9 @@ const Articles = () => {
   const [currentIndexSlider, setCurrentIndexSlider] = useState<number>(0);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-
   const [articles, setArticles] = useState<Article[]>([]);
+  const [allArticles, setAllArticles] = useState<Article[]>([]);
+
   const [randomArticles, setRandomArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true);

@@ -1,23 +1,15 @@
 "use client";
-import {
-  CTA,
-  CardItem,
-  ComingSoon,
-  Footer,
-  ListItem,
-  Navbar,
-} from "@/components";
-import { articlesOnLanding, articlesOnPage } from "@/data/articleData";
-import { categories } from "@/data/eventData";
+import { CTA, Footer, Navbar } from "@/components";
+
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import { FaArrowDownLong } from "react-icons/fa6";
 import axios from "axios";
 import CardItemLandscape from "@/components/CardItemLandscape";
-import JumboItem from "@/components/JumboItem";
+
 import { formatDate } from "@/utils/time";
+import HeroSection from "@/components/event/HeroSection";
 
 const Programs = () => {
   const [isShowAllArticles, setIsShowAllArticles] = useState<boolean>(false);
@@ -72,31 +64,13 @@ const Programs = () => {
       <Navbar active="Events" isDetail={false} />
 
       {/* Hero */}
-      <section className="flex flex-col md:flex-row pt-28 gap-4 px-5 md:max-w-6xl md:mx-auto py-12 bg-primary md:justify-center md:items-center relative h-fit md:h-[80vh]">
-        <Image
-          src={"/decoration/programs.png"}
-          width={0}
-          height={0}
-          className="w-[25rem]"
-          alt="Article Decoration"
-          title="Article Decoration"
-        />
-
-        <div className="flex flex-col gap-4 mb-3">
-          <h1 className="font-semibold text-white text-3xl md:text-[70px] md:w-[90%] md:leading-[100%] leading-[150%]">
-            Achieve Quality Equally For All Indonesian Student.
-          </h1>
-
-          <p className="text-gray text-sm lg:text-base md:w-[85%]">
-            Candidate College is an Education Platform that works to facilitate
-            students in Indonesia at home and aboard to achieve a quality
-            education system.
-          </p>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Events */}
-      <section className="flex flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white">
+      <section
+        id="event-main"
+        className="flex z-10 relative flex-col w-full px-5 pt-5 md:pt-10 pb-20 bg-white"
+      >
         <div className="flex flex-col md:mx-auto md:max-w-5xl bg-white">
           {/* <div className="overflow-x-auto scrollbar-hide relative">
             <div className="flex flex-row gap-4 md:mt-5 mb-10 md:mb-16 overflow-x-auto overflow-y-hidden w-[1000px] h-full no-scrollbar scrollbar-hide">
